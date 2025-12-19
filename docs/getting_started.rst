@@ -5,7 +5,7 @@ Getting Started
 
 Prerequisites
 -------------
-Ensure you have a working FEniCS (2019.1.0) environment[cite: 17, 18]. 
+Ensure you have a working FEniCS (2019.1.0) environment. 
 
 .. code-block:: bash
 
@@ -16,8 +16,8 @@ Basic Workflow
 Most simulations follow this pattern:
 
 1. **Define Geometry**: Load a mesh or generate one using built-in scripts like ``run_Ball_Mesh.py``.
-2. **Select Material**: Choose from Elastic, Inelastic, or Porous models[cite: 1, 13, 16].
-3. **Define Operators**: Add physics (Inertia, Hyperelasticity, Darcy Flow)[cite: 4, 13].
+2. **Select Material**: Choose from Elastic, Inelastic, or Porous models.
+3. **Define Operators**: Add physics (Inertia, Hyperelasticity, Darcy Flow).
 4. **Solve**: Use the ``NonlinearSolver`` to find the solution.
 
 First Example: Hyperelastic Ball
