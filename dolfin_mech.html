@@ -18,7 +18,8 @@
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="dolfin_mech" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -43,6 +44,102 @@
               <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="index.html">Introduction</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">dolfin_mech</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-constraint">dolfin_mech.Constraint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-expression-meshfunction-cpp">dolfin_mech.Expression_MeshFunction_cpp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-foi">dolfin_mech.FOI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-kinematics">dolfin_mech.Kinematics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-kinematics-inverse">dolfin_mech.Kinematics_Inverse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-kinematics-linearized">dolfin_mech.Kinematics_Linearized</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-loading">dolfin_mech.Loading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-material">dolfin_mech.Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-material-elastic">dolfin_mech.Material_Elastic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-material-elastic-exponentialneohookean">dolfin_mech.Material_Elastic_ExponentialNeoHookean</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-material-elastic-exponentialogdenciarletgeymonat">dolfin_mech.Material_Elastic_ExponentialOgdenCiarletGeymonat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-material-elastic-hooke">dolfin_mech.Material_Elastic_Hooke</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-material-elastic-kirchhoff">dolfin_mech.Material_Elastic_Kirchhoff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-material-elastic-lung-wbulk">dolfin_mech.Material_Elastic_Lung_Wbulk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-material-elastic-lung-wpore">dolfin_mech.Material_Elastic_Lung_Wpore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-material-elastic-lung-wskel">dolfin_mech.Material_Elastic_Lung_Wskel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-material-elastic-mooneyrivlin">dolfin_mech.Material_Elastic_MooneyRivlin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-material-elastic-neohookean">dolfin_mech.Material_Elastic_NeoHookean</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-material-elastic-neohookeanmooneyrivlin">dolfin_mech.Material_Elastic_NeoHookeanMooneyRivlin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-material-elastic-ogdenciarletgeymonat">dolfin_mech.Material_Elastic_OgdenCiarletGeymonat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-material-elastic-ogdenciarletgeymonatneohookean">dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-material-elastic-ogdenciarletgeymonatneohookeanmooneyrivlin">dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookeanMooneyRivlin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-material-elastic-porous">dolfin_mech.Material_Elastic_Porous</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-material-inelastic">dolfin_mech.Material_Inelastic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-nonlinearsolver">dolfin_mech.NonlinearSolver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-operator">dolfin_mech.Operator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-operator-constraint-macroscopicstresscomponent">dolfin_mech.Operator_Constraint_MacroscopicStressComponent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-operator-darcyflow">dolfin_mech.Operator_DarcyFlow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-operator-hyperelasticity">dolfin_mech.Operator_HyperElasticity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-operator-hyperhydrostaticpressure">dolfin_mech.Operator_HyperHydrostaticPressure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-operator-hyperincompressibility">dolfin_mech.Operator_HyperIncompressibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-operator-inertia">dolfin_mech.Operator_Inertia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-operator-linearizedelasticity">dolfin_mech.Operator_LinearizedElasticity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-operator-linearizedhydrostaticpressure">dolfin_mech.Operator_LinearizedHydrostaticPressure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-operator-linearizedincompressibility">dolfin_mech.Operator_LinearizedIncompressibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-operator-loading-pressurebalancinggravity">dolfin_mech.Operator_Loading_PressureBalancingGravity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-operator-loading-surfaceforce">dolfin_mech.Operator_Loading_SurfaceForce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-operator-loading-surfacepressure">dolfin_mech.Operator_Loading_SurfacePressure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-operator-loading-surfacepressuregradient">dolfin_mech.Operator_Loading_SurfacePressureGradient</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-operator-loading-surfacetension">dolfin_mech.Operator_Loading_SurfaceTension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-operator-loading-volumeforce">dolfin_mech.Operator_Loading_VolumeForce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-operator-microporo-deformedfluidvolume">dolfin_mech.Operator_MicroPoro_DeformedFluidVolume</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-operator-microporo-deformedsolidvolume">dolfin_mech.Operator_MicroPoro_DeformedSolidVolume</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-operator-microporo-deformedsurfacearea">dolfin_mech.Operator_MicroPoro_DeformedSurfaceArea</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-operator-microporo-deformedtotalvolume">dolfin_mech.Operator_MicroPoro_DeformedTotalVolume</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-operator-penalty-directionaldisplacement">dolfin_mech.Operator_Penalty_DirectionalDisplacement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-operator-penalty-lagrangemultipliercomponent">dolfin_mech.Operator_Penalty_LagrangeMultiplierComponent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-operator-penalty-macroscopicstresscomponent">dolfin_mech.Operator_Penalty_MacroscopicStressComponent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-operator-penalty-macroscopicstretchcomponent">dolfin_mech.Operator_Penalty_MacroscopicStretchComponent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-operator-penalty-macroscopicstretchsymmetry">dolfin_mech.Operator_Penalty_MacroscopicStretchSymmetry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-operator-penalty-normaldisplacement">dolfin_mech.Operator_Penalty_NormalDisplacement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-operator-poro-pf">dolfin_mech.Operator_Poro_Pf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-operator-poro-wbulk">dolfin_mech.Operator_Poro_Wbulk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-operator-poro-wpore">dolfin_mech.Operator_Poro_Wpore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-operator-poro-wskel">dolfin_mech.Operator_Poro_Wskel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-problem">dolfin_mech.Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-problem-elasticity">dolfin_mech.Problem_Elasticity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-problem-homogenization">dolfin_mech.Problem_Homogenization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-problem-hyperelasticity">dolfin_mech.Problem_Hyperelasticity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-problem-hyperelasticity-inverse">dolfin_mech.Problem_Hyperelasticity_Inverse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-problem-hyperelasticity-microporo">dolfin_mech.Problem_Hyperelasticity_MicroPoro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-problem-hyperelasticity-poro">dolfin_mech.Problem_Hyperelasticity_Poro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-problem-hyperelasticity-poroflow">dolfin_mech.Problem_Hyperelasticity_PoroFlow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-problem-hyperelasticity-poro-inverse">dolfin_mech.Problem_Hyperelasticity_Poro_Inverse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-qoi">dolfin_mech.QOI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-step">dolfin_mech.Step</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-subdomain-periodic">dolfin_mech.SubDomain_Periodic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-subdomain-pinpoint">dolfin_mech.SubDomain_Pinpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-subsol">dolfin_mech.SubSol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-timeintegrator">dolfin_mech.TimeIntegrator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-timevaryingconstant">dolfin_mech.TimeVaryingConstant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-xdmffile">dolfin_mech.XDMFFile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-compute-error">dolfin_mech.compute_error</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-mesh2ugrid">dolfin_mech.mesh2ugrid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-run-ball-hyperelasticity">dolfin_mech.run_Ball_Hyperelasticity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-run-ball-mesh">dolfin_mech.run_Ball_Mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-run-disc-hyperelasticity">dolfin_mech.run_Disc_Hyperelasticity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-run-disc-mesh">dolfin_mech.run_Disc_Mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-run-heartslice-hyperelasticity">dolfin_mech.run_HeartSlice_Hyperelasticity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-run-heartslice-mesh">dolfin_mech.run_HeartSlice_Mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-run-hollowbox-homogenization">dolfin_mech.run_HollowBox_Homogenization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-run-hollowbox-mesh">dolfin_mech.run_HollowBox_Mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-run-hollowbox-microporohyperelasticity">dolfin_mech.run_HollowBox_MicroPoroHyperelasticity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-run-poroflow">dolfin_mech.run_Poroflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-run-rivlincube-elasticity">dolfin_mech.run_RivlinCube_Elasticity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-run-rivlincube-hyperelasticity">dolfin_mech.run_RivlinCube_Hyperelasticity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-run-rivlincube-mesh">dolfin_mech.run_RivlinCube_Mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-run-rivlincube-porohyperelasticity">dolfin_mech.run_RivlinCube_PoroHyperelasticity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin-mech-write-vtu-file">dolfin_mech.write_VTU_file</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -346,7 +443,9 @@
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="dolfin_mech" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
 
   <hr/>
 
