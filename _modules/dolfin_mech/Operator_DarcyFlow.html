@@ -696,6 +696,10 @@
 <span class="sd">        :param dx: Global measure for the domain.</span>
 <span class="sd">        :param dx_in: Measure for the inlet subdomain.</span>
 <span class="sd">        :param dx_out: Measure for the outlet subdomain.</span>
+<span class="sd">        :param Theta_in: Flux at the inlet. Defaults to Constant(0.0).</span>
+<span class="sd">        :type Theta_in: dolfin.Constant or float, optional</span>
+<span class="sd">        :param Theta_out: Flux at the outlet. Defaults to Constant(0.0).</span>
+<span class="sd">        :type Theta_out: dolfin.Constant or float, optional</span>
 <span class="sd">        &quot;&quot;&quot;</span>   
         <span class="k">assert</span> <span class="n">dx</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;You must provide a global measure dx.&quot;</span>
         <span class="k">assert</span> <span class="n">dx_in</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">dx_out</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;You must provide inlet and outlet subdomain measures.&quot;</span>
