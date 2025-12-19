@@ -21,14 +21,57 @@ from .Material_Elastic import ElasticMaterial
 ################################################################################
 
 class PorousElasticMaterial(ElasticMaterial):
+    """
+    Class representing a porous elastic material whose properties are scaled 
+    based on the solid volume fraction.
 
+    In porous media mechanics, the apparent strain energy density and stresses of 
+    a representative elementary volume (REV) are often scaled versions of the 
+    underlying solid constituent's properties. This class facilitates that 
+    scaling, specifically supporting linear scaling by the initial solid 
+    fraction :math:`\Phi_{s0}`.
 
+    The total energy and stress are computed as:
 
+    .. math::
+        \Psi_{porous} = \\omega \cdot \Psi_{solid}
+
+    .. math::
+        \mathbf{\Sigma}_{porous} = \\omega \cdot \mathbf{\Sigma}_{solid}
+
+    Where :math:`\\omega` is the scaling factor:
+        - For ``scaling="no"``: :math:`\\omega = 1`.
+        - For ``scaling="linear"``: :math:`\\omega = \Phi_{s0}`.
+
+    Attributes:
+        solid_material (ElasticMaterial): The base elastic material representing 
+            the solid phase.
+        Psi (UFL expression): Scaled strain energy density.
+        Sigma (UFL expression): Scaled Second Piola-Kirchhoff stress tensor.
+        P (UFL expression): Scaled First Piola-Kirchhoff stress tensor.
+        sigma (UFL expression): Scaled Cauchy stress tensor.
+        dWbulkdPhis (UFL expression, optional): Scaled derivative of bulk energy 
+            with respect to solid fraction.
+        dWporedPhif (UFL expression, optional): Scaled derivative of pore energy 
+            with respect to fluid fraction.
+    """
     def __init__(self,
             solid_material,
             scaling="no",
             Phis0=None):
+        """
+        Initializes the PorousElasticMaterial.
 
+        :param solid_material: An instance of an ElasticMaterial class.
+        :type solid_material: dmech.ElasticMaterial
+        :param scaling: Scaling strategy, either "no" or "linear". 
+            Defaults to "no".
+        :type scaling: str, optional
+        :param Phis0: Initial solid volume fraction. Required if scaling is "linear".
+        :type Phis0: dolfin.Function, dolfin.Constant, or float, optional
+        :raises AssertionError: If scaling is "linear" but Phis0 is None, or if 
+            an unknown scaling string is provided.
+        """
         self.solid_material = solid_material
 
         if (scaling == "no"):

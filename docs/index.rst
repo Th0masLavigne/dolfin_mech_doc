@@ -92,12 +92,10 @@ But if you need to develop within the library, you need to install an editable v
    Neo-Hookean Mooney-Rivlin Elastic <dolfin_mech.Material_Elastic_NeoHookeanMooneyRivlin>
    Ogden Ciarlet Geymonat Elastic <dolfin_mech.Material_Elastic_OgdenCiarletGeymonat>
    Ogden Ciarlet Geymonat Neo-Hookean Elastic <dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean>
-
+   Ogden Ciarlet Geymonat Neo-Hookean Mooney-Rivlin Elastic <dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookeanMooneyRivlin>
+   Porous Elastic <dolfin_mech.Material_Elastic_Porous>
 
    Inelastic Material <dolfin_mech.Material_Inelastic>
-   Kirchhoff <dolfin_mech.Material_Elastic_Kirchhoff>
-   Neo-Hookean <dolfin_mech.Material_Elastic_NeoHookean>
-   Porous <dolfin_mech.Material_Elastic_Porous>
 
 .. toctree::
    :maxdepth: 1
