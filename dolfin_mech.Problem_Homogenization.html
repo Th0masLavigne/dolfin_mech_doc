@@ -16,6 +16,7 @@
       <script src="_static/documentation_options.js?v=5929fcd5"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -783,6 +784,11 @@
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Homogenization</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#dolfin_mech.Problem_Homogenization.HomogenizationProblem"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Problem_Homogenization.HomogenizationProblem.dim"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem.dim</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Problem_Homogenization.HomogenizationProblem.n_Voigt"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem.n_Voigt</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Problem_Homogenization.HomogenizationProblem.mesh"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem.mesh</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Problem_Homogenization.HomogenizationProblem.dV"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem.dV</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Problem_Homogenization.HomogenizationProblem.mesh_V0"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem.mesh_V0</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Problem_Homogenization.HomogenizationProblem.Voigt2strain"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem.Voigt2strain()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Problem_Homogenization.HomogenizationProblem.eps"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem.eps()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Problem_Homogenization.HomogenizationProblem.get_kappa"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem.get_kappa()</span></code></a></li>
@@ -894,40 +900,144 @@
 <dt class="sig sig-object py" id="dolfin_mech.Problem_Homogenization.HomogenizationProblem">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">HomogenizationProblem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mat_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bbox</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Problem_Homogenization.html#HomogenizationProblem"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Problem_Homogenization.HomogenizationProblem" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class for solving periodic homogenization problems in linear elasticity.</p>
+<p>This class computes the effective elastic properties of a periodic unit cell
+(microstructure) by solving corrector problems under various macroscopic
+strain states. It supports both 2D and 3D geometries and enforces periodic
+boundary conditions on the Representative Elementary Volume (REV).</p>
+<p>The effective stiffness tensor <span class="math notranslate nohighlight">\(\mathbb{C}^{hom}\)</span> is obtained by
+averaging the micro-stresses over the unit cell volume <span class="math notranslate nohighlight">\(V\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\Sigma_{ij} = \mathbb{C}^{hom}_{ijkl} E_{kl} = \frac{1}{|V|} \int_{V} \sigma_{ij}(\mathbf{u}) \, dV\]</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Problem_Homogenization.HomogenizationProblem.dim">
+<span class="sig-name descname"><span class="pre">dim</span></span><a class="headerlink" href="#dolfin_mech.Problem_Homogenization.HomogenizationProblem.dim" title="Link to this definition"></a></dt>
+<dd><p>Spatial dimension (2 or 3).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Problem_Homogenization.HomogenizationProblem.n_Voigt">
+<span class="sig-name descname"><span class="pre">n_Voigt</span></span><a class="headerlink" href="#dolfin_mech.Problem_Homogenization.HomogenizationProblem.n_Voigt" title="Link to this definition"></a></dt>
+<dd><p>Dimension of the Voigt notation vector (3 for 2D, 6 for 3D).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Problem_Homogenization.HomogenizationProblem.mesh">
+<span class="sig-name descname"><span class="pre">mesh</span></span><a class="headerlink" href="#dolfin_mech.Problem_Homogenization.HomogenizationProblem.mesh" title="Link to this definition"></a></dt>
+<dd><p>The mesh of the microstructure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dolfin.Mesh</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Problem_Homogenization.HomogenizationProblem.dV">
+<span class="sig-name descname"><span class="pre">dV</span></span><a class="headerlink" href="#dolfin_mech.Problem_Homogenization.HomogenizationProblem.dV" title="Link to this definition"></a></dt>
+<dd><p>Integration measure over the domain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dolfin.Measure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Problem_Homogenization.HomogenizationProblem.mesh_V0">
+<span class="sig-name descname"><span class="pre">mesh_V0</span></span><a class="headerlink" href="#dolfin_mech.Problem_Homogenization.HomogenizationProblem.mesh_V0" title="Link to this definition"></a></dt>
+<dd><p>Total volume/area of the solid part of the mesh.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="dolfin_mech.Problem_Homogenization.HomogenizationProblem.Voigt2strain">
 <span class="sig-name descname"><span class="pre">Voigt2strain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Problem_Homogenization.html#HomogenizationProblem.Voigt2strain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Problem_Homogenization.HomogenizationProblem.Voigt2strain" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Converts a Voigt notation vector to a second-order strain tensor.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dolfin_mech.Problem_Homogenization.HomogenizationProblem.eps">
 <span class="sig-name descname"><span class="pre">eps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Problem_Homogenization.html#HomogenizationProblem.eps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Problem_Homogenization.HomogenizationProblem.eps" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Computes the symmetric strain tensor (micro-strain).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>v</strong> – Displacement field.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Symmetric part of the gradient of v.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dolfin_mech.Problem_Homogenization.HomogenizationProblem.get_kappa">
 <span class="sig-name descname"><span class="pre">get_kappa</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Problem_Homogenization.html#HomogenizationProblem.get_kappa"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Problem_Homogenization.HomogenizationProblem.get_kappa" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Computes the effective bulk modulus (kappa_tilde) of the microstructure.</p>
+<p>This specific implementation calculates the effective bulk modulus
+under a pressure loading, considering the solid volume fraction change.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Effective bulk modulus kappa_tilde.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dolfin_mech.Problem_Homogenization.HomogenizationProblem.get_lambda_and_mu">
 <span class="sig-name descname"><span class="pre">get_lambda_and_mu</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Problem_Homogenization.html#HomogenizationProblem.get_lambda_and_mu"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Problem_Homogenization.HomogenizationProblem.get_lambda_and_mu" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Computes the homogenized Lamé coefficients by solving corrector problems.</p>
+<p>This method solves <span class="math notranslate nohighlight">\(n_{Voigt}\)</span> linear elastic problems on the REV with
+periodic boundary conditions and recovers the full homogenized stiffness
+matrix <span class="math notranslate nohighlight">\(\mathbb{C}^{hom}\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Homogenized Lamé constants (lmbda_hom, mu_hom).</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dolfin_mech.Problem_Homogenization.HomogenizationProblem.get_macro_strain">
 <span class="sig-name descname"><span class="pre">get_macro_strain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Problem_Homogenization.html#HomogenizationProblem.get_macro_strain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Problem_Homogenization.HomogenizationProblem.get_macro_strain" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Generates a unit macroscopic strain tensor for the i-th Voigt component.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dolfin_mech.Problem_Homogenization.HomogenizationProblem.sigma">
 <span class="sig-name descname"><span class="pre">sigma</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Problem_Homogenization.html#HomogenizationProblem.sigma"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Problem_Homogenization.HomogenizationProblem.sigma" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Computes the micro-stress tensor using the constitutive law.</p>
+<p>The total strain is the sum of the macroscopic strain <span class="math notranslate nohighlight">\(\mathbf{E}\)</span>
+and the local fluctuation strain <span class="math notranslate nohighlight">\(\epsilon(\mathbf{v})\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>v</strong> – Fluctuation displacement field.</p></li>
+<li><p><strong>eps</strong> – Macroscopic strain tensor.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dolfin_mech.Problem_Homogenization.HomogenizationProblem.stress2Voigt">
 <span class="sig-name descname"><span class="pre">stress2Voigt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Problem_Homogenization.html#HomogenizationProblem.stress2Voigt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Problem_Homogenization.HomogenizationProblem.stress2Voigt" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Converts a second-order stress tensor to a Voigt notation vector.</p>
+</dd></dl>
 
 </dd></dl>
 

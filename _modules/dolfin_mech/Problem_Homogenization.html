@@ -780,6 +780,11 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.Problem_Homogenization.html">Homogenization</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.dim"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem.dim</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.n_Voigt"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem.n_Voigt</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.mesh"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem.mesh</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.dV"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem.dV</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.mesh_V0"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem.mesh_V0</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.Voigt2strain"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem.Voigt2strain()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.eps"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem.eps()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.get_kappa"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem.get_kappa()</span></code></a></li>
@@ -909,9 +914,29 @@
 <div class="viewcode-block" id="HomogenizationProblem">
 <a class="viewcode-back" href="../../dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">HomogenizationProblem</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class for solving periodic homogenization problems in linear elasticity.</span>
 
+<span class="sd">    This class computes the effective elastic properties of a periodic unit cell</span>
+<span class="sd">    (microstructure) by solving corrector problems under various macroscopic </span>
+<span class="sd">    strain states. It supports both 2D and 3D geometries and enforces periodic </span>
+<span class="sd">    boundary conditions on the Representative Elementary Volume (REV).</span>
 
+<span class="sd">    </span>
 
+<span class="sd">    The effective stiffness tensor :math:`\mathbb{C}^{hom}` is obtained by </span>
+<span class="sd">    averaging the micro-stresses over the unit cell volume :math:`V`:</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        \Sigma_{ij} = \mathbb{C}^{hom}_{ijkl} E_{kl} = \\frac{1}{|V|} \int_{V} \sigma_{ij}(\mathbf{u}) \, dV</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        dim (int): Spatial dimension (2 or 3).</span>
+<span class="sd">        n_Voigt (int): Dimension of the Voigt notation vector (3 for 2D, 6 for 3D).</span>
+<span class="sd">        mesh (dolfin.Mesh): The mesh of the microstructure.</span>
+<span class="sd">        dV (dolfin.Measure): Integration measure over the domain.</span>
+<span class="sd">        mesh_V0 (float): Total volume/area of the solid part of the mesh.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
             <span class="n">dim</span><span class="p">,</span>
             <span class="n">mesh</span><span class="p">,</span>
@@ -919,7 +944,16 @@
             <span class="n">vol</span><span class="p">,</span>
             <span class="n">bbox</span><span class="p">,</span>
             <span class="n">vertices</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes the HomogenizationProblem.</span>
 
+<span class="sd">        :param dim: Spatial dimension (2 or 3).</span>
+<span class="sd">        :param mesh: Dolfin mesh of the unit cell.</span>
+<span class="sd">        :param mat_params: Dictionary containing &#39;E&#39; (Young&#39;s modulus) and &#39;nu&#39; (Poisson&#39;s ratio).</span>
+<span class="sd">        :param vol: Total volume of the unit cell (including pores).</span>
+<span class="sd">        :param bbox: Bounding box of the unit cell for periodicity.</span>
+<span class="sd">        :param vertices: Vertices defining the periodicity directions.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dim</span> <span class="o">=</span> <span class="n">dim</span>
         <span class="k">if</span>   <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="o">==</span><span class="mi">2</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">n_Voigt</span> <span class="o">=</span> <span class="mi">3</span>
@@ -946,7 +980,12 @@
 <div class="viewcode-block" id="HomogenizationProblem.eps">
 <a class="viewcode-back" href="../../dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.eps">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">eps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Computes the symmetric strain tensor (micro-strain).</span>
 
+<span class="sd">        :param v: Displacement field.</span>
+<span class="sd">        :return: Symmetric part of the gradient of v.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">dolfin</span><span class="o">.</span><span class="n">sym</span><span class="p">(</span><span class="n">dolfin</span><span class="o">.</span><span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">))</span></div>
 
 
@@ -955,7 +994,15 @@
 <div class="viewcode-block" id="HomogenizationProblem.sigma">
 <a class="viewcode-back" href="../../dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.sigma">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">sigma</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">eps</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Computes the micro-stress tensor using the constitutive law.</span>
 
+<span class="sd">        The total strain is the sum of the macroscopic strain :math:`\mathbf{E}` </span>
+<span class="sd">        and the local fluctuation strain :math:`\epsilon(\mathbf{v})`.</span>
+
+<span class="sd">        :param v: Fluctuation displacement field.</span>
+<span class="sd">        :param eps: Macroscopic strain tensor.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbda_s</span> <span class="o">*</span> <span class="n">dolfin</span><span class="o">.</span><span class="n">tr</span><span class="p">(</span><span class="n">eps</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="o">*</span> <span class="n">dolfin</span><span class="o">.</span><span class="n">Identity</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">mu_s</span> <span class="o">*</span> <span class="p">(</span><span class="n">eps</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span><span class="p">(</span><span class="n">v</span><span class="p">))</span></div>
 
 
@@ -964,7 +1011,9 @@
 <div class="viewcode-block" id="HomogenizationProblem.Voigt2strain">
 <a class="viewcode-back" href="../../dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.Voigt2strain">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">Voigt2strain</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
-
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Converts a Voigt notation vector to a second-order strain tensor.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="o">==</span><span class="mi">2</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>   <span class="p">,</span> <span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="mf">2.</span><span class="p">],</span>
                                 <span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="mf">2.</span><span class="p">,</span> <span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>   <span class="p">]])</span>
@@ -979,7 +1028,9 @@
 <div class="viewcode-block" id="HomogenizationProblem.stress2Voigt">
 <a class="viewcode-back" href="../../dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.stress2Voigt">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">stress2Voigt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
-
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Converts a second-order stress tensor to a Voigt notation vector.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="o">==</span><span class="mi">2</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">dolfin</span><span class="o">.</span><span class="n">as_vector</span><span class="p">([</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
         <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="o">==</span><span class="mi">3</span><span class="p">):</span>
@@ -991,7 +1042,9 @@
 <div class="viewcode-block" id="HomogenizationProblem.get_macro_strain">
 <a class="viewcode-back" href="../../dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.get_macro_strain">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_macro_strain</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
-
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generates a unit macroscopic strain tensor for the i-th Voigt component.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="o">==</span><span class="mi">2</span><span class="p">):</span>
             <span class="n">Eps_Voigt</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
         <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="o">==</span><span class="mi">3</span><span class="p">):</span>
@@ -1005,7 +1058,15 @@
 <div class="viewcode-block" id="HomogenizationProblem.get_lambda_and_mu">
 <a class="viewcode-back" href="../../dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.get_lambda_and_mu">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_lambda_and_mu</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Computes the homogenized Lamé coefficients by solving corrector problems.</span>
 
+<span class="sd">        This method solves :math:`n_{Voigt}` linear elastic problems on the REV with </span>
+<span class="sd">        periodic boundary conditions and recovers the full homogenized stiffness </span>
+<span class="sd">        matrix :math:`\mathbb{C}^{hom}`.</span>
+
+<span class="sd">        :return: Homogenized Lamé constants (lmbda_hom, mu_hom).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">Ve</span> <span class="o">=</span> <span class="n">dolfin</span><span class="o">.</span><span class="n">VectorElement</span><span class="p">(</span><span class="s2">&quot;CG&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">ufl_cell</span><span class="p">(),</span> <span class="mi">2</span><span class="p">)</span>
         <span class="n">Re</span> <span class="o">=</span> <span class="n">dolfin</span><span class="o">.</span><span class="n">VectorElement</span><span class="p">(</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">ufl_cell</span><span class="p">(),</span> <span class="mi">0</span><span class="p">)</span>
         <span class="n">W</span> <span class="o">=</span> <span class="n">dolfin</span><span class="o">.</span><span class="n">FunctionSpace</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="p">,</span> <span class="n">dolfin</span><span class="o">.</span><span class="n">MixedElement</span><span class="p">([</span><span class="n">Ve</span><span class="p">,</span> <span class="n">Re</span><span class="p">]),</span> <span class="n">constrained_domain</span><span class="o">=</span><span class="n">dmech</span><span class="o">.</span><span class="n">PeriodicSubDomain</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bbox</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertices</span><span class="p">))</span>
@@ -1059,7 +1120,14 @@
 <div class="viewcode-block" id="HomogenizationProblem.get_kappa">
 <a class="viewcode-back" href="../../dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.get_kappa">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_kappa</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Computes the effective bulk modulus (kappa_tilde) of the microstructure.</span>
 
+<span class="sd">        This specific implementation calculates the effective bulk modulus </span>
+<span class="sd">        under a pressure loading, considering the solid volume fraction change.</span>
+
+<span class="sd">        :return: Effective bulk modulus kappa_tilde.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">coord</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">coordinates</span><span class="p">()</span>
         <span class="n">xmax</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">coord</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]);</span> <span class="n">xmin</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">coord</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
         <span class="n">ymax</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">coord</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]);</span> <span class="n">ymin</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">coord</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>

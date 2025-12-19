@@ -780,6 +780,11 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Problem_Homogenization.html">Homogenization</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.dim"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem.dim</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.n_Voigt"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem.n_Voigt</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.mesh"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem.mesh</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.dV"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem.dV</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.mesh_V0"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem.mesh_V0</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.Voigt2strain"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem.Voigt2strain()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.eps"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem.eps()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.get_kappa"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem.get_kappa()</span></code></a></li>
@@ -1311,9 +1316,11 @@
         <li><a href="dolfin_mech.Material_Elastic_Lung_Wskel.html#dolfin_mech.Material_Elastic_Lung_Wskel.WskelLungElasticMaterial.dev">(WskelLungElasticMaterial attribute)</a>
 </li>
       </ul></li>
-      <li><a href="dolfin_mech.Kinematics_Inverse.html#dolfin_mech.Kinematics_Inverse.InverseKinematics.dim">dim (InverseKinematics attribute)</a>
+      <li><a href="dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.dim">dim (HomogenizationProblem attribute)</a>
 
       <ul>
+        <li><a href="dolfin_mech.Kinematics_Inverse.html#dolfin_mech.Kinematics_Inverse.InverseKinematics.dim">(InverseKinematics attribute)</a>
+</li>
         <li><a href="dolfin_mech.Kinematics.html#dolfin_mech.Kinematics.Kinematics.dim">(Kinematics attribute)</a>
 </li>
         <li><a href="dolfin_mech.Kinematics_Linearized.html#dolfin_mech.Kinematics_Linearized.LinearizedKinematics.dim">(LinearizedKinematics attribute)</a>
@@ -1948,6 +1955,8 @@
         <li><a href="dolfin_mech.XDMFFile.html#module-dolfin_mech.XDMFFile">module</a>
 </li>
       </ul></li>
+      <li><a href="dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.dV">dV (HomogenizationProblem attribute)</a>
+</li>
       <li><a href="dolfin_mech.Material_Elastic_Porous.html#dolfin_mech.Material_Elastic_Porous.PorousElasticMaterial.dWbulkdPhis">dWbulkdPhis (PorousElasticMaterial attribute)</a>
 
       <ul>
@@ -2388,7 +2397,11 @@
         <li><a href="dolfin_mech.Operator_Poro_Wskel.html#dolfin_mech.Operator_Poro_Wskel.WskelPoroOperator.measure">(WskelPoroOperator attribute)</a>
 </li>
       </ul></li>
+      <li><a href="dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.mesh">mesh (HomogenizationProblem attribute)</a>
+</li>
       <li><a href="dolfin_mech.mesh2ugrid.html#dolfin_mech.mesh2ugrid.mesh2ugrid">mesh2ugrid() (in module dolfin_mech.mesh2ugrid)</a>
+</li>
+      <li><a href="dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.mesh_V0">mesh_V0 (HomogenizationProblem attribute)</a>
 </li>
       <li><a href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem">MicroPoroHyperelasticityProblem (class in dolfin_mech.Problem_Hyperelasticity_MicroPoro)</a>
 </li>
@@ -2602,6 +2615,8 @@
 </li>
       </ul></li>
       <li><a href="dolfin_mech.NonlinearSolver.html#dolfin_mech.NonlinearSolver.NonlinearSolver.n_iter_max">n_iter_max (NonlinearSolver attribute)</a>
+</li>
+      <li><a href="dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.n_Voigt">n_Voigt (HomogenizationProblem attribute)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
