@@ -62,6 +62,10 @@ class DarcyFlowOperator(Operator):
         :param dx: Global measure for the domain.
         :param dx_in: Measure for the inlet subdomain.
         :param dx_out: Measure for the outlet subdomain.
+        :param Theta_in: Flux at the inlet. Defaults to Constant(0.0).
+        :type Theta_in: dolfin.Constant or float, optional
+        :param Theta_out: Flux at the outlet. Defaults to Constant(0.0).
+        :type Theta_out: dolfin.Constant or float, optional
         """   
         assert dx is not None, "You must provide a global measure dx."
         assert dx_in is not None and dx_out is not None, "You must provide inlet and outlet subdomain measures."
