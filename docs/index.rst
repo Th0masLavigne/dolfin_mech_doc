@@ -56,54 +56,68 @@ But if you need to develop within the library, you need to install an editable v
    :hidden:
 
    Introduction <self>
+   Getting Started <getting_started>
 
 .. toctree::
    :maxdepth: 1
    :caption: Core API
    :hidden:
 
-   dolfin_mech.Problem
-   dolfin_mech.Step
-   dolfin_mech.Kinematics
-   dolfin_mech.Kinematics_Inverse
-   dolfin_mech.Kinematics_Linearized
-   dolfin_mech.NonlinearSolver
-   dolfin_mech.TimeIntegrator
+   Problem <dolfin_mech.Problem>
+   Step <dolfin_mech.Step>
+   Kinematics <dolfin_mech.Kinematics>
+   Kinematics Inverse <dolfin_mech.Kinematics_Inverse>
+   Kinematics Linearized <dolfin_mech.Kinematics_Linearized>
+   Nonlinear Solver <dolfin_mech.NonlinearSolver>
+   Time Integrator <dolfin_mech.TimeIntegrator>
 
 .. toctree::
    :maxdepth: 1
    :caption: Materials
    :hidden:
 
-   dolfin_mech.Material
-   dolfin_mech.Material_Elastic
-   dolfin_mech.Material_Inelastic
-   dolfin_mech.Material_Elastic_Hooke
-   dolfin_mech.Material_Elastic_Kirchhoff
-   dolfin_mech.Material_Elastic_NeoHookean
-   dolfin_mech.Material_Elastic_Porous
+   Material <dolfin_mech.Material>
+   Elastic Material <dolfin_mech.Material_Elastic>
+   Inelastic Material <dolfin_mech.Material_Inelastic>
+   Hooke <dolfin_mech.Material_Elastic_Hooke>
+   Kirchhoff <dolfin_mech.Material_Elastic_Kirchhoff>
+   Neo-Hookean <dolfin_mech.Material_Elastic_NeoHookean>
+   Porous <dolfin_mech.Material_Elastic_Porous>
 
 .. toctree::
    :maxdepth: 1
    :caption: Operators
    :hidden:
 
-   dolfin_mech.Operator
-   dolfin_mech.Operator_HyperElasticity
-   dolfin_mech.Operator_DarcyFlow
-   dolfin_mech.Operator_Inertia
-   dolfin_mech.Operator_Poro_Pf
-   dolfin_mech.Operator_Loading_SurfacePressure
+   Operator <dolfin_mech.Operator>
+   Hyper-Elasticity <dolfin_mech.Operator_HyperElasticity>
+   Darcy Flow <dolfin_mech.Operator_DarcyFlow>
+   Inertia <dolfin_mech.Operator_Inertia>
+   Pressure Loading <dolfin_mech.Operator_Loading_SurfacePressure>
+
 
 .. toctree::
    :maxdepth: 1
    :caption: Utilities
    :hidden:
 
-   dolfin_mech.QOI
-   dolfin_mech.FOI
-   dolfin_mech.XDMFFile
-   dolfin_mech.compute_error
+   QOI <dolfin_mech.QOI>
+   FOI <dolfin_mech.FOI>
+   XDMF File <dolfin_mech.XDMFFile>
+   Compute Error <dolfin_mech.compute_error>
+
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Examples
+   :hidden:
+
+   Ball Hyperelasticity <dolfin_mech.run_Ball_Hyperelasticity>
+   Disc Hyperelasticity <dolfin_mech.run_Disc_Hyperelasticity>
+   Heart Slice <dolfin_mech.run_Heart_Slice_Hyperelasticity>
+   Hollow Box MicroPoro <dolfin_mech.run_HollowBox_MicroPoroHyperelasticity>
+   Poro-flow <dolfin_mech.run_Poroflow>
+   Rivlin Cube Poro <dolfin_mech.run_RivlinCube_PoroHyperelasticity>
 
 Indices and tables
 ==================
