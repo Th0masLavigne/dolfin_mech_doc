@@ -11,8 +11,6 @@ MOCK_MODULES = [
     'dolfin', 
     'fenics', 
     'ufl', 
-    'petsc4py',
-    'petsc4py.PETSc',
     'numpy', 
     'matplotlib', 
     'matplotlib.pyplot',
@@ -23,7 +21,6 @@ MOCK_MODULES = [
     'myPythonLibrary', 
     'myVTKPythonLibrary', 
     'vtkpython_cbl',
-    'time',
 ]
 for mod_name in MOCK_MODULES:
     sys.modules[mod_name] = MagicMock()
