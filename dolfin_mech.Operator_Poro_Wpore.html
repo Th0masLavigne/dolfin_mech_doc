@@ -16,9 +16,12 @@
       <script src="_static/documentation_options.js?v=5929fcd5"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="dolfin_mech.Operator_Poro_Wskel" href="dolfin_mech.Operator_Poro_Wskel.html" />
+    <link rel="prev" title="dolfin_mech.Operator_Poro_Wbulk" href="dolfin_mech.Operator_Poro_Wbulk.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -423,9 +426,10 @@
 </li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Operators</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Operator.html">Operator</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Operator.html#dolfin_mech.Operator.Operator"><code class="docutils literal notranslate"><span class="pre">Operator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator.html#dolfin_mech.Operator.Operator.res_form"><code class="docutils literal notranslate"><span class="pre">Operator.res_form</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator.html#dolfin_mech.Operator.Operator.set_dt"><code class="docutils literal notranslate"><span class="pre">Operator.set_dt()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator.html#dolfin_mech.Operator.Operator.set_value_at_t_step"><code class="docutils literal notranslate"><span class="pre">Operator.set_value_at_t_step()</span></code></a></li>
 </ul>
@@ -525,13 +529,229 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfacePressure.html">Pressure Loading</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Operator_LinearizedIncompressibility.html">Linearized Incompressibility</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Operator_LinearizedIncompressibility.html#dolfin_mech.Operator_LinearizedIncompressibility.LinearizedIncompressibilityOperator"><code class="docutils literal notranslate"><span class="pre">LinearizedIncompressibilityOperator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_LinearizedIncompressibility.html#dolfin_mech.Operator_LinearizedIncompressibility.LinearizedIncompressibilityOperator.kinematics"><code class="docutils literal notranslate"><span class="pre">LinearizedIncompressibilityOperator.kinematics</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_LinearizedIncompressibility.html#dolfin_mech.Operator_LinearizedIncompressibility.LinearizedIncompressibilityOperator.measure"><code class="docutils literal notranslate"><span class="pre">LinearizedIncompressibilityOperator.measure</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_LinearizedIncompressibility.html#dolfin_mech.Operator_LinearizedIncompressibility.LinearizedIncompressibilityOperator.res_form"><code class="docutils literal notranslate"><span class="pre">LinearizedIncompressibilityOperator.res_form</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Operator_Loading_PressureBalancingGravity.html">Loading Pressure Balancing Gravity</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Operator_Loading_PressureBalancingGravity.html#dolfin_mech.Operator_Loading_PressureBalancingGravity.PressureBalancingGravity0LoadingOperator"><code class="docutils literal notranslate"><span class="pre">PressureBalancingGravity0LoadingOperator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_PressureBalancingGravity.html#dolfin_mech.Operator_Loading_PressureBalancingGravity.PressureBalancingGravity0LoadingOperator.res_form"><code class="docutils literal notranslate"><span class="pre">PressureBalancingGravity0LoadingOperator.res_form</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_PressureBalancingGravity.html#dolfin_mech.Operator_Loading_PressureBalancingGravity.PressureBalancingGravity0LoadingOperator.set_value_at_t_step"><code class="docutils literal notranslate"><span class="pre">PressureBalancingGravity0LoadingOperator.set_value_at_t_step()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Operator_Loading_PressureBalancingGravity.html#dolfin_mech.Operator_Loading_PressureBalancingGravity.PressureBalancingGravityLoadingOperator"><code class="docutils literal notranslate"><span class="pre">PressureBalancingGravityLoadingOperator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_PressureBalancingGravity.html#dolfin_mech.Operator_Loading_PressureBalancingGravity.PressureBalancingGravityLoadingOperator.tv_f"><code class="docutils literal notranslate"><span class="pre">PressureBalancingGravityLoadingOperator.tv_f</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_PressureBalancingGravity.html#dolfin_mech.Operator_Loading_PressureBalancingGravity.PressureBalancingGravityLoadingOperator.tv_P0"><code class="docutils literal notranslate"><span class="pre">PressureBalancingGravityLoadingOperator.tv_P0</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_PressureBalancingGravity.html#dolfin_mech.Operator_Loading_PressureBalancingGravity.PressureBalancingGravityLoadingOperator.res_form"><code class="docutils literal notranslate"><span class="pre">PressureBalancingGravityLoadingOperator.res_form</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_PressureBalancingGravity.html#dolfin_mech.Operator_Loading_PressureBalancingGravity.PressureBalancingGravityLoadingOperator.set_value_at_t_step"><code class="docutils literal notranslate"><span class="pre">PressureBalancingGravityLoadingOperator.set_value_at_t_step()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfaceForce.html">Loading Sufrace Force</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfaceForce.html#dolfin_mech.Operator_Loading_SurfaceForce.SurfaceForce0LoadingOperator"><code class="docutils literal notranslate"><span class="pre">SurfaceForce0LoadingOperator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfaceForce.html#dolfin_mech.Operator_Loading_SurfaceForce.SurfaceForce0LoadingOperator.measure"><code class="docutils literal notranslate"><span class="pre">SurfaceForce0LoadingOperator.measure</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfaceForce.html#dolfin_mech.Operator_Loading_SurfaceForce.SurfaceForce0LoadingOperator.tv_F"><code class="docutils literal notranslate"><span class="pre">SurfaceForce0LoadingOperator.tv_F</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfaceForce.html#dolfin_mech.Operator_Loading_SurfaceForce.SurfaceForce0LoadingOperator.res_form"><code class="docutils literal notranslate"><span class="pre">SurfaceForce0LoadingOperator.res_form</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfaceForce.html#dolfin_mech.Operator_Loading_SurfaceForce.SurfaceForce0LoadingOperator.set_value_at_t_step"><code class="docutils literal notranslate"><span class="pre">SurfaceForce0LoadingOperator.set_value_at_t_step()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfaceForce.html#dolfin_mech.Operator_Loading_SurfaceForce.SurfaceForceLoadingOperator"><code class="docutils literal notranslate"><span class="pre">SurfaceForceLoadingOperator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfaceForce.html#dolfin_mech.Operator_Loading_SurfaceForce.SurfaceForceLoadingOperator.measure"><code class="docutils literal notranslate"><span class="pre">SurfaceForceLoadingOperator.measure</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfaceForce.html#dolfin_mech.Operator_Loading_SurfaceForce.SurfaceForceLoadingOperator.tv_F"><code class="docutils literal notranslate"><span class="pre">SurfaceForceLoadingOperator.tv_F</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfaceForce.html#dolfin_mech.Operator_Loading_SurfaceForce.SurfaceForceLoadingOperator.res_form"><code class="docutils literal notranslate"><span class="pre">SurfaceForceLoadingOperator.res_form</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfaceForce.html#dolfin_mech.Operator_Loading_SurfaceForce.SurfaceForceLoadingOperator.set_value_at_t_step"><code class="docutils literal notranslate"><span class="pre">SurfaceForceLoadingOperator.set_value_at_t_step()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfacePressure.html">Loading Sufrace Pressure</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfacePressure.html#dolfin_mech.Operator_Loading_SurfacePressure.SurfacePressure0LoadingOperator"><code class="docutils literal notranslate"><span class="pre">SurfacePressure0LoadingOperator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfacePressure.html#dolfin_mech.Operator_Loading_SurfacePressure.SurfacePressure0LoadingOperator.measure"><code class="docutils literal notranslate"><span class="pre">SurfacePressure0LoadingOperator.measure</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfacePressure.html#dolfin_mech.Operator_Loading_SurfacePressure.SurfacePressure0LoadingOperator.tv_P"><code class="docutils literal notranslate"><span class="pre">SurfacePressure0LoadingOperator.tv_P</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfacePressure.html#dolfin_mech.Operator_Loading_SurfacePressure.SurfacePressure0LoadingOperator.res_form"><code class="docutils literal notranslate"><span class="pre">SurfacePressure0LoadingOperator.res_form</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfacePressure.html#dolfin_mech.Operator_Loading_SurfacePressure.SurfacePressure0LoadingOperator.set_value_at_t_step"><code class="docutils literal notranslate"><span class="pre">SurfacePressure0LoadingOperator.set_value_at_t_step()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfacePressure.html#dolfin_mech.Operator_Loading_SurfacePressure.SurfacePressureLoadingOperator"><code class="docutils literal notranslate"><span class="pre">SurfacePressureLoadingOperator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfacePressure.html#dolfin_mech.Operator_Loading_SurfacePressure.SurfacePressureLoadingOperator.measure"><code class="docutils literal notranslate"><span class="pre">SurfacePressureLoadingOperator.measure</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfacePressure.html#dolfin_mech.Operator_Loading_SurfacePressure.SurfacePressureLoadingOperator.tv_P"><code class="docutils literal notranslate"><span class="pre">SurfacePressureLoadingOperator.tv_P</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfacePressure.html#dolfin_mech.Operator_Loading_SurfacePressure.SurfacePressureLoadingOperator.res_form"><code class="docutils literal notranslate"><span class="pre">SurfacePressureLoadingOperator.res_form</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfacePressure.html#dolfin_mech.Operator_Loading_SurfacePressure.SurfacePressureLoadingOperator.set_value_at_t_step"><code class="docutils literal notranslate"><span class="pre">SurfacePressureLoadingOperator.set_value_at_t_step()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfacePressureGradient.html">Loading Sufrace Pressure Gradient</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfacePressureGradient.html#dolfin_mech.Operator_Loading_SurfacePressureGradient.SurfacePressureGradient0LoadingOperator"><code class="docutils literal notranslate"><span class="pre">SurfacePressureGradient0LoadingOperator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfacePressureGradient.html#dolfin_mech.Operator_Loading_SurfacePressureGradient.SurfacePressureGradient0LoadingOperator.res_form"><code class="docutils literal notranslate"><span class="pre">SurfacePressureGradient0LoadingOperator.res_form</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfacePressureGradient.html#dolfin_mech.Operator_Loading_SurfacePressureGradient.SurfacePressureGradient0LoadingOperator.set_value_at_t_step"><code class="docutils literal notranslate"><span class="pre">SurfacePressureGradient0LoadingOperator.set_value_at_t_step()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfacePressureGradient.html#dolfin_mech.Operator_Loading_SurfacePressureGradient.SurfacePressureGradientLoadingOperator"><code class="docutils literal notranslate"><span class="pre">SurfacePressureGradientLoadingOperator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfacePressureGradient.html#dolfin_mech.Operator_Loading_SurfacePressureGradient.SurfacePressureGradientLoadingOperator.set_value_at_t_step"><code class="docutils literal notranslate"><span class="pre">SurfacePressureGradientLoadingOperator.set_value_at_t_step()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfaceTension.html">Loading Sufrace Tension</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfaceTension.html#dolfin_mech.Operator_Loading_SurfaceTension.SurfaceTension0LoadingOperator"><code class="docutils literal notranslate"><span class="pre">SurfaceTension0LoadingOperator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfaceTension.html#dolfin_mech.Operator_Loading_SurfaceTension.SurfaceTension0LoadingOperator.res_form"><code class="docutils literal notranslate"><span class="pre">SurfaceTension0LoadingOperator.res_form</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfaceTension.html#dolfin_mech.Operator_Loading_SurfaceTension.SurfaceTension0LoadingOperator.set_value_at_t_step"><code class="docutils literal notranslate"><span class="pre">SurfaceTension0LoadingOperator.set_value_at_t_step()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfaceTension.html#dolfin_mech.Operator_Loading_SurfaceTension.SurfaceTensionLoadingOperator"><code class="docutils literal notranslate"><span class="pre">SurfaceTensionLoadingOperator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfaceTension.html#dolfin_mech.Operator_Loading_SurfaceTension.SurfaceTensionLoadingOperator.measure"><code class="docutils literal notranslate"><span class="pre">SurfaceTensionLoadingOperator.measure</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfaceTension.html#dolfin_mech.Operator_Loading_SurfaceTension.SurfaceTensionLoadingOperator.tv_gamma"><code class="docutils literal notranslate"><span class="pre">SurfaceTensionLoadingOperator.tv_gamma</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfaceTension.html#dolfin_mech.Operator_Loading_SurfaceTension.SurfaceTensionLoadingOperator.kinematics"><code class="docutils literal notranslate"><span class="pre">SurfaceTensionLoadingOperator.kinematics</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfaceTension.html#dolfin_mech.Operator_Loading_SurfaceTension.SurfaceTensionLoadingOperator.res_form"><code class="docutils literal notranslate"><span class="pre">SurfaceTensionLoadingOperator.res_form</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfaceTension.html#dolfin_mech.Operator_Loading_SurfaceTension.SurfaceTensionLoadingOperator.set_value_at_t_step"><code class="docutils literal notranslate"><span class="pre">SurfaceTensionLoadingOperator.set_value_at_t_step()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Operator_Loading_VolumeForce.html">Loading Volume Force</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Operator_Loading_VolumeForce.html#dolfin_mech.Operator_Loading_VolumeForce.VolumeForce0LoadingOperator"><code class="docutils literal notranslate"><span class="pre">VolumeForce0LoadingOperator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_VolumeForce.html#dolfin_mech.Operator_Loading_VolumeForce.VolumeForce0LoadingOperator.measure"><code class="docutils literal notranslate"><span class="pre">VolumeForce0LoadingOperator.measure</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_VolumeForce.html#dolfin_mech.Operator_Loading_VolumeForce.VolumeForce0LoadingOperator.tv_F"><code class="docutils literal notranslate"><span class="pre">VolumeForce0LoadingOperator.tv_F</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_VolumeForce.html#dolfin_mech.Operator_Loading_VolumeForce.VolumeForce0LoadingOperator.res_form"><code class="docutils literal notranslate"><span class="pre">VolumeForce0LoadingOperator.res_form</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_VolumeForce.html#dolfin_mech.Operator_Loading_VolumeForce.VolumeForce0LoadingOperator.set_value_at_t_step"><code class="docutils literal notranslate"><span class="pre">VolumeForce0LoadingOperator.set_value_at_t_step()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Operator_Loading_VolumeForce.html#dolfin_mech.Operator_Loading_VolumeForce.VolumeForceLoadingOperator"><code class="docutils literal notranslate"><span class="pre">VolumeForceLoadingOperator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_VolumeForce.html#dolfin_mech.Operator_Loading_VolumeForce.VolumeForceLoadingOperator.measure"><code class="docutils literal notranslate"><span class="pre">VolumeForceLoadingOperator.measure</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_VolumeForce.html#dolfin_mech.Operator_Loading_VolumeForce.VolumeForceLoadingOperator.tv_F"><code class="docutils literal notranslate"><span class="pre">VolumeForceLoadingOperator.tv_F</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_VolumeForce.html#dolfin_mech.Operator_Loading_VolumeForce.VolumeForceLoadingOperator.res_form"><code class="docutils literal notranslate"><span class="pre">VolumeForceLoadingOperator.res_form</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Loading_VolumeForce.html#dolfin_mech.Operator_Loading_VolumeForce.VolumeForceLoadingOperator.set_value_at_t_step"><code class="docutils literal notranslate"><span class="pre">VolumeForceLoadingOperator.set_value_at_t_step()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Operator_Penalty_DirectionalDisplacement.html">Penalty Directional Displacement</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Operator_Penalty_DirectionalDisplacement.html#dolfin_mech.Operator_Penalty_DirectionalDisplacement.DirectionalDisplacementPenaltyOperator"><code class="docutils literal notranslate"><span class="pre">DirectionalDisplacementPenaltyOperator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Penalty_DirectionalDisplacement.html#dolfin_mech.Operator_Penalty_DirectionalDisplacement.DirectionalDisplacementPenaltyOperator.measure"><code class="docutils literal notranslate"><span class="pre">DirectionalDisplacementPenaltyOperator.measure</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Penalty_DirectionalDisplacement.html#dolfin_mech.Operator_Penalty_DirectionalDisplacement.DirectionalDisplacementPenaltyOperator.tv_N"><code class="docutils literal notranslate"><span class="pre">DirectionalDisplacementPenaltyOperator.tv_N</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Penalty_DirectionalDisplacement.html#dolfin_mech.Operator_Penalty_DirectionalDisplacement.DirectionalDisplacementPenaltyOperator.tv_pen"><code class="docutils literal notranslate"><span class="pre">DirectionalDisplacementPenaltyOperator.tv_pen</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Penalty_DirectionalDisplacement.html#dolfin_mech.Operator_Penalty_DirectionalDisplacement.DirectionalDisplacementPenaltyOperator.res_form"><code class="docutils literal notranslate"><span class="pre">DirectionalDisplacementPenaltyOperator.res_form</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Penalty_DirectionalDisplacement.html#dolfin_mech.Operator_Penalty_DirectionalDisplacement.DirectionalDisplacementPenaltyOperator.set_value_at_t_step"><code class="docutils literal notranslate"><span class="pre">DirectionalDisplacementPenaltyOperator.set_value_at_t_step()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Operator_Penalty_LagrangeMultiplierComponent.html">Penalty Lagrange Multiplier Component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Operator_Penalty_LagrangeMultiplierComponent.html#dolfin_mech.Operator_Penalty_LagrangeMultiplierComponent.LagrangeMultiplierComponentPenaltyOperator"><code class="docutils literal notranslate"><span class="pre">LagrangeMultiplierComponentPenaltyOperator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Penalty_LagrangeMultiplierComponent.html#dolfin_mech.Operator_Penalty_LagrangeMultiplierComponent.LagrangeMultiplierComponentPenaltyOperator.measure"><code class="docutils literal notranslate"><span class="pre">LagrangeMultiplierComponentPenaltyOperator.measure</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Penalty_LagrangeMultiplierComponent.html#dolfin_mech.Operator_Penalty_LagrangeMultiplierComponent.LagrangeMultiplierComponentPenaltyOperator.tv_pen"><code class="docutils literal notranslate"><span class="pre">LagrangeMultiplierComponentPenaltyOperator.tv_pen</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Penalty_LagrangeMultiplierComponent.html#dolfin_mech.Operator_Penalty_LagrangeMultiplierComponent.LagrangeMultiplierComponentPenaltyOperator.res_form"><code class="docutils literal notranslate"><span class="pre">LagrangeMultiplierComponentPenaltyOperator.res_form</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Penalty_LagrangeMultiplierComponent.html#dolfin_mech.Operator_Penalty_LagrangeMultiplierComponent.LagrangeMultiplierComponentPenaltyOperator.set_value_at_t_step"><code class="docutils literal notranslate"><span class="pre">LagrangeMultiplierComponentPenaltyOperator.set_value_at_t_step()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Operator_Penalty_MacroscopicStressComponent.html">Penalty Macroscopic Stress Component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Operator_Penalty_MacroscopicStressComponent.html#dolfin_mech.Operator_Penalty_MacroscopicStressComponent.MacroscopicStressComponentPenaltyOperator"><code class="docutils literal notranslate"><span class="pre">MacroscopicStressComponentPenaltyOperator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Penalty_MacroscopicStressComponent.html#dolfin_mech.Operator_Penalty_MacroscopicStressComponent.MacroscopicStressComponentPenaltyOperator.material"><code class="docutils literal notranslate"><span class="pre">MacroscopicStressComponentPenaltyOperator.material</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Penalty_MacroscopicStressComponent.html#dolfin_mech.Operator_Penalty_MacroscopicStressComponent.MacroscopicStressComponentPenaltyOperator.measure"><code class="docutils literal notranslate"><span class="pre">MacroscopicStressComponentPenaltyOperator.measure</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Penalty_MacroscopicStressComponent.html#dolfin_mech.Operator_Penalty_MacroscopicStressComponent.MacroscopicStressComponentPenaltyOperator.tv_comp"><code class="docutils literal notranslate"><span class="pre">MacroscopicStressComponentPenaltyOperator.tv_comp</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Penalty_MacroscopicStressComponent.html#dolfin_mech.Operator_Penalty_MacroscopicStressComponent.MacroscopicStressComponentPenaltyOperator.tv_pen"><code class="docutils literal notranslate"><span class="pre">MacroscopicStressComponentPenaltyOperator.tv_pen</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Penalty_MacroscopicStressComponent.html#dolfin_mech.Operator_Penalty_MacroscopicStressComponent.MacroscopicStressComponentPenaltyOperator.res_form"><code class="docutils literal notranslate"><span class="pre">MacroscopicStressComponentPenaltyOperator.res_form</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Penalty_MacroscopicStressComponent.html#dolfin_mech.Operator_Penalty_MacroscopicStressComponent.MacroscopicStressComponentPenaltyOperator.set_value_at_t_step"><code class="docutils literal notranslate"><span class="pre">MacroscopicStressComponentPenaltyOperator.set_value_at_t_step()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Operator_Penalty_MacroscopicStretchComponent.html">Penalty Macroscopic Stretch Component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Operator_Penalty_MacroscopicStretchComponent.html#dolfin_mech.Operator_Penalty_MacroscopicStretchComponent.MacroscopicStretchComponentPenaltyOperator"><code class="docutils literal notranslate"><span class="pre">MacroscopicStretchComponentPenaltyOperator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Penalty_MacroscopicStretchComponent.html#dolfin_mech.Operator_Penalty_MacroscopicStretchComponent.MacroscopicStretchComponentPenaltyOperator.measure"><code class="docutils literal notranslate"><span class="pre">MacroscopicStretchComponentPenaltyOperator.measure</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Penalty_MacroscopicStretchComponent.html#dolfin_mech.Operator_Penalty_MacroscopicStretchComponent.MacroscopicStretchComponentPenaltyOperator.tv_U_bar_ij"><code class="docutils literal notranslate"><span class="pre">MacroscopicStretchComponentPenaltyOperator.tv_U_bar_ij</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Penalty_MacroscopicStretchComponent.html#dolfin_mech.Operator_Penalty_MacroscopicStretchComponent.MacroscopicStretchComponentPenaltyOperator.tv_pen"><code class="docutils literal notranslate"><span class="pre">MacroscopicStretchComponentPenaltyOperator.tv_pen</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Penalty_MacroscopicStretchComponent.html#dolfin_mech.Operator_Penalty_MacroscopicStretchComponent.MacroscopicStretchComponentPenaltyOperator.res_form"><code class="docutils literal notranslate"><span class="pre">MacroscopicStretchComponentPenaltyOperator.res_form</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Penalty_MacroscopicStretchComponent.html#dolfin_mech.Operator_Penalty_MacroscopicStretchComponent.MacroscopicStretchComponentPenaltyOperator.set_value_at_t_step"><code class="docutils literal notranslate"><span class="pre">MacroscopicStretchComponentPenaltyOperator.set_value_at_t_step()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Operator_Penalty_MacroscopicStretchSymmetry.html">Penalty Macroscopic Stretch Symmetry</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Operator_Penalty_MacroscopicStretchSymmetry.html#dolfin_mech.Operator_Penalty_MacroscopicStretchSymmetry.MacroscopicStretchSymmetryPenaltyOperator"><code class="docutils literal notranslate"><span class="pre">MacroscopicStretchSymmetryPenaltyOperator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Penalty_MacroscopicStretchSymmetry.html#dolfin_mech.Operator_Penalty_MacroscopicStretchSymmetry.MacroscopicStretchSymmetryPenaltyOperator.measure"><code class="docutils literal notranslate"><span class="pre">MacroscopicStretchSymmetryPenaltyOperator.measure</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Penalty_MacroscopicStretchSymmetry.html#dolfin_mech.Operator_Penalty_MacroscopicStretchSymmetry.MacroscopicStretchSymmetryPenaltyOperator.tv_pen"><code class="docutils literal notranslate"><span class="pre">MacroscopicStretchSymmetryPenaltyOperator.tv_pen</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Penalty_MacroscopicStretchSymmetry.html#dolfin_mech.Operator_Penalty_MacroscopicStretchSymmetry.MacroscopicStretchSymmetryPenaltyOperator.res_form"><code class="docutils literal notranslate"><span class="pre">MacroscopicStretchSymmetryPenaltyOperator.res_form</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Penalty_MacroscopicStretchSymmetry.html#dolfin_mech.Operator_Penalty_MacroscopicStretchSymmetry.MacroscopicStretchSymmetryPenaltyOperator.set_value_at_t_step"><code class="docutils literal notranslate"><span class="pre">MacroscopicStretchSymmetryPenaltyOperator.set_value_at_t_step()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Operator_Penalty_NormalDisplacement.html">Penalty Normal Displacement</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Operator_Penalty_NormalDisplacement.html#dolfin_mech.Operator_Penalty_NormalDisplacement.NormalDisplacementPenaltyOperator"><code class="docutils literal notranslate"><span class="pre">NormalDisplacementPenaltyOperator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Penalty_NormalDisplacement.html#dolfin_mech.Operator_Penalty_NormalDisplacement.NormalDisplacementPenaltyOperator.measure"><code class="docutils literal notranslate"><span class="pre">NormalDisplacementPenaltyOperator.measure</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Penalty_NormalDisplacement.html#dolfin_mech.Operator_Penalty_NormalDisplacement.NormalDisplacementPenaltyOperator.tv_pen"><code class="docutils literal notranslate"><span class="pre">NormalDisplacementPenaltyOperator.tv_pen</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Penalty_NormalDisplacement.html#dolfin_mech.Operator_Penalty_NormalDisplacement.NormalDisplacementPenaltyOperator.res_form"><code class="docutils literal notranslate"><span class="pre">NormalDisplacementPenaltyOperator.res_form</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Penalty_NormalDisplacement.html#dolfin_mech.Operator_Penalty_NormalDisplacement.NormalDisplacementPenaltyOperator.set_value_at_t_step"><code class="docutils literal notranslate"><span class="pre">NormalDisplacementPenaltyOperator.set_value_at_t_step()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Operator_Poro_Pf.html">Poro Pf</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Operator_Poro_Pf.html#dolfin_mech.Operator_Poro_Pf.PfPoroOperator"><code class="docutils literal notranslate"><span class="pre">PfPoroOperator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Poro_Pf.html#dolfin_mech.Operator_Poro_Pf.PfPoroOperator.measure"><code class="docutils literal notranslate"><span class="pre">PfPoroOperator.measure</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Poro_Pf.html#dolfin_mech.Operator_Poro_Pf.PfPoroOperator.tv_pf"><code class="docutils literal notranslate"><span class="pre">PfPoroOperator.tv_pf</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Poro_Pf.html#dolfin_mech.Operator_Poro_Pf.PfPoroOperator.pf"><code class="docutils literal notranslate"><span class="pre">PfPoroOperator.pf</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Poro_Pf.html#dolfin_mech.Operator_Poro_Pf.PfPoroOperator.res_form"><code class="docutils literal notranslate"><span class="pre">PfPoroOperator.res_form</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Poro_Pf.html#dolfin_mech.Operator_Poro_Pf.PfPoroOperator.set_value_at_t_step"><code class="docutils literal notranslate"><span class="pre">PfPoroOperator.set_value_at_t_step()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Operator_Poro_Wbulk.html">Poro Wbulk</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Operator_Poro_Wbulk.html#dolfin_mech.Operator_Poro_Wbulk.InverseWbulkPoroOperator"><code class="docutils literal notranslate"><span class="pre">InverseWbulkPoroOperator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Poro_Wbulk.html#dolfin_mech.Operator_Poro_Wbulk.InverseWbulkPoroOperator.kinematics"><code class="docutils literal notranslate"><span class="pre">InverseWbulkPoroOperator.kinematics</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Poro_Wbulk.html#dolfin_mech.Operator_Poro_Wbulk.InverseWbulkPoroOperator.measure"><code class="docutils literal notranslate"><span class="pre">InverseWbulkPoroOperator.measure</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Poro_Wbulk.html#dolfin_mech.Operator_Poro_Wbulk.InverseWbulkPoroOperator.res_form"><code class="docutils literal notranslate"><span class="pre">InverseWbulkPoroOperator.res_form</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Operator_Poro_Wbulk.html#dolfin_mech.Operator_Poro_Wbulk.WbulkPoroOperator"><code class="docutils literal notranslate"><span class="pre">WbulkPoroOperator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Poro_Wbulk.html#dolfin_mech.Operator_Poro_Wbulk.WbulkPoroOperator.kinematics"><code class="docutils literal notranslate"><span class="pre">WbulkPoroOperator.kinematics</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Poro_Wbulk.html#dolfin_mech.Operator_Poro_Wbulk.WbulkPoroOperator.solid_material"><code class="docutils literal notranslate"><span class="pre">WbulkPoroOperator.solid_material</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Poro_Wbulk.html#dolfin_mech.Operator_Poro_Wbulk.WbulkPoroOperator.material"><code class="docutils literal notranslate"><span class="pre">WbulkPoroOperator.material</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Poro_Wbulk.html#dolfin_mech.Operator_Poro_Wbulk.WbulkPoroOperator.measure"><code class="docutils literal notranslate"><span class="pre">WbulkPoroOperator.measure</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Poro_Wbulk.html#dolfin_mech.Operator_Poro_Wbulk.WbulkPoroOperator.res_form"><code class="docutils literal notranslate"><span class="pre">WbulkPoroOperator.res_form</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Poro Wpore</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin_mech.Operator_Poro_Wpore.InverseWporePoroOperator"><code class="docutils literal notranslate"><span class="pre">InverseWporePoroOperator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Operator_Poro_Wpore.InverseWporePoroOperator.kinematics"><code class="docutils literal notranslate"><span class="pre">InverseWporePoroOperator.kinematics</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Operator_Poro_Wpore.InverseWporePoroOperator.measure"><code class="docutils literal notranslate"><span class="pre">InverseWporePoroOperator.measure</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Operator_Poro_Wpore.InverseWporePoroOperator.res_form"><code class="docutils literal notranslate"><span class="pre">InverseWporePoroOperator.res_form</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin_mech.Operator_Poro_Wpore.WporePoroOperator"><code class="docutils literal notranslate"><span class="pre">WporePoroOperator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Operator_Poro_Wpore.WporePoroOperator.kinematics"><code class="docutils literal notranslate"><span class="pre">WporePoroOperator.kinematics</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Operator_Poro_Wpore.WporePoroOperator.solid_material"><code class="docutils literal notranslate"><span class="pre">WporePoroOperator.solid_material</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Operator_Poro_Wpore.WporePoroOperator.material"><code class="docutils literal notranslate"><span class="pre">WporePoroOperator.material</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Operator_Poro_Wpore.WporePoroOperator.measure"><code class="docutils literal notranslate"><span class="pre">WporePoroOperator.measure</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Operator_Poro_Wpore.WporePoroOperator.res_form"><code class="docutils literal notranslate"><span class="pre">WporePoroOperator.res_form</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Operator_Poro_Wskel.html">Poro Wskel</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Operator_Poro_Wskel.html#dolfin_mech.Operator_Poro_Wskel.InverseWskelPoroOperator"><code class="docutils literal notranslate"><span class="pre">InverseWskelPoroOperator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Poro_Wskel.html#dolfin_mech.Operator_Poro_Wskel.InverseWskelPoroOperator.res_form"><code class="docutils literal notranslate"><span class="pre">InverseWskelPoroOperator.res_form</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Operator_Poro_Wskel.html#dolfin_mech.Operator_Poro_Wskel.WskelPoroOperator"><code class="docutils literal notranslate"><span class="pre">WskelPoroOperator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Poro_Wskel.html#dolfin_mech.Operator_Poro_Wskel.WskelPoroOperator.kinematics"><code class="docutils literal notranslate"><span class="pre">WskelPoroOperator.kinematics</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Poro_Wskel.html#dolfin_mech.Operator_Poro_Wskel.WskelPoroOperator.solid_material"><code class="docutils literal notranslate"><span class="pre">WskelPoroOperator.solid_material</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Poro_Wskel.html#dolfin_mech.Operator_Poro_Wskel.WskelPoroOperator.material"><code class="docutils literal notranslate"><span class="pre">WskelPoroOperator.material</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Poro_Wskel.html#dolfin_mech.Operator_Poro_Wskel.WskelPoroOperator.measure"><code class="docutils literal notranslate"><span class="pre">WskelPoroOperator.measure</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Poro_Wskel.html#dolfin_mech.Operator_Poro_Wskel.WskelPoroOperator.res_form"><code class="docutils literal notranslate"><span class="pre">WskelPoroOperator.res_form</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -636,12 +856,117 @@
 <dt class="sig sig-object py" id="dolfin_mech.Operator_Poro_Wpore.InverseWporePoroOperator">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">InverseWporePoroOperator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kinematics</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phis0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unknown_porosity_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">material_parameters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">material_scaling</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">measure</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Operator_Poro_Wpore.html#InverseWporePoroOperator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Operator_Poro_Wpore.InverseWporePoroOperator" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="dolfin_mech.Operator.html#dolfin_mech.Operator.Operator" title="dolfin_mech.Operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></a></p>
+<p>Operator representing the pore-level energy contribution for inverse or
+linearized poromechanical problems.</p>
+<p>In this operator, the volume fractions <span class="math notranslate nohighlight">\(\phi_s\)</span> and <span class="math notranslate nohighlight">\(\phi_0\)</span>
+are assumed to be spatial-like quantities that require scaling by the
+Jacobian <span class="math notranslate nohighlight">\(J\)</span> to recover reference volume fractions.</p>
+<p>The fluid fraction is mapped as:</p>
+<div class="math notranslate nohighlight">
+\[\Phi_f = J \cdot (1 - \phi_s)\]</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Operator_Poro_Wpore.InverseWporePoroOperator.kinematics">
+<span class="sig-name descname"><span class="pre">kinematics</span></span><a class="headerlink" href="#dolfin_mech.Operator_Poro_Wpore.InverseWporePoroOperator.kinematics" title="Link to this definition"></a></dt>
+<dd><p>Kinematics object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="dolfin_mech.Kinematics.html#dolfin_mech.Kinematics.Kinematics" title="dolfin_mech.Kinematics.Kinematics">Kinematics</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Operator_Poro_Wpore.InverseWporePoroOperator.measure">
+<span class="sig-name descname"><span class="pre">measure</span></span><a class="headerlink" href="#dolfin_mech.Operator_Poro_Wpore.InverseWporePoroOperator.measure" title="Link to this definition"></a></dt>
+<dd><p>Integration measure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dolfin.Measure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Operator_Poro_Wpore.InverseWporePoroOperator.res_form">
+<span class="sig-name descname"><span class="pre">res_form</span></span><a class="headerlink" href="#dolfin_mech.Operator_Poro_Wpore.InverseWporePoroOperator.res_form" title="Link to this definition"></a></dt>
+<dd><p>The resulting residual variational form.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>UFL form</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="dolfin_mech.Operator_Poro_Wpore.WporePoroOperator">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">WporePoroOperator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kinematics</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Phis0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Phis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unknown_porosity_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">material_parameters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">material_scaling</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">measure</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Operator_Poro_Wpore.html#WporePoroOperator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Operator_Poro_Wpore.WporePoroOperator" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="dolfin_mech.Operator.html#dolfin_mech.Operator.Operator" title="dolfin_mech.Operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></a></p>
+<p>Operator representing the pore-level energy contribution in a finite strain
+poromechanical framework.</p>
+<p>This operator models the energy associated with the fluid-filled pores
+(specifically for lung tissue) and its coupling with the solid volume
+fraction <span class="math notranslate nohighlight">\(\Phi_s\)</span>. It assembles the residual term derived from the
+variation of the pore energy <span class="math notranslate nohighlight">\(W_{pore}\)</span> with respect to the porosity.</p>
+<p>The fluid volume fraction is calculated as:</p>
+<div class="math notranslate nohighlight">
+\[\Phi_f = J - \Phi_s\]</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Operator_Poro_Wpore.WporePoroOperator.kinematics">
+<span class="sig-name descname"><span class="pre">kinematics</span></span><a class="headerlink" href="#dolfin_mech.Operator_Poro_Wpore.WporePoroOperator.kinematics" title="Link to this definition"></a></dt>
+<dd><p>Finite strain kinematics object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="dolfin_mech.Kinematics.html#dolfin_mech.Kinematics.Kinematics" title="dolfin_mech.Kinematics.Kinematics">Kinematics</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Operator_Poro_Wpore.WporePoroOperator.solid_material">
+<span class="sig-name descname"><span class="pre">solid_material</span></span><a class="headerlink" href="#dolfin_mech.Operator_Poro_Wpore.WporePoroOperator.solid_material" title="Link to this definition"></a></dt>
+<dd><p>Underlying pore-level lung material.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="dolfin_mech.Material_Elastic_Lung_Wpore.html#dolfin_mech.Material_Elastic_Lung_Wpore.WporeLungElasticMaterial" title="dolfin_mech.Material_Elastic_Lung_Wpore.WporeLungElasticMaterial">WporeLungElasticMaterial</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Operator_Poro_Wpore.WporePoroOperator.material">
+<span class="sig-name descname"><span class="pre">material</span></span><a class="headerlink" href="#dolfin_mech.Operator_Poro_Wpore.WporePoroOperator.material" title="Link to this definition"></a></dt>
+<dd><p>Porous wrapper handling material scaling.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="dolfin_mech.Material_Elastic_Porous.html#dolfin_mech.Material_Elastic_Porous.PorousElasticMaterial" title="dolfin_mech.Material_Elastic_Porous.PorousElasticMaterial">PorousElasticMaterial</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Operator_Poro_Wpore.WporePoroOperator.measure">
+<span class="sig-name descname"><span class="pre">measure</span></span><a class="headerlink" href="#dolfin_mech.Operator_Poro_Wpore.WporePoroOperator.measure" title="Link to this definition"></a></dt>
+<dd><p>Integration measure (typically <code class="docutils literal notranslate"><span class="pre">dx</span></code>).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dolfin.Measure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Operator_Poro_Wpore.WporePoroOperator.res_form">
+<span class="sig-name descname"><span class="pre">res_form</span></span><a class="headerlink" href="#dolfin_mech.Operator_Poro_Wpore.WporePoroOperator.res_form" title="Link to this definition"></a></dt>
+<dd><p>The resulting residual variational form.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>UFL form</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </section>
@@ -649,7 +974,10 @@
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dolfin_mech.Operator_Poro_Wbulk.html" class="btn btn-neutral float-left" title="dolfin_mech.Operator_Poro_Wbulk" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dolfin_mech.Operator_Poro_Wskel.html" class="btn btn-neutral float-right" title="dolfin_mech.Operator_Poro_Wskel" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

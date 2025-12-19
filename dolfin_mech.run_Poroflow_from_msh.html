@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>dolfin_mech.Material &mdash; dolfin_mech  documentation</title>
+  <title>dolfin_mech.run_Poroflow_from_msh &mdash; dolfin_mech  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
@@ -16,12 +16,9 @@
       <script src="_static/documentation_options.js?v=5929fcd5"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="dolfin_mech.Material_Elastic" href="dolfin_mech.Material_Elastic.html" />
-    <link rel="prev" title="dolfin_mech.TimeIntegrator" href="dolfin_mech.TimeIntegrator.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -206,21 +203,21 @@
 </li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Materials</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Material Base</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#dolfin_mech.Material.Material"><code class="docutils literal notranslate"><span class="pre">Material</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material.Material.get_C0_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_C0_from_parameters()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material.Material.get_C1_and_C2_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_C1_and_C2_from_parameters()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material.Material.get_C1_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_C1_from_parameters()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material.Material.get_C2_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_C2_from_parameters()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material.Material.get_G_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_G_from_parameters()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material.Material.get_K_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_K_from_parameters()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material.Material.get_lambda_and_mu_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_lambda_and_mu_from_parameters()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material.Material.get_lambda_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_lambda_from_parameters()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material.Material.get_mu_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_mu_from_parameters()</span></code></a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Material.html">Material Base</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Material.html#dolfin_mech.Material.Material"><code class="docutils literal notranslate"><span class="pre">Material</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material.html#dolfin_mech.Material.Material.get_C0_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_C0_from_parameters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material.html#dolfin_mech.Material.Material.get_C1_and_C2_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_C1_and_C2_from_parameters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material.html#dolfin_mech.Material.Material.get_C1_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_C1_from_parameters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material.html#dolfin_mech.Material.Material.get_C2_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_C2_from_parameters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material.html#dolfin_mech.Material.Material.get_G_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_G_from_parameters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material.html#dolfin_mech.Material.Material.get_K_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_K_from_parameters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material.html#dolfin_mech.Material.Material.get_lambda_and_mu_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_lambda_and_mu_from_parameters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material.html#dolfin_mech.Material.Material.get_lambda_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_lambda_from_parameters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material.html#dolfin_mech.Material.Material.get_mu_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_mu_from_parameters()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#dolfin_mech.Material.material_factory"><code class="docutils literal notranslate"><span class="pre">material_factory()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Material.html#dolfin_mech.Material.material_factory"><code class="docutils literal notranslate"><span class="pre">material_factory()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Material_Elastic.html">Elastic Base</a><ul>
@@ -840,9 +837,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">dolfin_mech.Material</li>
+      <li class="breadcrumb-item active">dolfin_mech.run_Poroflow_from_msh</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/dolfin_mech.Material.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/dolfin_mech.run_Poroflow_from_msh.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -850,190 +847,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-dolfin_mech.Material">
-<span id="dolfin-mech-material"></span><h1>dolfin_mech.Material<a class="headerlink" href="#module-dolfin_mech.Material" title="Link to this heading"></a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="dolfin_mech.Material.Material">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Material</span></span><a class="reference internal" href="_modules/dolfin_mech/Material.html#Material"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Material.Material" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Base class for material models providing utility methods for parameter conversion.</p>
-<p>This class handles the translation between common engineering constants
-(Young’s modulus <span class="math notranslate nohighlight">\(E\)</span>, Poisson’s ratio <span class="math notranslate nohighlight">\(\nu\)</span>) and the theoretical
-parameters required by constitutive laws (Lamé constants <span class="math notranslate nohighlight">\(\lambda, \mu\)</span>,
-bulk modulus <span class="math notranslate nohighlight">\(K\)</span>, etc.).</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="dolfin_mech.Material.Material.get_C0_from_parameters">
-<span class="sig-name descname"><span class="pre">get_C0_from_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decoup</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Material.html#Material.get_C0_from_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Material.Material.get_C0_from_parameters" title="Link to this definition"></a></dt>
-<dd><p>Compute the hyperelastic coefficient <span class="math notranslate nohighlight">\(C_0\)</span>.</p>
-<p>This parameter is typically associated with the volumetric or
-compressibility part of the strain energy density function.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>parameters</strong> (<em>dict</em>) – Dictionary of material parameters.</p></li>
-<li><p><strong>decoup</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, computes <span class="math notranslate nohighlight">\(C_0\)</span> from the bulk
-modulus <span class="math notranslate nohighlight">\(K\)</span>: <span class="math notranslate nohighlight">\(C_0 = K/4\)</span>. If False, computes it
-from <span class="math notranslate nohighlight">\(\lambda\)</span>: <span class="math notranslate nohighlight">\(C_0 = \lambda/4\)</span>. Defaults to False.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The computed <span class="math notranslate nohighlight">\(C_0\)</span> value.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>dolfin.Constant</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="dolfin_mech.Material.Material.get_C1_and_C2_from_parameters">
-<span class="sig-name descname"><span class="pre">get_C1_and_C2_from_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Material.html#Material.get_C1_and_C2_from_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Material.Material.get_C1_and_C2_from_parameters" title="Link to this definition"></a></dt>
-<dd><p>Compute Mooney-Rivlin coefficients <span class="math notranslate nohighlight">\(C_1\)</span> and <span class="math notranslate nohighlight">\(C_2\)</span>.</p>
-<p>If only <code class="docutils literal notranslate"><span class="pre">&quot;mu&quot;</span></code> is provided, it assumes <span class="math notranslate nohighlight">\(C_1 = C_2 = \mu/4\)</span>.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="dolfin_mech.Material.Material.get_C1_from_parameters">
-<span class="sig-name descname"><span class="pre">get_C1_from_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Material.html#Material.get_C1_from_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Material.Material.get_C1_from_parameters" title="Link to this definition"></a></dt>
-<dd><p>Compute the hyperelastic coefficient <span class="math notranslate nohighlight">\(C_1\)</span>.</p>
-<p>In many models, <span class="math notranslate nohighlight">\(C_1\)</span> is related to the shear response of the material.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>parameters</strong> (<em>dict</em>) – Dictionary of material parameters.
-Expected keys: <code class="docutils literal notranslate"><span class="pre">&quot;C1&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;c1&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;mu&quot;</span></code>, or (<code class="docutils literal notranslate"><span class="pre">&quot;E&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;nu&quot;</span></code>).</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The computed <span class="math notranslate nohighlight">\(C_1\)</span> value.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>dolfin.Constant</p>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-<p>If not explicitly provided, it is derived as <span class="math notranslate nohighlight">\(C_1 = \mu/2\)</span>.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="dolfin_mech.Material.Material.get_C2_from_parameters">
-<span class="sig-name descname"><span class="pre">get_C2_from_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Material.html#Material.get_C2_from_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Material.Material.get_C2_from_parameters" title="Link to this definition"></a></dt>
-<dd><p>Compute the hyperelastic coefficient <span class="math notranslate nohighlight">\(C_2\)</span>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>parameters</strong> (<em>dict</em>) – Dictionary of material parameters.
-Expected keys: <code class="docutils literal notranslate"><span class="pre">&quot;C2&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;c2&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;mu&quot;</span></code>, or (<code class="docutils literal notranslate"><span class="pre">&quot;E&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;nu&quot;</span></code>).</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The computed <span class="math notranslate nohighlight">\(C_2\)</span> value.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>dolfin.Constant</p>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-<p>If not explicitly provided, it is derived as <span class="math notranslate nohighlight">\(C_2 = \mu/2\)</span>.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="dolfin_mech.Material.Material.get_G_from_parameters">
-<span class="sig-name descname"><span class="pre">get_G_from_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Material.html#Material.get_G_from_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Material.Material.get_G_from_parameters" title="Link to this definition"></a></dt>
-<dd><p>Compute the shear modulus <span class="math notranslate nohighlight">\(G\)</span>. Equivalent to <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="dolfin_mech.Material.Material.get_K_from_parameters">
-<span class="sig-name descname"><span class="pre">get_K_from_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Material.html#Material.get_K_from_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Material.Material.get_K_from_parameters" title="Link to this definition"></a></dt>
-<dd><p>Compute the bulk modulus <span class="math notranslate nohighlight">\(K\)</span>.</p>
-<p>If <code class="docutils literal notranslate"><span class="pre">&quot;K&quot;</span></code> is not in parameters, it is derived from <span class="math notranslate nohighlight">\(\lambda\)</span> and <span class="math notranslate nohighlight">\(\mu\)</span>
-as <span class="math notranslate nohighlight">\(K = (3\lambda + 2\mu)/3\)</span>.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="dolfin_mech.Material.Material.get_lambda_and_mu_from_parameters">
-<span class="sig-name descname"><span class="pre">get_lambda_and_mu_from_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Material.html#Material.get_lambda_and_mu_from_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Material.Material.get_lambda_and_mu_from_parameters" title="Link to this definition"></a></dt>
-<dd><p>Compute both Lamé parameters simultaneously.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>(dolfin.Constant, dolfin.Constant) representing (<span class="math notranslate nohighlight">\(\lambda, \mu\)</span>).</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>tuple</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="dolfin_mech.Material.Material.get_lambda_from_parameters">
-<span class="sig-name descname"><span class="pre">get_lambda_from_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Material.html#Material.get_lambda_from_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Material.Material.get_lambda_from_parameters" title="Link to this definition"></a></dt>
-<dd><p>Compute the first Lamé parameter <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>parameters</strong> (<em>dict</em>) – Dictionary containing material constants.
-Expected keys: <code class="docutils literal notranslate"><span class="pre">&quot;lambda&quot;</span></code> OR (<code class="docutils literal notranslate"><span class="pre">&quot;E&quot;</span></code> AND <code class="docutils literal notranslate"><span class="pre">&quot;nu&quot;</span></code>).
-Optional key: <code class="docutils literal notranslate"><span class="pre">&quot;PS&quot;</span></code> (bool) for Plane Stress formulation.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The value of <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>dolfin.Constant</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="dolfin_mech.Material.Material.get_mu_from_parameters">
-<span class="sig-name descname"><span class="pre">get_mu_from_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Material.html#Material.get_mu_from_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Material.Material.get_mu_from_parameters" title="Link to this definition"></a></dt>
-<dd><p>Compute the second Lamé parameter (shear modulus) <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>parameters</strong> (<em>dict</em>) – Dictionary containing material constants.
-Expected keys: <code class="docutils literal notranslate"><span class="pre">&quot;mu&quot;</span></code> OR (<code class="docutils literal notranslate"><span class="pre">&quot;E&quot;</span></code> AND <code class="docutils literal notranslate"><span class="pre">&quot;nu&quot;</span></code>).</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The value of <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>dolfin.Constant</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="dolfin_mech.Material.material_factory">
-<span class="sig-name descname"><span class="pre">material_factory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kinematics</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Material.html#material_factory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Material.material_factory" title="Link to this definition"></a></dt>
-<dd><p>Factory function to instantiate the appropriate material model class.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>kinematics</strong> (<a class="reference internal" href="dolfin_mech.Kinematics.html#dolfin_mech.Kinematics.Kinematics" title="dolfin_mech.Kinematics.Kinematics"><em>Kinematics</em></a>) – An instance of a Kinematics class.</p></li>
-<li><p><strong>model</strong> (<em>str</em>) – The name of the material model (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;Hooke&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;NeoHookean&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;SVK&quot;</span></code>).</p></li>
-<li><p><strong>parameters</strong> (<em>dict</em>) – Material parameters passed to the model constructor.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>An instance of the requested material model.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#dolfin_mech.Material.Material" title="dolfin_mech.Material.Material">Material</a></p>
-</dd>
-</dl>
-<p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mat</span> <span class="o">=</span> <span class="n">material_factory</span><span class="p">(</span><span class="n">kin</span><span class="p">,</span> <span class="s2">&quot;NH&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;E&quot;</span><span class="p">:</span> <span class="mf">10.0</span><span class="p">,</span> <span class="s2">&quot;nu&quot;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">})</span>
-</pre></div>
-</div>
-</dd></dl>
-
+  <section id="dolfin-mech-run-poroflow-from-msh">
+<h1>dolfin_mech.run_Poroflow_from_msh<a class="headerlink" href="#dolfin-mech-run-poroflow-from-msh" title="Link to this heading"></a></h1>
 </section>
 
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="dolfin_mech.TimeIntegrator.html" class="btn btn-neutral float-left" title="dolfin_mech.TimeIntegrator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="dolfin_mech.Material_Elastic.html" class="btn btn-neutral float-right" title="dolfin_mech.Material_Elastic" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 
