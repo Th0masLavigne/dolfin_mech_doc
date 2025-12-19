@@ -8,11 +8,14 @@ sys.path.insert(0, os.path.abspath('..'))
 
 # Mock des dépendances qui ne peuvent pas être installées sur GitHub (FEniCS + vos libs)
 MOCK_MODULES = [
-    'dolfin', 
+'dolfin', 
     'fenics', 
+    'ufl',                 # Essential for FEniCS math expressions
+    'numpy',               # Used in Kinematics.py
     'myPythonLibrary', 
     'myVTKPythonLibrary', 
-    'vtkpython_cbl'
+    'vtkpython_cbl',
+    'vtk'
 ]
 for mod_name in MOCK_MODULES:
     sys.modules[mod_name] = MagicMock()
