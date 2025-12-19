@@ -145,6 +145,8 @@ But if you need to develop within the library, you need to install an editable v
 
    Elasticity <dolfin_mech.Problem_Elasticity>
    Homogenization <dolfin_mech.Problem_Homogenization>
+   Inverse Hyper-elasticity <dolfin_mech.Problem_Hyperelasticity_Inverse>
+   MicroPoro Hyper-elasticity <dolfin_mech.Problem_Hyperelasticity_MicroPoro>
 
 .. toctree::
    :maxdepth: 1

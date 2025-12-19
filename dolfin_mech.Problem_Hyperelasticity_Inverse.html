@@ -16,9 +16,12 @@
       <script src="_static/documentation_options.js?v=5929fcd5"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="dolfin_mech.Problem_Hyperelasticity_MicroPoro" href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html" />
+    <link rel="prev" title="dolfin_mech.Problem_Homogenization" href="dolfin_mech.Problem_Homogenization.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -755,7 +758,7 @@
 </li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Problems</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Problem_Elasticity.html">Elasticity</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Problem_Elasticity.html#dolfin_mech.Problem_Elasticity.ElasticityProblem"><code class="docutils literal notranslate"><span class="pre">ElasticityProblem</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Elasticity.html#dolfin_mech.Problem_Elasticity.ElasticityProblem.w_incompressibility"><code class="docutils literal notranslate"><span class="pre">ElasticityProblem.w_incompressibility</span></code></a></li>
@@ -793,6 +796,53 @@
 <li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.get_macro_strain"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem.get_macro_strain()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.sigma"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem.sigma()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.stress2Voigt"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem.stress2Voigt()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Inverse Hyper-elasticity</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin_mech.Problem_Hyperelasticity_Inverse.InverseHyperelasticityProblem"><code class="docutils literal notranslate"><span class="pre">InverseHyperelasticityProblem</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Problem_Hyperelasticity_Inverse.InverseHyperelasticityProblem.add_elasticity_operator"><code class="docutils literal notranslate"><span class="pre">InverseHyperelasticityProblem.add_elasticity_operator()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Problem_Hyperelasticity_Inverse.InverseHyperelasticityProblem.set_kinematics"><code class="docutils literal notranslate"><span class="pre">InverseHyperelasticityProblem.set_kinematics()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html">MicroPoro Hyper-elasticity</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem"><code class="docutils literal notranslate"><span class="pre">MicroPoroHyperelasticityProblem</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.V0"><code class="docutils literal notranslate"><span class="pre">MicroPoroHyperelasticityProblem.V0</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.Vs0"><code class="docutils literal notranslate"><span class="pre">MicroPoroHyperelasticityProblem.Vs0</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.Vf0"><code class="docutils literal notranslate"><span class="pre">MicroPoroHyperelasticityProblem.Vf0</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.kinematics"><code class="docutils literal notranslate"><span class="pre">MicroPoroHyperelasticityProblem.kinematics</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.add_deformed_fluid_volume_operator"><code class="docutils literal notranslate"><span class="pre">MicroPoroHyperelasticityProblem.add_deformed_fluid_volume_operator()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.add_deformed_fluid_volume_qoi"><code class="docutils literal notranslate"><span class="pre">MicroPoroHyperelasticityProblem.add_deformed_fluid_volume_qoi()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.add_deformed_fluid_volume_subsol"><code class="docutils literal notranslate"><span class="pre">MicroPoroHyperelasticityProblem.add_deformed_fluid_volume_subsol()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.add_deformed_solid_volume_operator"><code class="docutils literal notranslate"><span class="pre">MicroPoroHyperelasticityProblem.add_deformed_solid_volume_operator()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.add_deformed_solid_volume_qoi"><code class="docutils literal notranslate"><span class="pre">MicroPoroHyperelasticityProblem.add_deformed_solid_volume_qoi()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.add_deformed_solid_volume_subsol"><code class="docutils literal notranslate"><span class="pre">MicroPoroHyperelasticityProblem.add_deformed_solid_volume_subsol()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.add_deformed_total_volume_operator"><code class="docutils literal notranslate"><span class="pre">MicroPoroHyperelasticityProblem.add_deformed_total_volume_operator()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.add_deformed_total_volume_subsol"><code class="docutils literal notranslate"><span class="pre">MicroPoroHyperelasticityProblem.add_deformed_total_volume_subsol()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.add_deformed_volume_qoi"><code class="docutils literal notranslate"><span class="pre">MicroPoroHyperelasticityProblem.add_deformed_volume_qoi()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.add_displacement_perturbation_subsol"><code class="docutils literal notranslate"><span class="pre">MicroPoroHyperelasticityProblem.add_displacement_perturbation_subsol()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.add_elasticity_operator"><code class="docutils literal notranslate"><span class="pre">MicroPoroHyperelasticityProblem.add_elasticity_operator()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.add_fluid_pressure_qoi"><code class="docutils literal notranslate"><span class="pre">MicroPoroHyperelasticityProblem.add_fluid_pressure_qoi()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.add_interfacial_surface_qois"><code class="docutils literal notranslate"><span class="pre">MicroPoroHyperelasticityProblem.add_interfacial_surface_qois()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.add_kubc"><code class="docutils literal notranslate"><span class="pre">MicroPoroHyperelasticityProblem.add_kubc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.add_macroscopic_solid_hydrostatic_pressure_qoi"><code class="docutils literal notranslate"><span class="pre">MicroPoroHyperelasticityProblem.add_macroscopic_solid_hydrostatic_pressure_qoi()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.add_macroscopic_solid_stress_qois"><code class="docutils literal notranslate"><span class="pre">MicroPoroHyperelasticityProblem.add_macroscopic_solid_stress_qois()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.add_macroscopic_stress_component_constraint_operator"><code class="docutils literal notranslate"><span class="pre">MicroPoroHyperelasticityProblem.add_macroscopic_stress_component_constraint_operator()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.add_macroscopic_stress_qois"><code class="docutils literal notranslate"><span class="pre">MicroPoroHyperelasticityProblem.add_macroscopic_stress_qois()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.add_macroscopic_stretch_component_penalty_operator"><code class="docutils literal notranslate"><span class="pre">MicroPoroHyperelasticityProblem.add_macroscopic_stretch_component_penalty_operator()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.add_macroscopic_stretch_qois"><code class="docutils literal notranslate"><span class="pre">MicroPoroHyperelasticityProblem.add_macroscopic_stretch_qois()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.add_macroscopic_stretch_subsol"><code class="docutils literal notranslate"><span class="pre">MicroPoroHyperelasticityProblem.add_macroscopic_stretch_subsol()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.add_macroscopic_stretch_symmetry_penalty_operator"><code class="docutils literal notranslate"><span class="pre">MicroPoroHyperelasticityProblem.add_macroscopic_stretch_symmetry_penalty_operator()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.add_macroscopic_tensor_qois"><code class="docutils literal notranslate"><span class="pre">MicroPoroHyperelasticityProblem.add_macroscopic_tensor_qois()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.add_surface_area_operator"><code class="docutils literal notranslate"><span class="pre">MicroPoroHyperelasticityProblem.add_surface_area_operator()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.add_surface_area_subsol"><code class="docutils literal notranslate"><span class="pre">MicroPoroHyperelasticityProblem.add_surface_area_subsol()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.add_surface_pressure_loading_operator"><code class="docutils literal notranslate"><span class="pre">MicroPoroHyperelasticityProblem.add_surface_pressure_loading_operator()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.add_surface_tension_loading_operator"><code class="docutils literal notranslate"><span class="pre">MicroPoroHyperelasticityProblem.add_surface_tension_loading_operator()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.set_kinematics"><code class="docutils literal notranslate"><span class="pre">MicroPoroHyperelasticityProblem.set_kinematics()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.set_subsols"><code class="docutils literal notranslate"><span class="pre">MicroPoroHyperelasticityProblem.set_subsols()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -897,15 +947,57 @@
 <dt class="sig sig-object py" id="dolfin_mech.Problem_Hyperelasticity_Inverse.InverseHyperelasticityProblem">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">InverseHyperelasticityProblem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Problem_Hyperelasticity_Inverse.html#InverseHyperelasticityProblem"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Problem_Hyperelasticity_Inverse.InverseHyperelasticityProblem" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="dolfin_mech.Problem_Hyperelasticity.html#dolfin_mech.Problem_Hyperelasticity.HyperelasticityProblem" title="dolfin_mech.Problem_Hyperelasticity.HyperelasticityProblem"><code class="xref py py-class docutils literal notranslate"><span class="pre">HyperelasticityProblem</span></code></a></p>
+<p>Problem class for solving inverse hyperelasticity problems.</p>
+<p>Inverse hyperelasticity is typically used to find the stress-free
+configuration (reference state) of a body when only the deformed geometry
+is known. This is a common requirement in medical imaging (e.g., estimating
+the unloaded shape of an organ from a CT scan).</p>
+<p>This class inherits from <code class="xref py py-class docutils literal notranslate"><span class="pre">HyperelasticityProblem</span></code> but overrides the
+kinematic framework and specific operators to account for the fact that the
+computational mesh represents the deformed configuration.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Incompressibility constraints via mixed formulations are currently
+not supported in this inverse implementation.</p>
+</div>
 <dl class="py method">
 <dt class="sig sig-object py" id="dolfin_mech.Problem_Hyperelasticity_Inverse.InverseHyperelasticityProblem.add_elasticity_operator">
 <span class="sig-name descname"><span class="pre">add_elasticity_operator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">material_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">material_parameters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subdomain_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Problem_Hyperelasticity_Inverse.html#InverseHyperelasticityProblem.add_elasticity_operator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Problem_Hyperelasticity_Inverse.InverseHyperelasticityProblem.add_elasticity_operator" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Adds an elasticity operator tailored for the inverse formulation.</p>
+<p>Even though the problem is hyperelastic, the inverse formulation often
+utilizes a linearized operator structure relative to the spatial
+coordinates of the deformed mesh.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>material_model</strong> (<em>str</em>) – Name of the constitutive model.</p></li>
+<li><p><strong>material_parameters</strong> (<em>dict</em>) – Parameters for the material model.</p></li>
+<li><p><strong>subdomain_id</strong> (<em>int</em><em>, </em><em>optional</em>) – Optional ID to restrict the operator to a subdomain.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The added elasticity operator.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dolfin_mech.Problem_Hyperelasticity_Inverse.InverseHyperelasticityProblem.set_kinematics">
 <span class="sig-name descname"><span class="pre">set_kinematics</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Problem_Hyperelasticity_Inverse.html#InverseHyperelasticityProblem.set_kinematics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Problem_Hyperelasticity_Inverse.InverseHyperelasticityProblem.set_kinematics" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Initializes the inverse kinematic framework.</p>
+<p>Instead of the standard deformation gradient <span class="math notranslate nohighlight">\(\mathbf{F}\)</span>, this
+method sets up <code class="xref py py-class docutils literal notranslate"><span class="pre">InverseKinematics</span></code> which treats the current
+mesh coordinates as the spatial frame.</p>
+<dl class="simple">
+<dt>It registers the following inverse fields as Fields of Interest (FOI):</dt><dd><ul class="simple">
+<li><p><strong>F</strong>: Inverse deformation gradient <span class="math notranslate nohighlight">\(\mathbf{f} = \partial \mathbf{X} / \partial \mathbf{x}\)</span>.</p></li>
+<li><p><strong>J</strong>: Determinant of the inverse deformation gradient.</p></li>
+<li><p><strong>C</strong>: Right Cauchy-Green deformation tensor in the inverse context.</p></li>
+<li><p><strong>E</strong>: Green-Lagrange strain tensor derived from inverse mapping.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -914,7 +1006,10 @@
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dolfin_mech.Problem_Homogenization.html" class="btn btn-neutral float-left" title="dolfin_mech.Problem_Homogenization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dolfin_mech.Problem_Hyperelasticity_MicroPoro.html" class="btn btn-neutral float-right" title="dolfin_mech.Problem_Hyperelasticity_MicroPoro" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
