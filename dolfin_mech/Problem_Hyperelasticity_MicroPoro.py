@@ -23,9 +23,28 @@ from .Problem_Hyperelasticity import HyperelasticityProblem
 ################################################################################
 
 class MicroPoroHyperelasticityProblem(HyperelasticityProblem):
+    """
+    Problem class for multi-scale micro-poro-hyperelasticity.
 
+    This class models the mechanical response of a porous microstructure (the 
+    micro-scale) subjected to macroscopic deformations. It uses a 
+    **displacement decomposition** approach:
+    
+    .. math::
+        \mathbf{U}_{tot}(\mathbf{X}) = \mathbf{U}_{bar}(\mathbf{X}) + \mathbf{U}_{tilde}(\mathbf{X})
 
+    where:
+        - :math:`\mathbf{U}_{bar}` is the macroscopic displacement (linear mapping).
+        - :math:`\mathbf{U}_{tilde}` is the periodic or local fluctuation (perturbation).
 
+    
+
+    Attributes:
+        V0 (float): Initial total volume of the unit cell (bounding box volume).
+        Vs0 (float): Initial solid volume (volume of the mesh).
+        Vf0 (float): Initial fluid/pore volume.
+        kinematics (Kinematics): Finite strain kinematics based on total displacement.
+    """
     def __init__(self,
             w_solid_incompressibility=False,
             mesh=None,
@@ -40,7 +59,14 @@ class MicroPoroHyperelasticityProblem(HyperelasticityProblem):
             foi_degree=0,
             solid_behavior=None,
             bcs="kubc"): # "kubc" or "pbc"
+        """
+        Initializes the MicroPoroHyperelasticityProblem.
 
+        :param w_solid_incompressibility: If True, uses a mixed u-p formulation for the solid phase.
+        :param mesh_bbox: Bounding box [xmin, xmax, ymin, ymax, ...] defining the unit cell.
+        :param vertices: Vertices for periodic point mapping.
+        :param bcs: Boundary condition type: "kubc" (Kinematic Uniform) or "pbc" (Periodic).
+        """
         Problem.__init__(self)
 
         self.w_solid_incompressibility = w_solid_incompressibility
@@ -139,7 +165,9 @@ class MicroPoroHyperelasticityProblem(HyperelasticityProblem):
             degree=0,
             symmetry=None,
             init_val=None):
-
+        """
+        Adds the macroscopic stretch (gradient) as a global Real (R) sub-solution.
+        """
         self.macroscopic_stretch_subsol = self.add_tensor_subsol(
             name="U_bar",
             family="R",
@@ -151,7 +179,9 @@ class MicroPoroHyperelasticityProblem(HyperelasticityProblem):
 
     def add_displacement_perturbation_subsol(self,
             degree):
-
+        """
+        Adds the local displacement perturbation field :math:`\mathbf{U}_{tilde}`.
+        """
         self.displacement_perturbation_degree = degree
         self.displacement_perturbation_subsol = self.add_vector_subsol(
             name="U_tilde",
@@ -161,7 +191,9 @@ class MicroPoroHyperelasticityProblem(HyperelasticityProblem):
 
 
     def add_deformed_total_volume_subsol(self):
-
+        """
+        Initializes finite strain kinematics for the total displacement field.
+        """
         self.deformed_total_volume_subsol = self.add_scalar_subsol(
             name="v",
             family="R",
@@ -171,7 +203,16 @@ class MicroPoroHyperelasticityProblem(HyperelasticityProblem):
 
 
     def add_deformed_solid_volume_subsol(self):
+        """
+        Adds Quantities of Interest (QOI) for the homogenized macroscopic stress.
 
+        This computes the effective stress :math:`\\bar{\\sigma}` by averaging the 
+        local solid stress and fluid pressure contributions over the deformed 
+        volume :math:`v`.
+
+        .. math::
+            \\bar{\\sigma} = \\frac{1}{v} \int_{\Omega} (\sigma_{s} J - \phi_{f} p_{f} J) d\Omega
+        """
         self.deformed_solid_volume_subsol = self.add_scalar_subsol(
             name="v_s",
             family="R",
@@ -181,7 +222,12 @@ class MicroPoroHyperelasticityProblem(HyperelasticityProblem):
 
 
     def add_deformed_fluid_volume_subsol(self):
+        """
+        Adds QOI for the deformed interfacial surface area.
 
+        Uses Nanson's formula to track how the internal pore surface area 
+        evolves under large deformation.
+        """
         self.deformed_fluid_volume_subsol = self.add_scalar_subsol(
             name="v_f",
             family="R",
