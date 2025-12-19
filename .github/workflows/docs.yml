@@ -33,7 +33,6 @@ jobs:
           sed -i 's/ package//g' docs/dolfin_mech.rst
           # Remove the word "module" from all generated files
           sed -i 's/ module//g' docs/*.rst
-          sed -i 's/dolfin_mech.//g' docs/*.rst
 
       - name: Build Sphinx Documentation
         run: |
