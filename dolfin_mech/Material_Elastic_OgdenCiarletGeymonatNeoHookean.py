@@ -21,35 +21,6 @@ from .Material_Elastic import ElasticMaterial
 ################################################################################
 
 class OgdenCiarletGeymonatNeoHookeanElasticMaterial(ElasticMaterial):
-    Here is the updated code for the OgdenCiarletGeymonatNeoHookeanElasticMaterial class with Sphinx-style docstrings.
-
-This class represents a widely used hyperelastic formulation where the volumetric response (bulk) is governed by the Ciarlet-Geymonat potential and the deviatoric response (shear) is governed by the Neo-Hookean model. It also includes the computation of hydrostatic pressure and Von Mises stress equivalent.
-
-Python
-
-#coding=utf8
-
-################################################################################
-###                                                                          ###
-### Created by Martin Genet, 2018-2025                                       ###
-###                                                                          ###
-### École Polytechnique, Palaiseau, France                                   ###
-###                                                                          ###
-###                                                                          ###
-### And Mahdi Manoochehrtayebi, 2020-2024                                    ###
-###                                                                          ###
-### École Polytechnique, Palaiseau, France                                   ###
-###                                                                          ###
-################################################################################
-
-import dolfin 
-
-import dolfin_mech as dmech
-from .Material_Elastic import ElasticMaterial
-
-################################################################################
-
-class OgdenCiarletGeymonatNeoHookeanElasticMaterial(ElasticMaterial):
     """
     Class representing a composite hyperelastic material combining the 
     Ciarlet-Geymonat and Neo-Hookean models.
