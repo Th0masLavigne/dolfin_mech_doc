@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>dolfin_mech.Material_Elastic_Lung_Wskel &mdash; dolfin_mech  documentation</title>
+  <title>dolfin_mech.Material_Elastic_OgdenCiarletGeymonat &mdash; dolfin_mech  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
 
@@ -348,7 +348,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">dolfin_mech.Material_Elastic_Lung_Wskel</li>
+      <li class="breadcrumb-item active">dolfin_mech.Material_Elastic_OgdenCiarletGeymonat</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -357,7 +357,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for dolfin_mech.Material_Elastic_Lung_Wskel</h1><div class="highlight"><pre>
+  <h1>Source code for dolfin_mech.Material_Elastic_OgdenCiarletGeymonat</h1><div class="highlight"><pre>
 <span></span><span class="c1">#coding=utf8</span>
 
 <span class="c1">################################################################################</span>
@@ -375,60 +375,95 @@
 
 <span class="c1">################################################################################</span>
 
-<div class="viewcode-block" id="WskelLungElasticMaterial">
-<a class="viewcode-back" href="../../dolfin_mech.Material_Elastic_Lung_Wskel.html#dolfin_mech.Material_Elastic_Lung_Wskel.WskelLungElasticMaterial">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">WskelLungElasticMaterial</span><span class="p">(</span><span class="n">ElasticMaterial</span><span class="p">):</span>
+<div class="viewcode-block" id="OgdenCiarletGeymonatElasticMaterial">
+<a class="viewcode-back" href="../../dolfin_mech.Material_Elastic_OgdenCiarletGeymonat.html#dolfin_mech.Material_Elastic_OgdenCiarletGeymonat.OgdenCiarletGeymonatElasticMaterial">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">OgdenCiarletGeymonatElasticMaterial</span><span class="p">(</span><span class="n">ElasticMaterial</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Class representing the skeletal (solid phase) elastic energy of the lung </span>
-<span class="sd">    parenchyma.</span>
+<span class="sd">    Class representing the Ciarlet-Geymonat volumetric elastic material model.</span>
 
-<span class="sd">    This model is a composite hyperelastic material that splits the strain energy </span>
-<span class="sd">    density into a volumetric (bulk) part and a deviatoric (shear) part to </span>
-<span class="sd">    capture the complex non-linear response of lung tissue.</span>
+<span class="sd">    This model provides a strictly convex volumetric strain energy density </span>
+<span class="sd">    functional. It is often used as the compressible part of a hyperelastic </span>
+<span class="sd">    formulation to penalize volume changes and prevent element inversion.</span>
 
-<span class="sd">    The total strain energy density is defined as:</span>
+<span class="sd">    The strain energy density :math:`\Psi` is defined as:</span>
 
 <span class="sd">    .. math::</span>
-<span class="sd">        \Psi_{total} = \Psi_{bulk} + \Psi_{dev}</span>
+<span class="sd">        \Psi = C_0 (J^2 - 1 - 2\ln(J))</span>
 
 <span class="sd">    Where:</span>
-<span class="sd">        - :math:`\Psi_{bulk}` is modeled using an </span>
-<span class="sd">          :class:`ExponentialOgdenCiarletGeymonatElasticMaterial`.</span>
-<span class="sd">        - :math:`\Psi_{dev}` is modeled using a </span>
-<span class="sd">          :class:`NeoHookeanMooneyRivlinElasticMaterial`.</span>
+<span class="sd">        - :math:`J = \det(\mathbf{F})` is the volume ratio (Jacobian).</span>
+<span class="sd">        - :math:`C_0` is a material parameter related to the bulk modulus.</span>
+
+<span class="sd">    The second Piola-Kirchhoff stress :math:`\mathbf{\Sigma}` is:</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        \mathbf{\Sigma} = 2 C_0 (J^2 - 1) \mathbf{C}^{-1}</span>
 
 <span class="sd">    Attributes:</span>
-<span class="sd">        kinematics (Kinematics): Kinematic variables associated with the deformation.</span>
-<span class="sd">        bulk (ElasticMaterial): The volumetric component of the lung skeleton elasticity.</span>
-<span class="sd">        dev (ElasticMaterial): The deviatoric component of the lung skeleton elasticity.</span>
-<span class="sd">        Psi (UFL expression): Total strain energy density.</span>
-<span class="sd">        Sigma (UFL expression): Total Second Piola-Kirchhoff stress tensor.</span>
-<span class="sd">        P (UFL expression): Total First Piola-Kirchhoff stress tensor.</span>
-<span class="sd">        sigma (UFL expression): Total Cauchy stress tensor.</span>
+<span class="sd">        kinematics (Kinematics): Object containing kinematic variables (J, C_inv, etc.).</span>
+<span class="sd">        C0 (float): Material constant scaling the volumetric response.</span>
+<span class="sd">        Psi (UFL expression): Volumetric strain energy density.</span>
+<span class="sd">        Sigma (UFL expression): Second Piola-Kirchhoff stress tensor.</span>
+<span class="sd">        P (UFL expression): First Piola-Kirchhoff stress tensor.</span>
+<span class="sd">        sigma (UFL expression): Cauchy stress tensor.</span>
+<span class="sd">        checkJ (bool): If True, adds a conditional check to ensure :math:`J &gt; 0` during stress evaluation.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
             <span class="n">kinematics</span><span class="p">,</span>
-            <span class="n">parameters</span><span class="p">):</span>
+            <span class="n">parameters</span><span class="p">,</span>
+            <span class="n">decoup</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Initializes the WskelLungElasticMaterial.</span>
+<span class="sd">        Initializes the OgdenCiarletGeymonatElasticMaterial.</span>
 
-<span class="sd">        :param kinematics: Kinematics object containing deformation tensors.</span>
+<span class="sd">        :param kinematics: Kinematics object containing deformation tensors and Jacobian.</span>
 <span class="sd">        :type kinematics: dmech.Kinematics</span>
-<span class="sd">        :param parameters: Dictionary of material parameters. These must satisfy </span>
-<span class="sd">            the requirements for both the Exponential-Ogden and Neo-Hookean </span>
-<span class="sd">            sub-models.</span>
+<span class="sd">        :param parameters: Dictionary containing &#39;C0&#39;. Can also include &#39;checkJ&#39; (bool).</span>
 <span class="sd">        :type parameters: dict</span>
+<span class="sd">        :param decoup: If True, indicates a decoupled formulation (passed to C0 getter).</span>
+<span class="sd">        :type decoup: bool, optional</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span> <span class="o">=</span> <span class="n">kinematics</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">bulk</span> <span class="o">=</span> <span class="n">dmech</span><span class="o">.</span><span class="n">ExponentialOgdenCiarletGeymonatElasticMaterial</span><span class="p">(</span><span class="n">kinematics</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dev</span>  <span class="o">=</span> <span class="n">dmech</span><span class="o">.</span><span class="n">NeoHookeanMooneyRivlinElasticMaterial</span><span class="p">(</span><span class="n">kinematics</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">C0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_C0_from_parameters</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="n">decoup</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">Psi</span>   <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bulk</span><span class="o">.</span><span class="n">Psi</span>   <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dev</span><span class="o">.</span><span class="n">Psi</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">Sigma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bulk</span><span class="o">.</span><span class="n">Sigma</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dev</span><span class="o">.</span><span class="n">Sigma</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">P</span>     <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bulk</span><span class="o">.</span><span class="n">P</span>     <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dev</span><span class="o">.</span><span class="n">P</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bulk</span><span class="o">.</span><span class="n">sigma</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dev</span><span class="o">.</span><span class="n">sigma</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Psi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">C0</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">J</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">dolfin</span><span class="o">.</span><span class="n">ln</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">J</span><span class="p">))</span> <span class="c1"># MG20180516: In 2d, plane strain</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">checkJ</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;checkJ&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">checkJ</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Sigma</span> <span class="o">=</span> <span class="n">dolfin</span><span class="o">.</span><span class="n">conditional</span><span class="p">(</span> <span class="c1"># MG20230320: Otherwise Sigma is well defined for J &lt; 0…</span>
+                <span class="n">dolfin</span><span class="o">.</span><span class="n">gt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">J</span><span class="p">,</span> <span class="mf">0.</span><span class="p">),</span>
+                <span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">C0</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">J</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">C_inv</span><span class="p">,</span> <span class="c1"># MG20200206: Cannot differentiate Psi wrt to C because J is not defined as a function of C</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">C_inv</span><span class="o">/</span><span class="n">dolfin</span><span class="o">.</span><span class="n">Constant</span><span class="p">(</span><span class="mf">0.</span><span class="p">))</span>
+            
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Sigma</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">C0</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">J</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">C_inv</span> <span class="c1"># MG20200206: Cannot differentiate Psi wrt to C because J is not defined as a function of C</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">dim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Sigma_ZZ</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">C0</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">J</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># self.P = dolfin.diff(self.Psi, self.kinematics.F) # MG20220426: Cannot do that for micromechanics problems</span>
+        <span class="c1"># self.P = 2*self.C0 * (self.kinematics.J**2 - 1) * self.kinematics.F_inv.T</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">P</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">F</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">Sigma</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">P</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">F</span><span class="o">.</span><span class="n">T</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">J</span></div>
+
+        
+
+
+    <span class="c1"># def get_free_energy(self,</span>
+    <span class="c1">#         U=None,</span>
+    <span class="c1">#         C=None):</span>
+
+    <span class="c1">#     C  = self.get_C_from_U_or_C(U, C)</span>
+    <span class="c1">#     JF = dolfin.sqrt(dolfin.det(C)) # MG20200207: Watch out! This is well defined for inverted elements!</span>
+
+    <span class="c1">#     Psi   = self.C0 * (JF**2 - 1 - 2*dolfin.ln(JF)) # MG20180516: in 2d, plane strain</span>
+    <span class="c1">#     Sigma = 2*dolfin.diff(Psi, C)</span>
+
+    <span class="c1">#     # C_inv = dolfin.inv(C)</span>
+    <span class="c1">#     # Sigma = 2*self.C0 * (JF**2 - 1) * C_inv</span>
+
+    <span class="c1">#     return Psi, Sigma</span>
 </pre></div>
 
            </div>

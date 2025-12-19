@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>dolfin_mech.Material_Elastic_Lung_Wskel &mdash; dolfin_mech  documentation</title>
+  <title>dolfin_mech.Material_Elastic_NeoHookeanMooneyRivlin &mdash; dolfin_mech  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
 
@@ -348,7 +348,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">dolfin_mech.Material_Elastic_Lung_Wskel</li>
+      <li class="breadcrumb-item active">dolfin_mech.Material_Elastic_NeoHookeanMooneyRivlin</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -357,7 +357,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for dolfin_mech.Material_Elastic_Lung_Wskel</h1><div class="highlight"><pre>
+  <h1>Source code for dolfin_mech.Material_Elastic_NeoHookeanMooneyRivlin</h1><div class="highlight"><pre>
 <span></span><span class="c1">#coding=utf8</span>
 
 <span class="c1">################################################################################</span>
@@ -375,32 +375,30 @@
 
 <span class="c1">################################################################################</span>
 
-<div class="viewcode-block" id="WskelLungElasticMaterial">
-<a class="viewcode-back" href="../../dolfin_mech.Material_Elastic_Lung_Wskel.html#dolfin_mech.Material_Elastic_Lung_Wskel.WskelLungElasticMaterial">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">WskelLungElasticMaterial</span><span class="p">(</span><span class="n">ElasticMaterial</span><span class="p">):</span>
+<div class="viewcode-block" id="NeoHookeanMooneyRivlinElasticMaterial">
+<a class="viewcode-back" href="../../dolfin_mech.Material_Elastic_NeoHookeanMooneyRivlin.html#dolfin_mech.Material_Elastic_NeoHookeanMooneyRivlin.NeoHookeanMooneyRivlinElasticMaterial">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">NeoHookeanMooneyRivlinElasticMaterial</span><span class="p">(</span><span class="n">ElasticMaterial</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Class representing the skeletal (solid phase) elastic energy of the lung </span>
-<span class="sd">    parenchyma.</span>
+<span class="sd">    Class representing a composite Neo-Hookean/Mooney-Rivlin hyperelastic material.</span>
 
-<span class="sd">    This model is a composite hyperelastic material that splits the strain energy </span>
-<span class="sd">    density into a volumetric (bulk) part and a deviatoric (shear) part to </span>
-<span class="sd">    capture the complex non-linear response of lung tissue.</span>
+<span class="sd">    This model combines the strain energy densities of both the Neo-Hookean and </span>
+<span class="sd">    Mooney-Rivlin models. By summing these potentials, the material response </span>
+<span class="sd">    can be tuned using both the first invariant :math:`I_C` (via Neo-Hookean) </span>
+<span class="sd">    and the second invariant :math:`II_C` (via Mooney-Rivlin).</span>
 
 <span class="sd">    The total strain energy density is defined as:</span>
 
 <span class="sd">    .. math::</span>
-<span class="sd">        \Psi_{total} = \Psi_{bulk} + \Psi_{dev}</span>
+<span class="sd">        \Psi_{total} = \Psi_{NH}(C_1) + \Psi_{MR}(C_2)</span>
 
 <span class="sd">    Where:</span>
-<span class="sd">        - :math:`\Psi_{bulk}` is modeled using an </span>
-<span class="sd">          :class:`ExponentialOgdenCiarletGeymonatElasticMaterial`.</span>
-<span class="sd">        - :math:`\Psi_{dev}` is modeled using a </span>
-<span class="sd">          :class:`NeoHookeanMooneyRivlinElasticMaterial`.</span>
+<span class="sd">        - :math:`\Psi_{NH}` is the energy from :class:`NeoHookeanElasticMaterial`.</span>
+<span class="sd">        - :math:`\Psi_{MR}` is the energy from :class:`MooneyRivlinElasticMaterial`.</span>
 
 <span class="sd">    Attributes:</span>
-<span class="sd">        kinematics (Kinematics): Kinematic variables associated with the deformation.</span>
-<span class="sd">        bulk (ElasticMaterial): The volumetric component of the lung skeleton elasticity.</span>
-<span class="sd">        dev (ElasticMaterial): The deviatoric component of the lung skeleton elasticity.</span>
+<span class="sd">        kinematics (Kinematics): Object containing kinematic variables and invariants.</span>
+<span class="sd">        nh (NeoHookeanElasticMaterial): The Neo-Hookean component of the model.</span>
+<span class="sd">        mr (MooneyRivlinElasticMaterial): The Mooney-Rivlin component of the model.</span>
 <span class="sd">        Psi (UFL expression): Total strain energy density.</span>
 <span class="sd">        Sigma (UFL expression): Total Second Piola-Kirchhoff stress tensor.</span>
 <span class="sd">        P (UFL expression): Total First Piola-Kirchhoff stress tensor.</span>
@@ -408,27 +406,46 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
             <span class="n">kinematics</span><span class="p">,</span>
-            <span class="n">parameters</span><span class="p">):</span>
+            <span class="n">parameters</span><span class="p">,</span>
+            <span class="n">decoup</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Initializes the WskelLungElasticMaterial.</span>
+<span class="sd">        Initializes the NeoHookeanMooneyRivlinElasticMaterial.</span>
 
 <span class="sd">        :param kinematics: Kinematics object containing deformation tensors.</span>
 <span class="sd">        :type kinematics: dmech.Kinematics</span>
-<span class="sd">        :param parameters: Dictionary of material parameters. These must satisfy </span>
-<span class="sd">            the requirements for both the Exponential-Ogden and Neo-Hookean </span>
-<span class="sd">            sub-models.</span>
+<span class="sd">        :param parameters: Dictionary containing parameters to derive :math:`C_1` and :math:`C_2`.</span>
 <span class="sd">        :type parameters: dict</span>
+<span class="sd">        :param decoup: If True, uses the isochoric-volumetric decoupled formulation for both sub-models.</span>
+<span class="sd">        :type decoup: bool, optional</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span> <span class="o">=</span> <span class="n">kinematics</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">bulk</span> <span class="o">=</span> <span class="n">dmech</span><span class="o">.</span><span class="n">ExponentialOgdenCiarletGeymonatElasticMaterial</span><span class="p">(</span><span class="n">kinematics</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dev</span>  <span class="o">=</span> <span class="n">dmech</span><span class="o">.</span><span class="n">NeoHookeanMooneyRivlinElasticMaterial</span><span class="p">(</span><span class="n">kinematics</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+        <span class="n">C1</span><span class="p">,</span><span class="n">C2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_C1_and_C2_from_parameters</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span> <span class="c1"># MG20220318: This is different from computing C1 &amp; C2 separately…</span>
+        <span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;C1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">C1</span>
+        <span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;C2&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">C2</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">Psi</span>   <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bulk</span><span class="o">.</span><span class="n">Psi</span>   <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dev</span><span class="o">.</span><span class="n">Psi</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">Sigma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bulk</span><span class="o">.</span><span class="n">Sigma</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dev</span><span class="o">.</span><span class="n">Sigma</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">P</span>     <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bulk</span><span class="o">.</span><span class="n">P</span>     <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dev</span><span class="o">.</span><span class="n">P</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bulk</span><span class="o">.</span><span class="n">sigma</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dev</span><span class="o">.</span><span class="n">sigma</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nh</span> <span class="o">=</span> <span class="n">dmech</span><span class="o">.</span><span class="n">NeoHookeanElasticMaterial</span><span class="p">(</span><span class="n">kinematics</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">decoup</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mr</span> <span class="o">=</span> <span class="n">dmech</span><span class="o">.</span><span class="n">MooneyRivlinElasticMaterial</span><span class="p">(</span><span class="n">kinematics</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">decoup</span><span class="p">)</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">Psi</span>   <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nh</span><span class="o">.</span><span class="n">Psi</span>   <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">mr</span><span class="o">.</span><span class="n">Psi</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Sigma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nh</span><span class="o">.</span><span class="n">Sigma</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">mr</span><span class="o">.</span><span class="n">Sigma</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">dim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Sigma_ZZ</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nh</span><span class="o">.</span><span class="n">Sigma_ZZ</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">mr</span><span class="o">.</span><span class="n">Sigma_ZZ</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">P</span>     <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nh</span><span class="o">.</span><span class="n">P</span>     <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">mr</span><span class="o">.</span><span class="n">P</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nh</span><span class="o">.</span><span class="n">sigma</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">mr</span><span class="o">.</span><span class="n">sigma</span></div>
+
+
+
+
+    <span class="c1"># def get_free_energy(self, *args, **kwargs):</span>
+
+    <span class="c1">#     Psi_nh, Sigma_nh = self.nh.get_free_energy(*args, **kwargs)</span>
+    <span class="c1">#     Psi_mr, Sigma_mr = self.mr.get_free_energy(*args, **kwargs)</span>
+
+    <span class="c1">#     Psi   = Psi_nh   + Psi_mr</span>
+    <span class="c1">#     Sigma = Sigma_nh + Sigma_mr</span>
+
+    <span class="c1">#     return Psi, Sigma</span>
 </pre></div>
 
            </div>
