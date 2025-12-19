@@ -16,11 +16,12 @@
       <script src="_static/documentation_options.js?v=5929fcd5"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="dolfin_mech.Material_Elastic_NeoHookean" href="dolfin_mech.Material_Elastic_NeoHookean.html" />
-    <link rel="prev" title="dolfin_mech.Material_Inelastic" href="dolfin_mech.Material_Inelastic.html" /> 
+    <link rel="next" title="dolfin_mech.Material_Elastic_Lung_Wbulk" href="dolfin_mech.Material_Elastic_Lung_Wbulk.html" />
+    <link rel="prev" title="dolfin_mech.Material_Elastic_Hooke" href="dolfin_mech.Material_Elastic_Hooke.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -184,14 +185,67 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Kirchhoff Elastic</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffBulkElasticMaterial"><code class="docutils literal notranslate"><span class="pre">KirchhoffBulkElasticMaterial</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffBulkElasticMaterial.K"><code class="docutils literal notranslate"><span class="pre">KirchhoffBulkElasticMaterial.K</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffBulkElasticMaterial.Psi"><code class="docutils literal notranslate"><span class="pre">KirchhoffBulkElasticMaterial.Psi</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffBulkElasticMaterial.Sigma"><code class="docutils literal notranslate"><span class="pre">KirchhoffBulkElasticMaterial.Sigma</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffDevElasticMaterial"><code class="docutils literal notranslate"><span class="pre">KirchhoffDevElasticMaterial</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffDevElasticMaterial.G"><code class="docutils literal notranslate"><span class="pre">KirchhoffDevElasticMaterial.G</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffDevElasticMaterial.Psi"><code class="docutils literal notranslate"><span class="pre">KirchhoffDevElasticMaterial.Psi</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffDevElasticMaterial.Sigma"><code class="docutils literal notranslate"><span class="pre">KirchhoffDevElasticMaterial.Sigma</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffElasticMaterial"><code class="docutils literal notranslate"><span class="pre">KirchhoffElasticMaterial</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffElasticMaterial.kinematics"><code class="docutils literal notranslate"><span class="pre">KirchhoffElasticMaterial.kinematics</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffElasticMaterial.lmbda"><code class="docutils literal notranslate"><span class="pre">KirchhoffElasticMaterial.lmbda</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffElasticMaterial.mu"><code class="docutils literal notranslate"><span class="pre">KirchhoffElasticMaterial.mu</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffElasticMaterial.Psi"><code class="docutils literal notranslate"><span class="pre">KirchhoffElasticMaterial.Psi</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffElasticMaterial.Sigma"><code class="docutils literal notranslate"><span class="pre">KirchhoffElasticMaterial.Sigma</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffElasticMaterial.P"><code class="docutils literal notranslate"><span class="pre">KirchhoffElasticMaterial.P</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffElasticMaterial.sigma"><code class="docutils literal notranslate"><span class="pre">KirchhoffElasticMaterial.sigma</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Material_Elastic_Lung_Wbulk.html">Lung Wbulk Elastic</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Material_Elastic_Lung_Wbulk.html#dolfin_mech.Material_Elastic_Lung_Wbulk.WbulkLungElasticMaterial"><code class="docutils literal notranslate"><span class="pre">WbulkLungElasticMaterial</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material_Elastic_Lung_Wbulk.html#dolfin_mech.Material_Elastic_Lung_Wbulk.WbulkLungElasticMaterial.kappa"><code class="docutils literal notranslate"><span class="pre">WbulkLungElasticMaterial.kappa</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material_Elastic_Lung_Wbulk.html#dolfin_mech.Material_Elastic_Lung_Wbulk.WbulkLungElasticMaterial.Psi"><code class="docutils literal notranslate"><span class="pre">WbulkLungElasticMaterial.Psi</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material_Elastic_Lung_Wbulk.html#dolfin_mech.Material_Elastic_Lung_Wbulk.WbulkLungElasticMaterial.dWbulkdPhis"><code class="docutils literal notranslate"><span class="pre">WbulkLungElasticMaterial.dWbulkdPhis</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Material_Inelastic.html">Inelastic Material</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Material_Inelastic.html#dolfin_mech.Material_Inelastic.InelasticMaterial"><code class="docutils literal notranslate"><span class="pre">InelasticMaterial</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Kirchhoff</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffBulkElasticMaterial"><code class="docutils literal notranslate"><span class="pre">KirchhoffBulkElasticMaterial</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffDevElasticMaterial"><code class="docutils literal notranslate"><span class="pre">KirchhoffDevElasticMaterial</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffElasticMaterial"><code class="docutils literal notranslate"><span class="pre">KirchhoffElasticMaterial</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffBulkElasticMaterial"><code class="docutils literal notranslate"><span class="pre">KirchhoffBulkElasticMaterial</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffBulkElasticMaterial.K"><code class="docutils literal notranslate"><span class="pre">KirchhoffBulkElasticMaterial.K</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffBulkElasticMaterial.Psi"><code class="docutils literal notranslate"><span class="pre">KirchhoffBulkElasticMaterial.Psi</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffBulkElasticMaterial.Sigma"><code class="docutils literal notranslate"><span class="pre">KirchhoffBulkElasticMaterial.Sigma</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffDevElasticMaterial"><code class="docutils literal notranslate"><span class="pre">KirchhoffDevElasticMaterial</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffDevElasticMaterial.G"><code class="docutils literal notranslate"><span class="pre">KirchhoffDevElasticMaterial.G</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffDevElasticMaterial.Psi"><code class="docutils literal notranslate"><span class="pre">KirchhoffDevElasticMaterial.Psi</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffDevElasticMaterial.Sigma"><code class="docutils literal notranslate"><span class="pre">KirchhoffDevElasticMaterial.Sigma</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffElasticMaterial"><code class="docutils literal notranslate"><span class="pre">KirchhoffElasticMaterial</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffElasticMaterial.kinematics"><code class="docutils literal notranslate"><span class="pre">KirchhoffElasticMaterial.kinematics</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffElasticMaterial.lmbda"><code class="docutils literal notranslate"><span class="pre">KirchhoffElasticMaterial.lmbda</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffElasticMaterial.mu"><code class="docutils literal notranslate"><span class="pre">KirchhoffElasticMaterial.mu</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffElasticMaterial.Psi"><code class="docutils literal notranslate"><span class="pre">KirchhoffElasticMaterial.Psi</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffElasticMaterial.Sigma"><code class="docutils literal notranslate"><span class="pre">KirchhoffElasticMaterial.Sigma</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffElasticMaterial.P"><code class="docutils literal notranslate"><span class="pre">KirchhoffElasticMaterial.P</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffElasticMaterial.sigma"><code class="docutils literal notranslate"><span class="pre">KirchhoffElasticMaterial.sigma</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Material_Elastic_NeoHookean.html">Neo-Hookean</a><ul>
@@ -274,18 +328,178 @@
 <dt class="sig sig-object py" id="dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffBulkElasticMaterial">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">KirchhoffBulkElasticMaterial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kinematics</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Material_Elastic_Kirchhoff.html#KirchhoffBulkElasticMaterial"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffBulkElasticMaterial" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="dolfin_mech.Material_Elastic.html#dolfin_mech.Material_Elastic.ElasticMaterial" title="dolfin_mech.Material_Elastic.ElasticMaterial"><code class="xref py py-class docutils literal notranslate"><span class="pre">ElasticMaterial</span></code></a></p>
+<p>Class representing the volumetric (bulk) component of a Kirchhoff elastic material.</p>
+<p>This model focuses on the spherical part of the strain tensor, typically used in
+penalty methods or split formulations.</p>
+<p>The strain energy density is defined as:</p>
+<div class="math notranslate nohighlight">
+\[\Psi = \frac{d \cdot K}{2} tr(\mathbf{E}_{sph})^2\]</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffBulkElasticMaterial.K">
+<span class="sig-name descname"><span class="pre">K</span></span><a class="headerlink" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffBulkElasticMaterial.K" title="Link to this definition"></a></dt>
+<dd><p>Bulk modulus.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffBulkElasticMaterial.Psi">
+<span class="sig-name descname"><span class="pre">Psi</span></span><a class="headerlink" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffBulkElasticMaterial.Psi" title="Link to this definition"></a></dt>
+<dd><p>Volumetric strain energy density.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>UFL expression</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffBulkElasticMaterial.Sigma">
+<span class="sig-name descname"><span class="pre">Sigma</span></span><a class="headerlink" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffBulkElasticMaterial.Sigma" title="Link to this definition"></a></dt>
+<dd><p>Spherical part of the Second Piola-Kirchhoff stress.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>UFL expression</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffDevElasticMaterial">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">KirchhoffDevElasticMaterial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kinematics</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Material_Elastic_Kirchhoff.html#KirchhoffDevElasticMaterial"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffDevElasticMaterial" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="dolfin_mech.Material_Elastic.html#dolfin_mech.Material_Elastic.ElasticMaterial" title="dolfin_mech.Material_Elastic.ElasticMaterial"><code class="xref py py-class docutils literal notranslate"><span class="pre">ElasticMaterial</span></code></a></p>
+<p>Class representing the deviatoric (shear) component of a Kirchhoff elastic material.</p>
+<p>Used to model the shape-changing part of the deformation, independent of volume change.</p>
+<p>The strain energy density is defined as:</p>
+<div class="math notranslate nohighlight">
+\[\Psi = G \cdot (\mathbf{E}_{dev} : \mathbf{E}_{dev})\]</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffDevElasticMaterial.G">
+<span class="sig-name descname"><span class="pre">G</span></span><a class="headerlink" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffDevElasticMaterial.G" title="Link to this definition"></a></dt>
+<dd><p>Shear modulus.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffDevElasticMaterial.Psi">
+<span class="sig-name descname"><span class="pre">Psi</span></span><a class="headerlink" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffDevElasticMaterial.Psi" title="Link to this definition"></a></dt>
+<dd><p>Deviatoric strain energy density.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>UFL expression</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffDevElasticMaterial.Sigma">
+<span class="sig-name descname"><span class="pre">Sigma</span></span><a class="headerlink" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffDevElasticMaterial.Sigma" title="Link to this definition"></a></dt>
+<dd><p>Deviatoric part of the Second Piola-Kirchhoff stress.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>UFL expression</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffElasticMaterial">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">KirchhoffElasticMaterial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kinematics</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Material_Elastic_Kirchhoff.html#KirchhoffElasticMaterial"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffElasticMaterial" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="dolfin_mech.Material_Elastic.html#dolfin_mech.Material_Elastic.ElasticMaterial" title="dolfin_mech.Material_Elastic.ElasticMaterial"><code class="xref py py-class docutils literal notranslate"><span class="pre">ElasticMaterial</span></code></a></p>
+<p>Class representing a standard St. Venant-Kirchhoff elastic material.</p>
+<p>This model extends linear elasticity to large deformations by using the Green-Lagrange
+strain tensor <span class="math notranslate nohighlight">\(\mathbf{E}\)</span> in the strain energy density function.</p>
+<p>The strain energy density is defined as:</p>
+<div class="math notranslate nohighlight">
+\[\Psi = \frac{\lambda}{2} tr(\mathbf{E})^2 + \mu tr(\mathbf{E}^2)\]</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffElasticMaterial.kinematics">
+<span class="sig-name descname"><span class="pre">kinematics</span></span><a class="headerlink" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffElasticMaterial.kinematics" title="Link to this definition"></a></dt>
+<dd><p>Object containing kinematic variables (F, J, E, etc.).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="dolfin_mech.Kinematics.html#dolfin_mech.Kinematics.Kinematics" title="dolfin_mech.Kinematics.Kinematics">Kinematics</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffElasticMaterial.lmbda">
+<span class="sig-name descname"><span class="pre">lmbda</span></span><a class="headerlink" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffElasticMaterial.lmbda" title="Link to this definition"></a></dt>
+<dd><p>First Lamé parameter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffElasticMaterial.mu">
+<span class="sig-name descname"><span class="pre">mu</span></span><a class="headerlink" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffElasticMaterial.mu" title="Link to this definition"></a></dt>
+<dd><p>Second Lamé parameter (shear modulus).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffElasticMaterial.Psi">
+<span class="sig-name descname"><span class="pre">Psi</span></span><a class="headerlink" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffElasticMaterial.Psi" title="Link to this definition"></a></dt>
+<dd><p>Strain energy density.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>UFL expression</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffElasticMaterial.Sigma">
+<span class="sig-name descname"><span class="pre">Sigma</span></span><a class="headerlink" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffElasticMaterial.Sigma" title="Link to this definition"></a></dt>
+<dd><p>Second Piola-Kirchhoff stress tensor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>UFL expression</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffElasticMaterial.P">
+<span class="sig-name descname"><span class="pre">P</span></span><a class="headerlink" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffElasticMaterial.P" title="Link to this definition"></a></dt>
+<dd><p>First Piola-Kirchhoff stress tensor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>UFL expression</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffElasticMaterial.sigma">
+<span class="sig-name descname"><span class="pre">sigma</span></span><a class="headerlink" href="#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffElasticMaterial.sigma" title="Link to this definition"></a></dt>
+<dd><p>Cauchy stress tensor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>UFL expression</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </section>
@@ -294,8 +508,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="dolfin_mech.Material_Inelastic.html" class="btn btn-neutral float-left" title="dolfin_mech.Material_Inelastic" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="dolfin_mech.Material_Elastic_NeoHookean.html" class="btn btn-neutral float-right" title="dolfin_mech.Material_Elastic_NeoHookean" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="dolfin_mech.Material_Elastic_Hooke.html" class="btn btn-neutral float-left" title="dolfin_mech.Material_Elastic_Hooke" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dolfin_mech.Material_Elastic_Lung_Wbulk.html" class="btn btn-neutral float-right" title="dolfin_mech.Material_Elastic_Lung_Wbulk" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
