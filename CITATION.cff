@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+authors:
+  - family-names: Genet
+    given-names: Martin
+    orcid: 0000-0003-2204-201X
+  - family-names: Patte
+    given-names: Cécile
+    orcid: 0000-0001-8553-886X
+  - family-names: Álvarez-Barrientos
+    given-names: Felipe
+    orcid: 0000-0003-4468-7951
+  - family-names: Hurtado
+    given-names: Daniel
+    orcid: 0000-0001-6261-9106
+  - family-names: Laville
+    given-names: Colin
+  - family-names: Manoochehrtayebi
+    given-names: Mahdi
+    orcid: 0009-0004-1111-8570
+  - family-names: Peyraut
+    given-names: Alice
+    orcid: 0009-0000-9445-8060
+title: "dolfin_mech"
+url: https://github.com/mgenet/dolfin_mech
+doi: 10.5281/zenodo.8010870

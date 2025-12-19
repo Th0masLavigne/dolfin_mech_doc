@@ -1,0 +1,43 @@
+name: Generate Documentation
+
+on:
+  push:
+    branches: [ master, main ]
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          # Installation de Sphinx et du thème
+          pip install sphinx sphinx-rtd-theme
+          # Installation des dépendances du setup.py en ignorant dolfin/fenics
+          # On installe les librairies de calcul de base nécessaires à l'analyse du code
+          pip install numpy matplotlib pandas meshio gmsh vtk
+          # On installe votre package en mode éditable pour que Sphinx le voit
+          pip install -e . --extra-index-url https://google.com/_/ # trick pour ignorer les pkg manquants si besoin
+
+      - name: Build Sphinx Documentation
+        run: |
+          # Création auto des fichiers .rst si vous ne les avez pas
+          # sphinx-apidoc -o docs/source/ dolfin_mech/
+          sphinx-build -b html docs/source docs/build
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: docs/build
+          branch: gh-pages
