@@ -30,6 +30,7 @@ extensions = [
 
 # Thème visuel
 html_theme = 'sphinx_rtd_theme'
+html_static_path = [] # Leave empty for now if you don't have custom CSS
 
 # Empêcher Sphinx de planter sur les erreurs d'importation mineures
 autodoc_inherit_docstrings = True
