@@ -19,7 +19,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="dolfin_mech.Operator" href="dolfin_mech.Operator.html" />
+    <link rel="next" title="dolfin_mech.Operator_Constraint_MacroscopicStressComponent" href="dolfin_mech.Operator_Constraint_MacroscopicStressComponent.html" />
     <link rel="prev" title="dolfin_mech.Material_Inelastic" href="dolfin_mech.Material_Inelastic.html" /> 
 </head>
 
@@ -161,6 +161,15 @@
 <li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem.html#dolfin_mech.Problem.Problem.set_variational_formulation"><code class="docutils literal notranslate"><span class="pre">Problem.set_variational_formulation()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem.html#dolfin_mech.Problem.Problem.update_fois"><code class="docutils literal notranslate"><span class="pre">Problem.update_fois()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem.html#dolfin_mech.Problem.Problem.update_qois"><code class="docutils literal notranslate"><span class="pre">Problem.update_qois()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Operator.html">Operator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Operator.html#dolfin_mech.Operator.Operator"><code class="docutils literal notranslate"><span class="pre">Operator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator.html#dolfin_mech.Operator.Operator.res_form"><code class="docutils literal notranslate"><span class="pre">Operator.res_form</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator.html#dolfin_mech.Operator.Operator.set_dt"><code class="docutils literal notranslate"><span class="pre">Operator.set_dt()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator.html#dolfin_mech.Operator.Operator.set_value_at_t_step"><code class="docutils literal notranslate"><span class="pre">Operator.set_value_at_t_step()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -426,15 +435,6 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Operators</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Operator.html">Operator</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Operator.html#dolfin_mech.Operator.Operator"><code class="docutils literal notranslate"><span class="pre">Operator</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator.html#dolfin_mech.Operator.Operator.res_form"><code class="docutils literal notranslate"><span class="pre">Operator.res_form</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator.html#dolfin_mech.Operator.Operator.set_dt"><code class="docutils literal notranslate"><span class="pre">Operator.set_dt()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator.html#dolfin_mech.Operator.Operator.set_value_at_t_step"><code class="docutils literal notranslate"><span class="pre">Operator.set_value_at_t_step()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Operator_Constraint_MacroscopicStressComponent.html">Contraint Macroscopic Stress Component</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Operator_Constraint_MacroscopicStressComponent.html#dolfin_mech.Operator_Constraint_MacroscopicStressComponent.MacroscopicStressComponentConstraintOperator"><code class="docutils literal notranslate"><span class="pre">MacroscopicStressComponentConstraintOperator</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_Constraint_MacroscopicStressComponent.html#dolfin_mech.Operator_Constraint_MacroscopicStressComponent.MacroscopicStressComponentConstraintOperator.kinematics"><code class="docutils literal notranslate"><span class="pre">MacroscopicStressComponentConstraintOperator.kinematics</span></code></a></li>
@@ -756,6 +756,45 @@
 </ul>
 </li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Problems</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Problem_Elasticity.html">Elasticity</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Problem_Elasticity.html#dolfin_mech.Problem_Elasticity.ElasticityProblem"><code class="docutils literal notranslate"><span class="pre">ElasticityProblem</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Elasticity.html#dolfin_mech.Problem_Elasticity.ElasticityProblem.w_incompressibility"><code class="docutils literal notranslate"><span class="pre">ElasticityProblem.w_incompressibility</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Elasticity.html#dolfin_mech.Problem_Elasticity.ElasticityProblem.kinematics"><code class="docutils literal notranslate"><span class="pre">ElasticityProblem.kinematics</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Elasticity.html#dolfin_mech.Problem_Elasticity.ElasticityProblem.displacement_subsol"><code class="docutils literal notranslate"><span class="pre">ElasticityProblem.displacement_subsol</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Elasticity.html#dolfin_mech.Problem_Elasticity.ElasticityProblem.pressure_subsol"><code class="docutils literal notranslate"><span class="pre">ElasticityProblem.pressure_subsol</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Elasticity.html#dolfin_mech.Problem_Elasticity.ElasticityProblem.add_displacement_subsol"><code class="docutils literal notranslate"><span class="pre">ElasticityProblem.add_displacement_subsol()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Elasticity.html#dolfin_mech.Problem_Elasticity.ElasticityProblem.add_elasticity_operator"><code class="docutils literal notranslate"><span class="pre">ElasticityProblem.add_elasticity_operator()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Elasticity.html#dolfin_mech.Problem_Elasticity.ElasticityProblem.add_elasticity_operators"><code class="docutils literal notranslate"><span class="pre">ElasticityProblem.add_elasticity_operators()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Elasticity.html#dolfin_mech.Problem_Elasticity.ElasticityProblem.add_global_pressure_qoi"><code class="docutils literal notranslate"><span class="pre">ElasticityProblem.add_global_pressure_qoi()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Elasticity.html#dolfin_mech.Problem_Elasticity.ElasticityProblem.add_global_strain_qois"><code class="docutils literal notranslate"><span class="pre">ElasticityProblem.add_global_strain_qois()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Elasticity.html#dolfin_mech.Problem_Elasticity.ElasticityProblem.add_global_stress_qois"><code class="docutils literal notranslate"><span class="pre">ElasticityProblem.add_global_stress_qois()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Elasticity.html#dolfin_mech.Problem_Elasticity.ElasticityProblem.add_hydrostatic_pressure_operator"><code class="docutils literal notranslate"><span class="pre">ElasticityProblem.add_hydrostatic_pressure_operator()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Elasticity.html#dolfin_mech.Problem_Elasticity.ElasticityProblem.add_incompressibility_operator"><code class="docutils literal notranslate"><span class="pre">ElasticityProblem.add_incompressibility_operator()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Elasticity.html#dolfin_mech.Problem_Elasticity.ElasticityProblem.add_pressure_subsol"><code class="docutils literal notranslate"><span class="pre">ElasticityProblem.add_pressure_subsol()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Elasticity.html#dolfin_mech.Problem_Elasticity.ElasticityProblem.get_subdomain_measure"><code class="docutils literal notranslate"><span class="pre">ElasticityProblem.get_subdomain_measure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Elasticity.html#dolfin_mech.Problem_Elasticity.ElasticityProblem.set_kinematics"><code class="docutils literal notranslate"><span class="pre">ElasticityProblem.set_kinematics()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Elasticity.html#dolfin_mech.Problem_Elasticity.ElasticityProblem.set_quadrature_degree"><code class="docutils literal notranslate"><span class="pre">ElasticityProblem.set_quadrature_degree()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Elasticity.html#dolfin_mech.Problem_Elasticity.ElasticityProblem.set_subsols"><code class="docutils literal notranslate"><span class="pre">ElasticityProblem.set_subsols()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Problem_Homogenization.html">Homogenization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.Voigt2strain"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem.Voigt2strain()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.eps"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem.eps()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.get_kappa"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem.get_kappa()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.get_lambda_and_mu"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem.get_lambda_and_mu()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.get_macro_strain"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem.get_macro_strain()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.sigma"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem.sigma()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Problem_Homogenization.html#dolfin_mech.Problem_Homogenization.HomogenizationProblem.stress2Voigt"><code class="docutils literal notranslate"><span class="pre">HomogenizationProblem.stress2Voigt()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Utilities</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="dolfin_mech.FOI.html">Field of Interest (FOI)</a><ul>
@@ -928,7 +967,7 @@ from breaking the VTK pointers.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="dolfin_mech.Material_Inelastic.html" class="btn btn-neutral float-left" title="dolfin_mech.Material_Inelastic" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="dolfin_mech.Operator.html" class="btn btn-neutral float-right" title="dolfin_mech.Operator" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="dolfin_mech.Operator_Constraint_MacroscopicStressComponent.html" class="btn btn-neutral float-right" title="dolfin_mech.Operator_Constraint_MacroscopicStressComponent" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
