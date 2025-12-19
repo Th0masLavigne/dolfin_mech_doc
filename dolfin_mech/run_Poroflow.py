@@ -3,9 +3,9 @@ import math
 import numpy
 import sys
 import os
-from pathlib import Path
-local_path = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(local_path))
+# from pathlib import Path
+# local_path = Path(__file__).resolve().parent.parent
+# sys.path.insert(0, str(local_path))
 
 import dolfin_mech as dmech
 from dolfin_mech.Problem_Hyperelasticity_PoroFlow import PoroFlowHyperelasticityProblem
@@ -192,60 +192,62 @@ def run_PoroDisc_Coupled(
     
     integrator.close()
 
-# ----------------- Run with Options -----------------
 
-mat_params = {
-    "alpha":0.16,
-    "gamma":0.5,
-    "c1":0.2,
-    "c2":0.4,
-    "kappa":1e2,
-    "eta":1e-5}
+if __name__ == "__main__":
+    # ----------------- Run with Options -----------------
+
+    mat_params = {
+        "alpha":0.16,
+        "gamma":0.5,
+        "c1":0.2,
+        "c2":0.4,
+        "kappa":1e2,
+        "eta":1e-5}
 
 
 
-run_PoroDisc_Coupled(
-    mat_params={
-        "skel": {"parameters": mat_params, "scaling": "no"},
-        "bulk": {"parameters": mat_params, "scaling": "no"},
-        "pore": {"parameters": mat_params, "scaling": "no"}
-    },
-    mesh_params = {
-        "dim": 2,
+    run_PoroDisc_Coupled(
+        mat_params={
+            "skel": {"parameters": mat_params, "scaling": "no"},
+            "bulk": {"parameters": mat_params, "scaling": "no"},
+            "pore": {"parameters": mat_params, "scaling": "no"}
+        },
+        mesh_params = {
+            "dim": 2,
 
-        # square domain
-        "xmin": 0.0,
-        "ymin": 0.0,
-        "xmax": 1.0,
-        "ymax": 1.0,
+            # square domain
+            "xmin": 0.0,
+            "ymin": 0.0,
+            "xmax": 1.0,
+            "ymax": 1.0,
 
-        # optional shift (usually 0)
-        "xshift": 0.0,
-        "yshift": 0.0,
+            # optional shift (usually 0)
+            "xshift": 0.0,
+            "yshift": 0.0,
 
-        # hole radius at corners
-        "r0": 0.1,
+            # hole radius at corners
+            "r0": 0.1,
 
-        # target mesh size
-        "l": 0.05,
+            # target mesh size
+            "l": 0.05,
 
-        # output
-        "mesh_filebasename": "results/mesh"
-    },
+            # output
+            "mesh_filebasename": "results/mesh"
+        },
 
-    step_params={
-        "Deltat": 1.0,
-        "dt_ini": 0.2,
-        "dt_min": 0.0001
-    },
-    load_params={
-        "dR": 0.05
-    },
-    porosity_params={
-        "type": "constant",  # can be "constant", "function_constant", or "random"
-        "val": 0.3
-    },
-    res_basename="results/run_PoroBox",
-    verbose=0
-    
-)
+        step_params={
+            "Deltat": 1.0,
+            "dt_ini": 0.2,
+            "dt_min": 0.0001
+        },
+        load_params={
+            "dR": 0.05
+        },
+        porosity_params={
+            "type": "constant",  # can be "constant", "function_constant", or "random"
+            "val": 0.3
+        },
+        res_basename="results/run_PoroBox",
+        verbose=0
+        
+    )
