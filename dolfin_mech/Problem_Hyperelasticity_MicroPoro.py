@@ -637,7 +637,7 @@ class MicroPoroHyperelasticityProblem(HyperelasticityProblem):
         The contribution to the virtual work is:
 
         .. math::
-            \delta \Pi_{st} = \int_{\partial \Omega} \gamma \left( J \mathbf{F}^{-T} \mathbf{N} \cdot \text{grad}(\delta \mathbf{u}) \cdot \mathbf{n} \right) dA_0
+            \delta \Pi_{st} = \int_{\partial \Omega} \gamma \left( J \mathbf{F}^{-T} \mathbf{N} \cdot \\text{grad}(\delta \mathbf{u}) \cdot \mathbf{n} \\right) dA_0
 
         In a finite strain context, surface tension is a "configuration-dependent" 
         load. As the surface area :math:`a` changes, the total energy changes, 
