@@ -16,9 +16,12 @@
       <script src="_static/documentation_options.js?v=5929fcd5"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="dolfin_mech.Material_Elastic_Lung_Wskel" href="dolfin_mech.Material_Elastic_Lung_Wskel.html" />
+    <link rel="prev" title="dolfin_mech.Material_Elastic_Lung_Wbulk" href="dolfin_mech.Material_Elastic_Lung_Wbulk.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -124,7 +127,7 @@
 <li class="toctree-l1"><a class="reference internal" href="dolfin_mech.TimeIntegrator.html">Time Integrator</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Materials</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Material.html">Material Base</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Material.html#dolfin_mech.Material.Material"><code class="docutils literal notranslate"><span class="pre">Material</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material.html#dolfin_mech.Material.Material.get_C0_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_C0_from_parameters()</span></code></a></li>
@@ -207,7 +210,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Material_Elastic_Lung_Wbulk.html">Lung Wbulk Elastic</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Material_Elastic_Lung_Wbulk.html">Lung Wbulk</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Material_Elastic_Lung_Wbulk.html#dolfin_mech.Material_Elastic_Lung_Wbulk.WbulkLungElasticMaterial"><code class="docutils literal notranslate"><span class="pre">WbulkLungElasticMaterial</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material_Elastic_Lung_Wbulk.html#dolfin_mech.Material_Elastic_Lung_Wbulk.WbulkLungElasticMaterial.kappa"><code class="docutils literal notranslate"><span class="pre">WbulkLungElasticMaterial.kappa</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material_Elastic_Lung_Wbulk.html#dolfin_mech.Material_Elastic_Lung_Wbulk.WbulkLungElasticMaterial.Psi"><code class="docutils literal notranslate"><span class="pre">WbulkLungElasticMaterial.Psi</span></code></a></li>
@@ -216,10 +219,31 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Material_Inelastic.html">Inelastic Material</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Material_Inelastic.html#dolfin_mech.Material_Inelastic.InelasticMaterial"><code class="docutils literal notranslate"><span class="pre">InelasticMaterial</span></code></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Lung Wpore</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Lung_Wpore.WporeLungElasticMaterial"><code class="docutils literal notranslate"><span class="pre">WporeLungElasticMaterial</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Lung_Wpore.WporeLungElasticMaterial.eta"><code class="docutils literal notranslate"><span class="pre">WporeLungElasticMaterial.eta</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Lung_Wpore.WporeLungElasticMaterial.Psi"><code class="docutils literal notranslate"><span class="pre">WporeLungElasticMaterial.Psi</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_Lung_Wpore.WporeLungElasticMaterial.dWporedPhif"><code class="docutils literal notranslate"><span class="pre">WporeLungElasticMaterial.dWporedPhif</span></code></a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Material_Elastic_Lung_Wskel.html">Lung Wskel</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Material_Elastic_Lung_Wskel.html#dolfin_mech.Material_Elastic_Lung_Wskel.WskelLungElasticMaterial"><code class="docutils literal notranslate"><span class="pre">WskelLungElasticMaterial</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material_Elastic_Lung_Wskel.html#dolfin_mech.Material_Elastic_Lung_Wskel.WskelLungElasticMaterial.kinematics"><code class="docutils literal notranslate"><span class="pre">WskelLungElasticMaterial.kinematics</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material_Elastic_Lung_Wskel.html#dolfin_mech.Material_Elastic_Lung_Wskel.WskelLungElasticMaterial.bulk"><code class="docutils literal notranslate"><span class="pre">WskelLungElasticMaterial.bulk</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material_Elastic_Lung_Wskel.html#dolfin_mech.Material_Elastic_Lung_Wskel.WskelLungElasticMaterial.dev"><code class="docutils literal notranslate"><span class="pre">WskelLungElasticMaterial.dev</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material_Elastic_Lung_Wskel.html#dolfin_mech.Material_Elastic_Lung_Wskel.WskelLungElasticMaterial.Psi"><code class="docutils literal notranslate"><span class="pre">WskelLungElasticMaterial.Psi</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material_Elastic_Lung_Wskel.html#dolfin_mech.Material_Elastic_Lung_Wskel.WskelLungElasticMaterial.Sigma"><code class="docutils literal notranslate"><span class="pre">WskelLungElasticMaterial.Sigma</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material_Elastic_Lung_Wskel.html#dolfin_mech.Material_Elastic_Lung_Wskel.WskelLungElasticMaterial.P"><code class="docutils literal notranslate"><span class="pre">WskelLungElasticMaterial.P</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material_Elastic_Lung_Wskel.html#dolfin_mech.Material_Elastic_Lung_Wskel.WskelLungElasticMaterial.sigma"><code class="docutils literal notranslate"><span class="pre">WskelLungElasticMaterial.sigma</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Material_Elastic_MooneyRivlin.html">Mooney-Rivlin Elastic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Material_Elastic_NeoHookean.html">Neo-Hookean Elastic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Material_Inelastic.html">Inelastic Material</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Material_Elastic_Kirchhoff.html">Kirchhoff</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Material_Elastic_Kirchhoff.html#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffBulkElasticMaterial"><code class="docutils literal notranslate"><span class="pre">KirchhoffBulkElasticMaterial</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material_Elastic_Kirchhoff.html#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffBulkElasticMaterial.K"><code class="docutils literal notranslate"><span class="pre">KirchhoffBulkElasticMaterial.K</span></code></a></li>
@@ -245,14 +269,8 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Material_Elastic_NeoHookean.html">Neo-Hookean</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Material_Elastic_NeoHookean.html#dolfin_mech.Material_Elastic_NeoHookean.NeoHookeanElasticMaterial"><code class="docutils literal notranslate"><span class="pre">NeoHookeanElasticMaterial</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Material_Elastic_Porous.html">Porous</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Material_Elastic_Porous.html#dolfin_mech.Material_Elastic_Porous.PorousElasticMaterial"><code class="docutils literal notranslate"><span class="pre">PorousElasticMaterial</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Material_Elastic_NeoHookean.html">Neo-Hookean</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Material_Elastic_Porous.html">Porous</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Operators</span></p>
 <ul>
@@ -325,6 +343,75 @@
 <dt class="sig sig-object py" id="dolfin_mech.Material_Elastic_Lung_Wpore.WporeLungElasticMaterial">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">WporeLungElasticMaterial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Phif</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Phif0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Material_Elastic_Lung_Wpore.html#WporeLungElasticMaterial"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Material_Elastic_Lung_Wpore.WporeLungElasticMaterial" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="dolfin_mech.Material_Elastic.html#dolfin_mech.Material_Elastic.ElasticMaterial" title="dolfin_mech.Material_Elastic.ElasticMaterial"><code class="xref py py-class docutils literal notranslate"><span class="pre">ElasticMaterial</span></code></a></p>
+<p>Class representing the pore-level elastic energy of lung tissue, typically
+modeling the resistance of alveoli to collapse (atelectasis) and over-distension.</p>
+<p>This material model defines a potential based on the ratio of the current
+fluid volume fraction <span class="math notranslate nohighlight">\(\Phi_f\)</span> to the reference fraction <span class="math notranslate nohighlight">\(\Phi_{f0}\)</span>.
+The energy is zero within a “physiological range” and grows according to a
+power law beyond specific upper and lower thresholds.</p>
+<p>The strain energy density <span class="math notranslate nohighlight">\(\Psi\)</span> is defined using a triple conditional:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\Psi = \eta \cdot
+\begin{cases}
+(r_{inf}/r - 1)^{n+1} &amp; \text{if } r &lt; r_{inf} \\
+(r/r_{sup} - 1)^{n+1} &amp; \text{if } r &gt; r_{sup} \\
+0 &amp; \text{otherwise}
+\end{cases}\end{split}\]</div>
+<dl class="simple">
+<dt>Where:</dt><dd><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(r = \Phi_f / \Phi_{f0}\)</span> is the volume fraction ratio.</p></li>
+<li><p><span class="math notranslate nohighlight">\(r_{inf} = \Phi_{f0}^{p-1}\)</span> is the lower activation threshold.</p></li>
+<li><p><span class="math notranslate nohighlight">\(r_{sup} = \Phi_{f0}^{1/q-1}\)</span> is the upper activation threshold.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\eta\)</span> is the stiffness scaling parameter.</p></li>
+<li><p><span class="math notranslate nohighlight">\(n, p, q\)</span> are shape and threshold parameters.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Material_Elastic_Lung_Wpore.WporeLungElasticMaterial.eta">
+<span class="sig-name descname"><span class="pre">eta</span></span><a class="headerlink" href="#dolfin_mech.Material_Elastic_Lung_Wpore.WporeLungElasticMaterial.eta" title="Link to this definition"></a></dt>
+<dd><p>Stiffness parameter for the pore energy.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dolfin.Constant</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">n,</span> <span class="pre">p,</span> <span class="pre">q</span></span></dt>
+<dd><p>Power-law and threshold exponents.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dolfin.Constant</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Material_Elastic_Lung_Wpore.WporeLungElasticMaterial.Psi">
+<span class="sig-name descname"><span class="pre">Psi</span></span><a class="headerlink" href="#dolfin_mech.Material_Elastic_Lung_Wpore.WporeLungElasticMaterial.Psi" title="Link to this definition"></a></dt>
+<dd><p>The calculated conditional strain energy density.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>UFL expression</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Material_Elastic_Lung_Wpore.WporeLungElasticMaterial.dWporedPhif">
+<span class="sig-name descname"><span class="pre">dWporedPhif</span></span><a class="headerlink" href="#dolfin_mech.Material_Elastic_Lung_Wpore.WporeLungElasticMaterial.dWporedPhif" title="Link to this definition"></a></dt>
+<dd><p>Derivative of the energy with respect to
+the fluid volume fraction <span class="math notranslate nohighlight">\(\frac{\partial \Psi}{\partial \Phi_f}\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>UFL expression</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </section>
@@ -332,7 +419,10 @@
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dolfin_mech.Material_Elastic_Lung_Wbulk.html" class="btn btn-neutral float-left" title="dolfin_mech.Material_Elastic_Lung_Wbulk" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dolfin_mech.Material_Elastic_Lung_Wskel.html" class="btn btn-neutral float-right" title="dolfin_mech.Material_Elastic_Lung_Wskel" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
