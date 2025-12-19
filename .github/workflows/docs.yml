@@ -33,6 +33,8 @@ jobs:
       - name: Build Sphinx Documentation
         run: |
           sphinx-build -b html docs/ docs/build
+          # Critical: tells GitHub not to use Jekyll, allowing underscores in folder names
+          touch docs/build/.nojekyll
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4

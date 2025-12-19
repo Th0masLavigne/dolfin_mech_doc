@@ -1,6 +1,7 @@
 import os
 import sys
 from unittest.mock import MagicMock
+import sphinx_rtd_theme
 
 # Ajoute la racine du projet pour que Sphinx trouve dolfin_mech
 sys.path.insert(0, os.path.abspath('..'))
@@ -26,10 +27,12 @@ extensions = [
     'sphinx.ext.napoleon',    # Support du format Google/NumPy
     'sphinx.ext.viewcode',    # Lien vers le code source
     'sphinx.ext.mathjax',     # Rendu des équations LaTeX
+    'sphinx_rtd_theme',
 ]
 
 # Thème visuel
 html_theme = 'sphinx_rtd_theme'
+html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 html_static_path = [] # Leave empty for now if you don't have custom CSS
 
 # Empêcher Sphinx de planter sur les erreurs d'importation mineures
