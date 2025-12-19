@@ -62,6 +62,7 @@ But if you need to develop within the library, you need to install an editable v
    :maxdepth: 1
    :caption: Core API
    :hidden:
+   
    Kinematics <dolfin_mech.Kinematics>
    Kinematics Inverse <dolfin_mech.Kinematics_Inverse>
    Kinematics Linearized <dolfin_mech.Kinematics_Linearized>
