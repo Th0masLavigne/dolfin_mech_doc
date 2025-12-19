@@ -16,13 +16,40 @@ import dolfin_mech as dmech
 ################################################################################
 
 class LinearizedKinematics():
+    """
+    Class to compute and store kinematic quantities for linearized solid mechanics.
 
+    This class computes the infinitesimal strain tensor :math:`\\boldsymbol{\\varepsilon}` 
+    based on the displacement field :math:`\mathbf{u}` under the assumption of 
+    small displacement gradients. It provides access to the full, spherical, 
+    and deviatoric parts of the strain.
 
-
+    Attributes:
+        u (dolfin.Function): The displacement field.
+        dim (int): Spatial dimension.
+        I (dolfin.Identity): Identity tensor of dimension ``dim``.
+        epsilon (ufl.Form): Symmetric infinitesimal strain tensor 
+            :math:`\\boldsymbol{\\varepsilon} = \\frac{1}{2}(\\nabla \mathbf{u} + \\nabla \mathbf{u}^T)`.
+        epsilon_sph (ufl.Form): Spherical part of the strain tensor 
+            :math:`\\boldsymbol{\\varepsilon}_{sph} = \\frac{1}{d} \\text{tr}(\\boldsymbol{\\varepsilon}) \\mathbf{I}`.
+        epsilon_dev (ufl.Form): Deviatoric part of the strain tensor 
+            :math:`\\boldsymbol{\\varepsilon}_{dev} = \\boldsymbol{\\varepsilon} - \\boldsymbol{\\varepsilon}_{sph}`.
+    """
     def __init__(self,
             u,
             u_old=None):
+        """
+        Initialize the LinearizedKinematics object and compute strain tensors.
 
+        Args:
+            u (dolfin.Function): Current displacement field.
+            u_old (dolfin.Function, optional): Displacement field from the previous 
+                time step. Defaults to None.
+
+        Notes:
+            If ``u_old`` is provided, the class also computes the strain at the 
+            mid-point configuration, useful for certain time-integration schemes.
+        """
         self.u = u
 
         self.dim = self.u.ufl_shape[0]

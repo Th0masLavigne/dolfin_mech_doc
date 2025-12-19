@@ -16,13 +16,41 @@ from .Material_Elastic import ElasticMaterial
 ################################################################################
 
 class ExponentialNeoHookeanElasticMaterial(ElasticMaterial):
+    """
+    Class implementing an exponential-based Neo-Hookean elastic material model.
 
+    This constitutive model is designed for finite strain elasticity and 
+    features an exponential strain energy density function. It is often used 
+    to capture the non-linear stiffening behavior of soft materials.
 
+    The strain energy density :math:`\\Psi` is defined as:
 
+    .. math::
+
+        \\Psi = \\frac{\\beta_1}{2\\beta_2\\alpha} \\left( e^{\\beta_2 (I_C - d - 2\\ln J)^\\alpha} - 1 \\right) + \\beta_3 (I_C - d - 2\\ln J) + \\beta_4 (J^2 - 1 - 2\\ln J)
+
+    where :math:`d` is the spatial dimension.
+
+    Attributes:
+        kinematics (Kinematics): Kinematic quantities (F, J, C, etc.).
+        beta1, beta2, beta3, beta4, alpha (dolfin.Constant): Material parameters.
+        Psi (ufl.Form): Strain energy density function.
+        Sigma (ufl.Form): Second Piola-Kirchhoff stress tensor :math:`\\mathbf{S}`.
+        P (ufl.Form): First Piola-Kirchhoff stress tensor :math:`\\mathbf{P} = \\mathbf{F}\\mathbf{S}`.
+        sigma (ufl.Form): Cauchy stress tensor :math:`\\boldsymbol{\\sigma} = J^{-1} \\mathbf{P}\\mathbf{F}^T`.
+    """
     def __init__(self,
             kinematics,
             parameters):
+        """
+        Initialize the Exponential Neo-Hookean material model.
 
+        Args:
+            kinematics (Kinematics): Kinematic object providing deformation tensors 
+                and invariants.
+            parameters (dict): Dictionary containing the material constants: 
+                ``"beta1"``, ``"beta2"``, ``"beta3"``, ``"beta4"``, and ``"alpha"``.
+        """
         self.kinematics = kinematics
 
         self.beta1 = dolfin.Constant(parameters["beta1"])

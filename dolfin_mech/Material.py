@@ -15,12 +15,27 @@ import dolfin_mech as dmech
 ################################################################################
 
 class Material():
+    """
+    Base class for material models providing utility methods for parameter conversion.
 
-
-
+    This class handles the translation between common engineering constants 
+    (Young's modulus :math:`E`, Poisson's ratio :math:`\\nu`) and the theoretical 
+    parameters required by constitutive laws (Lamé constants :math:`\\lambda, \\mu`, 
+    bulk modulus :math:`K`, etc.).
+    """
     def get_lambda_from_parameters(self,
             parameters):
+        """
+        Compute the first Lamé parameter :math:`\\lambda`.
 
+        Args:
+            parameters (dict): Dictionary containing material constants. 
+                Expected keys: ``"lambda"`` OR (``"E"`` AND ``"nu"``).
+                Optional key: ``"PS"`` (bool) for Plane Stress formulation.
+
+        Returns:
+            dolfin.Constant: The value of :math:`\\lambda`.
+        """
         if ("lambda" in parameters):
             lmbda = parameters["lambda"]
         elif ("E" in parameters) and ("nu" in parameters):
@@ -39,7 +54,16 @@ class Material():
 
     def get_mu_from_parameters(self,
             parameters):
+        """
+        Compute the second Lamé parameter (shear modulus) :math:`\\mu`.
 
+        Args:
+            parameters (dict): Dictionary containing material constants. 
+                Expected keys: ``"mu"`` OR (``"E"`` AND ``"nu"``).
+
+        Returns:
+            dolfin.Constant: The value of :math:`\\mu`.
+        """
         if ("mu" in parameters):
             mu = parameters["mu"]
         elif ("E" in parameters) and ("nu" in parameters):
@@ -55,7 +79,12 @@ class Material():
 
     def get_lambda_and_mu_from_parameters(self,
             parameters):
+        """
+        Compute both Lamé parameters simultaneously.
 
+        Returns:
+            tuple: (dolfin.Constant, dolfin.Constant) representing (:math:`\\lambda, \\mu`).
+        """
         lmbda = self.get_lambda_from_parameters(parameters)
         mu    = self.get_mu_from_parameters(parameters)
 
@@ -65,7 +94,12 @@ class Material():
 
     def get_K_from_parameters(self,
             parameters):
+        """
+        Compute the bulk modulus :math:`K`.
 
+        If ``"K"`` is not in parameters, it is derived from :math:`\\lambda` and :math:`\\mu` 
+        as :math:`K = (3\\lambda + 2\\mu)/3`.
+        """
         if ("K" in parameters):
             K = parameters["K"]
         else:
@@ -77,7 +111,9 @@ class Material():
 
     def get_G_from_parameters(self,
             parameters):
-
+        """
+        Compute the shear modulus :math:`G`. Equivalent to :math:`\\mu`.
+        """
         if ("G" in parameters):
             G = parameters["G"]
         else:
@@ -90,7 +126,21 @@ class Material():
     def get_C0_from_parameters(self,
             parameters,
             decoup=False):
+        """
+        Compute the hyperelastic coefficient :math:`C_0`.
 
+        This parameter is typically associated with the volumetric or 
+        compressibility part of the strain energy density function.
+
+        Args:
+            parameters (dict): Dictionary of material parameters.
+            decoup (bool, optional): If True, computes :math:`C_0` from the bulk 
+                modulus :math:`K`: :math:`C_0 = K/4`. If False, computes it 
+                from :math:`\lambda`: :math:`C_0 = \lambda/4`. Defaults to False.
+
+        Returns:
+            dolfin.Constant: The computed :math:`C_0` value.
+        """
         if ("C0" in parameters):
             C0 = parameters["C0"]
         elif ("c0" in parameters):
@@ -108,7 +158,21 @@ class Material():
     
     def get_C1_from_parameters(self,
             parameters):
+        """
+        Compute the hyperelastic coefficient :math:`C_1`.
 
+        In many models, :math:`C_1` is related to the shear response of the material.
+
+        Args:
+            parameters (dict): Dictionary of material parameters. 
+                Expected keys: ``"C1"``, ``"c1"``, ``"mu"``, or (``"E"`` and ``"nu"``).
+
+        Returns:
+            dolfin.Constant: The computed :math:`C_1` value.
+            
+        Notes:
+            If not explicitly provided, it is derived as :math:`C_1 = \mu/2`.
+        """
         if ("C1" in parameters):
             C1 = parameters["C1"]
         elif ("c1" in parameters):
@@ -130,7 +194,19 @@ class Material():
 
     def get_C2_from_parameters(self,
             parameters):
+        """
+        Compute the hyperelastic coefficient :math:`C_2`.
 
+        Args:
+            parameters (dict): Dictionary of material parameters. 
+                Expected keys: ``"C2"``, ``"c2"``, ``"mu"``, or (``"E"`` and ``"nu"``).
+
+        Returns:
+            dolfin.Constant: The computed :math:`C_2` value.
+
+        Notes:
+            If not explicitly provided, it is derived as :math:`C_2 = \mu/2`.
+        """
         if ("C2" in parameters):
             C2 = parameters["C2"]
         elif ("c2" in parameters):
@@ -152,7 +228,11 @@ class Material():
 
     def get_C1_and_C2_from_parameters(self,
             parameters):
+        """
+        Compute Mooney-Rivlin coefficients :math:`C_1` and :math:`C_2`.
 
+        If only ``"mu"`` is provided, it assumes :math:`C_1 = C_2 = \\mu/4`.
+        """
         if ("C1" in parameters) and ("C2" in parameters):
             C1 = parameters["C1"]
             C2 = parameters["C2"]
@@ -317,7 +397,20 @@ def material_factory(
         kinematics,
         model,
         parameters):
+    """
+    Factory function to instantiate the appropriate material model class.
 
+    Args:
+        kinematics (Kinematics): An instance of a Kinematics class.
+        model (str): The name of the material model (e.g., ``"Hooke"``, ``"NeoHookean"``, ``"SVK"``).
+        parameters (dict): Material parameters passed to the model constructor.
+
+    Returns:
+        Material: An instance of the requested material model.
+
+    Example:
+        >>> mat = material_factory(kin, "NH", {"E": 10.0, "nu": 0.3})
+    """
     if   (model in ("hooke", "Hooke", "H")):
         material = dmech.HookeElasticMaterial(kinematics=kinematics, parameters=parameters)
     elif (model in ("hooke_dev", "Hooke_dev", "H_dev")):

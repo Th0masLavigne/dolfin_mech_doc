@@ -20,7 +20,8 @@ MOCK_MODULES = [
     'gmsh',
     'myPythonLibrary', 
     'myVTKPythonLibrary', 
-    'vtkpython_cbl'
+    'vtkpython_cbl',
+    'time',
 ]
 for mod_name in MOCK_MODULES:
     sys.modules[mod_name] = MagicMock()

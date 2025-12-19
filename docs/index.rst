@@ -62,11 +62,12 @@ But if you need to develop within the library, you need to install an editable v
    :maxdepth: 1
    :caption: Core API
    :hidden:
-   
+
    Kinematics <dolfin_mech.Kinematics>
    Kinematics Inverse <dolfin_mech.Kinematics_Inverse>
    Kinematics Linearized <dolfin_mech.Kinematics_Linearized>
    Constraint <dolfin_mech.Constraint>
+   Loading <dolfin_mech.Loading>
    Problem <dolfin_mech.Problem>
    Step <dolfin_mech.Step>
    Nonlinear Solver <dolfin_mech.NonlinearSolver>
@@ -77,13 +78,25 @@ But if you need to develop within the library, you need to install an editable v
    :caption: Materials
    :hidden:
 
-   Material <dolfin_mech.Material>
-   Elastic Material <dolfin_mech.Material_Elastic>
-   Inelastic Material <dolfin_mech.Material_Inelastic>
+   Material Base <dolfin_mech.Material>
+   Elastic Base <dolfin_mech.Material_Elastic>
+   Exponential Neo-Hookean Elastic <dolfin_mech.Material_Elastic_ExponentialNeoHookean>
+   Exponential Ogden Ciarlet Geymonat Elastic <dolfin_mech.ExponentialOgdenCiarletGeymonatElasticMaterial>
    Hooke <dolfin_mech.Material_Elastic_Hooke>
+   Hooke Bulk <dolfin_mech.Material_Elastic_Hooke_Bulk>
+   Hooke Deviatoric <dolfin_mech.Material_Elastic_Hooke_Dev>
+   Inelastic Material <dolfin_mech.Material_Inelastic>
    Kirchhoff <dolfin_mech.Material_Elastic_Kirchhoff>
    Neo-Hookean <dolfin_mech.Material_Elastic_NeoHookean>
    Porous <dolfin_mech.Material_Elastic_Porous>
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Mesh
+   :hidden:
+
+
+
 
 .. toctree::
    :maxdepth: 1
@@ -102,10 +115,11 @@ But if you need to develop within the library, you need to install an editable v
    :caption: Utilities
    :hidden:
 
-   QOI <dolfin_mech.QOI>
-   FOI <dolfin_mech.FOI>
+   Field of Interest (FOI) <dolfin_mech.FOI>
+   Quantity of Interest (QOI) <dolfin_mech.QOI>
    XDMF File <dolfin_mech.XDMFFile>
    Compute Error <dolfin_mech.compute_error>
+   Mesh Function Expression (C++) <dolfin_mech.Expression_MeshFunction_cpp>
 
 
 .. toctree::
