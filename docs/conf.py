@@ -39,3 +39,8 @@ html_static_path = [] # Leave empty for now if you don't have custom CSS
 autodoc_inherit_docstrings = True
 
 add_module_names = False # Prevents showing the full path (dolfin_mech.Kinematics) in titles
+
+html_theme_options = {
+    'collapse_navigation': False,
+    'navigation_depth': 3,
+}

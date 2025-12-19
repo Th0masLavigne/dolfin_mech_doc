@@ -58,11 +58,58 @@ But if you need to develop within the library, you need to install an editable v
    Introduction <self>
 
 .. toctree::
-   :maxdepth: 2
-   :caption: API Reference
+   :maxdepth: 1
+   :caption: Core API
    :hidden:
 
-   dolfin_mech
+   dolfin_mech.Problem
+   dolfin_mech.Step
+   dolfin_mech.Kinematics
+   dolfin_mech.Kinematics_Inverse
+   dolfin_mech.Kinematics_Linearized
+   dolfin_mech.NonlinearSolver
+   dolfin_mech.TimeIntegrator
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Materials
+   :hidden:
+
+   dolfin_mech.Material
+   dolfin_mech.Material_Elastic
+   dolfin_mech.Material_Inelastic
+   dolfin_mech.Material_Elastic_Hooke
+   dolfin_mech.Material_Elastic_Kirchhoff
+   dolfin_mech.Material_Elastic_NeoHookean
+   dolfin_mech.Material_Elastic_Porous
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Operators
+   :hidden:
+
+   dolfin_mech.Operator
+   dolfin_mech.Operator_HyperElasticity
+   dolfin_mech.Operator_DarcyFlow
+   dolfin_mech.Operator_Inertia
+   dolfin_mech.Operator_Poro_Pf
+   dolfin_mech.Operator_Loading_SurfacePressure
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Utilities
+   :hidden:
+
+   dolfin_mech.QOI
+   dolfin_mech.FOI
+   dolfin_mech.XDMFFile
+   dolfin_mech.compute_error
+
+Indices and tables
+==================
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
 
 
 Indices and tables

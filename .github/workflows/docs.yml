@@ -2,7 +2,7 @@ name: Documentation
 on:
   push:
     branches: [ master, main ]
-    
+
 
 permissions:
   contents: write
@@ -28,11 +28,12 @@ jobs:
 
       - name: Generate API skeleton
         run: |
-          # This creates modules.rst and dolfin_mech.rst automatically
-          sphinx-apidoc -o docs/ dolfin_mech/ --no-toc --force --module-first
-          # Remove the word "package" from the top of the generated file
-          sed -i 's/ package//g' docs/dolfin_mech.rst
-          # Remove the word "module" from all generated files
+          # --separate puts each module (Material, Operator, etc.) on its own page
+          # -e tells sphinx to give each module its own file
+          sphinx-apidoc -e -o docs/ dolfin_mech/ --no-toc --force --module-first
+          
+          # Clean up the titles in all generated .rst files
+          sed -i 's/ package//g' docs/*.rst
           sed -i 's/ module//g' docs/*.rst
 
       - name: Build Sphinx Documentation
