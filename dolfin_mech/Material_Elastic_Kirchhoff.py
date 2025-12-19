@@ -16,13 +16,37 @@ from .Material_Elastic import ElasticMaterial
 ################################################################################
 
 class KirchhoffElasticMaterial(ElasticMaterial):
+    """
+    Class representing a standard St. Venant-Kirchhoff elastic material.
+    
+    This model extends linear elasticity to large deformations by using the Green-Lagrange 
+    strain tensor :math:`\mathbf{E}` in the strain energy density function.
 
+    The strain energy density is defined as:
+    
+    .. math::
+        \Psi = \\frac{\lambda}{2} tr(\mathbf{E})^2 + \mu tr(\mathbf{E}^2)
 
-
+    Attributes:
+        kinematics (Kinematics): Object containing kinematic variables (F, J, E, etc.).
+        lmbda (float): First Lamé parameter.
+        mu (float): Second Lamé parameter (shear modulus).
+        Psi (UFL expression): Strain energy density.
+        Sigma (UFL expression): Second Piola-Kirchhoff stress tensor.
+        P (UFL expression): First Piola-Kirchhoff stress tensor.
+        sigma (UFL expression): Cauchy stress tensor.
+    """
     def __init__(self,
             kinematics,
             parameters):
+        """
+        Initializes the KirchhoffElasticMaterial.
 
+        :param kinematics: Kinematics object containing deformation tensors.
+        :type kinematics: dmech.Kinematics
+        :param parameters: Dictionary or object containing 'lambda' and 'mu' (or equivalent).
+        :type parameters: dict
+        """
         self.kinematics = kinematics
 
         self.lmbda = self.get_lambda_from_parameters(parameters)
@@ -64,13 +88,31 @@ class KirchhoffElasticMaterial(ElasticMaterial):
 ################################################################################
 
 class KirchhoffBulkElasticMaterial(ElasticMaterial):
+    """
+    Class representing the volumetric (bulk) component of a Kirchhoff elastic material.
+    
+    This model focuses on the spherical part of the strain tensor, typically used in 
+    penalty methods or split formulations.
 
+    The strain energy density is defined as:
+    
+    .. math::
+        \Psi = \\frac{d \cdot K}{2} tr(\mathbf{E}_{sph})^2
 
-
+    Attributes:
+        K (float): Bulk modulus.
+        Psi (UFL expression): Volumetric strain energy density.
+        Sigma (UFL expression): Spherical part of the Second Piola-Kirchhoff stress.
+    """
     def __init__(self,
             kinematics,
             parameters):
+        """
+        Initializes the KirchhoffBulkElasticMaterial.
 
+        :param kinematics: Kinematics object.
+        :param parameters: Material parameters to derive Bulk modulus :math:`K`.
+        """
         self.kinematics = kinematics
 
         # self.K = self.get_K_from_parameters(parameters)
@@ -126,13 +168,30 @@ class KirchhoffBulkElasticMaterial(ElasticMaterial):
 ################################################################################
 
 class KirchhoffDevElasticMaterial(ElasticMaterial):
+    """
+    Class representing the deviatoric (shear) component of a Kirchhoff elastic material.
+    
+    Used to model the shape-changing part of the deformation, independent of volume change.
 
+    The strain energy density is defined as:
+    
+    .. math::
+        \Psi = G \cdot (\mathbf{E}_{dev} : \mathbf{E}_{dev})
 
-
+    Attributes:
+        G (float): Shear modulus.
+        Psi (UFL expression): Deviatoric strain energy density.
+        Sigma (UFL expression): Deviatoric part of the Second Piola-Kirchhoff stress.
+    """
     def __init__(self,
             kinematics,
             parameters):
+        """
+        Initializes the KirchhoffDevElasticMaterial.
 
+        :param kinematics: Kinematics object.
+        :param parameters: Material parameters to derive Shear modulus :math:`G`.
+        """
         self.kinematics = kinematics
 
         self.G = self.get_G_from_parameters(parameters)

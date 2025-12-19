@@ -83,6 +83,10 @@ But if you need to develop within the library, you need to install an editable v
    Exponential Neo-Hookean Elastic <dolfin_mech.Material_Elastic_ExponentialNeoHookean>
    Exponential Ogden Ciarlet Geymonat Elastic <dolfin_mech.Material_Elastic_ExponentialOgdenCiarletGeymonat>
    Hooke Elastic <dolfin_mech.Material_Elastic_Hooke>
+   Kirchhoff Elastic <dolfin_mech.Material_Elastic_Kirchhoff>
+   Lung Wbulk Elastic <dolfin_mech.Material_Elastic_Lung_Wbulk>
+
+
    Inelastic Material <dolfin_mech.Material_Inelastic>
    Kirchhoff <dolfin_mech.Material_Elastic_Kirchhoff>
    Neo-Hookean <dolfin_mech.Material_Elastic_NeoHookean>
