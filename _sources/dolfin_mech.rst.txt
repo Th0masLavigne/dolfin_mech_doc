@@ -1,4 +1,4 @@
-dolfin\_mech package
+dolfin\_mech
 ====================
 
 .. automodule:: dolfin_mech
@@ -9,7 +9,7 @@ dolfin\_mech package
 Submodules
 ----------
 
-dolfin\_mech.Constraint module
+dolfin\_mech.Constraint
 ------------------------------
 
 .. automodule:: dolfin_mech.Constraint
@@ -17,7 +17,7 @@ dolfin\_mech.Constraint module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Expression\_MeshFunction\_cpp module
+dolfin\_mech.Expression\_MeshFunction\_cpp
 -------------------------------------------------
 
 .. automodule:: dolfin_mech.Expression_MeshFunction_cpp
@@ -25,7 +25,7 @@ dolfin\_mech.Expression\_MeshFunction\_cpp module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.FOI module
+dolfin\_mech.FOI
 -----------------------
 
 .. automodule:: dolfin_mech.FOI
@@ -33,7 +33,7 @@ dolfin\_mech.FOI module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Kinematics module
+dolfin\_mech.Kinematics
 ------------------------------
 
 .. automodule:: dolfin_mech.Kinematics
@@ -41,7 +41,7 @@ dolfin\_mech.Kinematics module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Kinematics\_Inverse module
+dolfin\_mech.Kinematics\_Inverse
 ---------------------------------------
 
 .. automodule:: dolfin_mech.Kinematics_Inverse
@@ -49,7 +49,7 @@ dolfin\_mech.Kinematics\_Inverse module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Kinematics\_Linearized module
+dolfin\_mech.Kinematics\_Linearized
 ------------------------------------------
 
 .. automodule:: dolfin_mech.Kinematics_Linearized
@@ -57,7 +57,7 @@ dolfin\_mech.Kinematics\_Linearized module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Loading module
+dolfin\_mech.Loading
 ---------------------------
 
 .. automodule:: dolfin_mech.Loading
@@ -65,7 +65,7 @@ dolfin\_mech.Loading module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Material module
+dolfin\_mech.Material
 ----------------------------
 
 .. automodule:: dolfin_mech.Material
@@ -73,7 +73,7 @@ dolfin\_mech.Material module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Material\_Elastic module
+dolfin\_mech.Material\_Elastic
 -------------------------------------
 
 .. automodule:: dolfin_mech.Material_Elastic
@@ -81,7 +81,7 @@ dolfin\_mech.Material\_Elastic module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Material\_Elastic\_ExponentialNeoHookean module
+dolfin\_mech.Material\_Elastic\_ExponentialNeoHookean
 ------------------------------------------------------------
 
 .. automodule:: dolfin_mech.Material_Elastic_ExponentialNeoHookean
@@ -89,7 +89,7 @@ dolfin\_mech.Material\_Elastic\_ExponentialNeoHookean module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Material\_Elastic\_ExponentialOgdenCiarletGeymonat module
+dolfin\_mech.Material\_Elastic\_ExponentialOgdenCiarletGeymonat
 ----------------------------------------------------------------------
 
 .. automodule:: dolfin_mech.Material_Elastic_ExponentialOgdenCiarletGeymonat
@@ -97,7 +97,7 @@ dolfin\_mech.Material\_Elastic\_ExponentialOgdenCiarletGeymonat module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Material\_Elastic\_Hooke module
+dolfin\_mech.Material\_Elastic\_Hooke
 --------------------------------------------
 
 .. automodule:: dolfin_mech.Material_Elastic_Hooke
@@ -105,7 +105,7 @@ dolfin\_mech.Material\_Elastic\_Hooke module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Material\_Elastic\_Kirchhoff module
+dolfin\_mech.Material\_Elastic\_Kirchhoff
 ------------------------------------------------
 
 .. automodule:: dolfin_mech.Material_Elastic_Kirchhoff
@@ -113,7 +113,7 @@ dolfin\_mech.Material\_Elastic\_Kirchhoff module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Material\_Elastic\_Lung\_Wbulk module
+dolfin\_mech.Material\_Elastic\_Lung\_Wbulk
 --------------------------------------------------
 
 .. automodule:: dolfin_mech.Material_Elastic_Lung_Wbulk
@@ -121,7 +121,7 @@ dolfin\_mech.Material\_Elastic\_Lung\_Wbulk module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Material\_Elastic\_Lung\_Wpore module
+dolfin\_mech.Material\_Elastic\_Lung\_Wpore
 --------------------------------------------------
 
 .. automodule:: dolfin_mech.Material_Elastic_Lung_Wpore
@@ -129,7 +129,7 @@ dolfin\_mech.Material\_Elastic\_Lung\_Wpore module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Material\_Elastic\_Lung\_Wskel module
+dolfin\_mech.Material\_Elastic\_Lung\_Wskel
 --------------------------------------------------
 
 .. automodule:: dolfin_mech.Material_Elastic_Lung_Wskel
@@ -137,7 +137,7 @@ dolfin\_mech.Material\_Elastic\_Lung\_Wskel module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Material\_Elastic\_MooneyRivlin module
+dolfin\_mech.Material\_Elastic\_MooneyRivlin
 ---------------------------------------------------
 
 .. automodule:: dolfin_mech.Material_Elastic_MooneyRivlin
@@ -145,7 +145,7 @@ dolfin\_mech.Material\_Elastic\_MooneyRivlin module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Material\_Elastic\_NeoHookean module
+dolfin\_mech.Material\_Elastic\_NeoHookean
 -------------------------------------------------
 
 .. automodule:: dolfin_mech.Material_Elastic_NeoHookean
@@ -153,7 +153,7 @@ dolfin\_mech.Material\_Elastic\_NeoHookean module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Material\_Elastic\_NeoHookeanMooneyRivlin module
+dolfin\_mech.Material\_Elastic\_NeoHookeanMooneyRivlin
 -------------------------------------------------------------
 
 .. automodule:: dolfin_mech.Material_Elastic_NeoHookeanMooneyRivlin
@@ -161,7 +161,7 @@ dolfin\_mech.Material\_Elastic\_NeoHookeanMooneyRivlin module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Material\_Elastic\_OgdenCiarletGeymonat module
+dolfin\_mech.Material\_Elastic\_OgdenCiarletGeymonat
 -----------------------------------------------------------
 
 .. automodule:: dolfin_mech.Material_Elastic_OgdenCiarletGeymonat
@@ -169,7 +169,7 @@ dolfin\_mech.Material\_Elastic\_OgdenCiarletGeymonat module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Material\_Elastic\_OgdenCiarletGeymonatNeoHookean module
+dolfin\_mech.Material\_Elastic\_OgdenCiarletGeymonatNeoHookean
 ---------------------------------------------------------------------
 
 .. automodule:: dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean
@@ -177,7 +177,7 @@ dolfin\_mech.Material\_Elastic\_OgdenCiarletGeymonatNeoHookean module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Material\_Elastic\_OgdenCiarletGeymonatNeoHookeanMooneyRivlin module
+dolfin\_mech.Material\_Elastic\_OgdenCiarletGeymonatNeoHookeanMooneyRivlin
 ---------------------------------------------------------------------------------
 
 .. automodule:: dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookeanMooneyRivlin
@@ -185,7 +185,7 @@ dolfin\_mech.Material\_Elastic\_OgdenCiarletGeymonatNeoHookeanMooneyRivlin modul
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Material\_Elastic\_Porous module
+dolfin\_mech.Material\_Elastic\_Porous
 ---------------------------------------------
 
 .. automodule:: dolfin_mech.Material_Elastic_Porous
@@ -193,7 +193,7 @@ dolfin\_mech.Material\_Elastic\_Porous module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Material\_Inelastic module
+dolfin\_mech.Material\_Inelastic
 ---------------------------------------
 
 .. automodule:: dolfin_mech.Material_Inelastic
@@ -201,7 +201,7 @@ dolfin\_mech.Material\_Inelastic module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.NonlinearSolver module
+dolfin\_mech.NonlinearSolver
 -----------------------------------
 
 .. automodule:: dolfin_mech.NonlinearSolver
@@ -209,7 +209,7 @@ dolfin\_mech.NonlinearSolver module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Operator module
+dolfin\_mech.Operator
 ----------------------------
 
 .. automodule:: dolfin_mech.Operator
@@ -217,7 +217,7 @@ dolfin\_mech.Operator module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Operator\_Constraint\_MacroscopicStressComponent module
+dolfin\_mech.Operator\_Constraint\_MacroscopicStressComponent
 --------------------------------------------------------------------
 
 .. automodule:: dolfin_mech.Operator_Constraint_MacroscopicStressComponent
@@ -225,7 +225,7 @@ dolfin\_mech.Operator\_Constraint\_MacroscopicStressComponent module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Operator\_DarcyFlow module
+dolfin\_mech.Operator\_DarcyFlow
 ---------------------------------------
 
 .. automodule:: dolfin_mech.Operator_DarcyFlow
@@ -233,7 +233,7 @@ dolfin\_mech.Operator\_DarcyFlow module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Operator\_HyperElasticity module
+dolfin\_mech.Operator\_HyperElasticity
 ---------------------------------------------
 
 .. automodule:: dolfin_mech.Operator_HyperElasticity
@@ -241,7 +241,7 @@ dolfin\_mech.Operator\_HyperElasticity module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Operator\_HyperHydrostaticPressure module
+dolfin\_mech.Operator\_HyperHydrostaticPressure
 ------------------------------------------------------
 
 .. automodule:: dolfin_mech.Operator_HyperHydrostaticPressure
@@ -249,7 +249,7 @@ dolfin\_mech.Operator\_HyperHydrostaticPressure module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Operator\_HyperIncompressibility module
+dolfin\_mech.Operator\_HyperIncompressibility
 ----------------------------------------------------
 
 .. automodule:: dolfin_mech.Operator_HyperIncompressibility
@@ -257,7 +257,7 @@ dolfin\_mech.Operator\_HyperIncompressibility module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Operator\_Inertia module
+dolfin\_mech.Operator\_Inertia
 -------------------------------------
 
 .. automodule:: dolfin_mech.Operator_Inertia
@@ -265,7 +265,7 @@ dolfin\_mech.Operator\_Inertia module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Operator\_LinearizedElasticity module
+dolfin\_mech.Operator\_LinearizedElasticity
 --------------------------------------------------
 
 .. automodule:: dolfin_mech.Operator_LinearizedElasticity
@@ -273,7 +273,7 @@ dolfin\_mech.Operator\_LinearizedElasticity module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Operator\_LinearizedHydrostaticPressure module
+dolfin\_mech.Operator\_LinearizedHydrostaticPressure
 -----------------------------------------------------------
 
 .. automodule:: dolfin_mech.Operator_LinearizedHydrostaticPressure
@@ -281,7 +281,7 @@ dolfin\_mech.Operator\_LinearizedHydrostaticPressure module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Operator\_LinearizedIncompressibility module
+dolfin\_mech.Operator\_LinearizedIncompressibility
 ---------------------------------------------------------
 
 .. automodule:: dolfin_mech.Operator_LinearizedIncompressibility
@@ -289,7 +289,7 @@ dolfin\_mech.Operator\_LinearizedIncompressibility module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Operator\_Loading\_PressureBalancingGravity module
+dolfin\_mech.Operator\_Loading\_PressureBalancingGravity
 ---------------------------------------------------------------
 
 .. automodule:: dolfin_mech.Operator_Loading_PressureBalancingGravity
@@ -297,7 +297,7 @@ dolfin\_mech.Operator\_Loading\_PressureBalancingGravity module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Operator\_Loading\_SurfaceForce module
+dolfin\_mech.Operator\_Loading\_SurfaceForce
 ---------------------------------------------------
 
 .. automodule:: dolfin_mech.Operator_Loading_SurfaceForce
@@ -305,7 +305,7 @@ dolfin\_mech.Operator\_Loading\_SurfaceForce module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Operator\_Loading\_SurfacePressure module
+dolfin\_mech.Operator\_Loading\_SurfacePressure
 ------------------------------------------------------
 
 .. automodule:: dolfin_mech.Operator_Loading_SurfacePressure
@@ -313,7 +313,7 @@ dolfin\_mech.Operator\_Loading\_SurfacePressure module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Operator\_Loading\_SurfacePressureGradient module
+dolfin\_mech.Operator\_Loading\_SurfacePressureGradient
 --------------------------------------------------------------
 
 .. automodule:: dolfin_mech.Operator_Loading_SurfacePressureGradient
@@ -321,7 +321,7 @@ dolfin\_mech.Operator\_Loading\_SurfacePressureGradient module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Operator\_Loading\_SurfaceTension module
+dolfin\_mech.Operator\_Loading\_SurfaceTension
 -----------------------------------------------------
 
 .. automodule:: dolfin_mech.Operator_Loading_SurfaceTension
@@ -329,7 +329,7 @@ dolfin\_mech.Operator\_Loading\_SurfaceTension module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Operator\_Loading\_VolumeForce module
+dolfin\_mech.Operator\_Loading\_VolumeForce
 --------------------------------------------------
 
 .. automodule:: dolfin_mech.Operator_Loading_VolumeForce
@@ -337,7 +337,7 @@ dolfin\_mech.Operator\_Loading\_VolumeForce module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Operator\_MicroPoro\_DeformedFluidVolume module
+dolfin\_mech.Operator\_MicroPoro\_DeformedFluidVolume
 ------------------------------------------------------------
 
 .. automodule:: dolfin_mech.Operator_MicroPoro_DeformedFluidVolume
@@ -345,7 +345,7 @@ dolfin\_mech.Operator\_MicroPoro\_DeformedFluidVolume module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Operator\_MicroPoro\_DeformedSolidVolume module
+dolfin\_mech.Operator\_MicroPoro\_DeformedSolidVolume
 ------------------------------------------------------------
 
 .. automodule:: dolfin_mech.Operator_MicroPoro_DeformedSolidVolume
@@ -353,7 +353,7 @@ dolfin\_mech.Operator\_MicroPoro\_DeformedSolidVolume module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Operator\_MicroPoro\_DeformedSurfaceArea module
+dolfin\_mech.Operator\_MicroPoro\_DeformedSurfaceArea
 ------------------------------------------------------------
 
 .. automodule:: dolfin_mech.Operator_MicroPoro_DeformedSurfaceArea
@@ -361,7 +361,7 @@ dolfin\_mech.Operator\_MicroPoro\_DeformedSurfaceArea module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Operator\_MicroPoro\_DeformedTotalVolume module
+dolfin\_mech.Operator\_MicroPoro\_DeformedTotalVolume
 ------------------------------------------------------------
 
 .. automodule:: dolfin_mech.Operator_MicroPoro_DeformedTotalVolume
@@ -369,7 +369,7 @@ dolfin\_mech.Operator\_MicroPoro\_DeformedTotalVolume module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Operator\_Penalty\_DirectionalDisplacement module
+dolfin\_mech.Operator\_Penalty\_DirectionalDisplacement
 --------------------------------------------------------------
 
 .. automodule:: dolfin_mech.Operator_Penalty_DirectionalDisplacement
@@ -377,7 +377,7 @@ dolfin\_mech.Operator\_Penalty\_DirectionalDisplacement module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Operator\_Penalty\_LagrangeMultiplierComponent module
+dolfin\_mech.Operator\_Penalty\_LagrangeMultiplierComponent
 ------------------------------------------------------------------
 
 .. automodule:: dolfin_mech.Operator_Penalty_LagrangeMultiplierComponent
@@ -385,7 +385,7 @@ dolfin\_mech.Operator\_Penalty\_LagrangeMultiplierComponent module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Operator\_Penalty\_MacroscopicStressComponent module
+dolfin\_mech.Operator\_Penalty\_MacroscopicStressComponent
 -----------------------------------------------------------------
 
 .. automodule:: dolfin_mech.Operator_Penalty_MacroscopicStressComponent
@@ -393,7 +393,7 @@ dolfin\_mech.Operator\_Penalty\_MacroscopicStressComponent module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Operator\_Penalty\_MacroscopicStretchComponent module
+dolfin\_mech.Operator\_Penalty\_MacroscopicStretchComponent
 ------------------------------------------------------------------
 
 .. automodule:: dolfin_mech.Operator_Penalty_MacroscopicStretchComponent
@@ -401,7 +401,7 @@ dolfin\_mech.Operator\_Penalty\_MacroscopicStretchComponent module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Operator\_Penalty\_MacroscopicStretchSymmetry module
+dolfin\_mech.Operator\_Penalty\_MacroscopicStretchSymmetry
 -----------------------------------------------------------------
 
 .. automodule:: dolfin_mech.Operator_Penalty_MacroscopicStretchSymmetry
@@ -409,7 +409,7 @@ dolfin\_mech.Operator\_Penalty\_MacroscopicStretchSymmetry module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Operator\_Penalty\_NormalDisplacement module
+dolfin\_mech.Operator\_Penalty\_NormalDisplacement
 ---------------------------------------------------------
 
 .. automodule:: dolfin_mech.Operator_Penalty_NormalDisplacement
@@ -417,7 +417,7 @@ dolfin\_mech.Operator\_Penalty\_NormalDisplacement module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Operator\_Poro\_Pf module
+dolfin\_mech.Operator\_Poro\_Pf
 --------------------------------------
 
 .. automodule:: dolfin_mech.Operator_Poro_Pf
@@ -425,7 +425,7 @@ dolfin\_mech.Operator\_Poro\_Pf module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Operator\_Poro\_Wbulk module
+dolfin\_mech.Operator\_Poro\_Wbulk
 -----------------------------------------
 
 .. automodule:: dolfin_mech.Operator_Poro_Wbulk
@@ -433,7 +433,7 @@ dolfin\_mech.Operator\_Poro\_Wbulk module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Operator\_Poro\_Wpore module
+dolfin\_mech.Operator\_Poro\_Wpore
 -----------------------------------------
 
 .. automodule:: dolfin_mech.Operator_Poro_Wpore
@@ -441,7 +441,7 @@ dolfin\_mech.Operator\_Poro\_Wpore module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Operator\_Poro\_Wskel module
+dolfin\_mech.Operator\_Poro\_Wskel
 -----------------------------------------
 
 .. automodule:: dolfin_mech.Operator_Poro_Wskel
@@ -449,7 +449,7 @@ dolfin\_mech.Operator\_Poro\_Wskel module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Problem module
+dolfin\_mech.Problem
 ---------------------------
 
 .. automodule:: dolfin_mech.Problem
@@ -457,7 +457,7 @@ dolfin\_mech.Problem module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Problem\_Elasticity module
+dolfin\_mech.Problem\_Elasticity
 ---------------------------------------
 
 .. automodule:: dolfin_mech.Problem_Elasticity
@@ -465,7 +465,7 @@ dolfin\_mech.Problem\_Elasticity module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Problem\_Homogenization module
+dolfin\_mech.Problem\_Homogenization
 -------------------------------------------
 
 .. automodule:: dolfin_mech.Problem_Homogenization
@@ -473,7 +473,7 @@ dolfin\_mech.Problem\_Homogenization module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Problem\_Hyperelasticity module
+dolfin\_mech.Problem\_Hyperelasticity
 --------------------------------------------
 
 .. automodule:: dolfin_mech.Problem_Hyperelasticity
@@ -481,7 +481,7 @@ dolfin\_mech.Problem\_Hyperelasticity module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Problem\_Hyperelasticity\_Inverse module
+dolfin\_mech.Problem\_Hyperelasticity\_Inverse
 -----------------------------------------------------
 
 .. automodule:: dolfin_mech.Problem_Hyperelasticity_Inverse
@@ -489,7 +489,7 @@ dolfin\_mech.Problem\_Hyperelasticity\_Inverse module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Problem\_Hyperelasticity\_MicroPoro module
+dolfin\_mech.Problem\_Hyperelasticity\_MicroPoro
 -------------------------------------------------------
 
 .. automodule:: dolfin_mech.Problem_Hyperelasticity_MicroPoro
@@ -497,7 +497,7 @@ dolfin\_mech.Problem\_Hyperelasticity\_MicroPoro module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Problem\_Hyperelasticity\_Poro module
+dolfin\_mech.Problem\_Hyperelasticity\_Poro
 --------------------------------------------------
 
 .. automodule:: dolfin_mech.Problem_Hyperelasticity_Poro
@@ -505,7 +505,7 @@ dolfin\_mech.Problem\_Hyperelasticity\_Poro module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Problem\_Hyperelasticity\_PoroFlow module
+dolfin\_mech.Problem\_Hyperelasticity\_PoroFlow
 ------------------------------------------------------
 
 .. automodule:: dolfin_mech.Problem_Hyperelasticity_PoroFlow
@@ -513,7 +513,7 @@ dolfin\_mech.Problem\_Hyperelasticity\_PoroFlow module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Problem\_Hyperelasticity\_Poro\_Inverse module
+dolfin\_mech.Problem\_Hyperelasticity\_Poro\_Inverse
 -----------------------------------------------------------
 
 .. automodule:: dolfin_mech.Problem_Hyperelasticity_Poro_Inverse
@@ -521,7 +521,7 @@ dolfin\_mech.Problem\_Hyperelasticity\_Poro\_Inverse module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.QOI module
+dolfin\_mech.QOI
 -----------------------
 
 .. automodule:: dolfin_mech.QOI
@@ -529,7 +529,7 @@ dolfin\_mech.QOI module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.Step module
+dolfin\_mech.Step
 ------------------------
 
 .. automodule:: dolfin_mech.Step
@@ -537,7 +537,7 @@ dolfin\_mech.Step module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.SubDomain\_Periodic module
+dolfin\_mech.SubDomain\_Periodic
 ---------------------------------------
 
 .. automodule:: dolfin_mech.SubDomain_Periodic
@@ -545,7 +545,7 @@ dolfin\_mech.SubDomain\_Periodic module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.SubDomain\_Pinpoint module
+dolfin\_mech.SubDomain\_Pinpoint
 ---------------------------------------
 
 .. automodule:: dolfin_mech.SubDomain_Pinpoint
@@ -553,7 +553,7 @@ dolfin\_mech.SubDomain\_Pinpoint module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.SubSol module
+dolfin\_mech.SubSol
 --------------------------
 
 .. automodule:: dolfin_mech.SubSol
@@ -561,7 +561,7 @@ dolfin\_mech.SubSol module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.TimeIntegrator module
+dolfin\_mech.TimeIntegrator
 ----------------------------------
 
 .. automodule:: dolfin_mech.TimeIntegrator
@@ -569,7 +569,7 @@ dolfin\_mech.TimeIntegrator module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.TimeVaryingConstant module
+dolfin\_mech.TimeVaryingConstant
 ---------------------------------------
 
 .. automodule:: dolfin_mech.TimeVaryingConstant
@@ -577,7 +577,7 @@ dolfin\_mech.TimeVaryingConstant module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.XDMFFile module
+dolfin\_mech.XDMFFile
 ----------------------------
 
 .. automodule:: dolfin_mech.XDMFFile
@@ -585,7 +585,7 @@ dolfin\_mech.XDMFFile module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.compute\_error module
+dolfin\_mech.compute\_error
 ----------------------------------
 
 .. automodule:: dolfin_mech.compute_error
@@ -593,7 +593,7 @@ dolfin\_mech.compute\_error module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.mesh2ugrid module
+dolfin\_mech.mesh2ugrid
 ------------------------------
 
 .. automodule:: dolfin_mech.mesh2ugrid
@@ -601,7 +601,7 @@ dolfin\_mech.mesh2ugrid module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.run\_Ball\_Hyperelasticity module
+dolfin\_mech.run\_Ball\_Hyperelasticity
 ----------------------------------------------
 
 .. automodule:: dolfin_mech.run_Ball_Hyperelasticity
@@ -609,7 +609,7 @@ dolfin\_mech.run\_Ball\_Hyperelasticity module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.run\_Ball\_Mesh module
+dolfin\_mech.run\_Ball\_Mesh
 -----------------------------------
 
 .. automodule:: dolfin_mech.run_Ball_Mesh
@@ -617,7 +617,7 @@ dolfin\_mech.run\_Ball\_Mesh module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.run\_Disc\_Hyperelasticity module
+dolfin\_mech.run\_Disc\_Hyperelasticity
 ----------------------------------------------
 
 .. automodule:: dolfin_mech.run_Disc_Hyperelasticity
@@ -625,7 +625,7 @@ dolfin\_mech.run\_Disc\_Hyperelasticity module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.run\_Disc\_Mesh module
+dolfin\_mech.run\_Disc\_Mesh
 -----------------------------------
 
 .. automodule:: dolfin_mech.run_Disc_Mesh
@@ -633,7 +633,7 @@ dolfin\_mech.run\_Disc\_Mesh module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.run\_HeartSlice\_Hyperelasticity module
+dolfin\_mech.run\_HeartSlice\_Hyperelasticity
 ----------------------------------------------------
 
 .. automodule:: dolfin_mech.run_HeartSlice_Hyperelasticity
@@ -641,7 +641,7 @@ dolfin\_mech.run\_HeartSlice\_Hyperelasticity module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.run\_HeartSlice\_Mesh module
+dolfin\_mech.run\_HeartSlice\_Mesh
 -----------------------------------------
 
 .. automodule:: dolfin_mech.run_HeartSlice_Mesh
@@ -649,7 +649,7 @@ dolfin\_mech.run\_HeartSlice\_Mesh module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.run\_HollowBox\_Homogenization module
+dolfin\_mech.run\_HollowBox\_Homogenization
 --------------------------------------------------
 
 .. automodule:: dolfin_mech.run_HollowBox_Homogenization
@@ -657,7 +657,7 @@ dolfin\_mech.run\_HollowBox\_Homogenization module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.run\_HollowBox\_Mesh module
+dolfin\_mech.run\_HollowBox\_Mesh
 ----------------------------------------
 
 .. automodule:: dolfin_mech.run_HollowBox_Mesh
@@ -665,7 +665,7 @@ dolfin\_mech.run\_HollowBox\_Mesh module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.run\_HollowBox\_MicroPoroHyperelasticity module
+dolfin\_mech.run\_HollowBox\_MicroPoroHyperelasticity
 ------------------------------------------------------------
 
 .. automodule:: dolfin_mech.run_HollowBox_MicroPoroHyperelasticity
@@ -673,7 +673,7 @@ dolfin\_mech.run\_HollowBox\_MicroPoroHyperelasticity module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.run\_Poroflow module
+dolfin\_mech.run\_Poroflow
 ---------------------------------
 
 .. automodule:: dolfin_mech.run_Poroflow
@@ -681,7 +681,7 @@ dolfin\_mech.run\_Poroflow module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.run\_RivlinCube\_Elasticity module
+dolfin\_mech.run\_RivlinCube\_Elasticity
 -----------------------------------------------
 
 .. automodule:: dolfin_mech.run_RivlinCube_Elasticity
@@ -689,7 +689,7 @@ dolfin\_mech.run\_RivlinCube\_Elasticity module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.run\_RivlinCube\_Hyperelasticity module
+dolfin\_mech.run\_RivlinCube\_Hyperelasticity
 ----------------------------------------------------
 
 .. automodule:: dolfin_mech.run_RivlinCube_Hyperelasticity
@@ -697,7 +697,7 @@ dolfin\_mech.run\_RivlinCube\_Hyperelasticity module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.run\_RivlinCube\_Mesh module
+dolfin\_mech.run\_RivlinCube\_Mesh
 -----------------------------------------
 
 .. automodule:: dolfin_mech.run_RivlinCube_Mesh
@@ -705,7 +705,7 @@ dolfin\_mech.run\_RivlinCube\_Mesh module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.run\_RivlinCube\_PoroHyperelasticity module
+dolfin\_mech.run\_RivlinCube\_PoroHyperelasticity
 --------------------------------------------------------
 
 .. automodule:: dolfin_mech.run_RivlinCube_PoroHyperelasticity
@@ -713,7 +713,7 @@ dolfin\_mech.run\_RivlinCube\_PoroHyperelasticity module
    :undoc-members:
    :show-inheritance:
 
-dolfin\_mech.write\_VTU\_file module
+dolfin\_mech.write\_VTU\_file
 ------------------------------------
 
 .. automodule:: dolfin_mech.write_VTU_file
