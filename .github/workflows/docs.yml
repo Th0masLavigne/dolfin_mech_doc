@@ -29,6 +29,10 @@ jobs:
         run: |
           # This creates modules.rst and dolfin_mech.rst automatically
           sphinx-apidoc -o docs/ dolfin_mech/ --no-toc --force --module-first
+          # Remove the word "package" from the top of the generated file
+          sed -i 's/ package//g' docs/dolfin_mech.rst
+          # Remove the word "module" from all generated files
+          sed -i 's/ module//g' docs/*.rst
 
       - name: Build Sphinx Documentation
         run: |
