@@ -1284,7 +1284,7 @@ represents the pressure within the voids/pores of the microstructure.</p>
 <p>The value is normalized by the initial solid volume <span class="math notranslate nohighlight">\(V_{s0}\)</span> to
 maintain consistency with the integration over the solid mesh:</p>
 <div class="math notranslate nohighlight">
-\[ar{p}_f = \frac{1}{V_{s0}} \int_{\Omega_s} p_f \, dV\]</div>
+\[\bar{p}_f = \frac{1}{V_{s0}} \int_{\Omega_s} p_f \, dV\]</div>
 <p>Since the fluid pressure may vary or be defined by different time-varying
 functions in different steps, this method constructs a list of
 expressions (<code class="docutils literal notranslate"><span class="pre">expr_lst</span></code>), one for each step in the simulation.</p>
@@ -1340,7 +1340,7 @@ ensure the cell remains compatible with a larger homogeneous medium.</p>
 <dt class="sig sig-object py" id="dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.add_macroscopic_solid_hydrostatic_pressure_qoi">
 <span class="sig-name descname"><span class="pre">add_macroscopic_solid_hydrostatic_pressure_qoi</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Problem_Hyperelasticity_MicroPoro.html#MicroPoroHyperelasticityProblem.add_macroscopic_solid_hydrostatic_pressure_qoi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.add_macroscopic_solid_hydrostatic_pressure_qoi" title="Link to this definition"></a></dt>
 <dd><p>Registers a Quantity of Interest (QOI) for the homogenized solid hydrostatic pressure.</p>
-<p>This method calculates the macroscopic hydrostatic pressure <span class="math notranslate nohighlight">\(ar{p}_{hydro}\)</span>
+<p>This method calculates the macroscopic hydrostatic pressure <span class="math notranslate nohighlight">\(\bar{p}_{hydro}\)</span>
 by averaging the local hydrostatic pressure of the solid material over the
 current total volume <span class="math notranslate nohighlight">\(v\)</span> of the unit cell.</p>
 <p>In continuum mechanics, the hydrostatic pressure is defined as the negative
@@ -1460,11 +1460,11 @@ Elementary Volume (REV). It allows the user to “fix” one or more components
 of the macroscopic stretch tensor <span class="math notranslate nohighlight">\(\mathbf{U}_{bar}\)</span> to a target value.</p>
 <p>The penalty contribution to the residual for a specific component <span class="math notranslate nohighlight">\((i,j)\)</span> is:</p>
 <div class="math notranslate nohighlight">
-\[\delta \Pi_{comp} = \int_{\Omega} \eta (U_{ij} - ar{U}_{ij}) \delta U_{ij} \, d\Omega\]</div>
+\[\delta \Pi_{comp} = \int_{\Omega} \eta (U_{ij} - \bar{U}_{ij}) \delta U_{ij} \, d\Omega\]</div>
 <dl class="simple">
 <dt>where:</dt><dd><ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\eta\)</span> is the penalty parameter (passed via <code class="docutils literal notranslate"><span class="pre">pen_val</span></code>).</p></li>
-<li><p><span class="math notranslate nohighlight">\(ar{U}_{ij}\)</span> is the target prescribed stretch value.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\bar{U}_{ij}\)</span> is the target prescribed stretch value.</p></li>
 </ul>
 </dd>
 </dl>

@@ -1462,11 +1462,11 @@
 <span class="sd">        The penalty contribution to the residual for a specific component :math:`(i,j)` is:</span>
 
 <span class="sd">        .. math::</span>
-<span class="sd">            \delta \Pi_{comp} = \int_{\Omega} \eta (U_{ij} - \bar{U}_{ij}) \delta U_{ij} \, d\Omega</span>
+<span class="sd">            \delta \Pi_{comp} = \int_{\Omega} \eta (U_{ij} - \\bar{U}_{ij}) \delta U_{ij} \, d\Omega</span>
 
 <span class="sd">        where:</span>
 <span class="sd">            - :math:`\eta` is the penalty parameter (passed via ``pen_val``).</span>
-<span class="sd">            - :math:`\bar{U}_{ij}` is the target prescribed stretch value.</span>
+<span class="sd">            - :math:`\\bar{U}_{ij}` is the target prescribed stretch value.</span>
 
 <span class="sd">        </span>
 
@@ -2212,7 +2212,7 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Registers a Quantity of Interest (QOI) for the homogenized solid hydrostatic pressure.</span>
 
-<span class="sd">        This method calculates the macroscopic hydrostatic pressure :math:`\bar{p}_{hydro}` </span>
+<span class="sd">        This method calculates the macroscopic hydrostatic pressure :math:`\\bar{p}_{hydro}` </span>
 <span class="sd">        by averaging the local hydrostatic pressure of the solid material over the </span>
 <span class="sd">        current total volume :math:`v` of the unit cell.</span>
 
@@ -2274,7 +2274,7 @@
 <span class="sd">        maintain consistency with the integration over the solid mesh:</span>
 
 <span class="sd">        .. math::</span>
-<span class="sd">            \bar{p}_f = \\frac{1}{V_{s0}} \int_{\Omega_s} p_f \, dV</span>
+<span class="sd">            \\bar{p}_f = \\frac{1}{V_{s0}} \int_{\Omega_s} p_f \, dV</span>
 
 <span class="sd">        Since the fluid pressure may vary or be defined by different time-varying </span>
 <span class="sd">        functions in different steps, this method constructs a list of </span>
