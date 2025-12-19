@@ -50,36 +50,6 @@
 </ul>
 </li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Core API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Problem.html">Problem</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Step.html">Step</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Kinematics.html">Kinematics</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Kinematics.html#dolfin_mech.Kinematics.Kinematics"><code class="docutils literal notranslate"><span class="pre">Kinematics</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Kinematics.html#dolfin_mech.Kinematics.Kinematics.U"><code class="docutils literal notranslate"><span class="pre">Kinematics.U</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Kinematics.html#dolfin_mech.Kinematics.Kinematics.dim"><code class="docutils literal notranslate"><span class="pre">Kinematics.dim</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Kinematics.html#dolfin_mech.Kinematics.Kinematics.I"><code class="docutils literal notranslate"><span class="pre">Kinematics.I</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Kinematics.html#dolfin_mech.Kinematics.Kinematics.F"><code class="docutils literal notranslate"><span class="pre">Kinematics.F</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Kinematics.html#dolfin_mech.Kinematics.Kinematics.J"><code class="docutils literal notranslate"><span class="pre">Kinematics.J</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Kinematics.html#dolfin_mech.Kinematics.Kinematics.C"><code class="docutils literal notranslate"><span class="pre">Kinematics.C</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Kinematics.html#dolfin_mech.Kinematics.Kinematics.E"><code class="docutils literal notranslate"><span class="pre">Kinematics.E</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Kinematics.html#dolfin_mech.Kinematics.Kinematics.F_bar"><code class="docutils literal notranslate"><span class="pre">Kinematics.F_bar</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Kinematics.html#dolfin_mech.Kinematics.Kinematics.C_bar"><code class="docutils literal notranslate"><span class="pre">Kinematics.C_bar</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Kinematics_Inverse.html">Kinematics Inverse</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Kinematics_Inverse.html#dolfin_mech.Kinematics_Inverse.InverseKinematics"><code class="docutils literal notranslate"><span class="pre">InverseKinematics</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Kinematics_Linearized.html">Kinematics Linearized</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Kinematics_Linearized.html#dolfin_mech.Kinematics_Linearized.LinearizedKinematics"><code class="docutils literal notranslate"><span class="pre">LinearizedKinematics</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.NonlinearSolver.html">Nonlinear Solver</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.TimeIntegrator.html">Time Integrator</a></li>
-</ul>
 <p class="caption" role="heading"><span class="caption-text">Materials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Material.html">Material</a><ul>
@@ -190,20 +160,56 @@
 <dt class="sig sig-object py" id="dolfin_mech.Constraint.Constraint">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Constraint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">V</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sub_domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sub_domains</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sub_domain_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_ini</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_fin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Constraint.html#Constraint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Constraint.Constraint" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class to manage Dirichlet boundary conditions with time-varying values.</p>
+<p>This class wraps the <code class="docutils literal notranslate"><span class="pre">dolfin.DirichletBC</span></code> object and associates it with a
+<code class="xref py py-class docutils literal notranslate"><span class="pre">dolfin_mech.TimeVaryingConstant</span></code>. This allows for easy updates
+of the boundary condition values during time-stepping simulations.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Constraint.Constraint.tv_val">
+<span class="sig-name descname"><span class="pre">tv_val</span></span><a class="headerlink" href="#dolfin_mech.Constraint.Constraint.tv_val" title="Link to this definition"></a></dt>
+<dd><p>Manager for the constant value
+applied to the boundary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dolfin_mech.TimeVaryingConstant</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Constraint.Constraint.bc">
+<span class="sig-name descname"><span class="pre">bc</span></span><a class="headerlink" href="#dolfin_mech.Constraint.Constraint.bc" title="Link to this definition"></a></dt>
+<dd><p>The underlying FEniCS Dirichlet boundary
+condition object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dolfin.DirichletBC</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="dolfin_mech.Constraint.Constraint.homogenize">
 <span class="sig-name descname"><span class="pre">homogenize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Constraint.html#Constraint.homogenize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Constraint.Constraint.homogenize" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Set the boundary condition value to zero (homogeneous).</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dolfin_mech.Constraint.Constraint.restore_old_value">
 <span class="sig-name descname"><span class="pre">restore_old_value</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Constraint.html#Constraint.restore_old_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Constraint.Constraint.restore_old_value" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Restore the value of the constant to its previous state.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dolfin_mech.Constraint.Constraint.set_value_at_t_step">
 <span class="sig-name descname"><span class="pre">set_value_at_t_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_step</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Constraint.html#Constraint.set_value_at_t_step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Constraint.Constraint.set_value_at_t_step" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Update the boundary condition value for a specific time step.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>t_step</strong> (<em>float</em>) – The current time step/progress (typically between 0 and 1).</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 

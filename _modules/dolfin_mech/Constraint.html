@@ -49,36 +49,6 @@
 </ul>
 </li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Core API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.Problem.html">Problem</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.Step.html">Step</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.Kinematics.html">Kinematics</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../dolfin_mech.Kinematics.html#dolfin_mech.Kinematics.Kinematics"><code class="docutils literal notranslate"><span class="pre">Kinematics</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../dolfin_mech.Kinematics.html#dolfin_mech.Kinematics.Kinematics.U"><code class="docutils literal notranslate"><span class="pre">Kinematics.U</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../dolfin_mech.Kinematics.html#dolfin_mech.Kinematics.Kinematics.dim"><code class="docutils literal notranslate"><span class="pre">Kinematics.dim</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../dolfin_mech.Kinematics.html#dolfin_mech.Kinematics.Kinematics.I"><code class="docutils literal notranslate"><span class="pre">Kinematics.I</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../dolfin_mech.Kinematics.html#dolfin_mech.Kinematics.Kinematics.F"><code class="docutils literal notranslate"><span class="pre">Kinematics.F</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../dolfin_mech.Kinematics.html#dolfin_mech.Kinematics.Kinematics.J"><code class="docutils literal notranslate"><span class="pre">Kinematics.J</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../dolfin_mech.Kinematics.html#dolfin_mech.Kinematics.Kinematics.C"><code class="docutils literal notranslate"><span class="pre">Kinematics.C</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../dolfin_mech.Kinematics.html#dolfin_mech.Kinematics.Kinematics.E"><code class="docutils literal notranslate"><span class="pre">Kinematics.E</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../dolfin_mech.Kinematics.html#dolfin_mech.Kinematics.Kinematics.F_bar"><code class="docutils literal notranslate"><span class="pre">Kinematics.F_bar</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../dolfin_mech.Kinematics.html#dolfin_mech.Kinematics.Kinematics.C_bar"><code class="docutils literal notranslate"><span class="pre">Kinematics.C_bar</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.Kinematics_Inverse.html">Kinematics Inverse</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../dolfin_mech.Kinematics_Inverse.html#dolfin_mech.Kinematics_Inverse.InverseKinematics"><code class="docutils literal notranslate"><span class="pre">InverseKinematics</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.Kinematics_Linearized.html">Kinematics Linearized</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../dolfin_mech.Kinematics_Linearized.html#dolfin_mech.Kinematics_Linearized.LinearizedKinematics"><code class="docutils literal notranslate"><span class="pre">LinearizedKinematics</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.NonlinearSolver.html">Nonlinear Solver</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.TimeIntegrator.html">Time Integrator</a></li>
-</ul>
 <p class="caption" role="heading"><span class="caption-text">Materials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.Material.html">Material</a><ul>
@@ -203,9 +173,19 @@
 <div class="viewcode-block" id="Constraint">
 <a class="viewcode-back" href="../../dolfin_mech.Constraint.html#dolfin_mech.Constraint.Constraint">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Constraint</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class to manage Dirichlet boundary conditions with time-varying values.</span>
 
+<span class="sd">    This class wraps the ``dolfin.DirichletBC`` object and associates it with a </span>
+<span class="sd">    :py:class:`dolfin_mech.TimeVaryingConstant`. This allows for easy updates </span>
+<span class="sd">    of the boundary condition values during time-stepping simulations.</span>
 
-
+<span class="sd">    Attributes:</span>
+<span class="sd">        tv_val (dolfin_mech.TimeVaryingConstant): Manager for the constant value </span>
+<span class="sd">            applied to the boundary.</span>
+<span class="sd">        bc (dolfin.DirichletBC): The underlying FEniCS Dirichlet boundary </span>
+<span class="sd">            condition object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
             <span class="n">V</span><span class="p">,</span>
             <span class="n">sub_domain</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -213,7 +193,28 @@
             <span class="n">sub_domain_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
             <span class="n">val</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">val_ini</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">val_fin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
             <span class="n">method</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span> <span class="c1"># topological, geometric, pointwise</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the Constraint and create the underlying DirichletBC.</span>
 
+<span class="sd">        Args:</span>
+<span class="sd">            V (dolfin.FunctionSpace): The function space on which the BC is applied.</span>
+<span class="sd">            sub_domain (dolfin.SubDomain, optional): A FEniCS SubDomain object </span>
+<span class="sd">                defining the boundary. Defaults to None.</span>
+<span class="sd">            sub_domains (dolfin.MeshFunction, optional): A mesh function </span>
+<span class="sd">                defining sub-regions. Defaults to None.</span>
+<span class="sd">            sub_domain_id (int, optional): The ID within ``sub_domains`` to </span>
+<span class="sd">                apply the BC to. Defaults to None.</span>
+<span class="sd">            val (float, optional): A constant value for the entire simulation.</span>
+<span class="sd">            val_ini (float, optional): Initial value for time-varying BC.</span>
+<span class="sd">            val_fin (float, optional): Final value for time-varying BC.</span>
+<span class="sd">            method (str, optional): FEniCS BC method (e.g., &#39;topological&#39;, </span>
+<span class="sd">                &#39;geometric&#39;, &#39;pointwise&#39;). Defaults to None.</span>
+
+<span class="sd">        Notes:</span>
+<span class="sd">            You must provide either (``val``) OR (``val_ini`` and ``val_fin``). </span>
+<span class="sd">            Similarly, you must provide either (``sub_domain``) OR </span>
+<span class="sd">            (``sub_domains`` and ``sub_domain_id``).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">val</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">val_ini</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">val_fin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">tv_val</span> <span class="o">=</span> <span class="n">dmech</span><span class="o">.</span><span class="n">TimeVaryingConstant</span><span class="p">(</span>
                 <span class="n">val_ini</span><span class="o">=</span><span class="n">val</span><span class="p">,</span> <span class="n">val_fin</span><span class="o">=</span><span class="n">val</span><span class="p">)</span>
@@ -254,7 +255,12 @@
 <a class="viewcode-back" href="../../dolfin_mech.Constraint.html#dolfin_mech.Constraint.Constraint.set_value_at_t_step">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_value_at_t_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
             <span class="n">t_step</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Update the boundary condition value for a specific time step.</span>
 
+<span class="sd">        Args:</span>
+<span class="sd">            t_step (float): The current time step/progress (typically between 0 and 1).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tv_val</span><span class="o">.</span><span class="n">set_dvalue_at_t_step</span><span class="p">(</span><span class="n">t_step</span><span class="p">)</span></div>
 
 
@@ -263,7 +269,9 @@
 <div class="viewcode-block" id="Constraint.restore_old_value">
 <a class="viewcode-back" href="../../dolfin_mech.Constraint.html#dolfin_mech.Constraint.Constraint.restore_old_value">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">restore_old_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Restore the value of the constant to its previous state.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tv_val</span><span class="o">.</span><span class="n">restore_old_value</span><span class="p">()</span></div>
 
 
@@ -272,7 +280,9 @@
 <div class="viewcode-block" id="Constraint.homogenize">
 <a class="viewcode-back" href="../../dolfin_mech.Constraint.html#dolfin_mech.Constraint.Constraint.homogenize">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">homogenize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the boundary condition value to zero (homogeneous).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tv_val</span><span class="o">.</span><span class="n">homogenize</span><span class="p">()</span></div>
 </div>
 
