@@ -16,14 +16,42 @@ import dolfin_mech as dmech
 ################################################################################
 
 class Kinematics():
+    """
+    Class to compute and store kinematic quantities for non-linear solid mechanics.
 
+    This class computes standard deformation tensors, their invariants, and 
+    isochoric (bar) versions based on the displacement field :math:`\mathbf{U}`.
+    It also supports time-stepping (old states) and local frame transformations.
 
-
+    Attributes:
+        U (dolfin.Function): The current displacement field.
+        dim (int): Spatial dimension.
+        I (dolfin.Identity): Identity tensor of dimension ``dim``.
+        F (ufl.Form): Deformation gradient tensor :math:`\mathbf{F} = \mathbf{I} + \nabla \mathbf{U}`.
+        J (ufl.Form): Determinant of the deformation gradient :math:`J = \det(\mathbf{F})`.
+        C (ufl.Form): Right Cauchy-Green deformation tensor :math:`\mathbf{C} = \mathbf{F}^T \mathbf{F}`.
+        E (ufl.Form): Green-Lagrange strain tensor :math:`\mathbf{E} = \frac{1}{2}(\mathbf{C} - \mathbf{I})`.
+        F_bar (ufl.Form): Isochoric deformation gradient :math:`\bar{\mathbf{F}} = J^{-1/d} \mathbf{F}`.
+        C_bar (ufl.Form): Isochoric Right Cauchy-Green tensor :math:`\bar{\mathbf{C}} = \bar{\mathbf{F}}^T \bar{\mathbf{F}}`.
+    """
     def __init__(self,
             U,
             U_old=None,
             Q_expr=None):
+        """
+        Initialize the Kinematics object and compute deformation tensors.
 
+        Args:
+            U (dolfin.Function): Current displacement field.
+            U_old (dolfin.Function, optional): Displacement field from the previous 
+                time step. Defaults to None.
+            Q_expr (dolfin.Expression, optional): Rotation matrix for local 
+                coordinate systems. Defaults to None.
+
+        Notes:
+            The class automatically computes spherical and deviatoric parts of the 
+            strain, as well as mid-point configurations if ``U_old`` is provided.
+        """
         self.U = U
 
         self.dim = self.U.ufl_shape[0]
