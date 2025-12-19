@@ -1693,18 +1693,14 @@ significantly during loading.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.add_surface_tension_loading_operator">
 <span class="sig-name descname"><span class="pre">add_surface_tension_loading_operator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Problem_Hyperelasticity_MicroPoro.html#MicroPoroHyperelasticityProblem.add_surface_tension_loading_operator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Problem_Hyperelasticity_MicroPoro.MicroPoroHyperelasticityProblem.add_surface_tension_loading_operator" title="Link to this definition"></a></dt>
-<dd><blockquote>
-<div><p>Adds a surface tension loading operator to the interfacial boundaries.</p>
+<dd><p>Adds a surface tension loading operator to the interfacial boundaries.</p>
 <p>This operator models the energy contribution of surface tension <span class="math notranslate nohighlight">\(\gamma\)</span>
 acting on the pore-solid interface. Mathematically, it represents the
 first variation of the surface energy <span class="math notranslate nohighlight">\(\Psi_s = \int \gamma \, da\)</span>.</p>
 <p>The contribution to the virtual work is:</p>
 <div class="math notranslate nohighlight">
-\[\delta \Pi_{st} = \int_{\partial \Omega} \gamma \left( J \mathbf{F}^{-T} \mathbf{N} \cdot   ext{grad}(\delta \mathbf{u}) \cdot \mathbf{n}\]</div>
-</div></blockquote>
-<p>ight) dA_0</p>
-<blockquote>
-<div><p>In a finite strain context, surface tension is a “configuration-dependent”
+\[\delta \Pi_{st} = \int_{\partial \Omega} \gamma \left( J \mathbf{F}^{-T} \mathbf{N} \cdot \text{grad}(\delta \mathbf{u}) \cdot \mathbf{n} \right) dA_0\]</div>
+<p>In a finite strain context, surface tension is a “configuration-dependent”
 load. As the surface area <span class="math notranslate nohighlight">\(a\)</span> changes, the total energy changes,
 resulting in a force that is always tangent to the surface but normal
 to the interface boundaries (Laplace pressure effect).</p>
@@ -1712,25 +1708,21 @@ to the interface boundaries (Laplace pressure effect).</p>
 alveolar surface tension provides a significant portion of the lung’s
 elastic recoil.</p>
 <dl class="field-list simple">
-<dt class="field-odd">param k_step<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The index of the load step to which this operator belongs.</p>
-</dd>
-<dt class="field-even">type k_step<span class="colon">:</span></dt>
-<dd class="field-even"><p>int, optional</p>
-</dd>
-<dt class="field-odd">param kwargs<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Keyword arguments passed to the operator:
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>k_step</strong> (<em>int</em><em>, </em><em>optional</em>) – The index of the load step to which this operator belongs.</p></li>
+<li><p><strong>kwargs</strong> – Keyword arguments passed to the operator:
 - <code class="docutils literal notranslate"><span class="pre">gamma</span></code> (float/Constant): The surface tension coefficient.
-- <code class="docutils literal notranslate"><span class="pre">subdomain_id</span></code> (int): The boundary ID of the interface.</p>
+- <code class="docutils literal notranslate"><span class="pre">subdomain_id</span></code> (int): The boundary ID of the interface.</p></li>
+</ul>
 </dd>
-<dt class="field-even">return<span class="colon">:</span></dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The instantiated surface tension loading operator.</p>
 </dd>
-<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>dmech.SurfaceTensionLoadingOperator</p>
 </dd>
 </dl>
-</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
