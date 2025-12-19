@@ -28,6 +28,9 @@ jobs:
 
       - name: Generate API skeleton
         run: |
+          # Remove old generated files to ensure a clean TOC
+          rm -f docs/dolfin_mech.*.rst
+          rm -f docs/modules.rst
           # --separate puts each module (Material, Operator, etc.) on its own page
           # -e tells sphinx to give each module its own file
           sphinx-apidoc -e -o docs/ dolfin_mech/ --no-toc --force --module-first
