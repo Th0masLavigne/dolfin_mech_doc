@@ -16,6 +16,7 @@
       <script src="_static/documentation_options.js?v=5929fcd5"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -290,10 +291,55 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Ogden Ciarlet Geymonat Neo-Hookean Elastic</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookeanMooneyRivlin.html">Ogden Ciarlet Geymonat Neo-Hookean Mooney-Rivlin Elastic</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Material_Elastic_Porous.html">Porous Elastic</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Material_Inelastic.html">Inelastic Material</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Ogden Ciarlet Geymonat Neo-Hookean Elastic</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean.OgdenCiarletGeymonatNeoHookeanElasticMaterial"><code class="docutils literal notranslate"><span class="pre">OgdenCiarletGeymonatNeoHookeanElasticMaterial</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean.OgdenCiarletGeymonatNeoHookeanElasticMaterial.kinematics"><code class="docutils literal notranslate"><span class="pre">OgdenCiarletGeymonatNeoHookeanElasticMaterial.kinematics</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean.OgdenCiarletGeymonatNeoHookeanElasticMaterial.bulk"><code class="docutils literal notranslate"><span class="pre">OgdenCiarletGeymonatNeoHookeanElasticMaterial.bulk</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean.OgdenCiarletGeymonatNeoHookeanElasticMaterial.dev"><code class="docutils literal notranslate"><span class="pre">OgdenCiarletGeymonatNeoHookeanElasticMaterial.dev</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean.OgdenCiarletGeymonatNeoHookeanElasticMaterial.Psi"><code class="docutils literal notranslate"><span class="pre">OgdenCiarletGeymonatNeoHookeanElasticMaterial.Psi</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean.OgdenCiarletGeymonatNeoHookeanElasticMaterial.Sigma"><code class="docutils literal notranslate"><span class="pre">OgdenCiarletGeymonatNeoHookeanElasticMaterial.Sigma</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean.OgdenCiarletGeymonatNeoHookeanElasticMaterial.p_hydro"><code class="docutils literal notranslate"><span class="pre">OgdenCiarletGeymonatNeoHookeanElasticMaterial.p_hydro</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean.OgdenCiarletGeymonatNeoHookeanElasticMaterial.Sigma_dev"><code class="docutils literal notranslate"><span class="pre">OgdenCiarletGeymonatNeoHookeanElasticMaterial.Sigma_dev</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean.OgdenCiarletGeymonatNeoHookeanElasticMaterial.Sigma_VM"><code class="docutils literal notranslate"><span class="pre">OgdenCiarletGeymonatNeoHookeanElasticMaterial.Sigma_VM</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookeanMooneyRivlin.html">Ogden Ciarlet Geymonat Neo-Hookean Mooney-Rivlin Elastic</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookeanMooneyRivlin.html#dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookeanMooneyRivlin.OgdenCiarletGeymonatNeoHookeanMooneyRivlinElasticMaterial"><code class="docutils literal notranslate"><span class="pre">OgdenCiarletGeymonatNeoHookeanMooneyRivlinElasticMaterial</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookeanMooneyRivlin.html#dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookeanMooneyRivlin.OgdenCiarletGeymonatNeoHookeanMooneyRivlinElasticMaterial.kinematics"><code class="docutils literal notranslate"><span class="pre">OgdenCiarletGeymonatNeoHookeanMooneyRivlinElasticMaterial.kinematics</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookeanMooneyRivlin.html#dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookeanMooneyRivlin.OgdenCiarletGeymonatNeoHookeanMooneyRivlinElasticMaterial.bulk"><code class="docutils literal notranslate"><span class="pre">OgdenCiarletGeymonatNeoHookeanMooneyRivlinElasticMaterial.bulk</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookeanMooneyRivlin.html#dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookeanMooneyRivlin.OgdenCiarletGeymonatNeoHookeanMooneyRivlinElasticMaterial.dev"><code class="docutils literal notranslate"><span class="pre">OgdenCiarletGeymonatNeoHookeanMooneyRivlinElasticMaterial.dev</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookeanMooneyRivlin.html#dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookeanMooneyRivlin.OgdenCiarletGeymonatNeoHookeanMooneyRivlinElasticMaterial.Psi"><code class="docutils literal notranslate"><span class="pre">OgdenCiarletGeymonatNeoHookeanMooneyRivlinElasticMaterial.Psi</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookeanMooneyRivlin.html#dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookeanMooneyRivlin.OgdenCiarletGeymonatNeoHookeanMooneyRivlinElasticMaterial.Sigma"><code class="docutils literal notranslate"><span class="pre">OgdenCiarletGeymonatNeoHookeanMooneyRivlinElasticMaterial.Sigma</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookeanMooneyRivlin.html#dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookeanMooneyRivlin.OgdenCiarletGeymonatNeoHookeanMooneyRivlinElasticMaterial.p_hydro"><code class="docutils literal notranslate"><span class="pre">OgdenCiarletGeymonatNeoHookeanMooneyRivlinElasticMaterial.p_hydro</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookeanMooneyRivlin.html#dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookeanMooneyRivlin.OgdenCiarletGeymonatNeoHookeanMooneyRivlinElasticMaterial.Sigma_dev"><code class="docutils literal notranslate"><span class="pre">OgdenCiarletGeymonatNeoHookeanMooneyRivlinElasticMaterial.Sigma_dev</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookeanMooneyRivlin.html#dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookeanMooneyRivlin.OgdenCiarletGeymonatNeoHookeanMooneyRivlinElasticMaterial.Sigma_VM"><code class="docutils literal notranslate"><span class="pre">OgdenCiarletGeymonatNeoHookeanMooneyRivlinElasticMaterial.Sigma_VM</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Material_Elastic_Porous.html">Porous Elastic</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Material_Elastic_Porous.html#dolfin_mech.Material_Elastic_Porous.PorousElasticMaterial"><code class="docutils literal notranslate"><span class="pre">PorousElasticMaterial</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material_Elastic_Porous.html#dolfin_mech.Material_Elastic_Porous.PorousElasticMaterial.solid_material"><code class="docutils literal notranslate"><span class="pre">PorousElasticMaterial.solid_material</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material_Elastic_Porous.html#dolfin_mech.Material_Elastic_Porous.PorousElasticMaterial.Psi"><code class="docutils literal notranslate"><span class="pre">PorousElasticMaterial.Psi</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material_Elastic_Porous.html#dolfin_mech.Material_Elastic_Porous.PorousElasticMaterial.Sigma"><code class="docutils literal notranslate"><span class="pre">PorousElasticMaterial.Sigma</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material_Elastic_Porous.html#dolfin_mech.Material_Elastic_Porous.PorousElasticMaterial.P"><code class="docutils literal notranslate"><span class="pre">PorousElasticMaterial.P</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material_Elastic_Porous.html#dolfin_mech.Material_Elastic_Porous.PorousElasticMaterial.sigma"><code class="docutils literal notranslate"><span class="pre">PorousElasticMaterial.sigma</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material_Elastic_Porous.html#dolfin_mech.Material_Elastic_Porous.PorousElasticMaterial.dWbulkdPhis"><code class="docutils literal notranslate"><span class="pre">PorousElasticMaterial.dWbulkdPhis</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Material_Elastic_Porous.html#dolfin_mech.Material_Elastic_Porous.PorousElasticMaterial.dWporedPhif"><code class="docutils literal notranslate"><span class="pre">PorousElasticMaterial.dWporedPhif</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Material_Inelastic.html">Inelastic Material</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Material_Inelastic.html#dolfin_mech.Material_Inelastic.InelasticMaterial"><code class="docutils literal notranslate"><span class="pre">InelasticMaterial</span></code></a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Mesh</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.mesh2ugrid.html">Mesh2ugrid</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Operators</span></p>
 <ul>
@@ -360,8 +406,117 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="dolfin-mech-material-elastic-ogdenciarletgeymonatneohookean">
-<h1>dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean<a class="headerlink" href="#dolfin-mech-material-elastic-ogdenciarletgeymonatneohookean" title="Link to this heading"></a></h1>
+  <section id="module-dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean">
+<span id="dolfin-mech-material-elastic-ogdenciarletgeymonatneohookean"></span><h1>dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean<a class="headerlink" href="#module-dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean.OgdenCiarletGeymonatNeoHookeanElasticMaterial">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">OgdenCiarletGeymonatNeoHookeanElasticMaterial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kinematics</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decoup</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Material_Elastic_OgdenCiarletGeymonatNeoHookean.html#OgdenCiarletGeymonatNeoHookeanElasticMaterial"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean.OgdenCiarletGeymonatNeoHookeanElasticMaterial" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="dolfin_mech.Material_Elastic.html#dolfin_mech.Material_Elastic.ElasticMaterial" title="dolfin_mech.Material_Elastic.ElasticMaterial"><code class="xref py py-class docutils literal notranslate"><span class="pre">ElasticMaterial</span></code></a></p>
+<p>Class representing a composite hyperelastic material combining the
+Ciarlet-Geymonat and Neo-Hookean models.</p>
+<p>This model provides a robust description of compressible hyperelasticity by
+additive decomposition of the strain energy density:</p>
+<div class="math notranslate nohighlight">
+\[\Psi_{total} = \Psi_{bulk}(J) + \Psi_{dev}(\mathbf{C})\]</div>
+<dl class="simple">
+<dt>Where:</dt><dd><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\Psi_{bulk}\)</span> is the Ciarlet-Geymonat potential (penalizing volume change).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Psi_{dev}\)</span> is the Neo-Hookean potential (governing shear response).</p></li>
+</ul>
+</dd>
+</dl>
+<p>Beyond standard stress tensors, this class computes the hydrostatic pressure
+and the Von Mises equivalent of the Second Piola-Kirchhoff stress.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean.OgdenCiarletGeymonatNeoHookeanElasticMaterial.kinematics">
+<span class="sig-name descname"><span class="pre">kinematics</span></span><a class="headerlink" href="#dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean.OgdenCiarletGeymonatNeoHookeanElasticMaterial.kinematics" title="Link to this definition"></a></dt>
+<dd><p>Kinematic variables and deformation tensors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="dolfin_mech.Kinematics.html#dolfin_mech.Kinematics.Kinematics" title="dolfin_mech.Kinematics.Kinematics">Kinematics</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean.OgdenCiarletGeymonatNeoHookeanElasticMaterial.bulk">
+<span class="sig-name descname"><span class="pre">bulk</span></span><a class="headerlink" href="#dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean.OgdenCiarletGeymonatNeoHookeanElasticMaterial.bulk" title="Link to this definition"></a></dt>
+<dd><p>The volumetric component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="dolfin_mech.Material_Elastic_OgdenCiarletGeymonat.html#dolfin_mech.Material_Elastic_OgdenCiarletGeymonat.OgdenCiarletGeymonatElasticMaterial" title="dolfin_mech.Material_Elastic_OgdenCiarletGeymonat.OgdenCiarletGeymonatElasticMaterial">OgdenCiarletGeymonatElasticMaterial</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean.OgdenCiarletGeymonatNeoHookeanElasticMaterial.dev">
+<span class="sig-name descname"><span class="pre">dev</span></span><a class="headerlink" href="#dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean.OgdenCiarletGeymonatNeoHookeanElasticMaterial.dev" title="Link to this definition"></a></dt>
+<dd><p>The deviatoric/shear component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="dolfin_mech.Material_Elastic_NeoHookean.html#dolfin_mech.Material_Elastic_NeoHookean.NeoHookeanElasticMaterial" title="dolfin_mech.Material_Elastic_NeoHookean.NeoHookeanElasticMaterial">NeoHookeanElasticMaterial</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean.OgdenCiarletGeymonatNeoHookeanElasticMaterial.Psi">
+<span class="sig-name descname"><span class="pre">Psi</span></span><a class="headerlink" href="#dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean.OgdenCiarletGeymonatNeoHookeanElasticMaterial.Psi" title="Link to this definition"></a></dt>
+<dd><p>Total strain energy density.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>UFL expression</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean.OgdenCiarletGeymonatNeoHookeanElasticMaterial.Sigma">
+<span class="sig-name descname"><span class="pre">Sigma</span></span><a class="headerlink" href="#dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean.OgdenCiarletGeymonatNeoHookeanElasticMaterial.Sigma" title="Link to this definition"></a></dt>
+<dd><p>Total Second Piola-Kirchhoff stress tensor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>UFL expression</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean.OgdenCiarletGeymonatNeoHookeanElasticMaterial.p_hydro">
+<span class="sig-name descname"><span class="pre">p_hydro</span></span><a class="headerlink" href="#dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean.OgdenCiarletGeymonatNeoHookeanElasticMaterial.p_hydro" title="Link to this definition"></a></dt>
+<dd><p>Hydrostatic pressure calculated as <span class="math notranslate nohighlight">\(p = -\frac{1}{3J} tr(\mathbf{\Sigma} \mathbf{C})\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>UFL expression</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean.OgdenCiarletGeymonatNeoHookeanElasticMaterial.Sigma_dev">
+<span class="sig-name descname"><span class="pre">Sigma_dev</span></span><a class="headerlink" href="#dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean.OgdenCiarletGeymonatNeoHookeanElasticMaterial.Sigma_dev" title="Link to this definition"></a></dt>
+<dd><p>Deviatoric part of the Second Piola-Kirchhoff stress.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>UFL expression</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean.OgdenCiarletGeymonatNeoHookeanElasticMaterial.Sigma_VM">
+<span class="sig-name descname"><span class="pre">Sigma_VM</span></span><a class="headerlink" href="#dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean.OgdenCiarletGeymonatNeoHookeanElasticMaterial.Sigma_VM" title="Link to this definition"></a></dt>
+<dd><p>Von Mises equivalent stress.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>UFL expression</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 

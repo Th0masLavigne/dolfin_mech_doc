@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>dolfin_mech.Constraint &mdash; dolfin_mech  documentation</title>
+  <title>dolfin_mech.Material_Elastic_Porous &mdash; dolfin_mech  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
 
@@ -393,7 +393,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">dolfin_mech.Constraint</li>
+      <li class="breadcrumb-item active">dolfin_mech.Material_Elastic_Porous</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -402,7 +402,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for dolfin_mech.Constraint</h1><div class="highlight"><pre>
+  <h1>Source code for dolfin_mech.Material_Elastic_Porous</h1><div class="highlight"><pre>
 <span></span><span class="c1">#coding=utf8</span>
 
 <span class="c1">################################################################################</span>
@@ -411,131 +411,99 @@
 <span class="c1">###                                                                          ###</span>
 <span class="c1">### École Polytechnique, Palaiseau, France                                   ###</span>
 <span class="c1">###                                                                          ###</span>
+<span class="c1">###                                                                          ###</span>
+<span class="c1">### And Cécile Patte, 2019-2021                                              ###</span>
+<span class="c1">###                                                                          ###</span>
+<span class="c1">### INRIA, Palaiseau, France                                                 ###</span>
+<span class="c1">###                                                                          ###</span>
 <span class="c1">################################################################################</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">dolfin</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">dolfin_mech</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dmech</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.Material_Elastic</span><span class="w"> </span><span class="kn">import</span> <span class="n">ElasticMaterial</span>
 
 <span class="c1">################################################################################</span>
 
-<div class="viewcode-block" id="Constraint">
-<a class="viewcode-back" href="../../dolfin_mech.Constraint.html#dolfin_mech.Constraint.Constraint">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">Constraint</span><span class="p">():</span>
+<div class="viewcode-block" id="PorousElasticMaterial">
+<a class="viewcode-back" href="../../dolfin_mech.Material_Elastic_Porous.html#dolfin_mech.Material_Elastic_Porous.PorousElasticMaterial">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PorousElasticMaterial</span><span class="p">(</span><span class="n">ElasticMaterial</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Class to manage Dirichlet boundary conditions with time-varying values.</span>
+<span class="sd">    Class representing a porous elastic material whose properties are scaled </span>
+<span class="sd">    based on the solid volume fraction.</span>
 
-<span class="sd">    This class wraps the ``dolfin.DirichletBC`` object and associates it with a </span>
-<span class="sd">    :py:class:`dolfin_mech.TimeVaryingConstant`. This allows for easy updates </span>
-<span class="sd">    of the boundary condition values during time-stepping simulations.</span>
+<span class="sd">    In porous media mechanics, the apparent strain energy density and stresses of </span>
+<span class="sd">    a representative elementary volume (REV) are often scaled versions of the </span>
+<span class="sd">    underlying solid constituent&#39;s properties. This class facilitates that </span>
+<span class="sd">    scaling, specifically supporting linear scaling by the initial solid </span>
+<span class="sd">    fraction :math:`\Phi_{s0}`.</span>
+
+<span class="sd">    The total energy and stress are computed as:</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        \Psi_{porous} = \\omega \cdot \Psi_{solid}</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        \mathbf{\Sigma}_{porous} = \\omega \cdot \mathbf{\Sigma}_{solid}</span>
+
+<span class="sd">    Where :math:`\\omega` is the scaling factor:</span>
+<span class="sd">        - For ``scaling=&quot;no&quot;``: :math:`\\omega = 1`.</span>
+<span class="sd">        - For ``scaling=&quot;linear&quot;``: :math:`\\omega = \Phi_{s0}`.</span>
 
 <span class="sd">    Attributes:</span>
-<span class="sd">        tv_val (dolfin_mech.TimeVaryingConstant): Manager for the constant value </span>
-<span class="sd">            applied to the boundary.</span>
-<span class="sd">        bc (dolfin.DirichletBC): The underlying FEniCS Dirichlet boundary </span>
-<span class="sd">            condition object.</span>
+<span class="sd">        solid_material (ElasticMaterial): The base elastic material representing </span>
+<span class="sd">            the solid phase.</span>
+<span class="sd">        Psi (UFL expression): Scaled strain energy density.</span>
+<span class="sd">        Sigma (UFL expression): Scaled Second Piola-Kirchhoff stress tensor.</span>
+<span class="sd">        P (UFL expression): Scaled First Piola-Kirchhoff stress tensor.</span>
+<span class="sd">        sigma (UFL expression): Scaled Cauchy stress tensor.</span>
+<span class="sd">        dWbulkdPhis (UFL expression, optional): Scaled derivative of bulk energy </span>
+<span class="sd">            with respect to solid fraction.</span>
+<span class="sd">        dWporedPhif (UFL expression, optional): Scaled derivative of pore energy </span>
+<span class="sd">            with respect to fluid fraction.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-            <span class="n">V</span><span class="p">,</span>
-            <span class="n">sub_domain</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">sub_domains</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">sub_domain_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">val</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">val_ini</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">val_fin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">method</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span> <span class="c1"># topological, geometric, pointwise</span>
+            <span class="n">solid_material</span><span class="p">,</span>
+            <span class="n">scaling</span><span class="o">=</span><span class="s2">&quot;no&quot;</span><span class="p">,</span>
+            <span class="n">Phis0</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Initialize the Constraint and create the underlying DirichletBC.</span>
+<span class="sd">        Initializes the PorousElasticMaterial.</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            V (dolfin.FunctionSpace): The function space on which the BC is applied.</span>
-<span class="sd">            sub_domain (dolfin.SubDomain, optional): A FEniCS SubDomain object </span>
-<span class="sd">                defining the boundary. Defaults to None.</span>
-<span class="sd">            sub_domains (dolfin.MeshFunction, optional): A mesh function </span>
-<span class="sd">                defining sub-regions. Defaults to None.</span>
-<span class="sd">            sub_domain_id (int, optional): The ID within ``sub_domains`` to </span>
-<span class="sd">                apply the BC to. Defaults to None.</span>
-<span class="sd">            val (float, optional): A constant value for the entire simulation.</span>
-<span class="sd">            val_ini (float, optional): Initial value for time-varying BC.</span>
-<span class="sd">            val_fin (float, optional): Final value for time-varying BC.</span>
-<span class="sd">            method (str, optional): FEniCS BC method (e.g., &#39;topological&#39;, </span>
-<span class="sd">                &#39;geometric&#39;, &#39;pointwise&#39;). Defaults to None.</span>
-
-<span class="sd">        Notes:</span>
-<span class="sd">            You must provide either (``val``) OR (``val_ini`` and ``val_fin``). </span>
-<span class="sd">            Similarly, you must provide either (``sub_domain``) OR </span>
-<span class="sd">            (``sub_domains`` and ``sub_domain_id``).</span>
+<span class="sd">        :param solid_material: An instance of an ElasticMaterial class.</span>
+<span class="sd">        :type solid_material: dmech.ElasticMaterial</span>
+<span class="sd">        :param scaling: Scaling strategy, either &quot;no&quot; or &quot;linear&quot;. </span>
+<span class="sd">            Defaults to &quot;no&quot;.</span>
+<span class="sd">        :type scaling: str, optional</span>
+<span class="sd">        :param Phis0: Initial solid volume fraction. Required if scaling is &quot;linear&quot;.</span>
+<span class="sd">        :type Phis0: dolfin.Function, dolfin.Constant, or float, optional</span>
+<span class="sd">        :raises AssertionError: If scaling is &quot;linear&quot; but Phis0 is None, or if </span>
+<span class="sd">            an unknown scaling string is provided.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">val</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">val_ini</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">val_fin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">tv_val</span> <span class="o">=</span> <span class="n">dmech</span><span class="o">.</span><span class="n">TimeVaryingConstant</span><span class="p">(</span>
-                <span class="n">val_ini</span><span class="o">=</span><span class="n">val</span><span class="p">,</span> <span class="n">val_fin</span><span class="o">=</span><span class="n">val</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="p">(</span><span class="n">val</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">val_ini</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">val_fin</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">tv_val</span> <span class="o">=</span> <span class="n">dmech</span><span class="o">.</span><span class="n">TimeVaryingConstant</span><span class="p">(</span>
-                <span class="n">val_ini</span><span class="o">=</span><span class="n">val_ini</span><span class="p">,</span> <span class="n">val_fin</span><span class="o">=</span><span class="n">val_fin</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">solid_material</span> <span class="o">=</span> <span class="n">solid_material</span>
 
-        <span class="k">if</span> <span class="p">(</span><span class="n">sub_domain</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">sub_domains</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">sub_domain_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">method</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">bc</span> <span class="o">=</span> <span class="n">dolfin</span><span class="o">.</span><span class="n">DirichletBC</span><span class="p">(</span>
-                    <span class="n">V</span><span class="p">,</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">tv_val</span><span class="o">.</span><span class="n">val</span><span class="p">,</span>
-                    <span class="n">sub_domain</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">bc</span> <span class="o">=</span> <span class="n">dolfin</span><span class="o">.</span><span class="n">DirichletBC</span><span class="p">(</span>
-                    <span class="n">V</span><span class="p">,</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">tv_val</span><span class="o">.</span><span class="n">val</span><span class="p">,</span>
-                    <span class="n">sub_domain</span><span class="p">,</span>
-                    <span class="n">method</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="p">(</span><span class="n">sub_domain</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">sub_domains</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">sub_domain_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">method</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">bc</span> <span class="o">=</span> <span class="n">dolfin</span><span class="o">.</span><span class="n">DirichletBC</span><span class="p">(</span>
-                    <span class="n">V</span><span class="p">,</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">tv_val</span><span class="o">.</span><span class="n">val</span><span class="p">,</span>
-                    <span class="n">sub_domains</span><span class="p">,</span>
-                    <span class="n">sub_domain_id</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">bc</span> <span class="o">=</span> <span class="n">dolfin</span><span class="o">.</span><span class="n">DirichletBC</span><span class="p">(</span>
-                    <span class="n">V</span><span class="p">,</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">tv_val</span><span class="o">.</span><span class="n">val</span><span class="p">,</span>
-                    <span class="n">sub_domains</span><span class="p">,</span>
-                    <span class="n">sub_domain_id</span><span class="p">,</span>
-                    <span class="n">method</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">scaling</span> <span class="o">==</span> <span class="s2">&quot;no&quot;</span><span class="p">):</span>
+            <span class="n">scaling</span> <span class="o">=</span> <span class="n">dolfin</span><span class="o">.</span><span class="n">Constant</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="c1"># self.Psi   = self.material.Psi</span>
+            <span class="c1"># if (hasattr(self.material,       &quot;Sigma&quot;)): self.Sigma       = self.material.Sigma</span>
+            <span class="c1"># if (hasattr(self.material,           &quot;P&quot;)): self.P           = self.material.P</span>
+            <span class="c1"># if (hasattr(self.material,       &quot;sigma&quot;)): self.sigma       = self.material.sigma</span>
+            <span class="c1"># if (hasattr(self.material, &quot;dWbulkdPhis&quot;)): self.dWbulkdPhis = self.material.dWbulkdPhis</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">scaling</span> <span class="o">==</span> <span class="s2">&quot;linear&quot;</span><span class="p">):</span>
+            <span class="k">assert</span> <span class="p">(</span><span class="n">Phis0</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="n">scaling</span> <span class="o">=</span> <span class="n">Phis0</span>
+            <span class="c1"># self.Psi   = Phis0 * self.material.Psi</span>
+            <span class="c1"># if (hasattr(self.material,       &quot;Sigma&quot;)): self.Sigma       = Phis0 * self.material.Sigma</span>
+            <span class="c1"># if (hasattr(self.material,           &quot;P&quot;)): self.P           = Phis0 * self.material.P</span>
+            <span class="c1"># if (hasattr(self.material,       &quot;sigma&quot;)): self.sigma       = Phis0 * self.material.sigma</span>
+            <span class="c1"># if (hasattr(self.material, &quot;dWbulkdPhis&quot;)): self.dWbulkdPhis = Phis0 * self.material.dWbulkdPhis</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="p">(</span><span class="mi">0</span><span class="p">),</span>\
+                <span class="s2">&quot;scaling must be </span><span class="se">\&quot;</span><span class="s2">no</span><span class="se">\&quot;</span><span class="s2"> or </span><span class="se">\&quot;</span><span class="s2">linear</span><span class="se">\&quot;</span><span class="s2">. Aborting.&quot;</span>
 
+        <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;Psi&quot;</span><span class="p">,</span> <span class="s2">&quot;Sigma&quot;</span><span class="p">,</span> <span class="s2">&quot;P&quot;</span><span class="p">,</span> <span class="s2">&quot;sigma&quot;</span><span class="p">,</span> <span class="s2">&quot;dWbulkdPhis&quot;</span><span class="p">,</span> <span class="s2">&quot;dWporedPhif&quot;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">solid_material</span><span class="p">,</span> <span class="n">attr</span><span class="p">)):</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="n">scaling</span> <span class="o">*</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">solid_material</span><span class="p">,</span> <span class="n">attr</span><span class="p">))</span></div>
 
-
-<div class="viewcode-block" id="Constraint.set_value_at_t_step">
-<a class="viewcode-back" href="../../dolfin_mech.Constraint.html#dolfin_mech.Constraint.Constraint.set_value_at_t_step">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_value_at_t_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-            <span class="n">t_step</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Update the boundary condition value for a specific time step.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            t_step (float): The current time step/progress (typically between 0 and 1).</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tv_val</span><span class="o">.</span><span class="n">set_dvalue_at_t_step</span><span class="p">(</span><span class="n">t_step</span><span class="p">)</span></div>
-
-
-
-
-<div class="viewcode-block" id="Constraint.restore_old_value">
-<a class="viewcode-back" href="../../dolfin_mech.Constraint.html#dolfin_mech.Constraint.Constraint.restore_old_value">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">restore_old_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Restore the value of the constant to its previous state.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tv_val</span><span class="o">.</span><span class="n">restore_old_value</span><span class="p">()</span></div>
-
-
-
-
-<div class="viewcode-block" id="Constraint.homogenize">
-<a class="viewcode-back" href="../../dolfin_mech.Constraint.html#dolfin_mech.Constraint.Constraint.homogenize">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">homogenize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Set the boundary condition value to zero (homogeneous).</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tv_val</span><span class="o">.</span><span class="n">homogenize</span><span class="p">()</span></div>
-</div>
-
-        <span class="c1"># self.bc.homogenize() # MG20180508: seems to be changing the constant…</span>
 </pre></div>
 
            </div>

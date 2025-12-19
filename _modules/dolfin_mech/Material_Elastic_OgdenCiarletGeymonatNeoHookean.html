@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>dolfin_mech.Constraint &mdash; dolfin_mech  documentation</title>
+  <title>dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean &mdash; dolfin_mech  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
 
@@ -393,7 +393,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">dolfin_mech.Constraint</li>
+      <li class="breadcrumb-item active">dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -402,7 +402,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for dolfin_mech.Constraint</h1><div class="highlight"><pre>
+  <h1>Source code for dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean</h1><div class="highlight"><pre>
 <span></span><span class="c1">#coding=utf8</span>
 
 <span class="c1">################################################################################</span>
@@ -411,131 +411,115 @@
 <span class="c1">###                                                                          ###</span>
 <span class="c1">### École Polytechnique, Palaiseau, France                                   ###</span>
 <span class="c1">###                                                                          ###</span>
+<span class="c1">###                                                                          ###</span>
+<span class="c1">### And Mahdi Manoochehrtayebi, 2020-2024                                    ###</span>
+<span class="c1">###                                                                          ###</span>
+<span class="c1">### École Polytechnique, Palaiseau, France                                   ###</span>
+<span class="c1">###                                                                          ###</span>
 <span class="c1">################################################################################</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">dolfin</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">dolfin</span> 
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">dolfin_mech</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dmech</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.Material_Elastic</span><span class="w"> </span><span class="kn">import</span> <span class="n">ElasticMaterial</span>
 
 <span class="c1">################################################################################</span>
 
-<div class="viewcode-block" id="Constraint">
-<a class="viewcode-back" href="../../dolfin_mech.Constraint.html#dolfin_mech.Constraint.Constraint">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">Constraint</span><span class="p">():</span>
+<div class="viewcode-block" id="OgdenCiarletGeymonatNeoHookeanElasticMaterial">
+<a class="viewcode-back" href="../../dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean.html#dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean.OgdenCiarletGeymonatNeoHookeanElasticMaterial">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">OgdenCiarletGeymonatNeoHookeanElasticMaterial</span><span class="p">(</span><span class="n">ElasticMaterial</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Class to manage Dirichlet boundary conditions with time-varying values.</span>
+<span class="sd">    Class representing a composite hyperelastic material combining the </span>
+<span class="sd">    Ciarlet-Geymonat and Neo-Hookean models.</span>
 
-<span class="sd">    This class wraps the ``dolfin.DirichletBC`` object and associates it with a </span>
-<span class="sd">    :py:class:`dolfin_mech.TimeVaryingConstant`. This allows for easy updates </span>
-<span class="sd">    of the boundary condition values during time-stepping simulations.</span>
+<span class="sd">    This model provides a robust description of compressible hyperelasticity by </span>
+<span class="sd">    additive decomposition of the strain energy density:</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        \Psi_{total} = \Psi_{bulk}(J) + \Psi_{dev}(\mathbf{C})</span>
+
+<span class="sd">    Where:</span>
+<span class="sd">        - :math:`\Psi_{bulk}` is the Ciarlet-Geymonat potential (penalizing volume change).</span>
+<span class="sd">        - :math:`\Psi_{dev}` is the Neo-Hookean potential (governing shear response).</span>
+
+<span class="sd">    Beyond standard stress tensors, this class computes the hydrostatic pressure </span>
+<span class="sd">    and the Von Mises equivalent of the Second Piola-Kirchhoff stress.</span>
 
 <span class="sd">    Attributes:</span>
-<span class="sd">        tv_val (dolfin_mech.TimeVaryingConstant): Manager for the constant value </span>
-<span class="sd">            applied to the boundary.</span>
-<span class="sd">        bc (dolfin.DirichletBC): The underlying FEniCS Dirichlet boundary </span>
-<span class="sd">            condition object.</span>
+<span class="sd">        kinematics (Kinematics): Kinematic variables and deformation tensors.</span>
+<span class="sd">        bulk (OgdenCiarletGeymonatElasticMaterial): The volumetric component.</span>
+<span class="sd">        dev (NeoHookeanElasticMaterial): The deviatoric/shear component.</span>
+<span class="sd">        Psi (UFL expression): Total strain energy density.</span>
+<span class="sd">        Sigma (UFL expression): Total Second Piola-Kirchhoff stress tensor.</span>
+<span class="sd">        p_hydro (UFL expression): Hydrostatic pressure calculated as :math:`p = -\\frac{1}{3J} tr(\mathbf{\Sigma} \mathbf{C})`.</span>
+<span class="sd">        Sigma_dev (UFL expression): Deviatoric part of the Second Piola-Kirchhoff stress.</span>
+<span class="sd">        Sigma_VM (UFL expression): Von Mises equivalent stress.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-            <span class="n">V</span><span class="p">,</span>
-            <span class="n">sub_domain</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">sub_domains</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">sub_domain_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">val</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">val_ini</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">val_fin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">method</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span> <span class="c1"># topological, geometric, pointwise</span>
+            <span class="n">kinematics</span><span class="p">,</span>
+            <span class="n">parameters</span><span class="p">,</span>
+            <span class="n">decoup</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Initialize the Constraint and create the underlying DirichletBC.</span>
+<span class="sd">        Initializes the OgdenCiarletGeymonatNeoHookeanElasticMaterial.</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            V (dolfin.FunctionSpace): The function space on which the BC is applied.</span>
-<span class="sd">            sub_domain (dolfin.SubDomain, optional): A FEniCS SubDomain object </span>
-<span class="sd">                defining the boundary. Defaults to None.</span>
-<span class="sd">            sub_domains (dolfin.MeshFunction, optional): A mesh function </span>
-<span class="sd">                defining sub-regions. Defaults to None.</span>
-<span class="sd">            sub_domain_id (int, optional): The ID within ``sub_domains`` to </span>
-<span class="sd">                apply the BC to. Defaults to None.</span>
-<span class="sd">            val (float, optional): A constant value for the entire simulation.</span>
-<span class="sd">            val_ini (float, optional): Initial value for time-varying BC.</span>
-<span class="sd">            val_fin (float, optional): Final value for time-varying BC.</span>
-<span class="sd">            method (str, optional): FEniCS BC method (e.g., &#39;topological&#39;, </span>
-<span class="sd">                &#39;geometric&#39;, &#39;pointwise&#39;). Defaults to None.</span>
-
-<span class="sd">        Notes:</span>
-<span class="sd">            You must provide either (``val``) OR (``val_ini`` and ``val_fin``). </span>
-<span class="sd">            Similarly, you must provide either (``sub_domain``) OR </span>
-<span class="sd">            (``sub_domains`` and ``sub_domain_id``).</span>
+<span class="sd">        :param kinematics: Kinematics object containing deformation tensors.</span>
+<span class="sd">        :type kinematics: dmech.Kinematics</span>
+<span class="sd">        :param parameters: Dictionary of material parameters (must satisfy both sub-models).</span>
+<span class="sd">        :type parameters: dict</span>
+<span class="sd">        :param decoup: If True, uses the isochoric-volumetric decoupled formulation.</span>
+<span class="sd">        :type decoup: bool, optional</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">val</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">val_ini</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">val_fin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">tv_val</span> <span class="o">=</span> <span class="n">dmech</span><span class="o">.</span><span class="n">TimeVaryingConstant</span><span class="p">(</span>
-                <span class="n">val_ini</span><span class="o">=</span><span class="n">val</span><span class="p">,</span> <span class="n">val_fin</span><span class="o">=</span><span class="n">val</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="p">(</span><span class="n">val</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">val_ini</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">val_fin</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">tv_val</span> <span class="o">=</span> <span class="n">dmech</span><span class="o">.</span><span class="n">TimeVaryingConstant</span><span class="p">(</span>
-                <span class="n">val_ini</span><span class="o">=</span><span class="n">val_ini</span><span class="p">,</span> <span class="n">val_fin</span><span class="o">=</span><span class="n">val_fin</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span> <span class="o">=</span> <span class="n">kinematics</span>
 
-        <span class="k">if</span> <span class="p">(</span><span class="n">sub_domain</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">sub_domains</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">sub_domain_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">method</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">bc</span> <span class="o">=</span> <span class="n">dolfin</span><span class="o">.</span><span class="n">DirichletBC</span><span class="p">(</span>
-                    <span class="n">V</span><span class="p">,</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">tv_val</span><span class="o">.</span><span class="n">val</span><span class="p">,</span>
-                    <span class="n">sub_domain</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">bc</span> <span class="o">=</span> <span class="n">dolfin</span><span class="o">.</span><span class="n">DirichletBC</span><span class="p">(</span>
-                    <span class="n">V</span><span class="p">,</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">tv_val</span><span class="o">.</span><span class="n">val</span><span class="p">,</span>
-                    <span class="n">sub_domain</span><span class="p">,</span>
-                    <span class="n">method</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="p">(</span><span class="n">sub_domain</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">sub_domains</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">sub_domain_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">method</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">bc</span> <span class="o">=</span> <span class="n">dolfin</span><span class="o">.</span><span class="n">DirichletBC</span><span class="p">(</span>
-                    <span class="n">V</span><span class="p">,</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">tv_val</span><span class="o">.</span><span class="n">val</span><span class="p">,</span>
-                    <span class="n">sub_domains</span><span class="p">,</span>
-                    <span class="n">sub_domain_id</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">bc</span> <span class="o">=</span> <span class="n">dolfin</span><span class="o">.</span><span class="n">DirichletBC</span><span class="p">(</span>
-                    <span class="n">V</span><span class="p">,</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">tv_val</span><span class="o">.</span><span class="n">val</span><span class="p">,</span>
-                    <span class="n">sub_domains</span><span class="p">,</span>
-                    <span class="n">sub_domain_id</span><span class="p">,</span>
-                    <span class="n">method</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bulk</span> <span class="o">=</span> <span class="n">dmech</span><span class="o">.</span><span class="n">OgdenCiarletGeymonatElasticMaterial</span><span class="p">(</span><span class="n">kinematics</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">decoup</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dev</span>  <span class="o">=</span> <span class="n">dmech</span><span class="o">.</span><span class="n">NeoHookeanElasticMaterial</span><span class="p">(</span><span class="n">kinematics</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">decoup</span><span class="p">)</span>
 
-
-
-<div class="viewcode-block" id="Constraint.set_value_at_t_step">
-<a class="viewcode-back" href="../../dolfin_mech.Constraint.html#dolfin_mech.Constraint.Constraint.set_value_at_t_step">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_value_at_t_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-            <span class="n">t_step</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Update the boundary condition value for a specific time step.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            t_step (float): The current time step/progress (typically between 0 and 1).</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tv_val</span><span class="o">.</span><span class="n">set_dvalue_at_t_step</span><span class="p">(</span><span class="n">t_step</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Psi</span>   <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bulk</span><span class="o">.</span><span class="n">Psi</span>   <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dev</span><span class="o">.</span><span class="n">Psi</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Sigma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bulk</span><span class="o">.</span><span class="n">Sigma</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dev</span><span class="o">.</span><span class="n">Sigma</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">dim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Sigma_ZZ</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bulk</span><span class="o">.</span><span class="n">Sigma_ZZ</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dev</span><span class="o">.</span><span class="n">Sigma_ZZ</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">p_hydro</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">dolfin</span><span class="o">.</span><span class="n">tr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Sigma</span><span class="o">.</span><span class="n">T</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">C</span><span class="p">)</span><span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">Sigma_ZZ</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">J</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">dim</span> <span class="o">==</span> <span class="mi">3</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">p_hydro</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">dolfin</span><span class="o">.</span><span class="n">tr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Sigma</span><span class="o">.</span><span class="n">T</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">C</span><span class="p">))</span><span class="o">/</span><span class="mi">3</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">J</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">P</span>     <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bulk</span><span class="o">.</span><span class="n">P</span>     <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dev</span><span class="o">.</span><span class="n">P</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bulk</span><span class="o">.</span><span class="n">sigma</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dev</span><span class="o">.</span><span class="n">sigma</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Sigma_dev</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Sigma</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">p_hydro</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">J</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">C_inv</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Sigma_VM</span> <span class="o">=</span> <span class="n">dolfin</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">1.5</span> <span class="o">*</span><span class="n">dolfin</span><span class="o">.</span><span class="n">tr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Sigma_dev</span><span class="o">.</span><span class="n">T</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">Sigma_dev</span><span class="p">))</span></div>
 
 
 
 
-<div class="viewcode-block" id="Constraint.restore_old_value">
-<a class="viewcode-back" href="../../dolfin_mech.Constraint.html#dolfin_mech.Constraint.Constraint.restore_old_value">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">restore_old_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Restore the value of the constant to its previous state.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tv_val</span><span class="o">.</span><span class="n">restore_old_value</span><span class="p">()</span></div>
+    <span class="c1"># def get_free_energy(self, *args, **kwargs):</span>
+
+    <span class="c1">#     Psi_bulk, Sigma_bulk = self.bulk.get_free_energy(*args, **kwargs)</span>
+    <span class="c1">#     Psi_dev , Sigma_dev  = self.dev.get_free_energy(*args, **kwargs)</span>
+
+    <span class="c1">#     Psi   = Psi_bulk   + Psi_dev</span>
+    <span class="c1">#     Sigma = Sigma_bulk + Sigma_dev</span>
+
+    <span class="c1">#     return Psi, Sigma</span>
 
 
 
+    <span class="c1"># def get_PK2_stress(self, *args, **kwargs):</span>
 
-<div class="viewcode-block" id="Constraint.homogenize">
-<a class="viewcode-back" href="../../dolfin_mech.Constraint.html#dolfin_mech.Constraint.Constraint.homogenize">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">homogenize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Set the boundary condition value to zero (homogeneous).</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tv_val</span><span class="o">.</span><span class="n">homogenize</span><span class="p">()</span></div>
-</div>
+    <span class="c1">#     Sigma_bulk = self.bulk.get_PK2_stress(*args, **kwargs)</span>
+    <span class="c1">#     Sigma_dev  = self.dev.get_PK2_stress(*args, **kwargs)</span>
 
-        <span class="c1"># self.bc.homogenize() # MG20180508: seems to be changing the constant…</span>
+    <span class="c1">#     Sigma = Sigma_bulk + Sigma_dev</span>
+
+    <span class="c1">#     return Sigma</span>
+
+
+
+    <span class="c1"># def get_PK1_stress(self, *args, **kwargs):</span>
+
+    <span class="c1">#     P_bulk = self.bulk.get_PK1_stress(*args, **kwargs)</span>
+    <span class="c1">#     P_dev  = self.dev.get_PK1_stress(*args, **kwargs)</span>
+
+    <span class="c1">#     P = P_bulk + P_dev</span>
+
+    <span class="c1">#     return P</span>
 </pre></div>
 
            </div>

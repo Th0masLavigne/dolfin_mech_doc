@@ -94,7 +94,6 @@ But if you need to develop within the library, you need to install an editable v
    Ogden Ciarlet Geymonat Neo-Hookean Elastic <dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean>
    Ogden Ciarlet Geymonat Neo-Hookean Mooney-Rivlin Elastic <dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookeanMooneyRivlin>
    Porous Elastic <dolfin_mech.Material_Elastic_Porous>
-
    Inelastic Material <dolfin_mech.Material_Inelastic>
 
 .. toctree::
@@ -102,7 +101,7 @@ But if you need to develop within the library, you need to install an editable v
    :caption: Mesh
    :hidden:
 
-
+   Mesh2ugrid <dolfin_mech.mesh2ugrid>
 
 
 .. toctree::
