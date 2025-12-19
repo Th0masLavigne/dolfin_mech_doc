@@ -24,9 +24,6 @@ MOCK_MODULES = [
     'myVTKPythonLibrary', 
     'vtkpython_cbl',
     'time',
-    'math',
-    'sys',
-    'os',
 ]
 for mod_name in MOCK_MODULES:
     sys.modules[mod_name] = MagicMock()
