@@ -34,7 +34,8 @@ jobs:
           # --separate puts each module (Material, Operator, etc.) on its own page
           # -e tells sphinx to give each module its own file
           sphinx-apidoc -e -o docs/ dolfin_mech/ --no-toc --force --module-first
-          
+          # Delete the specific file that is causing the "multiple toctree" conflict since I manually categorised in index
+          rm -f docs/dolfin_mech.rst
           # Clean up the titles in all generated .rst files
           sed -i 's/ package//g' docs/*.rst
           sed -i 's/ module//g' docs/*.rst

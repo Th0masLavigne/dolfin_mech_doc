@@ -25,27 +25,27 @@ class MacroscopicStressComponentConstraintOperator(Operator):
     Operator to enforce a constraint on a single component of the macroscopic stress tensor.
 
     In multiscale mechanics, this operator is used to prescribe the macroscopic stress 
-    component :math:`\bar{\sigma}_{ij}` on a Representative Elementary Volume (REV). 
+    component :math:`\\bar{\sigma}_{ij}` on a Representative Elementary Volume (REV). 
     It relates the microscopic state (stresses and volume changes) to the 
     desired macroscopic loading.
 
     The residual contribution follows the volume-averaged equilibrium:
     
     .. math::
-        \mathcal{R} = \delta\bar{U}_{ij} \int_{\Omega_0} \left( \\tilde{\sigma}_{ij} - \\frac{v}{V_{s0}} \bar{\sigma}_{ij} \\right) d\Omega_0
+        \mathcal{R} = \delta\\bar{U}_{ij} \int_{\Omega_0} \left( \\tilde{\sigma}_{ij} - \\frac{v}{V_{s0}} \\bar{\sigma}_{ij} \\right) d\Omega_0
 
     Where:
         - :math:`\\tilde{\sigma}` is the corrected microscopic stress accounting for pore pressure.
         - :math:`v` is the current volume of the REV.
         - :math:`V_{s0}` is the initial solid volume.
-        - :math:`\bar{\sigma}_{ij}` is the target macroscopic stress component.
+        - :math:`\\bar{\sigma}_{ij}` is the target macroscopic stress component.
 
     Attributes:
         kinematics (Kinematics): Microscopic kinematic variables.
         material (Material): Microscopic material law.
         measure (dolfin.Measure): Integration measure (typically ``dx``).
         tv_pf (TimeVaryingConstant): Time-varying pore pressure :math:`p_f`.
-        tv_sigma_bar_ij (TimeVaryingConstant): Time-varying target macroscopic stress :math:`\bar{\sigma}_{ij}`.
+        tv_sigma_bar_ij (TimeVaryingConstant): Time-varying target macroscopic stress :math:`\\bar{\sigma}_{ij}`.
         res_form (UFL Form): The resulting residual variational form.
     """
     def __init__(self,
