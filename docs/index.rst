@@ -125,6 +125,7 @@ But if you need to develop within the library, you need to install an editable v
    :caption: Examples
    :hidden:
 
+..
    Ball Hyperelasticity <dolfin_mech.run_Ball_Hyperelasticity>
    Disc Hyperelasticity <dolfin_mech.run_Disc_Hyperelasticity>
    Heart Slice <dolfin_mech.run_Heart_Slice_Hyperelasticity>
