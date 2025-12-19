@@ -27,12 +27,12 @@ class Kinematics():
         U (dolfin.Function): The current displacement field.
         dim (int): Spatial dimension.
         I (dolfin.Identity): Identity tensor of dimension ``dim``.
-        F (ufl.Form): Deformation gradient tensor :math:`\mathbf{F} = \mathbf{I} + \nabla \mathbf{U}`.
+        F (ufl.Form): Deformation gradient tensor :math:`\mathbf{F} = \mathbf{I} + \\nabla \mathbf{U}`.
         J (ufl.Form): Determinant of the deformation gradient :math:`J = \det(\mathbf{F})`.
         C (ufl.Form): Right Cauchy-Green deformation tensor :math:`\mathbf{C} = \mathbf{F}^T \mathbf{F}`.
-        E (ufl.Form): Green-Lagrange strain tensor :math:`\mathbf{E} = \frac{1}{2}(\mathbf{C} - \mathbf{I})`.
-        F_bar (ufl.Form): Isochoric deformation gradient :math:`\bar{\mathbf{F}} = J^{-1/d} \mathbf{F}`.
-        C_bar (ufl.Form): Isochoric Right Cauchy-Green tensor :math:`\bar{\mathbf{C}} = \bar{\mathbf{F}}^T \bar{\mathbf{F}}`.
+        E (ufl.Form): Green-Lagrange strain tensor :math:`\mathbf{E} = \{C} - \mathbf{I})`.
+        F_bar (ufl.Form): Isochoric deformation gradient :math:`\\bar{\mathbf{F}} = J^{-1/d} \mathbf{F}`.
+        C_bar (ufl.Form): Isochoric Right Cauchy-Green tensor :math:`\\bar{\mathbf{C}} = \\bar{\mathbf{F}}^T \\bar{\mathbf{F}}`.
     """
     def __init__(self,
             U,
