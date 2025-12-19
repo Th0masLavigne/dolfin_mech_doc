@@ -118,9 +118,24 @@ But if you need to develop within the library, you need to install an editable v
    Inertia <dolfin_mech.Operator_Inertia>
    Linearized Elasticity <dolfin_mech.Operator_LinearizedElasticity>
    Linearized Hydrostatic Pressure <dolfin_mech.Operator_LinearizedHydrostaticPressure>
-
-
-   Pressure Loading <dolfin_mech.Operator_Loading_SurfacePressure>
+   Linearized Incompressibility <dolfin_mech.Operator_LinearizedIncompressibility>
+   Loading Pressure Balancing Gravity <dolfin_mech.Operator_Loading_PressureBalancingGravity>
+   Loading Sufrace Force <dolfin_mech.Operator_Loading_SurfaceForce>
+   Loading Sufrace Pressure <dolfin_mech.Operator_Loading_SurfacePressure>
+   Loading Sufrace Pressure Gradient <dolfin_mech.Operator_Loading_SurfacePressureGradient>
+   Loading Sufrace Tension <dolfin_mech.Operator_Loading_SurfaceTension>
+   Loading Volume Force <dolfin_mech.Operator_Loading_VolumeForce>
+   Penalty Directional Displacement <dolfin_mech.Operator_Penalty_DirectionalDisplacement>
+   Penalty Lagrange Multiplier Component <dolfin_mech.Operator_Penalty_LagrangeMultiplierComponent>
+   Penalty Macroscopic Stress Component <dolfin_mech.Operator_Penalty_MacroscopicStressComponent>
+   Penalty Macroscopic Stretch Component <dolfin_mech.Operator_Penalty_MacroscopicStretchComponent>
+   Penalty Macroscopic Stretch Symmetry <dolfin_mech.Operator_Penalty_MacroscopicStretchSymmetry>
+   Penalty Normal Displacement <dolfin_mech.Operator_Penalty_NormalDisplacement>
+   Poro Pf <dolfin_mech.Operator_Poro_Pf>
+   Poro Wbulk <dolfin_mech.Operator_Poro_Wbulk>
+   Poro Wpore <dolfin_mech.Operator_Poro_Wpore>
+   Poro Wskel <dolfin_mech.Operator_Poro_Wskel>
+   
 
 
 .. toctree::

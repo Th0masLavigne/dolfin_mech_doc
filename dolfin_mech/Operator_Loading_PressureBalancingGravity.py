@@ -21,7 +21,30 @@ from .Operator import Operator
 ################################################################################
 
 class PressureBalancingGravityLoadingOperator(Operator):
+    """
+    Operator representing a gravity loading balanced by a surface pressure 
+    in a large deformation (finite strain) framework.
 
+    This operator is typically used in lung mechanics to model the pleural 
+    pressure gradient that balances the weight of the lung parenchyma. 
+    It includes a "breathing constant" to account for non-hydrostatic 
+    effects observed in vivo.
+
+    The balanced pressure :math:`\\tilde{P}` is defined as:
+
+    .. math::
+        \\tilde{P} = P_0 + \\rho_{solid} \\mathbf{f} \\cdot (\\mathbf{x} - \\mathbf{x}_0) - C_{breath} \\rho_{solid} f_z (x_y - x_{0,y})^2
+
+    where :math:`\\mathbf{x}_0` is a reference position (center of mass) 
+    and :math:`C_{breath}` is the breathing constant.
+
+    Attributes:
+        tv_f (TimeVaryingConstant): Time-varying gravity vector :math:`\\mathbf{f}`.
+        tv_P0 (TimeVaryingConstant): Time-varying reference pressure :math:`P_0`.
+        res_form (UFL form): The resulting residual variational form including 
+            volume gravity, surface pressure work, and Lagrange multipliers 
+            for equilibrium constraints.
+    """
     def __init__(self,
             X,
             x0,
@@ -46,7 +69,23 @@ class PressureBalancingGravityLoadingOperator(Operator):
             breathing_constant,
             P0_val=None, P0_ini=None, P0_fin=None,
             f_val=None, f_ini=None, f_fin=None):
+        """
+        Initializes the PressureBalancingGravityLoadingOperator.
 
+        :param X: Reference coordinates.
+        :param x0: Reference position (Lagrange multiplier).
+        :param x0_test: Test function for reference position.
+        :param lmbda, mu, gamma: Lagrange multipliers for force/moment/pressure balancing.
+        :param p: Pressure field variable.
+        :param U: Displacement field.
+        :param Phis0: Initial solid volume fraction.
+        :param rho_solid: Material density of the solid phase.
+        :param kinematics: Kinematics object for finite strain.
+        :param N: Reference normal vector.
+        :param dS: Surface measure (e.g., pleural surface).
+        :param dV: Volume measure.
+        :param breathing_constant: Empirical constant for the pressure gradient.
+        """
         self.measure = dV
 
         self.V0 = dolfin.assemble(dolfin.Constant(1) * self.measure)
@@ -91,14 +130,29 @@ class PressureBalancingGravityLoadingOperator(Operator):
 
     def set_value_at_t_step(self,
             t_step):
+        """
+        Updates gravity and reference pressure for the current time step.
 
+        :param t_step: Current normalized time step (0.0 to 1.0).
+        """
         self.tv_f.set_value_at_t_step(t_step)
         self.tv_P0.set_value_at_t_step(t_step)
 
 ################################################################################
 
 class PressureBalancingGravity0LoadingOperator(Operator):
+    """
+    Operator representing the pressure-balanced gravity loading in a 
+    small strain (linearized) framework.
 
+    Similar to :class:`PressureBalancingGravityLoadingOperator`, but formulated 
+    without the finite strain Jacobian (:math:`J`) or deformation gradient 
+    (:math:`\\mathbf{F}`) pull-backs, assuming :math:`J \\approx 1` and 
+    :math:`\\mathbf{n} \\approx \\mathbf{N}`.
+
+    Attributes:
+        res_form (UFL form): Linearized residual form.
+    """
     def __init__(self,
             x,
             x0,
@@ -120,7 +174,15 @@ class PressureBalancingGravity0LoadingOperator(Operator):
             breathing_constant,
             P0_val=None, P0_ini=None, P0_fin=None,
             f_val=None, f_ini=None, f_fin=None):
+        """
+        Initializes the PressureBalancingGravity0LoadingOperator.
 
+        :param x: Spatial coordinates.
+        :param phis: Solid volume fraction.
+        :param n: Normal vector.
+        :param dS: Surface measure.
+        :param dV: Volume measure.
+        """
         self.measure = dV
 
         self.tv_f = dmech.TimeVaryingConstant(
@@ -156,6 +218,8 @@ class PressureBalancingGravity0LoadingOperator(Operator):
 
     def set_value_at_t_step(self,
             t_step):
-
+        """
+        Updates gravity and reference pressure for the current time step.
+        """
         self.tv_f.set_value_at_t_step(t_step)
         self.tv_P0.set_value_at_t_step(t_step)

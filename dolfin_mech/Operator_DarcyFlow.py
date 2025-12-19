@@ -49,8 +49,8 @@ class DarcyFlowOperator(Operator):
                  dx,
                  dx_in,
                  dx_out,
-                 Theta_in=dolfin.Constant(0.0),
-                 Theta_out=dolfin.Constant(0.0)):
+                 Theta_in=None,
+                 Theta_out=None):
         """
         Initializes the DarcyFlowOperator.
 
@@ -73,6 +73,11 @@ class DarcyFlowOperator(Operator):
         self.measure = dx  # typically dx(0) or full domain
         self.kinematics = kinematics
 
+        if Theta_in is None:
+            Theta_in = dolfin.Constant(0.0)
+        if Theta_out is None:
+            Theta_out = dolfin.Constant(0.0)
+        
         grad_p = dolfin.grad(p)
         grad_p_test = dolfin.grad(p_test)
 

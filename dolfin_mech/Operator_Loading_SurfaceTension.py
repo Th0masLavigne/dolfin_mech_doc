@@ -16,7 +16,34 @@ from .Operator import Operator
 ################################################################################
 
 class SurfaceTensionLoadingOperator(Operator):
+    """
+    Operator representing surface tension effects in a finite strain (large deformation) 
+    framework.
 
+    This operator assembles the virtual work done by surface tension on a boundary. 
+    Surface tension acts as a membrane stress within the tangent plane of the deformed 
+    surface. It supports a constant tension coefficient or a surface-area-dependent 
+    tension (e.g., to model surfactant effects in lung alveoli).
+
+    The virtual work of surface tension is given by:
+
+    .. math::
+        \delta \Pi_{surf} = \int_{\Gamma} \gamma \mathbf{P} : \\nabla_s \delta \mathbf{u} \, d\Gamma
+
+    where:
+        - :math:`\gamma` is the surface tension coefficient.
+        - :math:`\mathbf{P} = \mathbf{I} - \mathbf{n} \otimes \mathbf{n}` is the 
+          projector onto the tangent plane of the deformed surface.
+        - :math:`\mathbf{n}` is the current unit normal vector.
+        - :math:`d\Gamma = J \|\mathbf{F}^{-T} \mathbf{N}\| d\Gamma_0` is the deformed 
+          surface element (Nanson's formula).
+
+    Attributes:
+        measure (dolfin.Measure): Boundary measure (typically ``ds``).
+        tv_gamma (TimeVaryingConstant): Time-varying surface tension coefficient :math:`\gamma`.
+        kinematics (Kinematics): Kinematics object for deformation variables.
+        res_form (UFL form): The resulting residual variational form.
+    """
     def __init__(self,
             kinematics,
             N,
@@ -24,7 +51,21 @@ class SurfaceTensionLoadingOperator(Operator):
             U_test,
             tension_params={},
             gamma_val=None, gamma_ini=None, gamma_fin=None):
+        """
+        Initializes the SurfaceTensionLoadingOperator.
 
+        :param kinematics: Kinematics object providing F and J.
+        :type kinematics: dmech.Kinematics
+        :param N: Unit normal vector in the reference configuration.
+        :type N: dolfin.Constant or dolfin.Expression
+        :param measure: Dolfin measure for boundary integration.
+        :type measure: dolfin.Measure
+        :param U_test: Test function (virtual displacement).
+        :type U_test: dolfin.TestFunction
+        :param tension_params: Dictionary for area-dependency parameters (d1, d2, d3).
+        :type tension_params: dict, optional
+        :param gamma_val, gamma_ini, gamma_fin: Static or time-varying surface tension values.
+        """
         self.measure = measure
 
         self.tv_gamma = dmech.TimeVaryingConstant(
@@ -64,7 +105,9 @@ class SurfaceTensionLoadingOperator(Operator):
 
     def set_value_at_t_step(self,
             t_step):
-
+        """
+        Updates the surface tension coefficient for the current time step.
+        """
         self.tv_gamma.set_value_at_t_step(t_step)
 
 
@@ -72,7 +115,17 @@ class SurfaceTensionLoadingOperator(Operator):
 ################################################################################
 
 class SurfaceTension0LoadingOperator(Operator):
+    """
+    Operator representing surface tension effects in a linearized (small strain) 
+    framework.
 
+    In small strain theory, the virtual work is derived by considering the 
+    variation of the surface area approximated by the trace of the strain 
+    within the tangent plane.
+
+    Attributes:
+        res_form (UFL form): The resulting residual variational form.
+    """
     def __init__(self,
             u,
             u_test,
@@ -80,7 +133,15 @@ class SurfaceTension0LoadingOperator(Operator):
             N,
             measure,
             gamma_val=None, gamma_ini=None, gamma_fin=None):
+        """
+        Initializes the SurfaceTension0LoadingOperator.
 
+        :param u: Displacement field.
+        :param u_test: Test function.
+        :param kinematics: Kinematics object for infinitesimal strain.
+        :param N: Reference normal vector.
+        :param measure: Boundary measure.
+        """
         self.measure = measure
 
         self.tv_gamma = dmech.TimeVaryingConstant(
@@ -98,5 +159,7 @@ class SurfaceTension0LoadingOperator(Operator):
 
     def set_value_at_t_step(self,
             t_step):
-
+        """
+        Updates the surface tension coefficient for the current time step.
+        """
         self.tv_gamma.set_value_at_t_step(t_step)
