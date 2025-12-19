@@ -22,19 +22,19 @@ class InverseKinematics():
     In the inverse formulation, the displacement field :math:`\mathbf{u}` is defined 
     on the deformed (spatial) configuration. The deformation gradient :math:`\mathbf{F}` 
     is computed as the inverse of the mapping from the reference to the deformed 
-    configuration: :math:`\mathbf{F} = (\mathbf{I} + \nabla \mathbf{u})^{-1}`.
+    configuration: :math:`\mathbf{F} = (\mathbf{I} + \\nabla \mathbf{u})^{-1}`.
 
     Attributes:
         u (dolfin.Function): The current displacement field in the spatial configuration.
         dim (int): Spatial dimension.
         I (dolfin.Identity): Identity tensor of dimension ``dim``.
-        f (ufl.Form): Spatial displacement gradient :math:`\mathbf{f} = \mathbf{I} + \nabla \mathbf{u}`.
+        f (ufl.Form): Spatial displacement gradient :math:`\mathbf{f} = \mathbf{I} + \\nabla \mathbf{u}`.
         F (ufl.Form): Deformation gradient tensor :math:`\mathbf{F} = \mathbf{f}^{-1}`.
         J (ufl.Form): Determinant of the deformation gradient :math:`J = \det(\mathbf{F})`.
         C (ufl.Form): Right Cauchy-Green deformation tensor :math:`\mathbf{C} = \mathbf{F}^T \mathbf{F}`.
-        E (ufl.Form): Green-Lagrange strain tensor :math:`\mathbf{E} = \frac{1}{2}(\mathbf{C} - \mathbf{I})`.
-        F_bar (ufl.Form): Isochoric deformation gradient :math:`\bar{\mathbf{F}} = J^{-1/d} \mathbf{F}`.
-        C_bar (ufl.Form): Isochoric Right Cauchy-Green tensor :math:`\bar{\mathbf{C}} = \bar{\mathbf{F}}^T \bar{\mathbf{F}}`.
+        E (ufl.Form): Green-Lagrange strain tensor :math:`\mathbf{E} = \\frac{1}{2}(\mathbf{C} - \mathbf{I})`.
+        F_bar (ufl.Form): Isochoric deformation gradient :math:`\\bar{\mathbf{F}} = J^{-1/d} \mathbf{F}`.
+        C_bar (ufl.Form): Isochoric Right Cauchy-Green tensor :math:`\\bar{\mathbf{C}} = \\bar{\mathbf{F}}^T \\bar{\mathbf{F}}`.
     """
     def __init__(self,
             u,
