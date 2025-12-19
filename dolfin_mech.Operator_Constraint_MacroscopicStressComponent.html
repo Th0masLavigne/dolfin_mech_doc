@@ -591,6 +591,10 @@
 <li class="toctree-l2"><a class="reference internal" href="dolfin_mech.run_Disc_Hyperelasticity.html#dolfin_mech.run_Disc_Hyperelasticity.run_Disc_Hyperelasticity"><code class="docutils literal notranslate"><span class="pre">run_Disc_Hyperelasticity()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.run_HeartSlice_Hyperelasticity.html">Heart Slice</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.run_HeartSlice_Hyperelasticity.html#dolfin_mech.run_HeartSlice_Hyperelasticity.run_HeartSlice_Hyperelasticity"><code class="docutils literal notranslate"><span class="pre">run_HeartSlice_Hyperelasticity()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="dolfin_mech.run_HollowBox_MicroPoroHyperelasticity.html">Hollow Box MicroPoro</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="dolfin_mech.run_HollowBox_MicroPoroHyperelasticity.html#dolfin_mech.run_HollowBox_MicroPoroHyperelasticity.run_HollowBox_MicroPoroHyperelasticity"><code class="docutils literal notranslate"><span class="pre">run_HollowBox_MicroPoroHyperelasticity()</span></code></a></li>
 </ul>
@@ -637,18 +641,18 @@
 <dd><p>Bases: <a class="reference internal" href="dolfin_mech.Operator.html#dolfin_mech.Operator.Operator" title="dolfin_mech.Operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></a></p>
 <p>Operator to enforce a constraint on a single component of the macroscopic stress tensor.</p>
 <p>In multiscale mechanics, this operator is used to prescribe the macroscopic stress
-component <span class="math notranslate nohighlight">\(ar{\sigma}_{ij}\)</span> on a Representative Elementary Volume (REV).
+component <span class="math notranslate nohighlight">\(\bar{\sigma}_{ij}\)</span> on a Representative Elementary Volume (REV).
 It relates the microscopic state (stresses and volume changes) to the
 desired macroscopic loading.</p>
 <p>The residual contribution follows the volume-averaged equilibrium:</p>
 <div class="math notranslate nohighlight">
-\[\mathcal{R} = \deltaar{U}_{ij} \int_{\Omega_0} \left( \tilde{\sigma}_{ij} - \frac{v}{V_{s0}} ar{\sigma}_{ij} \right) d\Omega_0\]</div>
+\[\mathcal{R} = \delta\bar{U}_{ij} \int_{\Omega_0} \left( \tilde{\sigma}_{ij} - \frac{v}{V_{s0}} \bar{\sigma}_{ij} \right) d\Omega_0\]</div>
 <dl class="simple">
 <dt>Where:</dt><dd><ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\tilde{\sigma}\)</span> is the corrected microscopic stress accounting for pore pressure.</p></li>
 <li><p><span class="math notranslate nohighlight">\(v\)</span> is the current volume of the REV.</p></li>
 <li><p><span class="math notranslate nohighlight">\(V_{s0}\)</span> is the initial solid volume.</p></li>
-<li><p><span class="math notranslate nohighlight">\(ar{\sigma}_{ij}\)</span> is the target macroscopic stress component.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\bar{\sigma}_{ij}\)</span> is the target macroscopic stress component.</p></li>
 </ul>
 </dd>
 </dl>
@@ -699,7 +703,7 @@ desired macroscopic loading.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="dolfin_mech.Operator_Constraint_MacroscopicStressComponent.MacroscopicStressComponentConstraintOperator.tv_sigma_bar_ij">
 <span class="sig-name descname"><span class="pre">tv_sigma_bar_ij</span></span><a class="headerlink" href="#dolfin_mech.Operator_Constraint_MacroscopicStressComponent.MacroscopicStressComponentConstraintOperator.tv_sigma_bar_ij" title="Link to this definition"></a></dt>
-<dd><p>Time-varying target macroscopic stress <span class="math notranslate nohighlight">\(ar{\sigma}_{ij}\)</span>.</p>
+<dd><p>Time-varying target macroscopic stress <span class="math notranslate nohighlight">\(\bar{\sigma}_{ij}\)</span>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="dolfin_mech.TimeVaryingConstant.html#dolfin_mech.TimeVaryingConstant.TimeVaryingConstant" title="dolfin_mech.TimeVaryingConstant.TimeVaryingConstant">TimeVaryingConstant</a></p>

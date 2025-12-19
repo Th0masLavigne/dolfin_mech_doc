@@ -142,7 +142,7 @@ But if you need to develop within the library, you need to install an editable v
 
    Ball Hyperelasticity <dolfin_mech.run_Ball_Hyperelasticity>
    Disc Hyperelasticity <dolfin_mech.run_Disc_Hyperelasticity>
-   Heart Slice <dolfin_mech.run_Heart_Slice_Hyperelasticity>
+   Heart Slice <dolfin_mech.run_HeartSlice_Hyperelasticity>
    Hollow Box MicroPoro <dolfin_mech.run_HollowBox_MicroPoroHyperelasticity>
    Poro-flow <dolfin_mech.run_Poroflow>
    Rivlin Cube Poro <dolfin_mech.run_RivlinCube_PoroHyperelasticity>
