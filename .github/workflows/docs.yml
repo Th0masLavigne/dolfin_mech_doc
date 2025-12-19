@@ -28,7 +28,7 @@ jobs:
       - name: Generate API skeleton
         run: |
           # This creates modules.rst and dolfin_mech.rst automatically
-          sphinx-apidoc -o docs/ dolfin_mech/
+          sphinx-apidoc -o docs/ dolfin_mech/ --no-toc --force --module-first
 
       - name: Build Sphinx Documentation
         run: |

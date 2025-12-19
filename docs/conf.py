@@ -37,3 +37,5 @@ html_static_path = [] # Leave empty for now if you don't have custom CSS
 
 # Empêcher Sphinx de planter sur les erreurs d'importation mineures
 autodoc_inherit_docstrings = True
+
+add_module_names = False # Prevents showing the full path (dolfin_mech.Kinematics) in titles
