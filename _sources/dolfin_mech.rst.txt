@@ -1,0 +1,725 @@
+dolfin\_mech package
+====================
+
+Submodules
+----------
+
+dolfin\_mech.Constraint module
+------------------------------
+
+.. automodule:: dolfin_mech.Constraint
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Expression\_MeshFunction\_cpp module
+-------------------------------------------------
+
+.. automodule:: dolfin_mech.Expression_MeshFunction_cpp
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.FOI module
+-----------------------
+
+.. automodule:: dolfin_mech.FOI
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Kinematics module
+------------------------------
+
+.. automodule:: dolfin_mech.Kinematics
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Kinematics\_Inverse module
+---------------------------------------
+
+.. automodule:: dolfin_mech.Kinematics_Inverse
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Kinematics\_Linearized module
+------------------------------------------
+
+.. automodule:: dolfin_mech.Kinematics_Linearized
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Loading module
+---------------------------
+
+.. automodule:: dolfin_mech.Loading
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Material module
+----------------------------
+
+.. automodule:: dolfin_mech.Material
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Material\_Elastic module
+-------------------------------------
+
+.. automodule:: dolfin_mech.Material_Elastic
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Material\_Elastic\_ExponentialNeoHookean module
+------------------------------------------------------------
+
+.. automodule:: dolfin_mech.Material_Elastic_ExponentialNeoHookean
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Material\_Elastic\_ExponentialOgdenCiarletGeymonat module
+----------------------------------------------------------------------
+
+.. automodule:: dolfin_mech.Material_Elastic_ExponentialOgdenCiarletGeymonat
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Material\_Elastic\_Hooke module
+--------------------------------------------
+
+.. automodule:: dolfin_mech.Material_Elastic_Hooke
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Material\_Elastic\_Kirchhoff module
+------------------------------------------------
+
+.. automodule:: dolfin_mech.Material_Elastic_Kirchhoff
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Material\_Elastic\_Lung\_Wbulk module
+--------------------------------------------------
+
+.. automodule:: dolfin_mech.Material_Elastic_Lung_Wbulk
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Material\_Elastic\_Lung\_Wpore module
+--------------------------------------------------
+
+.. automodule:: dolfin_mech.Material_Elastic_Lung_Wpore
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Material\_Elastic\_Lung\_Wskel module
+--------------------------------------------------
+
+.. automodule:: dolfin_mech.Material_Elastic_Lung_Wskel
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Material\_Elastic\_MooneyRivlin module
+---------------------------------------------------
+
+.. automodule:: dolfin_mech.Material_Elastic_MooneyRivlin
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Material\_Elastic\_NeoHookean module
+-------------------------------------------------
+
+.. automodule:: dolfin_mech.Material_Elastic_NeoHookean
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Material\_Elastic\_NeoHookeanMooneyRivlin module
+-------------------------------------------------------------
+
+.. automodule:: dolfin_mech.Material_Elastic_NeoHookeanMooneyRivlin
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Material\_Elastic\_OgdenCiarletGeymonat module
+-----------------------------------------------------------
+
+.. automodule:: dolfin_mech.Material_Elastic_OgdenCiarletGeymonat
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Material\_Elastic\_OgdenCiarletGeymonatNeoHookean module
+---------------------------------------------------------------------
+
+.. automodule:: dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Material\_Elastic\_OgdenCiarletGeymonatNeoHookeanMooneyRivlin module
+---------------------------------------------------------------------------------
+
+.. automodule:: dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookeanMooneyRivlin
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Material\_Elastic\_Porous module
+---------------------------------------------
+
+.. automodule:: dolfin_mech.Material_Elastic_Porous
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Material\_Inelastic module
+---------------------------------------
+
+.. automodule:: dolfin_mech.Material_Inelastic
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.NonlinearSolver module
+-----------------------------------
+
+.. automodule:: dolfin_mech.NonlinearSolver
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Operator module
+----------------------------
+
+.. automodule:: dolfin_mech.Operator
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Operator\_Constraint\_MacroscopicStressComponent module
+--------------------------------------------------------------------
+
+.. automodule:: dolfin_mech.Operator_Constraint_MacroscopicStressComponent
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Operator\_DarcyFlow module
+---------------------------------------
+
+.. automodule:: dolfin_mech.Operator_DarcyFlow
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Operator\_HyperElasticity module
+---------------------------------------------
+
+.. automodule:: dolfin_mech.Operator_HyperElasticity
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Operator\_HyperHydrostaticPressure module
+------------------------------------------------------
+
+.. automodule:: dolfin_mech.Operator_HyperHydrostaticPressure
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Operator\_HyperIncompressibility module
+----------------------------------------------------
+
+.. automodule:: dolfin_mech.Operator_HyperIncompressibility
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Operator\_Inertia module
+-------------------------------------
+
+.. automodule:: dolfin_mech.Operator_Inertia
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Operator\_LinearizedElasticity module
+--------------------------------------------------
+
+.. automodule:: dolfin_mech.Operator_LinearizedElasticity
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Operator\_LinearizedHydrostaticPressure module
+-----------------------------------------------------------
+
+.. automodule:: dolfin_mech.Operator_LinearizedHydrostaticPressure
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Operator\_LinearizedIncompressibility module
+---------------------------------------------------------
+
+.. automodule:: dolfin_mech.Operator_LinearizedIncompressibility
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Operator\_Loading\_PressureBalancingGravity module
+---------------------------------------------------------------
+
+.. automodule:: dolfin_mech.Operator_Loading_PressureBalancingGravity
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Operator\_Loading\_SurfaceForce module
+---------------------------------------------------
+
+.. automodule:: dolfin_mech.Operator_Loading_SurfaceForce
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Operator\_Loading\_SurfacePressure module
+------------------------------------------------------
+
+.. automodule:: dolfin_mech.Operator_Loading_SurfacePressure
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Operator\_Loading\_SurfacePressureGradient module
+--------------------------------------------------------------
+
+.. automodule:: dolfin_mech.Operator_Loading_SurfacePressureGradient
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Operator\_Loading\_SurfaceTension module
+-----------------------------------------------------
+
+.. automodule:: dolfin_mech.Operator_Loading_SurfaceTension
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Operator\_Loading\_VolumeForce module
+--------------------------------------------------
+
+.. automodule:: dolfin_mech.Operator_Loading_VolumeForce
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Operator\_MicroPoro\_DeformedFluidVolume module
+------------------------------------------------------------
+
+.. automodule:: dolfin_mech.Operator_MicroPoro_DeformedFluidVolume
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Operator\_MicroPoro\_DeformedSolidVolume module
+------------------------------------------------------------
+
+.. automodule:: dolfin_mech.Operator_MicroPoro_DeformedSolidVolume
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Operator\_MicroPoro\_DeformedSurfaceArea module
+------------------------------------------------------------
+
+.. automodule:: dolfin_mech.Operator_MicroPoro_DeformedSurfaceArea
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Operator\_MicroPoro\_DeformedTotalVolume module
+------------------------------------------------------------
+
+.. automodule:: dolfin_mech.Operator_MicroPoro_DeformedTotalVolume
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Operator\_Penalty\_DirectionalDisplacement module
+--------------------------------------------------------------
+
+.. automodule:: dolfin_mech.Operator_Penalty_DirectionalDisplacement
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Operator\_Penalty\_LagrangeMultiplierComponent module
+------------------------------------------------------------------
+
+.. automodule:: dolfin_mech.Operator_Penalty_LagrangeMultiplierComponent
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Operator\_Penalty\_MacroscopicStressComponent module
+-----------------------------------------------------------------
+
+.. automodule:: dolfin_mech.Operator_Penalty_MacroscopicStressComponent
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Operator\_Penalty\_MacroscopicStretchComponent module
+------------------------------------------------------------------
+
+.. automodule:: dolfin_mech.Operator_Penalty_MacroscopicStretchComponent
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Operator\_Penalty\_MacroscopicStretchSymmetry module
+-----------------------------------------------------------------
+
+.. automodule:: dolfin_mech.Operator_Penalty_MacroscopicStretchSymmetry
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Operator\_Penalty\_NormalDisplacement module
+---------------------------------------------------------
+
+.. automodule:: dolfin_mech.Operator_Penalty_NormalDisplacement
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Operator\_Poro\_Pf module
+--------------------------------------
+
+.. automodule:: dolfin_mech.Operator_Poro_Pf
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Operator\_Poro\_Wbulk module
+-----------------------------------------
+
+.. automodule:: dolfin_mech.Operator_Poro_Wbulk
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Operator\_Poro\_Wpore module
+-----------------------------------------
+
+.. automodule:: dolfin_mech.Operator_Poro_Wpore
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Operator\_Poro\_Wskel module
+-----------------------------------------
+
+.. automodule:: dolfin_mech.Operator_Poro_Wskel
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Problem module
+---------------------------
+
+.. automodule:: dolfin_mech.Problem
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Problem\_Elasticity module
+---------------------------------------
+
+.. automodule:: dolfin_mech.Problem_Elasticity
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Problem\_Homogenization module
+-------------------------------------------
+
+.. automodule:: dolfin_mech.Problem_Homogenization
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Problem\_Hyperelasticity module
+--------------------------------------------
+
+.. automodule:: dolfin_mech.Problem_Hyperelasticity
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Problem\_Hyperelasticity\_Inverse module
+-----------------------------------------------------
+
+.. automodule:: dolfin_mech.Problem_Hyperelasticity_Inverse
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Problem\_Hyperelasticity\_MicroPoro module
+-------------------------------------------------------
+
+.. automodule:: dolfin_mech.Problem_Hyperelasticity_MicroPoro
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Problem\_Hyperelasticity\_Poro module
+--------------------------------------------------
+
+.. automodule:: dolfin_mech.Problem_Hyperelasticity_Poro
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Problem\_Hyperelasticity\_PoroFlow module
+------------------------------------------------------
+
+.. automodule:: dolfin_mech.Problem_Hyperelasticity_PoroFlow
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Problem\_Hyperelasticity\_Poro\_Inverse module
+-----------------------------------------------------------
+
+.. automodule:: dolfin_mech.Problem_Hyperelasticity_Poro_Inverse
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.QOI module
+-----------------------
+
+.. automodule:: dolfin_mech.QOI
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.Step module
+------------------------
+
+.. automodule:: dolfin_mech.Step
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.SubDomain\_Periodic module
+---------------------------------------
+
+.. automodule:: dolfin_mech.SubDomain_Periodic
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.SubDomain\_Pinpoint module
+---------------------------------------
+
+.. automodule:: dolfin_mech.SubDomain_Pinpoint
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.SubSol module
+--------------------------
+
+.. automodule:: dolfin_mech.SubSol
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.TimeIntegrator module
+----------------------------------
+
+.. automodule:: dolfin_mech.TimeIntegrator
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.TimeVaryingConstant module
+---------------------------------------
+
+.. automodule:: dolfin_mech.TimeVaryingConstant
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.XDMFFile module
+----------------------------
+
+.. automodule:: dolfin_mech.XDMFFile
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.compute\_error module
+----------------------------------
+
+.. automodule:: dolfin_mech.compute_error
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.mesh2ugrid module
+------------------------------
+
+.. automodule:: dolfin_mech.mesh2ugrid
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.run\_Ball\_Hyperelasticity module
+----------------------------------------------
+
+.. automodule:: dolfin_mech.run_Ball_Hyperelasticity
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.run\_Ball\_Mesh module
+-----------------------------------
+
+.. automodule:: dolfin_mech.run_Ball_Mesh
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.run\_Disc\_Hyperelasticity module
+----------------------------------------------
+
+.. automodule:: dolfin_mech.run_Disc_Hyperelasticity
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.run\_Disc\_Mesh module
+-----------------------------------
+
+.. automodule:: dolfin_mech.run_Disc_Mesh
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.run\_HeartSlice\_Hyperelasticity module
+----------------------------------------------------
+
+.. automodule:: dolfin_mech.run_HeartSlice_Hyperelasticity
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.run\_HeartSlice\_Mesh module
+-----------------------------------------
+
+.. automodule:: dolfin_mech.run_HeartSlice_Mesh
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.run\_HollowBox\_Homogenization module
+--------------------------------------------------
+
+.. automodule:: dolfin_mech.run_HollowBox_Homogenization
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.run\_HollowBox\_Mesh module
+----------------------------------------
+
+.. automodule:: dolfin_mech.run_HollowBox_Mesh
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.run\_HollowBox\_MicroPoroHyperelasticity module
+------------------------------------------------------------
+
+.. automodule:: dolfin_mech.run_HollowBox_MicroPoroHyperelasticity
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.run\_Poroflow module
+---------------------------------
+
+.. automodule:: dolfin_mech.run_Poroflow
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.run\_RivlinCube\_Elasticity module
+-----------------------------------------------
+
+.. automodule:: dolfin_mech.run_RivlinCube_Elasticity
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.run\_RivlinCube\_Hyperelasticity module
+----------------------------------------------------
+
+.. automodule:: dolfin_mech.run_RivlinCube_Hyperelasticity
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.run\_RivlinCube\_Mesh module
+-----------------------------------------
+
+.. automodule:: dolfin_mech.run_RivlinCube_Mesh
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.run\_RivlinCube\_PoroHyperelasticity module
+--------------------------------------------------------
+
+.. automodule:: dolfin_mech.run_RivlinCube_PoroHyperelasticity
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dolfin\_mech.write\_VTU\_file module
+------------------------------------
+
+.. automodule:: dolfin_mech.write_VTU_file
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: dolfin_mech
+   :members:
+   :undoc-members:
+   :show-inheritance:
