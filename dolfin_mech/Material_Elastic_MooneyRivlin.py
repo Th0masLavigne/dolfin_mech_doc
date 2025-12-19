@@ -16,14 +16,76 @@ from .Material_Elastic import ElasticMaterial
 ################################################################################
 
 class MooneyRivlinElasticMaterial(ElasticMaterial):
+    Here is the updated code for the MooneyRivlinElasticMaterial class with comprehensive Sphinx/reST docstrings.
 
+This class implements the Mooney-Rivlin hyperelastic model, which is widely used for modeling rubber-like materials and biological tissues. The docstring accounts for both standard and isochoric-volumetric decoupled formulations across 2D (plane strain) and 3D dimensions.
 
+Python
 
+#coding=utf8
+
+################################################################################
+###                                                                          ###
+### Created by Martin Genet, 2018-2025                                       ###
+###                                                                          ###
+### École Polytechnique, Palaiseau, France                                   ###
+###                                                                          ###
+################################################################################
+
+import dolfin
+import dolfin_mech as dmech
+from .Material_Elastic import ElasticMaterial
+
+################################################################################
+
+class MooneyRivlinElasticMaterial(ElasticMaterial):
+    """
+    Class representing a Mooney-Rivlin hyperelastic material model.
+
+    The Mooney-Rivlin model is a phenomenological model for hyperelastic material 
+    behavior where the strain energy density is a linear function of the first 
+    and second invariants of the Right Cauchy-Green deformation tensor.
+
+    The strain energy density :math:`\Psi` depends on whether the formulation is 
+    coupled or decoupled (isochoric/volumetric split).
+
+    **Standard Coupled Formulation (decoup=False):**
+    
+    .. math::
+        \Psi_{3D} = C_2 (I_C^{II} - 3 - 4\ln(J))
+        
+    .. math::
+        \Psi_{2D} = C_2 (I_C^{II} + I_C^{I} - 3 - 4\ln(J))
+
+    **Decoupled Formulation (decoup=True):**
+    
+    Uses the isochoric invariants :math:`\\bar{I}_C^{I}` and :math:`\\bar{I}_C^{II}`:
+    
+    .. math::
+        \Psi_{3D} = C_2 (\\bar{I}_C^{II} - 3)
+
+    Attributes:
+        kinematics (Kinematics): Object containing kinematic variables and invariants.
+        C2 (float): Material constant associated with the second invariant.
+        Psi (UFL expression): Strain energy density.
+        Sigma (UFL expression): Second Piola-Kirchhoff stress tensor :math:`\mathbf{\Sigma}`.
+        P (UFL expression): First Piola-Kirchhoff stress tensor :math:`\mathbf{P}`.
+        sigma (UFL expression): Cauchy stress tensor :math:`\mathbf{\sigma}`.
+    """
     def __init__(self,
             kinematics,
             parameters,
             decoup=False):
+        """
+        Initializes the MooneyRivlinElasticMaterial.
 
+        :param kinematics: Kinematics object containing deformation tensors and invariants.
+        :type kinematics: dmech.Kinematics
+        :param parameters: Dictionary containing 'C2' (or parameters to derive it).
+        :type parameters: dict
+        :param decoup: If True, uses the isochoric-volumetric decoupled formulation.
+        :type decoup: bool, optional
+        """
         self.kinematics = kinematics
 
         self.C2 = self.get_C2_from_parameters(parameters)

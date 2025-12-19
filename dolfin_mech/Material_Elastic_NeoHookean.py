@@ -16,14 +16,55 @@ from .Material_Elastic import ElasticMaterial
 ################################################################################
 
 class NeoHookeanElasticMaterial(ElasticMaterial):
+    """
+    Class representing a Neo-Hookean hyperelastic material model.
 
+    The Neo-Hookean model is an extension of Hooke's law for large deformations. 
+    It is physically based on the statistical thermodynamics of polymer chains 
+    and is suitable for modeling rubber-like materials or biological tissues.
 
+    The strain energy density :math:`\Psi` depends on the formulation:
 
+    **Standard Coupled Formulation (decoup=False):**
+    
+    This is a compressible Neo-Hookean model where the volumetric part is 
+    handled via a logarithmic term.
+    
+    .. math::
+        \Psi_{3D} = C_1 (I_C - 3 - 2\ln(J))
+        
+    .. math::
+        \Psi_{2D} = C_1 (I_C - 2 - 2\ln(J))
+
+    **Decoupled Formulation (decoup=True):**
+    
+    Uses the isochoric (deviatoric) first invariant :math:`\\bar{I}_C = J^{-2/3} I_C`:
+    
+    .. math::
+        \Psi_{3D} = C_1 (\\bar{I}_C - 3)
+
+    Attributes:
+        kinematics (Kinematics): Kinematic variables (tensors and invariants).
+        C1 (float): Material constant (often :math:`\mu/2`).
+        Psi (UFL expression): Strain energy density.
+        Sigma (UFL expression): Second Piola-Kirchhoff stress tensor.
+        P (UFL expression): First Piola-Kirchhoff stress tensor.
+        sigma (UFL expression): Cauchy stress tensor.
+    """
     def __init__(self,
             kinematics,
             parameters,
             decoup=False):
+        """
+        Initializes the NeoHookeanElasticMaterial.
 
+        :param kinematics: Kinematics object containing deformation tensors.
+        :type kinematics: dmech.Kinematics
+        :param parameters: Dictionary containing 'C1' (shear-related parameter).
+        :type parameters: dict
+        :param decoup: If True, uses the isochoric-volumetric decoupled formulation.
+        :type decoup: bool, optional
+        """
         self.kinematics = kinematics
 
         self.C1 = self.get_C1_from_parameters(parameters)
