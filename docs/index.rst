@@ -69,6 +69,7 @@ But if you need to develop within the library, you need to install an editable v
    Constraint <dolfin_mech.Constraint>
    Loading <dolfin_mech.Loading>
    Problem <dolfin_mech.Problem>
+   Operator <dolfin_mech.Operator>
    Step <dolfin_mech.Step>
    Nonlinear Solver <dolfin_mech.NonlinearSolver>
    Time Integrator <dolfin_mech.TimeIntegrator>
@@ -109,7 +110,7 @@ But if you need to develop within the library, you need to install an editable v
    :caption: Operators
    :hidden:
 
-   Operator <dolfin_mech.Operator>
+   
    Contraint Macroscopic Stress Component <dolfin_mech.Operator_Constraint_MacroscopicStressComponent>
    Darcy Flow <dolfin_mech.Operator_DarcyFlow>
    Hyper-Elasticity <dolfin_mech.Operator_HyperElasticity>
@@ -137,6 +138,13 @@ But if you need to develop within the library, you need to install an editable v
    Poro Wskel <dolfin_mech.Operator_Poro_Wskel>
    
 
+.. toctree::
+   :maxdepth: 1
+   :caption: Problems
+   :hidden:
+
+   Elasticity <dolfin_mech.Problem_Elasticity>
+   Homogenization <dolfin_mech.Problem_Homogenization>
 
 .. toctree::
    :maxdepth: 1
