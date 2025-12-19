@@ -16,14 +16,50 @@ from .Material_Elastic import ElasticMaterial
 ################################################################################
 
 class OgdenCiarletGeymonatElasticMaterial(ElasticMaterial):
+    """
+    Class representing the Ciarlet-Geymonat volumetric elastic material model.
 
+    This model provides a strictly convex volumetric strain energy density 
+    functional. It is often used as the compressible part of a hyperelastic 
+    formulation to penalize volume changes and prevent element inversion.
 
+    The strain energy density :math:`\Psi` is defined as:
 
+    .. math::
+        \Psi = C_0 (J^2 - 1 - 2\ln(J))
+
+    Where:
+        - :math:`J = \det(\mathbf{F})` is the volume ratio (Jacobian).
+        - :math:`C_0` is a material parameter related to the bulk modulus.
+
+    The second Piola-Kirchhoff stress :math:`\mathbf{\Sigma}` is:
+
+    .. math::
+        \mathbf{\Sigma} = 2 C_0 (J^2 - 1) \mathbf{C}^{-1}
+
+    Attributes:
+        kinematics (Kinematics): Object containing kinematic variables (J, C_inv, etc.).
+        C0 (float): Material constant scaling the volumetric response.
+        Psi (UFL expression): Volumetric strain energy density.
+        Sigma (UFL expression): Second Piola-Kirchhoff stress tensor.
+        P (UFL expression): First Piola-Kirchhoff stress tensor.
+        sigma (UFL expression): Cauchy stress tensor.
+        checkJ (bool): If True, adds a conditional check to ensure :math:`J > 0` during stress evaluation.
+    """
     def __init__(self,
             kinematics,
             parameters,
             decoup=False):
+        """
+        Initializes the OgdenCiarletGeymonatElasticMaterial.
 
+        :param kinematics: Kinematics object containing deformation tensors and Jacobian.
+        :type kinematics: dmech.Kinematics
+        :param parameters: Dictionary containing 'C0'. Can also include 'checkJ' (bool).
+        :type parameters: dict
+        :param decoup: If True, indicates a decoupled formulation (passed to C0 getter).
+        :type decoup: bool, optional
+        """
         self.kinematics = kinematics
 
         self.C0 = self.get_C0_from_parameters(parameters, decoup)

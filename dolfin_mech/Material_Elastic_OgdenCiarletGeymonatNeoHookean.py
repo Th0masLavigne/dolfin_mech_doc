@@ -21,14 +21,76 @@ from .Material_Elastic import ElasticMaterial
 ################################################################################
 
 class OgdenCiarletGeymonatNeoHookeanElasticMaterial(ElasticMaterial):
+    Here is the updated code for the OgdenCiarletGeymonatNeoHookeanElasticMaterial class with Sphinx-style docstrings.
 
+This class represents a widely used hyperelastic formulation where the volumetric response (bulk) is governed by the Ciarlet-Geymonat potential and the deviatoric response (shear) is governed by the Neo-Hookean model. It also includes the computation of hydrostatic pressure and Von Mises stress equivalent.
 
+Python
 
+#coding=utf8
+
+################################################################################
+###                                                                          ###
+### Created by Martin Genet, 2018-2025                                       ###
+###                                                                          ###
+### École Polytechnique, Palaiseau, France                                   ###
+###                                                                          ###
+###                                                                          ###
+### And Mahdi Manoochehrtayebi, 2020-2024                                    ###
+###                                                                          ###
+### École Polytechnique, Palaiseau, France                                   ###
+###                                                                          ###
+################################################################################
+
+import dolfin 
+
+import dolfin_mech as dmech
+from .Material_Elastic import ElasticMaterial
+
+################################################################################
+
+class OgdenCiarletGeymonatNeoHookeanElasticMaterial(ElasticMaterial):
+    """
+    Class representing a composite hyperelastic material combining the 
+    Ciarlet-Geymonat and Neo-Hookean models.
+
+    This model provides a robust description of compressible hyperelasticity by 
+    additive decomposition of the strain energy density:
+
+    .. math::
+        \Psi_{total} = \Psi_{bulk}(J) + \Psi_{dev}(\mathbf{C})
+
+    Where:
+        - :math:`\Psi_{bulk}` is the Ciarlet-Geymonat potential (penalizing volume change).
+        - :math:`\Psi_{dev}` is the Neo-Hookean potential (governing shear response).
+
+    Beyond standard stress tensors, this class computes the hydrostatic pressure 
+    and the Von Mises equivalent of the Second Piola-Kirchhoff stress.
+
+    Attributes:
+        kinematics (Kinematics): Kinematic variables and deformation tensors.
+        bulk (OgdenCiarletGeymonatElasticMaterial): The volumetric component.
+        dev (NeoHookeanElasticMaterial): The deviatoric/shear component.
+        Psi (UFL expression): Total strain energy density.
+        Sigma (UFL expression): Total Second Piola-Kirchhoff stress tensor.
+        p_hydro (UFL expression): Hydrostatic pressure calculated as :math:`p = -\\frac{1}{3J} tr(\mathbf{\Sigma} \mathbf{C})`.
+        Sigma_dev (UFL expression): Deviatoric part of the Second Piola-Kirchhoff stress.
+        Sigma_VM (UFL expression): Von Mises equivalent stress.
+    """
     def __init__(self,
             kinematics,
             parameters,
             decoup=False):
+        """
+        Initializes the OgdenCiarletGeymonatNeoHookeanElasticMaterial.
 
+        :param kinematics: Kinematics object containing deformation tensors.
+        :type kinematics: dmech.Kinematics
+        :param parameters: Dictionary of material parameters (must satisfy both sub-models).
+        :type parameters: dict
+        :param decoup: If True, uses the isochoric-volumetric decoupled formulation.
+        :type decoup: bool, optional
+        """
         self.kinematics = kinematics
 
         self.bulk = dmech.OgdenCiarletGeymonatElasticMaterial(kinematics, parameters, decoup)
