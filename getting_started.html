@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>dolfin_mech.Operator_Loading_SurfacePressure &mdash; dolfin_mech  documentation</title>
+  <title>Getting Started &mdash; dolfin_mech  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
@@ -19,8 +19,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="dolfin_mech.QOI" href="dolfin_mech.QOI.html" />
-    <link rel="prev" title="dolfin_mech.Operator_Inertia" href="dolfin_mech.Operator_Inertia.html" /> 
+    <link rel="next" title="dolfin_mech.Problem" href="dolfin_mech.Problem.html" />
+    <link rel="prev" title="dolfin_mech" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -43,12 +43,12 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="index.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#prerequisites">Prerequisites</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#basic-workflow">Basic Workflow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#first-example-hyperelastic-ball">First Example: Hyperelastic Ball</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#basic-workflow">Basic Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#first-example-hyperelastic-ball">First Example: Hyperelastic Ball</a></li>
 </ul>
 </li>
 </ul>
@@ -73,12 +73,12 @@
 <li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Material_Elastic_Porous.html">Porous</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Operators</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Operator.html">Operator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Operator_HyperElasticity.html">Hyper-Elasticity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Operator_DarcyFlow.html">Darcy Flow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Operator_Inertia.html">Inertia</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Pressure Loading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfacePressure.html">Pressure Loading</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Utilities</span></p>
 <ul>
@@ -110,9 +110,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">dolfin_mech.Operator_Loading_SurfacePressure</li>
+      <li class="breadcrumb-item active">Getting Started</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/dolfin_mech.Operator_Loading_SurfacePressure.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/getting_started.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -120,16 +120,42 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="dolfin-mech-operator-loading-surfacepressure">
-<h1>dolfin_mech.Operator_Loading_SurfacePressure<a class="headerlink" href="#dolfin-mech-operator-loading-surfacepressure" title="Link to this heading"></a></h1>
+  <section id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading"></a></h1>
+<p><strong>dolfin_mech</strong> simplifies the implementation of complex mechanics problems. Below are the basic steps to set up a simulation.</p>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
+<p>Ensure you have a working FEniCS (2019.1.0) environment[cite: 17, 18].</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>dolfin_mech
+</pre></div>
+</div>
+</section>
+<section id="basic-workflow">
+<h2>Basic Workflow<a class="headerlink" href="#basic-workflow" title="Link to this heading"></a></h2>
+<p>Most simulations follow this pattern:</p>
+<ol class="arabic simple">
+<li><p><strong>Define Geometry</strong>: Load a mesh or generate one using built-in scripts like <code class="docutils literal notranslate"><span class="pre">run_Ball_Mesh.py</span></code>.</p></li>
+<li><p><strong>Select Material</strong>: Choose from Elastic, Inelastic, or Porous models[cite: 1, 13, 16].</p></li>
+<li><p><strong>Define Operators</strong>: Add physics (Inertia, Hyperelasticity, Darcy Flow)[cite: 4, 13].</p></li>
+<li><p><strong>Solve</strong>: Use the <code class="docutils literal notranslate"><span class="pre">NonlinearSolver</span></code> to find the solution.</p></li>
+</ol>
+</section>
+<section id="first-example-hyperelastic-ball">
+<h2>First Example: Hyperelastic Ball<a class="headerlink" href="#first-example-hyperelastic-ball" title="Link to this heading"></a></h2>
+<p>To run your first simulation of a hyperelastic ball under loading, use:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>dolfin_mech.run_Ball_Hyperelasticity
+</pre></div>
+</div>
+<p>This example demonstrates the core <code class="docutils literal notranslate"><span class="pre">Problem_Hyperelasticity</span></code> class and how to apply surface pressure.</p>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="dolfin_mech.Operator_Inertia.html" class="btn btn-neutral float-left" title="dolfin_mech.Operator_Inertia" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="dolfin_mech.QOI.html" class="btn btn-neutral float-right" title="dolfin_mech.QOI" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="dolfin_mech" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dolfin_mech.Problem.html" class="btn btn-neutral float-right" title="dolfin_mech.Problem" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
