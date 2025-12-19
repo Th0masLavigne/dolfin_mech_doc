@@ -62,12 +62,12 @@ But if you need to develop within the library, you need to install an editable v
    :maxdepth: 1
    :caption: Core API
    :hidden:
-
-   Problem <dolfin_mech.Problem>
-   Step <dolfin_mech.Step>
    Kinematics <dolfin_mech.Kinematics>
    Kinematics Inverse <dolfin_mech.Kinematics_Inverse>
    Kinematics Linearized <dolfin_mech.Kinematics_Linearized>
+   Constraint <dolfin_mech.Constraint>
+   Problem <dolfin_mech.Problem>
+   Step <dolfin_mech.Step>
    Nonlinear Solver <dolfin_mech.NonlinearSolver>
    Time Integrator <dolfin_mech.TimeIntegrator>
 
