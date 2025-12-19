@@ -58,7 +58,18 @@
 <li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Problem.html">Problem</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Step.html">Step</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Kinematics</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#dolfin_mech.Kinematics.Kinematics"><code class="docutils literal notranslate"><span class="pre">Kinematics</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin_mech.Kinematics.Kinematics"><code class="docutils literal notranslate"><span class="pre">Kinematics</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Kinematics.Kinematics.U"><code class="docutils literal notranslate"><span class="pre">Kinematics.U</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Kinematics.Kinematics.dim"><code class="docutils literal notranslate"><span class="pre">Kinematics.dim</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Kinematics.Kinematics.I"><code class="docutils literal notranslate"><span class="pre">Kinematics.I</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Kinematics.Kinematics.F"><code class="docutils literal notranslate"><span class="pre">Kinematics.F</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Kinematics.Kinematics.J"><code class="docutils literal notranslate"><span class="pre">Kinematics.J</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Kinematics.Kinematics.C"><code class="docutils literal notranslate"><span class="pre">Kinematics.C</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Kinematics.Kinematics.E"><code class="docutils literal notranslate"><span class="pre">Kinematics.E</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Kinematics.Kinematics.F_bar"><code class="docutils literal notranslate"><span class="pre">Kinematics.F_bar</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Kinematics.Kinematics.C_bar"><code class="docutils literal notranslate"><span class="pre">Kinematics.C_bar</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Kinematics_Inverse.html">Kinematics Inverse</a><ul>
@@ -182,28 +193,109 @@
 <dt class="sig sig-object py" id="dolfin_mech.Kinematics.Kinematics">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Kinematics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">U</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">U_old</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Q_expr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Kinematics.html#Kinematics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Kinematics.Kinematics" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<blockquote>
-<div><p>Class to compute and store kinematic quantities for non-linear solid mechanics.</p>
+<p>Class to compute and store kinematic quantities for non-linear solid mechanics.</p>
 <p>This class computes standard deformation tensors, their invariants, and
 isochoric (bar) versions based on the displacement field <span class="math notranslate nohighlight">\(\mathbf{U}\)</span>.
 It also supports time-stepping (old states) and local frame transformations.</p>
-<dl class="simple">
-<dt>Attributes:</dt><dd><p>U (dolfin.Function): The current displacement field.
-dim (int): Spatial dimension.
-I (dolfin.Identity): Identity tensor of dimension <code class="docutils literal notranslate"><span class="pre">dim</span></code>.
-F (ufl.Form): Deformation gradient tensor :math:<a href="#id1"><span class="problematic" id="id2">`</span></a>mathbf{F} = mathbf{I} +</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Kinematics.Kinematics.U">
+<span class="sig-name descname"><span class="pre">U</span></span><a class="headerlink" href="#dolfin_mech.Kinematics.Kinematics.U" title="Link to this definition"></a></dt>
+<dd><p>The current displacement field.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dolfin.Function</p>
 </dd>
 </dl>
-</div></blockquote>
-<dl class="simple">
-<dt>abla mathbf{U}`.</dt><dd><p>J (ufl.Form): Determinant of the deformation gradient <span class="math notranslate nohighlight">\(J = \det(\mathbf{F})\)</span>.
-C (ufl.Form): Right Cauchy-Green deformation tensor <span class="math notranslate nohighlight">\(\mathbf{C} = \mathbf{F}^T \mathbf{F}\)</span>.
-E (ufl.Form): Green-Lagrange strain tensor :math:<a href="#id3"><span class="problematic" id="id4">`</span></a>mathbf{E} =</p>
-</dd>
-<dt>rac{1}{2}(mathbf{C} - mathbf{I})`.</dt><dd><p>F_bar (ufl.Form): Isochoric deformation gradient <span class="math notranslate nohighlight">\(ar{\mathbf{F}} = J^{-1/d} \mathbf{F}\)</span>.
-C_bar (ufl.Form): Isochoric Right Cauchy-Green tensor <span class="math notranslate nohighlight">\(ar{\mathbf{C}} = ar{\mathbf{F}}^T ar{\mathbf{F}}\)</span>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Kinematics.Kinematics.dim">
+<span class="sig-name descname"><span class="pre">dim</span></span><a class="headerlink" href="#dolfin_mech.Kinematics.Kinematics.dim" title="Link to this definition"></a></dt>
+<dd><p>Spatial dimension.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Kinematics.Kinematics.I">
+<span class="sig-name descname"><span class="pre">I</span></span><a class="headerlink" href="#dolfin_mech.Kinematics.Kinematics.I" title="Link to this definition"></a></dt>
+<dd><p>Identity tensor of dimension <code class="docutils literal notranslate"><span class="pre">dim</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dolfin.Identity</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Kinematics.Kinematics.F">
+<span class="sig-name descname"><span class="pre">F</span></span><a class="headerlink" href="#dolfin_mech.Kinematics.Kinematics.F" title="Link to this definition"></a></dt>
+<dd><p>Deformation gradient tensor <span class="math notranslate nohighlight">\(\mathbf{F} = \mathbf{I} + \nabla \mathbf{U}\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ufl.Form</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Kinematics.Kinematics.J">
+<span class="sig-name descname"><span class="pre">J</span></span><a class="headerlink" href="#dolfin_mech.Kinematics.Kinematics.J" title="Link to this definition"></a></dt>
+<dd><p>Determinant of the deformation gradient <span class="math notranslate nohighlight">\(J = \det(\mathbf{F})\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ufl.Form</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Kinematics.Kinematics.C">
+<span class="sig-name descname"><span class="pre">C</span></span><a class="headerlink" href="#dolfin_mech.Kinematics.Kinematics.C" title="Link to this definition"></a></dt>
+<dd><p>Right Cauchy-Green deformation tensor <span class="math notranslate nohighlight">\(\mathbf{C} = \mathbf{F}^T \mathbf{F}\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ufl.Form</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Kinematics.Kinematics.E">
+<span class="sig-name descname"><span class="pre">E</span></span><a class="headerlink" href="#dolfin_mech.Kinematics.Kinematics.E" title="Link to this definition"></a></dt>
+<dd><p>Green-Lagrange strain tensor <span class="math notranslate nohighlight">\(\mathbf{E} = \{C} - \mathbf{I})\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ufl.Form</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Kinematics.Kinematics.F_bar">
+<span class="sig-name descname"><span class="pre">F_bar</span></span><a class="headerlink" href="#dolfin_mech.Kinematics.Kinematics.F_bar" title="Link to this definition"></a></dt>
+<dd><p>Isochoric deformation gradient <span class="math notranslate nohighlight">\(\bar{\mathbf{F}} = J^{-1/d} \mathbf{F}\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ufl.Form</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Kinematics.Kinematics.C_bar">
+<span class="sig-name descname"><span class="pre">C_bar</span></span><a class="headerlink" href="#dolfin_mech.Kinematics.Kinematics.C_bar" title="Link to this definition"></a></dt>
+<dd><p>Isochoric Right Cauchy-Green tensor <span class="math notranslate nohighlight">\(\bar{\mathbf{C}} = \bar{\mathbf{F}}^T \bar{\mathbf{F}}\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ufl.Form</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </section>
