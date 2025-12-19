@@ -19,9 +19,29 @@ import dolfin_mech as dmech
 #############################################################################
 
 class HomogenizationProblem():
+    """
+    Class for solving periodic homogenization problems in linear elasticity.
 
+    This class computes the effective elastic properties of a periodic unit cell
+    (microstructure) by solving corrector problems under various macroscopic 
+    strain states. It supports both 2D and 3D geometries and enforces periodic 
+    boundary conditions on the Representative Elementary Volume (REV).
 
+    
 
+    The effective stiffness tensor :math:`\mathbb{C}^{hom}` is obtained by 
+    averaging the micro-stresses over the unit cell volume :math:`V`:
+
+    .. math::
+        \Sigma_{ij} = \mathbb{C}^{hom}_{ijkl} E_{kl} = \\frac{1}{|V|} \int_{V} \sigma_{ij}(\mathbf{u}) \, dV
+
+    Attributes:
+        dim (int): Spatial dimension (2 or 3).
+        n_Voigt (int): Dimension of the Voigt notation vector (3 for 2D, 6 for 3D).
+        mesh (dolfin.Mesh): The mesh of the microstructure.
+        dV (dolfin.Measure): Integration measure over the domain.
+        mesh_V0 (float): Total volume/area of the solid part of the mesh.
+    """
     def __init__(self,
             dim,
             mesh,
@@ -29,7 +49,16 @@ class HomogenizationProblem():
             vol,
             bbox,
             vertices=None):
+        """
+        Initializes the HomogenizationProblem.
 
+        :param dim: Spatial dimension (2 or 3).
+        :param mesh: Dolfin mesh of the unit cell.
+        :param mat_params: Dictionary containing 'E' (Young's modulus) and 'nu' (Poisson's ratio).
+        :param vol: Total volume of the unit cell (including pores).
+        :param bbox: Bounding box of the unit cell for periodicity.
+        :param vertices: Vertices defining the periodicity directions.
+        """
         self.dim = dim
         if   (self.dim==2):
             self.n_Voigt = 3
@@ -54,19 +83,34 @@ class HomogenizationProblem():
 
 
     def eps(self, v):
+        """
+        Computes the symmetric strain tensor (micro-strain).
 
+        :param v: Displacement field.
+        :return: Symmetric part of the gradient of v.
+        """
         return dolfin.sym(dolfin.grad(v))
 
 
 
     def sigma(self, v, eps):
+        """
+        Computes the micro-stress tensor using the constitutive law.
 
+        The total strain is the sum of the macroscopic strain :math:`\mathbf{E}` 
+        and the local fluctuation strain :math:`\epsilon(\mathbf{v})`.
+
+        :param v: Fluctuation displacement field.
+        :param eps: Macroscopic strain tensor.
+        """
         return self.lmbda_s * dolfin.tr(eps + self.eps(v)) * dolfin.Identity(self.dim) + 2*self.mu_s * (eps + self.eps(v))
 
 
 
     def Voigt2strain(self, s):
-
+        """
+        Converts a Voigt notation vector to a second-order strain tensor.
+        """
         if (self.dim==2):
             return numpy.array([[s[0]   , s[2]/2.],
                                 [s[2]/2., s[1]   ]])
@@ -78,7 +122,9 @@ class HomogenizationProblem():
 
 
     def stress2Voigt(self, s):
-
+        """
+        Converts a second-order stress tensor to a Voigt notation vector.
+        """
         if (self.dim==2):
             return dolfin.as_vector([s[0,0], s[1,1], s[0,1]])
         if (self.dim==3):
@@ -87,7 +133,9 @@ class HomogenizationProblem():
 
 
     def get_macro_strain(self, i):
-
+        """
+        Generates a unit macroscopic strain tensor for the i-th Voigt component.
+        """
         if (self.dim==2):
             Eps_Voigt = numpy.zeros(3)
         if (self.dim==3):
@@ -98,7 +146,15 @@ class HomogenizationProblem():
 
 
     def get_lambda_and_mu(self):
+        """
+        Computes the homogenized Lamé coefficients by solving corrector problems.
 
+        This method solves :math:`n_{Voigt}` linear elastic problems on the REV with 
+        periodic boundary conditions and recovers the full homogenized stiffness 
+        matrix :math:`\mathbb{C}^{hom}`.
+
+        :return: Homogenized Lamé constants (lmbda_hom, mu_hom).
+        """
         Ve = dolfin.VectorElement("CG", self.mesh.ufl_cell(), 2)
         Re = dolfin.VectorElement("R", self.mesh.ufl_cell(), 0)
         W = dolfin.FunctionSpace(self.mesh, dolfin.MixedElement([Ve, Re]), constrained_domain=dmech.PeriodicSubDomain(self.dim, self.bbox, self.vertices))
@@ -149,7 +205,14 @@ class HomogenizationProblem():
 
 
     def get_kappa(self):
+        """
+        Computes the effective bulk modulus (kappa_tilde) of the microstructure.
 
+        This specific implementation calculates the effective bulk modulus 
+        under a pressure loading, considering the solid volume fraction change.
+
+        :return: Effective bulk modulus kappa_tilde.
+        """
         coord = self.mesh.coordinates()
         xmax = max(coord[:,0]); xmin = min(coord[:,0])
         ymax = max(coord[:,1]); ymin = min(coord[:,1])
