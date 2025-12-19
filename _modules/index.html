@@ -1,0 +1,228 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Overview: module code &mdash; dolfin_mech  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            dolfin_mech
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#basic-workflow">Basic Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#first-example-hyperelastic-ball">First Example: Hyperelastic Ball</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Core API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dolfin_mech.Problem.html">Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dolfin_mech.Step.html">Step</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dolfin_mech.Kinematics.html">Kinematics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dolfin_mech.Kinematics.html#dolfin_mech.Kinematics.Kinematics"><code class="docutils literal notranslate"><span class="pre">Kinematics</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dolfin_mech.Kinematics_Inverse.html">Kinematics Inverse</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dolfin_mech.Kinematics_Inverse.html#dolfin_mech.Kinematics_Inverse.InverseKinematics"><code class="docutils literal notranslate"><span class="pre">InverseKinematics</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dolfin_mech.Kinematics_Linearized.html">Kinematics Linearized</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dolfin_mech.Kinematics_Linearized.html#dolfin_mech.Kinematics_Linearized.LinearizedKinematics"><code class="docutils literal notranslate"><span class="pre">LinearizedKinematics</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dolfin_mech.NonlinearSolver.html">Nonlinear Solver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dolfin_mech.TimeIntegrator.html">Time Integrator</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Materials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dolfin_mech.Material.html">Material</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dolfin_mech.Material.html#dolfin_mech.Material.Material"><code class="docutils literal notranslate"><span class="pre">Material</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dolfin_mech.Material.html#dolfin_mech.Material.Material.get_C0_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_C0_from_parameters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dolfin_mech.Material.html#dolfin_mech.Material.Material.get_C1_and_C2_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_C1_and_C2_from_parameters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dolfin_mech.Material.html#dolfin_mech.Material.Material.get_C1_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_C1_from_parameters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dolfin_mech.Material.html#dolfin_mech.Material.Material.get_C2_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_C2_from_parameters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dolfin_mech.Material.html#dolfin_mech.Material.Material.get_G_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_G_from_parameters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dolfin_mech.Material.html#dolfin_mech.Material.Material.get_K_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_K_from_parameters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dolfin_mech.Material.html#dolfin_mech.Material.Material.get_lambda_and_mu_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_lambda_and_mu_from_parameters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dolfin_mech.Material.html#dolfin_mech.Material.Material.get_lambda_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_lambda_from_parameters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dolfin_mech.Material.html#dolfin_mech.Material.Material.get_mu_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_mu_from_parameters()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../dolfin_mech.Material.html#dolfin_mech.Material.material_factory"><code class="docutils literal notranslate"><span class="pre">material_factory()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dolfin_mech.Material_Elastic.html">Elastic Material</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dolfin_mech.Material_Elastic.html#dolfin_mech.Material_Elastic.ElasticMaterial"><code class="docutils literal notranslate"><span class="pre">ElasticMaterial</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dolfin_mech.Material_Inelastic.html">Inelastic Material</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dolfin_mech.Material_Inelastic.html#dolfin_mech.Material_Inelastic.InelasticMaterial"><code class="docutils literal notranslate"><span class="pre">InelasticMaterial</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dolfin_mech.Material_Elastic_Hooke.html">Hooke</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dolfin_mech.Material_Elastic_Hooke.html#dolfin_mech.Material_Elastic_Hooke.HookeBulkElasticMaterial"><code class="docutils literal notranslate"><span class="pre">HookeBulkElasticMaterial</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dolfin_mech.Material_Elastic_Hooke.html#dolfin_mech.Material_Elastic_Hooke.HookeDevElasticMaterial"><code class="docutils literal notranslate"><span class="pre">HookeDevElasticMaterial</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dolfin_mech.Material_Elastic_Hooke.html#dolfin_mech.Material_Elastic_Hooke.HookeElasticMaterial"><code class="docutils literal notranslate"><span class="pre">HookeElasticMaterial</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dolfin_mech.Material_Elastic_Kirchhoff.html">Kirchhoff</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dolfin_mech.Material_Elastic_Kirchhoff.html#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffBulkElasticMaterial"><code class="docutils literal notranslate"><span class="pre">KirchhoffBulkElasticMaterial</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dolfin_mech.Material_Elastic_Kirchhoff.html#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffDevElasticMaterial"><code class="docutils literal notranslate"><span class="pre">KirchhoffDevElasticMaterial</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dolfin_mech.Material_Elastic_Kirchhoff.html#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffElasticMaterial"><code class="docutils literal notranslate"><span class="pre">KirchhoffElasticMaterial</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dolfin_mech.Material_Elastic_NeoHookean.html">Neo-Hookean</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dolfin_mech.Material_Elastic_NeoHookean.html#dolfin_mech.Material_Elastic_NeoHookean.NeoHookeanElasticMaterial"><code class="docutils literal notranslate"><span class="pre">NeoHookeanElasticMaterial</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dolfin_mech.Material_Elastic_Porous.html">Porous</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dolfin_mech.Material_Elastic_Porous.html#dolfin_mech.Material_Elastic_Porous.PorousElasticMaterial"><code class="docutils literal notranslate"><span class="pre">PorousElasticMaterial</span></code></a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Operators</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dolfin_mech.Operator.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dolfin_mech.Operator_HyperElasticity.html">Hyper-Elasticity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dolfin_mech.Operator_DarcyFlow.html">Darcy Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dolfin_mech.Operator_Inertia.html">Inertia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dolfin_mech.Operator_Loading_SurfacePressure.html">Pressure Loading</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Utilities</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dolfin_mech.QOI.html">QOI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dolfin_mech.FOI.html">FOI</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dolfin_mech.FOI.html#dolfin_mech.FOI.FOI"><code class="docutils literal notranslate"><span class="pre">FOI</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dolfin_mech.FOI.html#dolfin_mech.FOI.FOI.update_interpolate"><code class="docutils literal notranslate"><span class="pre">FOI.update_interpolate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dolfin_mech.FOI.html#dolfin_mech.FOI.FOI.update_local_solver"><code class="docutils literal notranslate"><span class="pre">FOI.update_local_solver()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dolfin_mech.FOI.html#dolfin_mech.FOI.FOI.update_none"><code class="docutils literal notranslate"><span class="pre">FOI.update_none()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dolfin_mech.FOI.html#dolfin_mech.FOI.FOI.update_project"><code class="docutils literal notranslate"><span class="pre">FOI.update_project()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dolfin_mech.XDMFFile.html">XDMF File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dolfin_mech.compute_error.html">Compute Error</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dolfin_mech.run_Ball_Hyperelasticity.html">Ball Hyperelasticity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dolfin_mech.run_Disc_Hyperelasticity.html">Disc Hyperelasticity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dolfin_mech.run_HollowBox_MicroPoroHyperelasticity.html">Hollow Box MicroPoro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dolfin_mech.run_Poroflow.html">Poro-flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dolfin_mech.run_RivlinCube_PoroHyperelasticity.html">Rivlin Cube Poro</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">dolfin_mech</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Overview: module code</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>All modules for which code is available</h1>
+<ul><li><a href="dolfin_mech/Constraint.html">dolfin_mech.Constraint</a></li>
+<li><a href="dolfin_mech/Expression_MeshFunction_cpp.html">dolfin_mech.Expression_MeshFunction_cpp</a></li>
+<li><a href="dolfin_mech/FOI.html">dolfin_mech.FOI</a></li>
+<li><a href="dolfin_mech/Kinematics.html">dolfin_mech.Kinematics</a></li>
+<li><a href="dolfin_mech/Kinematics_Inverse.html">dolfin_mech.Kinematics_Inverse</a></li>
+<li><a href="dolfin_mech/Kinematics_Linearized.html">dolfin_mech.Kinematics_Linearized</a></li>
+<li><a href="dolfin_mech/Loading.html">dolfin_mech.Loading</a></li>
+<li><a href="dolfin_mech/Material.html">dolfin_mech.Material</a></li>
+<li><a href="dolfin_mech/Material_Elastic.html">dolfin_mech.Material_Elastic</a></li>
+<li><a href="dolfin_mech/Material_Elastic_ExponentialNeoHookean.html">dolfin_mech.Material_Elastic_ExponentialNeoHookean</a></li>
+<li><a href="dolfin_mech/Material_Elastic_ExponentialOgdenCiarletGeymonat.html">dolfin_mech.Material_Elastic_ExponentialOgdenCiarletGeymonat</a></li>
+<li><a href="dolfin_mech/Material_Elastic_Hooke.html">dolfin_mech.Material_Elastic_Hooke</a></li>
+<li><a href="dolfin_mech/Material_Elastic_Kirchhoff.html">dolfin_mech.Material_Elastic_Kirchhoff</a></li>
+<li><a href="dolfin_mech/Material_Elastic_Lung_Wbulk.html">dolfin_mech.Material_Elastic_Lung_Wbulk</a></li>
+<li><a href="dolfin_mech/Material_Elastic_Lung_Wpore.html">dolfin_mech.Material_Elastic_Lung_Wpore</a></li>
+<li><a href="dolfin_mech/Material_Elastic_Lung_Wskel.html">dolfin_mech.Material_Elastic_Lung_Wskel</a></li>
+<li><a href="dolfin_mech/Material_Elastic_MooneyRivlin.html">dolfin_mech.Material_Elastic_MooneyRivlin</a></li>
+<li><a href="dolfin_mech/Material_Elastic_NeoHookean.html">dolfin_mech.Material_Elastic_NeoHookean</a></li>
+<li><a href="dolfin_mech/Material_Elastic_NeoHookeanMooneyRivlin.html">dolfin_mech.Material_Elastic_NeoHookeanMooneyRivlin</a></li>
+<li><a href="dolfin_mech/Material_Elastic_OgdenCiarletGeymonat.html">dolfin_mech.Material_Elastic_OgdenCiarletGeymonat</a></li>
+<li><a href="dolfin_mech/Material_Elastic_OgdenCiarletGeymonatNeoHookean.html">dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookean</a></li>
+<li><a href="dolfin_mech/Material_Elastic_OgdenCiarletGeymonatNeoHookeanMooneyRivlin.html">dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookeanMooneyRivlin</a></li>
+<li><a href="dolfin_mech/Material_Elastic_Porous.html">dolfin_mech.Material_Elastic_Porous</a></li>
+<li><a href="dolfin_mech/Material_Inelastic.html">dolfin_mech.Material_Inelastic</a></li>
+</ul>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Martin Genet.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

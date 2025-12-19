@@ -1,0 +1,394 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>dolfin_mech.Material_Elastic_Kirchhoff &mdash; dolfin_mech  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            dolfin_mech
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started.html#basic-workflow">Basic Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started.html#first-example-hyperelastic-ball">First Example: Hyperelastic Ball</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Core API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.Problem.html">Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.Step.html">Step</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.Kinematics.html">Kinematics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dolfin_mech.Kinematics.html#dolfin_mech.Kinematics.Kinematics"><code class="docutils literal notranslate"><span class="pre">Kinematics</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.Kinematics_Inverse.html">Kinematics Inverse</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dolfin_mech.Kinematics_Inverse.html#dolfin_mech.Kinematics_Inverse.InverseKinematics"><code class="docutils literal notranslate"><span class="pre">InverseKinematics</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.Kinematics_Linearized.html">Kinematics Linearized</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dolfin_mech.Kinematics_Linearized.html#dolfin_mech.Kinematics_Linearized.LinearizedKinematics"><code class="docutils literal notranslate"><span class="pre">LinearizedKinematics</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.NonlinearSolver.html">Nonlinear Solver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.TimeIntegrator.html">Time Integrator</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Materials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.Material.html">Material</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dolfin_mech.Material.html#dolfin_mech.Material.Material"><code class="docutils literal notranslate"><span class="pre">Material</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../dolfin_mech.Material.html#dolfin_mech.Material.Material.get_C0_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_C0_from_parameters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dolfin_mech.Material.html#dolfin_mech.Material.Material.get_C1_and_C2_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_C1_and_C2_from_parameters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dolfin_mech.Material.html#dolfin_mech.Material.Material.get_C1_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_C1_from_parameters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dolfin_mech.Material.html#dolfin_mech.Material.Material.get_C2_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_C2_from_parameters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dolfin_mech.Material.html#dolfin_mech.Material.Material.get_G_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_G_from_parameters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dolfin_mech.Material.html#dolfin_mech.Material.Material.get_K_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_K_from_parameters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dolfin_mech.Material.html#dolfin_mech.Material.Material.get_lambda_and_mu_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_lambda_and_mu_from_parameters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dolfin_mech.Material.html#dolfin_mech.Material.Material.get_lambda_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_lambda_from_parameters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dolfin_mech.Material.html#dolfin_mech.Material.Material.get_mu_from_parameters"><code class="docutils literal notranslate"><span class="pre">Material.get_mu_from_parameters()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../dolfin_mech.Material.html#dolfin_mech.Material.material_factory"><code class="docutils literal notranslate"><span class="pre">material_factory()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.Material_Elastic.html">Elastic Material</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dolfin_mech.Material_Elastic.html#dolfin_mech.Material_Elastic.ElasticMaterial"><code class="docutils literal notranslate"><span class="pre">ElasticMaterial</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.Material_Inelastic.html">Inelastic Material</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dolfin_mech.Material_Inelastic.html#dolfin_mech.Material_Inelastic.InelasticMaterial"><code class="docutils literal notranslate"><span class="pre">InelasticMaterial</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.Material_Elastic_Hooke.html">Hooke</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dolfin_mech.Material_Elastic_Hooke.html#dolfin_mech.Material_Elastic_Hooke.HookeBulkElasticMaterial"><code class="docutils literal notranslate"><span class="pre">HookeBulkElasticMaterial</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dolfin_mech.Material_Elastic_Hooke.html#dolfin_mech.Material_Elastic_Hooke.HookeDevElasticMaterial"><code class="docutils literal notranslate"><span class="pre">HookeDevElasticMaterial</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dolfin_mech.Material_Elastic_Hooke.html#dolfin_mech.Material_Elastic_Hooke.HookeElasticMaterial"><code class="docutils literal notranslate"><span class="pre">HookeElasticMaterial</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.Material_Elastic_Kirchhoff.html">Kirchhoff</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dolfin_mech.Material_Elastic_Kirchhoff.html#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffBulkElasticMaterial"><code class="docutils literal notranslate"><span class="pre">KirchhoffBulkElasticMaterial</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dolfin_mech.Material_Elastic_Kirchhoff.html#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffDevElasticMaterial"><code class="docutils literal notranslate"><span class="pre">KirchhoffDevElasticMaterial</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dolfin_mech.Material_Elastic_Kirchhoff.html#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffElasticMaterial"><code class="docutils literal notranslate"><span class="pre">KirchhoffElasticMaterial</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.Material_Elastic_NeoHookean.html">Neo-Hookean</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dolfin_mech.Material_Elastic_NeoHookean.html#dolfin_mech.Material_Elastic_NeoHookean.NeoHookeanElasticMaterial"><code class="docutils literal notranslate"><span class="pre">NeoHookeanElasticMaterial</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.Material_Elastic_Porous.html">Porous</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dolfin_mech.Material_Elastic_Porous.html#dolfin_mech.Material_Elastic_Porous.PorousElasticMaterial"><code class="docutils literal notranslate"><span class="pre">PorousElasticMaterial</span></code></a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Operators</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.Operator.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.Operator_HyperElasticity.html">Hyper-Elasticity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.Operator_DarcyFlow.html">Darcy Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.Operator_Inertia.html">Inertia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.Operator_Loading_SurfacePressure.html">Pressure Loading</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Utilities</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.QOI.html">QOI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.FOI.html">FOI</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dolfin_mech.FOI.html#dolfin_mech.FOI.FOI"><code class="docutils literal notranslate"><span class="pre">FOI</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../dolfin_mech.FOI.html#dolfin_mech.FOI.FOI.update_interpolate"><code class="docutils literal notranslate"><span class="pre">FOI.update_interpolate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dolfin_mech.FOI.html#dolfin_mech.FOI.FOI.update_local_solver"><code class="docutils literal notranslate"><span class="pre">FOI.update_local_solver()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dolfin_mech.FOI.html#dolfin_mech.FOI.FOI.update_none"><code class="docutils literal notranslate"><span class="pre">FOI.update_none()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dolfin_mech.FOI.html#dolfin_mech.FOI.FOI.update_project"><code class="docutils literal notranslate"><span class="pre">FOI.update_project()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.XDMFFile.html">XDMF File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.compute_error.html">Compute Error</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.run_Ball_Hyperelasticity.html">Ball Hyperelasticity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.run_Disc_Hyperelasticity.html">Disc Hyperelasticity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.run_HollowBox_MicroPoroHyperelasticity.html">Hollow Box MicroPoro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.run_Poroflow.html">Poro-flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dolfin_mech.run_RivlinCube_PoroHyperelasticity.html">Rivlin Cube Poro</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">dolfin_mech</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">dolfin_mech.Material_Elastic_Kirchhoff</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for dolfin_mech.Material_Elastic_Kirchhoff</h1><div class="highlight"><pre>
+<span></span><span class="c1">#coding=utf8</span>
+
+<span class="c1">################################################################################</span>
+<span class="c1">###                                                                          ###</span>
+<span class="c1">### Created by Martin Genet, 2018-2025                                       ###</span>
+<span class="c1">###                                                                          ###</span>
+<span class="c1">### École Polytechnique, Palaiseau, France                                   ###</span>
+<span class="c1">###                                                                          ###</span>
+<span class="c1">################################################################################</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">dolfin</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">dolfin_mech</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dmech</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.Material_Elastic</span><span class="w"> </span><span class="kn">import</span> <span class="n">ElasticMaterial</span>
+
+<span class="c1">################################################################################</span>
+
+<div class="viewcode-block" id="KirchhoffElasticMaterial">
+<a class="viewcode-back" href="../../dolfin_mech.Material_Elastic_Kirchhoff.html#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffElasticMaterial">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">KirchhoffElasticMaterial</span><span class="p">(</span><span class="n">ElasticMaterial</span><span class="p">):</span>
+
+
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+            <span class="n">kinematics</span><span class="p">,</span>
+            <span class="n">parameters</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span> <span class="o">=</span> <span class="n">kinematics</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">lmbda</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_lambda_from_parameters</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mu</span>    <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_mu_from_parameters</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">E</span> <span class="o">=</span> <span class="n">dolfin</span><span class="o">.</span><span class="n">variable</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">E</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">Psi</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lmbda</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">dolfin</span><span class="o">.</span><span class="n">tr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">E</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">mu</span> <span class="o">*</span> <span class="n">dolfin</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">E</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">E</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">Sigma</span> <span class="o">=</span> <span class="n">dolfin</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Psi</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">E</span><span class="p">)</span>
+        <span class="c1"># self.Sigma = self.lmbda * dolfin.tr(self.kinematics.E) * self.kinematics.I + 2 * self.mu * self.kinematics.E</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">dim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Sigma_ZZ</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbda</span> <span class="o">*</span> <span class="n">dolfin</span><span class="o">.</span><span class="n">tr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">E</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">P</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">F</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">Sigma</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">P</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">F</span><span class="o">.</span><span class="n">T</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">J</span></div>
+
+
+
+
+    <span class="c1"># def get_free_energy(self,</span>
+    <span class="c1">#         U=None,</span>
+    <span class="c1">#         C=None,</span>
+    <span class="c1">#         E=None):</span>
+
+    <span class="c1">#     E = self.get_E_from_U_C_or_E(U, C, E)</span>
+
+    <span class="c1">#     Psi = (self.lmbda/2) * dolfin.tr(E)**2 + self.mu * dolfin.inner(E, E)</span>
+    <span class="c1">#     Sigma = dolfin.diff(Psi, E)</span>
+
+    <span class="c1">#     # assert (E.ufl_shape[0] == E.ufl_shape[1])</span>
+    <span class="c1">#     # dim = E.ufl_shape[0]</span>
+    <span class="c1">#     # I = dolfin.Identity(dim)</span>
+    <span class="c1">#     # Sigma = self.lmbda * dolfin.tr(E) * I + 2 * self.mu * E</span>
+
+    <span class="c1">#     return Psi, Sigma</span>
+
+<span class="c1">################################################################################</span>
+
+<div class="viewcode-block" id="KirchhoffBulkElasticMaterial">
+<a class="viewcode-back" href="../../dolfin_mech.Material_Elastic_Kirchhoff.html#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffBulkElasticMaterial">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">KirchhoffBulkElasticMaterial</span><span class="p">(</span><span class="n">ElasticMaterial</span><span class="p">):</span>
+
+
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+            <span class="n">kinematics</span><span class="p">,</span>
+            <span class="n">parameters</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span> <span class="o">=</span> <span class="n">kinematics</span>
+
+        <span class="c1"># self.K = self.get_K_from_parameters(parameters)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lmbda</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mu</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_lambda_and_mu_from_parameters</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">K</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">dim</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">lmbda</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">mu</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">dim</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">Psi</span>   <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">dim</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">dolfin</span><span class="o">.</span><span class="n">tr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">E_sph</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Sigma</span> <span class="o">=</span>  <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">dim</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">K</span>    <span class="o">*</span>           <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">E_sph</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">dim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Sigma_ZZ</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">K</span> <span class="o">*</span> <span class="n">dolfin</span><span class="o">.</span><span class="n">tr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">E</span><span class="p">)</span>
+
+        <span class="c1"># self.P = dolfin.diff(self.Psi, self.kinematics.F) # MG20220426: Cannot do that for micromechanics problems</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">P</span>     <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">F</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">Sigma</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">P</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">F</span><span class="o">.</span><span class="n">T</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">J</span></div>
+
+
+
+
+    <span class="c1"># def get_free_energy(self,</span>
+    <span class="c1">#         U=None,</span>
+    <span class="c1">#         C=None,</span>
+    <span class="c1">#         E=None,</span>
+    <span class="c1">#         E_sph=None):</span>
+
+    <span class="c1">#     E_sph = self.get_E_sph_from_U_C_E_or_E_sph(</span>
+    <span class="c1">#         U, C, E, E_sph)</span>
+    <span class="c1">#     assert (E_sph.ufl_shape[0] == E_sph.ufl_shape[1])</span>
+    <span class="c1">#     dim = E_sph.ufl_shape[0]</span>
+
+    <span class="c1">#     Psi   = (dim*self.K/2) * dolfin.tr(E_sph)**2</span>
+    <span class="c1">#     Sigma =  dim*self.K    *           E_sph</span>
+
+    <span class="c1">#     return Psi, Sigma</span>
+
+
+
+    <span class="c1"># def get_PK2_stress(self,</span>
+    <span class="c1">#         U=None,</span>
+    <span class="c1">#         C=None,</span>
+    <span class="c1">#         E=None,</span>
+    <span class="c1">#         E_sph=None):</span>
+
+    <span class="c1">#     E_sph = self.get_E_sph_from_U_C_E_or_E_sph(</span>
+    <span class="c1">#         U, C, E, E_sph)</span>
+    <span class="c1">#     assert (E_sph.ufl_shape[0] == E_sph.ufl_shape[1])</span>
+    <span class="c1">#     dim = E_sph.ufl_shape[0]</span>
+
+    <span class="c1">#     Sigma = dim * self.K * E_sph</span>
+
+    <span class="c1">#     return Sigma</span>
+
+<span class="c1">################################################################################</span>
+
+<div class="viewcode-block" id="KirchhoffDevElasticMaterial">
+<a class="viewcode-back" href="../../dolfin_mech.Material_Elastic_Kirchhoff.html#dolfin_mech.Material_Elastic_Kirchhoff.KirchhoffDevElasticMaterial">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">KirchhoffDevElasticMaterial</span><span class="p">(</span><span class="n">ElasticMaterial</span><span class="p">):</span>
+
+
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+            <span class="n">kinematics</span><span class="p">,</span>
+            <span class="n">parameters</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span> <span class="o">=</span> <span class="n">kinematics</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">G</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_G_from_parameters</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">Psi</span>   <span class="o">=</span>   <span class="bp">self</span><span class="o">.</span><span class="n">G</span> <span class="o">*</span> <span class="n">dolfin</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">E_dev</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">E_dev</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Sigma</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">G</span> <span class="o">*</span>              <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">E_dev</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">dim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Sigma_ZZ</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">G</span><span class="o">/</span><span class="mi">3</span> <span class="o">*</span> <span class="n">dolfin</span><span class="o">.</span><span class="n">tr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">E</span><span class="p">)</span>
+
+        <span class="c1"># self.P     = dolfin.diff(self.Psi, self.kinematics.F)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">P</span>     <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">F</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">Sigma</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">P</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">F</span><span class="o">.</span><span class="n">T</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">J</span></div>
+
+
+
+
+    <span class="c1"># def get_free_energy(self,</span>
+    <span class="c1">#         U=None,</span>
+    <span class="c1">#         C=None,</span>
+    <span class="c1">#         E=None,</span>
+    <span class="c1">#         E_dev=None):</span>
+
+    <span class="c1">#     E_dev = self.get_E_dev_from_U_C_E_or_E_dev(</span>
+    <span class="c1">#         U, C, E, E_dev)</span>
+        
+    <span class="c1">#     Psi   =   self.G * dolfin.inner(E_dev, E_dev)</span>
+    <span class="c1">#     Sigma = 2*self.G *              E_dev</span>
+
+    <span class="c1">#     return Psi, Sigma</span>
+
+
+
+    <span class="c1"># def get_PK2_stress(self,</span>
+    <span class="c1">#         U=None,</span>
+    <span class="c1">#         C=None,</span>
+    <span class="c1">#         E=None,</span>
+    <span class="c1">#         E_dev=None):</span>
+
+    <span class="c1">#     E_dev = self.get_E_dev_from_U_C_E_or_E_dev(</span>
+    <span class="c1">#         U, C, E, E_dev)</span>
+        
+    <span class="c1">#     Sigma = 2*self.G * E_dev</span>
+
+    <span class="c1">#     return Sigma</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Martin Genet.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
