@@ -6,7 +6,7 @@ import sphinx_rtd_theme
 # Ajoute la racine du projet pour que Sphinx trouve dolfin_mech
 sys.path.insert(0, os.path.abspath('..'))
 
-# Mock des dépendances qui ne peuvent pas être installées sur GitHub (FEniCS + vos libs)
+# Mock des dépendances qui ne peuvent pas être installées sur GitHub (FEniCS + vos libs +petsc)
 MOCK_MODULES = [
     'dolfin', 
     'fenics', 
