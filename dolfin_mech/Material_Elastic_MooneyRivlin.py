@@ -9,30 +9,6 @@
 ################################################################################
 
 import dolfin
-
-import dolfin_mech as dmech
-from .Material_Elastic import ElasticMaterial
-
-################################################################################
-
-class MooneyRivlinElasticMaterial(ElasticMaterial):
-    Here is the updated code for the MooneyRivlinElasticMaterial class with comprehensive Sphinx/reST docstrings.
-
-This class implements the Mooney-Rivlin hyperelastic model, which is widely used for modeling rubber-like materials and biological tissues. The docstring accounts for both standard and isochoric-volumetric decoupled formulations across 2D (plane strain) and 3D dimensions.
-
-Python
-
-#coding=utf8
-
-################################################################################
-###                                                                          ###
-### Created by Martin Genet, 2018-2025                                       ###
-###                                                                          ###
-### École Polytechnique, Palaiseau, France                                   ###
-###                                                                          ###
-################################################################################
-
-import dolfin
 import dolfin_mech as dmech
 from .Material_Elastic import ElasticMaterial
 
