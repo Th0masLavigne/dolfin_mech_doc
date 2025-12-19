@@ -488,11 +488,11 @@ class MicroPoroHyperelasticityProblem(HyperelasticityProblem):
         The penalty contribution to the residual for a specific component :math:`(i,j)` is:
 
         .. math::
-            \delta \Pi_{comp} = \int_{\Omega} \eta (U_{ij} - \bar{U}_{ij}) \delta U_{ij} \, d\Omega
+            \delta \Pi_{comp} = \int_{\Omega} \eta (U_{ij} - \\bar{U}_{ij}) \delta U_{ij} \, d\Omega
 
         where:
             - :math:`\eta` is the penalty parameter (passed via ``pen_val``).
-            - :math:`\bar{U}_{ij}` is the target prescribed stretch value.
+            - :math:`\\bar{U}_{ij}` is the target prescribed stretch value.
 
         
 
@@ -1193,7 +1193,7 @@ class MicroPoroHyperelasticityProblem(HyperelasticityProblem):
         """
         Registers a Quantity of Interest (QOI) for the homogenized solid hydrostatic pressure.
 
-        This method calculates the macroscopic hydrostatic pressure :math:`\bar{p}_{hydro}` 
+        This method calculates the macroscopic hydrostatic pressure :math:`\\bar{p}_{hydro}` 
         by averaging the local hydrostatic pressure of the solid material over the 
         current total volume :math:`v` of the unit cell.
 
@@ -1252,7 +1252,7 @@ class MicroPoroHyperelasticityProblem(HyperelasticityProblem):
         maintain consistency with the integration over the solid mesh:
 
         .. math::
-            \bar{p}_f = \\frac{1}{V_{s0}} \int_{\Omega_s} p_f \, dV
+            \\bar{p}_f = \\frac{1}{V_{s0}} \int_{\Omega_s} p_f \, dV
 
         Since the fluid pressure may vary or be defined by different time-varying 
         functions in different steps, this method constructs a list of 
