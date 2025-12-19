@@ -80,6 +80,7 @@ But if you need to develop within the library, you need to install an editable v
 
    Material Base <dolfin_mech.Material>
    Elastic Base <dolfin_mech.Material_Elastic>
+..  
    Exponential Neo-Hookean Elastic <dolfin_mech.Material_Elastic_ExponentialNeoHookean>
    Exponential Ogden Ciarlet Geymonat Elastic <dolfin_mech.ExponentialOgdenCiarletGeymonatElasticMaterial>
    Hooke Elastic <dolfin_mech.Material_Elastic_Hooke>
