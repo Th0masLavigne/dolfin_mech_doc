@@ -26,9 +26,22 @@ import dolfin_mech as dmech
 ################################################################################
 
 class NonlinearSolver():
+    """
+    Class for solving nonlinear systems of equations using iterative methods.
 
+    This solver implements a Newton-Raphson scheme with support for various 
+    linear backends (PETSc/MUMPS) and relaxation (line-search) techniques 
+    to improve convergence for highly nonlinear problems.
 
-
+    Attributes:
+        problem (Problem): The nonlinear problem to be solved.
+        linear_solver_type (str): The backend used for linear solves ('petsc' or 'dolfin').
+        relax_type (str): The relaxation strategy ('constant', 'aitken', 'gss', 'backtracking').
+        sol_tol (list): Convergence tolerances for each sub-solution.
+        n_iter_max (int): Maximum number of Newton iterations allowed.
+        success (bool): Whether the solver converged in the last solve call.
+        k_iter (int): Current Newton iteration counter.
+    """
     def __init__(self,
             problem,
             parameters,
@@ -36,7 +49,22 @@ class NonlinearSolver():
             relax_parameters={},
             print_out=True,
             write_iter=False):
+        """
+        Initializes the NonlinearSolver.
 
+        :param problem: The mechanical problem instance.
+        :type problem: dmech.Problem
+        :param parameters: Solver parameters including 'linear_solver_type', 'sol_tol', and 'n_iter_max'.
+        :type parameters: dict
+        :param relax_type: Type of relaxation/line-search, defaults to "constant".
+        :type relax_type: str, optional
+        :param relax_parameters: Specific parameters for the chosen relaxation method.
+        :type relax_parameters: dict, optional
+        :param print_out: Output destination ('stdout', 'argv', or a filename), defaults to True.
+        :type print_out: bool or str, optional
+        :param write_iter: If True, writes solution files for every Newton iteration, defaults to False.
+        :type write_iter: bool, optional
+        """
         self.problem = problem
 
         self.default_linear_solver_type = "petsc"
@@ -140,7 +168,19 @@ class NonlinearSolver():
             k_t=None,
             dt=None,
             t=None):
+        """
+        Executes the nonlinear solve for a given time step.
 
+        Iteratively assembles the linear system, solves for the increment, 
+        updates the solution, and tests for convergence.
+
+        :param k_step: Current load step index.
+        :param k_t: Current time step index.
+        :param dt: Time increment size.
+        :param t: Current total time.
+        :return: (success, k_iter)
+        :rtype: tuple(bool, int)
+        """
         # write
         if (self.write_iter):
             xdmf_file_iter = dmech.XDMFFile(
@@ -211,7 +251,12 @@ class NonlinearSolver():
     def linear_solve(self,
             k_step=None,
             k_t=None):
+        """
+        Assembles and solves the linear tangent problem :math:`\mathbf{K} \delta \mathbf{u} = -\mathbf{R}`.
 
+        :return: True if the linear solve was successful.
+        :rtype: bool
+        """
         assemble_linear_system = self.assemble_linear_system()   
 
         if assemble_linear_system==False:
@@ -265,7 +310,12 @@ class NonlinearSolver():
 
 
     def assemble_linear_system(self):
+        """
+        Assembles the residual vector and Jacobian matrix.
 
+        This method handles standard integrals and special vertex-based integrals 
+        separately to accommodate specific dolfin constraints.
+        """
         # res_old
         if (self.k_iter > 1):
             if (hasattr(self, "res_old_vec")):
@@ -377,7 +427,9 @@ class NonlinearSolver():
 
 
     def eigen_solve(self):
-
+        """
+        Solves the eigenproblem for the Jacobian matrix to identify modal shapes.
+        """
         jac_eigensolver = dolfin.SLEPcEigenSolver(
             dolfin.as_backend_type(self.jac_mat))
 
@@ -428,7 +480,7 @@ class NonlinearSolver():
 
 
     def compute_dsol_norm(self):
-
+        """Computes and prints the L2 norm of the solution increment."""
         self.dsubsol_norm_lst = [subsol.dfunc.vector().norm("l2") for subsol in self.problem.subsols]
         for (k_subsol,subsol) in enumerate(self.problem.subsols):
             self.printer.print_sci("d"+subsol.name+"_norm",self.dsubsol_norm_lst[k_subsol])
@@ -436,7 +488,7 @@ class NonlinearSolver():
 
 
     def compute_relax_constant(self):
-
+        """Sets a constant relaxation factor :math:`\omega`."""
         if (self.k_iter == 1):
             self.relax = 1. # MG20180505: Otherwise Dirichlet boundary conditions are not correctly enforced
         else:
@@ -446,7 +498,7 @@ class NonlinearSolver():
 
 
     def compute_relax_aitken(self):
-
+        """Computes the relaxation factor using the Aitken dynamic method."""
         if (self.k_iter == 1):
             self.relax = 1. # MG20180505: Otherwise Dirichlet boundary conditions are not correctly enforced
         else:
@@ -456,7 +508,8 @@ class NonlinearSolver():
 
 
     def compute_relax_gss(self):
-
+        """Computes the optimal relaxation using a Golden Section Search on the potential energy."""
+        # Implementation of GSS logic
         if (self.k_iter == 1):
             self.relax = 1. # MG20180505: Otherwise Dirichlet boundary conditions are not correctly enforced
         else:
@@ -554,6 +607,7 @@ class NonlinearSolver():
                 self.printer.print_str("Warning! Optimal relaxation is null…")
 
     def compute_relax_backtracking(self):
+        """Computes relaxation using a backtracking line-search until residual is finite."""
         k_relax = 1
         self.printer.inc()
         while (True):
@@ -575,7 +629,7 @@ class NonlinearSolver():
 
 
     def update_sol(self):
-
+        """Updates the solution vector by adding the relaxed increment."""
         # for constraint in self.problem.constraints+self.problem.steps[k_step-1].constraints:
         #     print(constraint.bc.get_boundary_values())
         self.problem.sol_func.vector().axpy(
@@ -595,7 +649,7 @@ class NonlinearSolver():
 
 
     def compute_sol_norm(self):
-
+        """Computes and prints L2 norms for the current and previous solutions."""
         self.subsol_norm_lst = [subsol.func.vector().norm("l2") for subsol in self.problem.subsols]
         self.subsol_norm_old_lst = [subsol.func_old.vector().norm("l2") for subsol in self.problem.subsols]
         for (k_subsol,subsol) in enumerate(self.problem.subsols):
@@ -605,7 +659,7 @@ class NonlinearSolver():
 
 
     def compute_sol_err(self):
-
+        """Computes the relative error between current and old solution norms."""
         self.subsol_err_lst = [dmech.compute_error(
             val=self.dsubsol_norm_lst[k_subsol],
             ref=max(
@@ -617,5 +671,8 @@ class NonlinearSolver():
 
 
     def exit_test(self):
-
+        """
+        Checks if the solution error is below the tolerance for all sub-solutions.
+        Sets ``self.success`` accordingly.
+        """
         self.success = all([self.subsol_err_lst[k_subsol]<self.sol_tol[k_subsol] for k_subsol in range(len(self.problem.subsols)) if self.sol_tol[k_subsol] is not None])
