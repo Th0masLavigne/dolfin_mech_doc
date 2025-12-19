@@ -1,5 +1,4 @@
-name: Generate Documentation
-
+name: Documentation
 on:
   push:
     branches: [ master, main ]
@@ -22,19 +21,16 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          # Installation de Sphinx et du thème
           pip install sphinx sphinx-rtd-theme
-          # Installation des dépendances du setup.py en ignorant dolfin/fenics
-          # On installe les librairies de calcul de base nécessaires à l'analyse du code
+          # Installation des dépendances légères de votre setup.py
           pip install numpy matplotlib pandas meshio gmsh vtk
-          # On installe votre package en mode éditable pour que Sphinx le voit
-          pip install -e . --extra-index-url https://google.com/_/ # trick pour ignorer les pkg manquants si besoin
+          # Installation de dolfin_mech en mode éditable
+          pip install -e .
 
       - name: Build Sphinx Documentation
         run: |
-          # Création auto des fichiers .rst si vous ne les avez pas
-          # sphinx-apidoc -o docs/source/ dolfin_mech/
-          sphinx-build -b html docs/source docs/build
+          # On demande à Sphinx de lire le dossier docs/ et de build dans docs/build
+          sphinx-build -b html docs/ docs/build
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4

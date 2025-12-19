@@ -1,0 +1,35 @@
+import os
+import sys
+from unittest.mock import MagicMock
+
+# Ajoute la racine du projet pour que Sphinx trouve dolfin_mech
+sys.path.insert(0, os.path.abspath('..'))
+
+# Mock des dépendances qui ne peuvent pas être installées sur GitHub (FEniCS + vos libs)
+MOCK_MODULES = [
+    'dolfin', 
+    'fenics', 
+    'myPythonLibrary', 
+    'myVTKPythonLibrary', 
+    'vtkpython_cbl'
+]
+for mod_name in MOCK_MODULES:
+    sys.modules[mod_name] = MagicMock()
+
+# Configuration de base
+project = 'dolfin_mech'
+copyright = '2025, Martin Genet'
+author = 'Martin Genet'
+
+extensions = [
+    'sphinx.ext.autodoc',     # Extraction des docstrings
+    'sphinx.ext.napoleon',    # Support du format Google/NumPy
+    'sphinx.ext.viewcode',    # Lien vers le code source
+    'sphinx.ext.mathjax',     # Rendu des équations LaTeX
+]
+
+# Thème visuel
+html_theme = 'sphinx_rtd_theme'
+
+# Empêcher Sphinx de planter sur les erreurs d'importation mineures
+autodoc_inherit_docstrings = True
