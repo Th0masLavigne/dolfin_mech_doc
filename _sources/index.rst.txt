@@ -110,9 +110,16 @@ But if you need to develop within the library, you need to install an editable v
    :hidden:
 
    Operator <dolfin_mech.Operator>
-   Hyper-Elasticity <dolfin_mech.Operator_HyperElasticity>
+   Contraint Macroscopic Stress Component <dolfin_mech.Operator_Constraint_MacroscopicStressComponent>
    Darcy Flow <dolfin_mech.Operator_DarcyFlow>
+   Hyper-Elasticity <dolfin_mech.Operator_HyperElasticity>
+   Hyper Hydrostatic Pressure <dolfin_mech.Operator_HyperHydrostaticPressure>
+   Hyper Incompressibility <dolfin_mech.Operator_HyperIncompressibility>
    Inertia <dolfin_mech.Operator_Inertia>
+   Linearized Elasticity <dolfin_mech.Operator_LinearizedElasticity>
+   Linearized Hydrostatic Pressure <dolfin_mech.Operator_LinearizedHydrostaticPressure>
+
+
    Pressure Loading <dolfin_mech.Operator_Loading_SurfacePressure>
 
 
