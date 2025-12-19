@@ -21,7 +21,33 @@ from .Operator import Operator
 ################################################################################
 
 class MacroscopicStressComponentConstraintOperator(Operator):
+    """
+    Operator to enforce a constraint on a single component of the macroscopic stress tensor.
 
+    In multiscale mechanics, this operator is used to prescribe the macroscopic stress 
+    component :math:`\bar{\sigma}_{ij}` on a Representative Elementary Volume (REV). 
+    It relates the microscopic state (stresses and volume changes) to the 
+    desired macroscopic loading.
+
+    The residual contribution follows the volume-averaged equilibrium:
+    
+    .. math::
+        \mathcal{R} = \delta\bar{U}_{ij} \int_{\Omega_0} \left( \\tilde{\sigma}_{ij} - \\frac{v}{V_{s0}} \bar{\sigma}_{ij} \\right) d\Omega_0
+
+    Where:
+        - :math:`\\tilde{\sigma}` is the corrected microscopic stress accounting for pore pressure.
+        - :math:`v` is the current volume of the REV.
+        - :math:`V_{s0}` is the initial solid volume.
+        - :math:`\bar{\sigma}_{ij}` is the target macroscopic stress component.
+
+    Attributes:
+        kinematics (Kinematics): Microscopic kinematic variables.
+        material (Material): Microscopic material law.
+        measure (dolfin.Measure): Integration measure (typically ``dx``).
+        tv_pf (TimeVaryingConstant): Time-varying pore pressure :math:`p_f`.
+        tv_sigma_bar_ij (TimeVaryingConstant): Time-varying target macroscopic stress :math:`\bar{\sigma}_{ij}`.
+        res_form (UFL Form): The resulting residual variational form.
+    """
     def __init__(self,
             U_bar, U_bar_test,
             kinematics,
@@ -32,7 +58,28 @@ class MacroscopicStressComponentConstraintOperator(Operator):
             N,
             sigma_bar_ij_val=None, sigma_bar_ij_ini=None, sigma_bar_ij_fin=None,
             pf_val=None, pf_ini=None, pf_fin=None):
+        """
+        Initializes the MacroscopicStressComponentConstraintOperator.
 
+        :param U_bar: Macroscopic displacement gradient tensor.
+        :type U_bar: dolfin.Coefficient
+        :param U_bar_test: Test function associated with the macroscopic displacement gradient.
+        :type U_bar_test: dolfin.Argument
+        :param kinematics: Microscopic kinematics object.
+        :param material: Microscopic material object providing the stress tensor.
+        :param V0: Initial total volume of the REV.
+        :param Vs0: Initial solid volume of the REV.
+        :param i: Row index of the stress component to constrain.
+        :param j: Column index of the stress component to constrain.
+        :param measure: Dolfin measure for integration.
+        :param N: Normal vector (if applicable for surface constraints).
+        :param sigma_bar_ij_val: Static value for target macroscopic stress.
+        :param sigma_bar_ij_ini: Initial value for time-varying macroscopic stress.
+        :param sigma_bar_ij_fin: Final value for time-varying macroscopic stress.
+        :param pf_val: Static value for pore pressure.
+        :param pf_ini: Initial value for time-varying pore pressure.
+        :param pf_fin: Final value for time-varying pore pressure.
+        """
         self.kinematics = kinematics
         self.material = material
         self.measure  = measure
@@ -59,6 +106,11 @@ class MacroscopicStressComponentConstraintOperator(Operator):
 
     def set_value_at_t_step(self,
             t_step):
+        """
+        Updates the target macroscopic stress and pore pressure constants for the current time step.
 
+        :param t_step: Current time step (0.0 to 1.0).
+        :type t_step: float
+        """
         self.tv_pf.set_value_at_t_step(t_step)
         self.tv_sigma_bar_ij.set_value_at_t_step(t_step)
