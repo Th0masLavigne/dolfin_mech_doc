@@ -12,6 +12,7 @@ MOCK_MODULES = [
     'fenics', 
     'ufl', 
     'petsc4py',
+    'petsc4py.PETSc',
     'numpy', 
     'matplotlib', 
     'matplotlib.pyplot',
