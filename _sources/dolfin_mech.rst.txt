@@ -1,6 +1,11 @@
 dolfin\_mech package
 ====================
 
+.. automodule:: dolfin_mech
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Submodules
 ----------
 
@@ -712,14 +717,6 @@ dolfin\_mech.write\_VTU\_file module
 ------------------------------------
 
 .. automodule:: dolfin_mech.write_VTU_file
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: dolfin_mech
    :members:
    :undoc-members:
    :show-inheritance:

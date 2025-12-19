@@ -19,7 +19,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="dolfin_mech" href="modules.html" /> 
+    <link rel="next" title="dolfin_mech package" href="dolfin_mech.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,7 +47,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">dolfin_mech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.html">dolfin_mech package</a></li>
 </ul>
 
         </div>
@@ -76,13 +76,50 @@
              
   <section id="dolfin-mech">
 <h1>dolfin_mech<a class="headerlink" href="#dolfin-mech" title="Link to this heading"></a></h1>
+<a class="reference external image-reference" href="https://doi.org/10.5281/zenodo.8010870"><img alt="https://zenodo.org/badge/DOI/10.5281/zenodo.8010870.svg?style=flat-square" src="https://zenodo.org/badge/DOI/10.5281/zenodo.8010870.svg?style=flat-square" />
+</a>
+<a class="reference external image-reference" href="https://pypi.org/project/dolfin-mech"><img alt="https://img.shields.io/pypi/v/dolfin-mech.svg?style=flat-square" src="https://img.shields.io/pypi/v/dolfin-mech.svg?style=flat-square" />
+</a>
 <a class="reference external image-reference" href="https://github.com/mgenet/dolfin_mech/blob/master/LICENSE"><img alt="https://img.shields.io/github/license/mgenet/dolfin_mech" src="https://img.shields.io/github/license/mgenet/dolfin_mech" />
 </a>
-<p><strong>dolfin_mech</strong> is a Python library for computational mechanics based on FEniCS.</p>
-<div class="toctree-wrapper compound">
+<a class="reference external image-reference" href="https://pepy.tech/projects/dolfin-mech"><img alt="https://static.pepy.tech/badge/dolfin-mech" src="https://static.pepy.tech/badge/dolfin-mech" />
+</a>
+<p><strong>dolfin_mech</strong> is a Python library for computational mechanics based on FEniCS. The library has notably been used in:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://doi.org/10.1016/j.clinbiomech.2019.08.015">Genet (2019). A relaxed growth modeling framework for controlling growth-induced residual stresses. Clinical Biomechanics.</a></p></li>
+<li><p><a class="reference external" href="https://doi.org/10.1016/j.ijengsci.2021.103586">Álvarez-Barrientos, Hurtado &amp; Genet (2021). Pressure-driven micro-poro-mechanics: A variational framework for modeling the response of porous materials. International Journal of Engineering Science.</a></p></li>
+<li><p><a class="reference external" href="https://doi.org/10.1007/s10237-021-01547-0">Patte, Genet &amp; Chapelle (2022). A quasi-static poromechanical model of the lungs. Biomechanics and Modeling in Mechanobiology.</a></p></li>
+<li><p><a class="reference external" href="https://doi.org/10.1115/1.4054106">Patte, Brillet, Fetita, Gille, Bernaudin, Nunes, Chapelle &amp; Genet (2022). Estimation of regional pulmonary compliance in idiopathic pulmonary fibrosis based on personalized lung poromechanical modeling. Journal of Biomechanical Engineering.</a></p></li>
+<li><p><a class="reference external" href="https://doi.org/10.1016/j.jmbbm.2022.105600">Tueni, Allain &amp; Genet (2023). On the structural origin of the anisotropy in the myocardium: Multiscale modeling and analysis. Journal of the Mechanical Behavior of Biomedical Materials.</a></p></li>
+<li><p><a class="reference external" href="https://doi.org/10.1007/s10237-023-01691-9">Laville, Fetita, Gille, Brillet, Nunes, Bernaudin &amp; Genet (2023). Comparison of optimization parametrizations for regional lung compliance estimation using personalized pulmonary poromechanical modeling. Biomechanics and Modeling in Mechanobiology.</a></p></li>
+<li><p><a class="reference external" href="https://doi.org/10.1007/s10237-024-01876-w">Peyraut &amp; Genet (2024). A model of mechanical loading of the lungs including gravity and a balancing heterogeneous pleural pressure. Biomechanics and Modeling in Mechanobiology.</a></p></li>
+<li><p><a class="reference external" href="https://doi.org/10.5802/crmeca.279">Peyraut &amp; Genet (2025). Finite strain formulation of the discrete equilibrium gap principle: application to direct parameter estimation from large full-fields measurements. Comptes Rendus Mécanique.</a></p></li>
+<li><p><a class="reference external" href="https://doi.org/10.1016/j.ijsolstr.2025.113354">Manoochehrtayebi, Bel-Brunon &amp; Genet (2025). Finite strain micro-poro-mechanics: Formulation and compared analysis with macro-poro-mechanics. International Journal of Solids and Structures.</a></p></li>
+<li><p><a class="reference external" href="https://doi.org/10.1115/1.4068578">Peyraut &amp; Genet (2025). Inverse Uncertainty Quantification for Personalized Biomechanical Modeling: Application to Pulmonary Poromechanical Digital Twins. Journal of Biomechanical Engineering.</a></p></li>
+<li><p><a class="reference external" href="https://doi.org/10.1115/1.4070036">Manoochehrtayebi, Genet &amp; Bel-Brunon (2025). Micro-poro-mechanical modeling of lung parenchyma: Theoretical modeling and parameters identification. Journal of Biomechanical Engineering.</a></p></li>
+</ul>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
+<p>A working installation of <a class="reference external" href="https://fenicsproject.org">FEniCS</a> (version 2019.1.0) is required to run <code class="docutils literal notranslate"><span class="pre">dolfin_mech</span></code>.</p>
+<p>To setup a system, the simplest is to use <a class="reference external" href="https://conda.io">conda</a>: first install <a class="reference external" href="https://docs.conda.io/projects/miniconda/en/latest">miniconda</a> (note that for Microsoft Windows machines you first need to install WSL, the <a class="reference external" href="https://learn.microsoft.com/en-us/windows/wsl/install">Windows Subsystem for Linux</a>, and then install miniconda for linux inside the WSL), and then install the necessary packages:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>-y<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>-n<span class="w"> </span>dolfin_mech<span class="w"> </span><span class="nv">fenics</span><span class="o">=</span><span class="m">2019</span>.1.0<span class="w"> </span><span class="nv">matplotlib</span><span class="o">=</span><span class="m">3</span>.5<span class="w"> </span><span class="nv">meshio</span><span class="o">=</span><span class="m">5</span>.3<span class="w"> </span><span class="nv">mpi4py</span><span class="o">=</span><span class="m">3</span>.1.3<span class="w"> </span><span class="nv">numpy</span><span class="o">=</span><span class="m">1</span>.23<span class="w"> </span><span class="nv">pandas</span><span class="o">=</span><span class="m">1</span>.3<span class="w"> </span>pip<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.10<span class="w"> </span><span class="nv">vtk</span><span class="o">=</span><span class="m">9</span>.2
+conda<span class="w"> </span>activate<span class="w"> </span>dolfin_mech
+</pre></div>
+</div>
+<p>Now, if you only need to use the library, you can install it with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>dolfin_mech
+</pre></div>
+</div>
+<p>But if you need to develop within the library, you need to install an editable version of the sources:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/mgenet/dolfin_mech.git
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>dolfin_mech/.
+</pre></div>
 </div>
 <div class="toctree-wrapper compound">
 </div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
 </section>
 <section id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading"></a></h1>
@@ -97,7 +134,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="modules.html" class="btn btn-neutral float-right" title="dolfin_mech" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="dolfin_mech.html" class="btn btn-neutral float-right" title="dolfin_mech package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

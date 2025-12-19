@@ -1,7 +1,0 @@
-dolfin_mech
-===========
-
-.. toctree::
-   :maxdepth: 4
-
-   dolfin_mech
