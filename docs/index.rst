@@ -19,6 +19,7 @@ dolfin_mech
    :hidden:
 
    modules
+   
 
 Indices and tables
 ==================
