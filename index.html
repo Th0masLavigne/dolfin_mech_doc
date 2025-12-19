@@ -19,7 +19,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="dolfin_mech" href="dolfin_mech.html" /> 
+    <link rel="next" title="dolfin_mech.Problem" href="dolfin_mech.Problem.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,9 +45,41 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<p class="caption" role="heading"><span class="caption-text">Core API</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.html">dolfin_mech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Problem.html">dolfin_mech.Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Step.html">dolfin_mech.Step</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Kinematics.html">dolfin_mech.Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Kinematics_Inverse.html">dolfin_mech.Kinematics_Inverse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Kinematics_Linearized.html">dolfin_mech.Kinematics_Linearized</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.NonlinearSolver.html">dolfin_mech.NonlinearSolver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.TimeIntegrator.html">dolfin_mech.TimeIntegrator</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Materials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Material.html">dolfin_mech.Material</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Material_Elastic.html">dolfin_mech.Material_Elastic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Material_Inelastic.html">dolfin_mech.Material_Inelastic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Material_Elastic_Hooke.html">dolfin_mech.Material_Elastic_Hooke</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Material_Elastic_Kirchhoff.html">dolfin_mech.Material_Elastic_Kirchhoff</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Material_Elastic_NeoHookean.html">dolfin_mech.Material_Elastic_NeoHookean</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Material_Elastic_Porous.html">dolfin_mech.Material_Elastic_Porous</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Operators</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Operator.html">dolfin_mech.Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Operator_HyperElasticity.html">dolfin_mech.Operator_HyperElasticity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Operator_DarcyFlow.html">dolfin_mech.Operator_DarcyFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Operator_Inertia.html">dolfin_mech.Operator_Inertia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Operator_Poro_Pf.html">dolfin_mech.Operator_Poro_Pf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Operator_Loading_SurfacePressure.html">dolfin_mech.Operator_Loading_SurfacePressure</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Utilities</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.QOI.html">dolfin_mech.QOI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.FOI.html">dolfin_mech.FOI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.XDMFFile.html">dolfin_mech.XDMFFile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.compute_error.html">dolfin_mech.compute_error</a></li>
 </ul>
 
         </div>
@@ -101,7 +133,7 @@
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
 <p>A working installation of <a class="reference external" href="https://fenicsproject.org">FEniCS</a> (version 2019.1.0) is required to run <code class="docutils literal notranslate"><span class="pre">dolfin_mech</span></code>.</p>
-<p>To setup a system, the simplest is to use <a class="reference external" href="https://conda.io">conda</a>: first install <a class="reference external" href="https://docs.conda.io/projects/miniconda/en/latest">miniconda</a> (note that for Microsoft Windows machines you first need to install WSL, the <a class="reference external" href="https://learn.microsoft.com/en-us/windows/wsl/install">Windows Subsystem for Linux</a>, and then install miniconda for linux inside the WSL), and then install the necessary packages:</p>
+<p>To setup a system, the simplest is to use <a class="reference external" href="https://conda.io">conda</a>: first install <a class="reference external" href="https://docs.conda.io/projects/miniconda/en/latest">miniconda</a> (note that for Microsoft Windows machines you first need to install WSL, the <a class="reference external" href="https://learn.microsoft.com/en-us/windows/wsl/install">Windows Subsystem for Linux</a>, and then install miniconda for linux inside the WSL), and then install the necessarys:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>-y<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>-n<span class="w"> </span>dolfin_mech<span class="w"> </span><span class="nv">fenics</span><span class="o">=</span><span class="m">2019</span>.1.0<span class="w"> </span><span class="nv">matplotlib</span><span class="o">=</span><span class="m">3</span>.5<span class="w"> </span><span class="nv">meshio</span><span class="o">=</span><span class="m">5</span>.3<span class="w"> </span><span class="nv">mpi4py</span><span class="o">=</span><span class="m">3</span>.1.3<span class="w"> </span><span class="nv">numpy</span><span class="o">=</span><span class="m">1</span>.23<span class="w"> </span><span class="nv">pandas</span><span class="o">=</span><span class="m">1</span>.3<span class="w"> </span>pip<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.10<span class="w"> </span><span class="nv">vtk</span><span class="o">=</span><span class="m">9</span>.2
 conda<span class="w"> </span>activate<span class="w"> </span>dolfin_mech
 </pre></div>
@@ -119,10 +151,24 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 </div>
 <div class="toctree-wrapper compound">
 </div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 </section>
 <section id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+<section id="id1">
+<h1>Indices and tables<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
 <ul class="simple">
 <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
 <li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
@@ -134,7 +180,7 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="dolfin_mech.html" class="btn btn-neutral float-right" title="dolfin_mech" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="dolfin_mech.Problem.html" class="btn btn-neutral float-right" title="dolfin_mech.Problem" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
