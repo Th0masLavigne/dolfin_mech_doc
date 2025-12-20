@@ -103,6 +103,12 @@ But if you need to develop within the library, you need to install an editable v
    :hidden:
 
    Mesh2ugrid <dolfin_mech.mesh2ugrid>
+   Ball Mesh <dolfin_mech.run_Ball_Mesh>
+   Disc Mesh <dolfin_mech.run_Disc_Mesh>
+   Heart Slice Mesh <dolfin_mech.run_HeartSlice_Mesh>
+   Hollow Box Mesh <dolfin_mech.run_HollowBox_Mesh>
+   Rivlin Cube Mesh <dolfin_mech.run_RivlinCube_Mesh>
+   Mesh Function Expression (C++) <dolfin_mech.Expression_MeshFunction_cpp>
 
 
 .. toctree::
@@ -147,18 +153,25 @@ But if you need to develop within the library, you need to install an editable v
    Homogenization <dolfin_mech.Problem_Homogenization>
    Inverse Hyper-elasticity <dolfin_mech.Problem_Hyperelasticity_Inverse>
    MicroPoro Hyper-elasticity <dolfin_mech.Problem_Hyperelasticity_MicroPoro>
+   Inverse Porous Hyper-elasticity <dolfin_mech.Problem_Hyperelasticity_Poro_Inverse>
+   Porous Hyper-elasticity <dolfin_mech.Problem_Hyperelasticity_Poro>
+   Porous Darcy Flow Hyper-elasticity <dolfin_mech.Problem_Hyperelasticity_PoroFlow>
+   Hyper-elasticity <dolfin_mech.Problem_Hyperelasticity>
 
 .. toctree::
    :maxdepth: 1
    :caption: Utilities
    :hidden:
 
+   Subdomain Periodic <dolfin_mech.SubDomain_Periodic>
+   Subdomain Pinpoint <dolfin_mech.SubDomain_Pinpoint>
+   SubSol <dolfin_mech.SubSol>
    Field of Interest (FOI) <dolfin_mech.FOI>
    Quantity of Interest (QOI) <dolfin_mech.QOI>
    XDMF File <dolfin_mech.XDMFFile>
+   write VTU file <dolfin_mech.write_VTU_file>
    Compute Error <dolfin_mech.compute_error>
-   Mesh Function Expression (C++) <dolfin_mech.Expression_MeshFunction_cpp>
-
+   Time Varying Constant <dolfin_mech.TimeVaryingConstant>
 
 .. toctree::
    :maxdepth: 1
@@ -168,8 +181,12 @@ But if you need to develop within the library, you need to install an editable v
    Ball Hyperelasticity <dolfin_mech.run_Ball_Hyperelasticity>
    Disc Hyperelasticity <dolfin_mech.run_Disc_Hyperelasticity>
    Heart Slice <dolfin_mech.run_HeartSlice_Hyperelasticity>
+   Hollow Box Homogenization <dolfin_mech.run_HollowBox_Homogenization>
    Hollow Box MicroPoro <dolfin_mech.run_HollowBox_MicroPoroHyperelasticity>
    Poro-flow <dolfin_mech.run_Poroflow>
+   Poro-flow from gmsh tagged mesh <dolfin_mech.run_Poroflow_from_msh>
+   Rivlin Cube Elasticity <dolfin_mech.run_RivlinCube_Elasticity>
+   Rivlin Cube Hyper-Elasticity <dolfin_mech.run_RivlinCube_Hyperelasticity>
    Rivlin Cube Poro <dolfin_mech.run_RivlinCube_PoroHyperelasticity>
 
 Indices and tables
