@@ -18,9 +18,27 @@ from .Operator_DarcyFlow import DarcyFlowOperator,PlFieldOperator,WbulkPoroFlowO
 ################################################################################
 
 class PoroFlowHyperelasticityProblem(HyperelasticityProblem):
+    """
+    Problem class for coupled Poro-Hyperelasticity with Darcy Flow.
 
+    This class models a deformable porous medium where fluid transport occurs 
+    through the solid skeleton. It solves a coupled system involving:
+    
+    1.  **Solid Mechanics**: Finite strain hyperelasticity for the skeleton.
+    2.  **Porosity Evolution**: Kinematic tracking of void volume fraction.
+    3.  **Fluid Dynamics**: Darcy flow driven by pressure gradients.
 
+    
 
+    **Key Variables:**
+    - :math:`\mathbf{u}`: Solid displacement.
+    - :math:`p_l`: Liquid (pore) pressure.
+    - :math:`\phi_s`: Solid volume fraction (porosity).
+
+    This formulation is essential for applications like tissue perfusion, 
+    hydrogels, or soil consolidation where fluid movement is transient 
+    and dependent on permeability.
+    """
     def __init__(self,
             mesh=None,
             define_facet_normals=False,
@@ -41,7 +59,16 @@ class PoroFlowHyperelasticityProblem(HyperelasticityProblem):
             pore_behavior=None,
             pore_behaviors=[],
             w_pressure_balancing_gravity=0):
+        """
+        Initializes the PoroFlowHyperelasticityProblem.
 
+        Sets up the finite element spaces for displacement, porosity, and the 
+        new liquid pressure field (:math:`p_l`).
+
+        :param displacement_degree: Polynomial degree for the displacement field.
+        :param porosity_known: Strategy for porosity ('Phis0' or 'phis').
+        :param w_pressure_balancing_gravity: Flag to enable gravity-pressure equilibrium operators.
+        """
         Problem.__init__(self)
 
         self.set_mesh(
@@ -121,7 +148,9 @@ class PoroFlowHyperelasticityProblem(HyperelasticityProblem):
 
     def set_known_and_unknown_porosity(self,
             porosity_known):
-
+        """
+        Sets the strategy for porosity variables (Primal vs Dual).
+        """
         self.porosity_known = porosity_known
         if (self.porosity_known == "Phis0"):
             self.porosity_unknown = "Phis"
@@ -133,7 +162,9 @@ class PoroFlowHyperelasticityProblem(HyperelasticityProblem):
     def init_known_porosity(self,
             porosity_init_val,
             porosity_init_fun):
-
+        """
+        Initializes the value of the known porosity field.
+        """
         if   (porosity_init_val is not None):
             setattr(self, self.porosity_known, dolfin.Constant(porosity_init_val))
         elif (porosity_init_fun is not None):
@@ -145,7 +176,9 @@ class PoroFlowHyperelasticityProblem(HyperelasticityProblem):
             degree,
             init_val=None,
             init_fun=None):
-
+        """
+        Adds the porosity sub-solution (scalar field).
+        """
         if (degree == 0):
             self.porosity_subsol = self.add_scalar_subsol(
                 name=self.porosity_unknown,
@@ -165,7 +198,9 @@ class PoroFlowHyperelasticityProblem(HyperelasticityProblem):
 
     def add_pressure_balancing_gravity_subsol(self,
             degree=1):
-
+        """
+        Adds the scalar field for gravity-balancing pressure.
+        """
         self.pressure_balancing_gravity_subsol = self.add_scalar_subsol(
             name="pressure_balancing_gravity",
             family="CG",
@@ -175,7 +210,9 @@ class PoroFlowHyperelasticityProblem(HyperelasticityProblem):
 
     def add_lmbda_subsol(self,
             init_val=None):
-
+        """
+        Adds the Lagrange multiplier for translation constraints.
+        """
         self.lmbda_subsol = self.add_vector_subsol(
             name="lmbda",
             family="R",
@@ -186,7 +223,9 @@ class PoroFlowHyperelasticityProblem(HyperelasticityProblem):
 
     def add_mu_subsol(self,
             init_val=None):
-
+        """
+        Adds the Lagrange multiplier for rotation constraints.
+        """
         self.mu_subsol = self.add_vector_subsol(
             name="mu",
             family="R",
@@ -196,7 +235,9 @@ class PoroFlowHyperelasticityProblem(HyperelasticityProblem):
 
     
     def add_gamma_subsol(self):
-
+        """
+        Adds the Lagrange multiplier for volume constraints.
+        """
         self.gamma_subsol = self.add_scalar_subsol(
             name="gamma",
             family="R",
@@ -205,7 +246,9 @@ class PoroFlowHyperelasticityProblem(HyperelasticityProblem):
 
 
     def get_deformed_center_of_mass(self):
-        
+        """
+        Calculates the current center of mass.
+        """
         M = dolfin.assemble(getattr(self, self.porosity_known)*self.dV)
         center_of_mass = numpy.empty(self.dim)
         for k_dim in range(self.dim):
@@ -215,7 +258,9 @@ class PoroFlowHyperelasticityProblem(HyperelasticityProblem):
 
 
     def add_deformed_center_of_mass_subsol(self):
-        
+        """
+        Adds the sub-solution tracking the deformed center of mass.
+        """
         self.deformed_center_of_mass_subsol = self.add_vector_subsol(
             name="xg",
             family="R",
@@ -229,7 +274,9 @@ class PoroFlowHyperelasticityProblem(HyperelasticityProblem):
             porosity_degree=None,
             porosity_init_val=None,
             porosity_init_fun=None):
-
+        """
+        Configures the solution variables: Displacement, Porosity, and Liquid Pressure.
+        """
         self.add_displacement_subsol(
             degree=displacement_degree)
 
@@ -255,6 +302,12 @@ class PoroFlowHyperelasticityProblem(HyperelasticityProblem):
         return "p_l"
 
     def add_pressure_liquid_subsol(self, degree):
+        """
+        Adds the liquid pressure field :math:`p_l` to the problem unknowns.
+
+        This scalar field represents the hydrostatic pressure of the fluid 
+        within the pores.
+        """
         self.pl_subsol = self.add_scalar_subsol(
             name=self.get_pressure_liquid_name(),
             family="CG",
@@ -265,7 +318,10 @@ class PoroFlowHyperelasticityProblem(HyperelasticityProblem):
 
 
     def set_porosity_fields(self):
-
+        """
+        Sets up the dependent porosity variables (:math:`\phi_s`, :math:`\Phi_s`) 
+        based on the chosen known variable and the Jacobian.
+        """
         if (self.porosity_known == "Phis0"):
             self.Phis = self.porosity_subsol.subfunc
             self.phis = self.Phis/self.kinematics.J
@@ -276,7 +332,9 @@ class PoroFlowHyperelasticityProblem(HyperelasticityProblem):
 
 
     def add_local_porosity_fois(self):
-
+        """
+        Registers local porosity fields as Fields of Interest (FOI).
+        """
         if (self.porosity_known == "Phis0"): self.add_foi(
             expr=self.Phis0,
             fs=self.porosity_subsol.fs.collapse(),
@@ -310,7 +368,9 @@ class PoroFlowHyperelasticityProblem(HyperelasticityProblem):
             material_parameters,
             material_scaling,
             subdomain_id=None):
-
+        """
+        Adds the strain energy operator for the solid skeleton.
+        """
         operator = dmech.WskelPoroOperator(
             kinematics=self.kinematics,
             U_test=self.displacement_subsol.dsubtest,
@@ -324,7 +384,9 @@ class PoroFlowHyperelasticityProblem(HyperelasticityProblem):
 
     def add_Wskel_operators(self,
             skel_behaviors):
-
+        """
+        Adds skeleton operators and registers stress FOIs.
+        """
         for skel_behavior in skel_behaviors:
             operator = self.add_Wskel_operator(
                 material_parameters=skel_behavior["parameters"],
@@ -342,7 +404,25 @@ class PoroFlowHyperelasticityProblem(HyperelasticityProblem):
         inlet_id,
         outlet_id,
         k_step=None):
-    
+        """
+        Adds the Darcy Flow operator to the system.
+
+        This operator governs the fluid transport through the porous medium. 
+        It implements the weak form of the mass balance equation involving 
+        Darcy's Law:
+
+        .. math::
+            \mathbf{q} = - \mathbf{K}_l \cdot \\nabla p_l
+
+        where :math:`\mathbf{q}` is the Darcy flux, :math:`\mathbf{K}_l` is the 
+        hydraulic conductivity (permeability), and :math:`p_l` is the liquid pressure.
+
+        :param kinematics: Kinematics object containing deformation info.
+        :param K_l: Permeability tensor (constant or tensor).
+        :param rho_l: Fluid density.
+        :param inlet_id: Subdomain ID for fluid inlet (Dirichlet or flux).
+        :param outlet_id: Subdomain ID for fluid outlet.
+        """
         p      = self.pl_subsol.subfunc
         p_test = self.pl_subsol.dsubtest
 
@@ -368,7 +448,13 @@ class PoroFlowHyperelasticityProblem(HyperelasticityProblem):
     def add_pl_operator(self,
             k_step=None,
             **kwargs):
-        
+        """
+        Adds the Liquid Pressure Field operator.
+
+        This operator manages the projection or coupling of the liquid pressure 
+        variable :math:`p_l` into the system, ensuring compatibility with 
+        the porosity evolution.
+        """
         operator = PlFieldOperator(pl= self.pl_subsol.subfunc,
             unknown_porosity_test=self.porosity_subsol.dsubtest,
             **kwargs)
@@ -383,7 +469,14 @@ class PoroFlowHyperelasticityProblem(HyperelasticityProblem):
             material_parameters,
             material_scaling,
             subdomain_id=None):
+        """
+        Adds the Bulk Compressibility operator for Flow problems.
 
+        Unlike the standard `WbulkPoroOperator`, this `WbulkPoroFlowOperator` 
+        explicitly couples the volumetric deformation energy to the liquid 
+        pressure field :math:`p_l`, creating the physical link between 
+        stress and fluid pressure (Biot coupling).
+        """
         operator = WbulkPoroFlowOperator(
             kinematics=self.kinematics,
             U=self.displacement_subsol.subfunc,
@@ -402,7 +495,9 @@ class PoroFlowHyperelasticityProblem(HyperelasticityProblem):
 
     def add_Wbulk_operators(self,
             bulk_behaviors):
-
+        """
+        Adds bulk operators and registers compressibility FOIs.
+        """
         for bulk_behavior in bulk_behaviors:
             operator = self.add_Wbulk_operator(
                 material_parameters=bulk_behavior["parameters"],
@@ -419,7 +514,9 @@ class PoroFlowHyperelasticityProblem(HyperelasticityProblem):
             material_parameters,
             material_scaling,
             subdomain_id=None):
-
+        """
+        Adds pore behavior operators (e.g. surface tension effects).
+        """
         operator = dmech.WporePoroOperator(
             kinematics=self.kinematics,
             Phis0=self.Phis0,
@@ -434,7 +531,9 @@ class PoroFlowHyperelasticityProblem(HyperelasticityProblem):
 
     def add_Wpore_operators(self,
             pore_behaviors):
-
+        """
+        Adds multiple pore behavior operators.
+        """
         for pore_behavior in pore_behaviors:
             self.add_Wpore_operator(
                 material_parameters=pore_behavior["parameters"],
@@ -446,7 +545,12 @@ class PoroFlowHyperelasticityProblem(HyperelasticityProblem):
     def add_pf_operator(self,
             k_step=None,
             **kwargs):
-
+        """
+        Adds operator to track fluid pressure (pf). 
+        
+        Note: In Flow problems, 'pl' is the primary unknown, but 'pf' may still 
+        be used for specific pore constitutive laws or output.
+        """
         operator = dmech.PfPoroOperator(
             unknown_porosity_test=self.porosity_subsol.dsubtest,
             **kwargs)
@@ -460,7 +564,9 @@ class PoroFlowHyperelasticityProblem(HyperelasticityProblem):
     def add_pressure_balancing_gravity_loading_operator(self,
             k_step=None,
             **kwargs):
-
+        """
+        Adds operator to balance gravity loads with internal pressure.
+        """
         operator = dmech.PressureBalancingGravityLoadingOperator(
             X=self.X,
             x0=self.deformed_center_of_mass_subsol.subfunc,
@@ -485,7 +591,9 @@ class PoroFlowHyperelasticityProblem(HyperelasticityProblem):
 
 
     def add_global_porosity_qois(self):
-
+        """
+        Registers Quantities of Interest (QOI) for integrated porosity metrics.
+        """
         self.add_qoi(
             name="Phis0",
             expr=self.Phis0 * self.dV)
@@ -514,7 +622,11 @@ class PoroFlowHyperelasticityProblem(HyperelasticityProblem):
 
     def add_global_stress_qois(self,
             stress_type="cauchy"):
-
+        """
+        Registers component-wise global stress QOIs.
+        
+        Splits stress into Skeleton, Bulk, and Total contributions.
+        """
         if (stress_type in ("Cauchy", "cauchy", "sigma")):
             basename = "s_"
             stress = "sigma"
@@ -564,7 +676,9 @@ class PoroFlowHyperelasticityProblem(HyperelasticityProblem):
 
 
     def add_global_fluid_pressure_qoi(self):
-
+        """
+        Registers global fluid pressure QOI.
+        """
         # for operator in self.operators:
         #     print(type(operator))
         #     print(hasattr(operator, "pf"))

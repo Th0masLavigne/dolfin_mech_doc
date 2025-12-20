@@ -34,7 +34,48 @@ def run_HollowBox_MicroPoroHyperelasticity(
         add_p_hydro_and_Sigma_VM_FoI=False,
         write_qois_limited_precision=True,
         verbose=0):
+    """
+    Runs a micro-poro-hyperelastic simulation on a "Hollow Box" unit cell.
 
+    This function simulates the coupled mechanical behavior of a porous RVE (Representative 
+    Volume Element) consisting of a hyperelastic solid matrix and a fluid-filled void. 
+    It is designed to study **micro-scale mechanisms** such as pore inflation, 
+    capillary effects (surface tension), and effective macroscopic response under 
+    mixed loading conditions (prescribed stretch or stress).
+
+    
+
+    **Key Physics:**
+    1.  **Hyperelasticity**: Finite strain solid mechanics for the matrix.
+    2.  **Pore Pressure**: Loading via internal fluid pressure :math:`p_f`.
+    3.  **Surface Tension**: Capillary forces :math:`\gamma` acting on the pore interface :math:`\Gamma_{int}`.
+    4.  **Homogenization**: Periodic Boundary Conditions (PBC) couple micro-scale fluctuations to macro-scale deformation gradients :math:`\bar{\mathbf{F}}`.
+
+    **Loading Control:**
+    The loading is defined stepwise via ``load_params``, allowing for complex paths combining:
+    - **Macroscopic Stretch** (:math:`\bar{U}_{ij}`): Prescribed deformation.
+    - **Macroscopic Stress** (:math:`\bar{\Sigma}_{ij}`): Prescribed average stress.
+    - **Fluid Pressure** (:math:`p_f`): Pore pressure.
+    - **Surface Tension** (:math:`\gamma`): Interfacial tension coefficient.
+
+    :param dim: Dimension (2 or 3).
+    :type dim: int
+    :param mesh: Pre-generated mesh (optional).
+    :type mesh: dolfin.Mesh
+    :param mesh_params: Parameters for mesh generation if ``mesh`` is None.
+    :type mesh_params: dict
+    :param displacement_perturbation_degree: FE degree for displacement fluctuations.
+    :type displacement_perturbation_degree: int
+    :param mat_params: Material parameters for the solid skeleton.
+    :type mat_params: dict
+    :param bcs: Boundary condition type ("pbc" for periodic).
+    :type bcs: str
+    :param load_params: Dictionary defining the loading path (timelines for U_bar, sigma_bar, pf, gamma).
+    :type load_params: dict
+    :param res_basename: Output file prefix.
+    :type res_basename: str
+    :return: The fully solved ``problem`` object.
+    """
     assert ((mesh is not None) or (mesh_params is not None))
     if (mesh is None):
         mesh = dmech.run_HollowBox_Mesh(

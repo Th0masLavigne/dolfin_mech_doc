@@ -25,7 +25,43 @@ def run_Disc_Hyperelasticity(
         res_basename="run_Disc_Hyperelasticity",
         write_vtus_with_preserved_connectivity=False,
         verbose=0):
+    """
+    Runs a 2D benchmark simulation of a hyperelastic disc.
 
+    This function sets up and solves a finite strain problem on a circular domain. 
+    It supports two distinct loading scenarios:
+    
+    1.  **Radial Displacement (`type="disp"`)**: The boundary is pulled radially 
+        outward by a prescribed amount :math:`dR`. This is achieved by calculating 
+        the target displacement vector for every node on the boundary and applying 
+        point-wise Dirichlet constraints.
+    2.  **Pressure Loading (`type="pres"`)**: A uniform pressure :math:`p` is 
+        applied to the outer boundary. To prevent rigid body motion in this 
+        traction-controlled case, specific points on the axes are pinned.
+
+    
+
+    **Geometry:**
+    Defined by center :math:`(X_0, Y_0)` and radius :math:`R`.
+
+    :param incomp: Flag for incompressibility (0 = Compressible, 1 = Incompressible).
+    :type incomp: int
+    :param mesh_params: Dictionary for mesh generation (``X0``, ``Y0``, ``R``).
+    :type mesh_params: dict
+    :param mat_params: Dictionary for material constitutive law.
+    :type mat_params: dict
+    :param step_params: Dictionary for time stepping (``Deltat``, ``dt_ini``).
+    :type step_params: dict
+    :param load_params: Dictionary configuring the load:
+        - ``type`` (str): "disp" or "pres".
+        - ``dR`` (float): Radial displacement magnitude (for "disp").
+        - ``p`` (float): Pressure magnitude (for "pres").
+    :type load_params: dict
+    :param res_basename: Output file prefix.
+    :type res_basename: str
+    :param verbose: Verbosity level.
+    :type verbose: int
+    """
     ################################################################### Mesh ###
 
     X0 = mesh_params.get("X0", 0.5)

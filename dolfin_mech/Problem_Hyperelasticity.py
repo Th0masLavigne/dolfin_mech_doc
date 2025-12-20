@@ -14,9 +14,37 @@ from .Problem import Problem
 ################################################################################
 
 class HyperelasticityProblem(Problem):
+    """
+    A general problem class for finite strain hyperelasticity.
 
+    This class handles the setup and solution of nonlinear elasticity problems 
+    where the material behavior is described by a strain energy density function 
+    :math:`\Psi(\mathbf{C})`. It supports both compressible and incompressible 
+    formulations.
 
+    
 
+    **Formulation:**
+    The problem minimizes the total potential energy :math:`\Pi(\mathbf{u})`:
+
+    .. math::
+        \Pi(\mathbf{u}) = \int_{\Omega_0} \Psi(\mathbf{F}) \, dV - W_{ext}
+
+    If ``w_incompressibility`` is True, a mixed :math:`\mathbf{u}-p` formulation 
+    is used to enforce the constraint :math:`J = 1` (or near-incompressibility) 
+    via a Lagrange multiplier :math:`p`:
+
+    .. math::
+        \Pi(\mathbf{u}, p) = \int_{\Omega_0} \Psi_{dev}(\bar{\mathbf{F}}) \, dV + \int_{\Omega_0} p(J-1) \, dV - W_{ext}
+
+    :param w_incompressibility: If True, enables the mixed formulation adding a 
+        pressure sub-solution to handle volumetric locking.
+    :type w_incompressibility: bool
+    :param mesh: The computational mesh.
+    :param displacement_degree: Polynomial degree for the displacement field.
+    :param elastic_behavior: Dictionary defining a single material model.
+    :param elastic_behaviors: List of dictionaries for multi-material setups.
+    """
     def __init__(self,
             w_incompressibility=False,
             mesh=None,
@@ -74,7 +102,12 @@ class HyperelasticityProblem(Problem):
     def add_displacement_subsol(self,
             name=None,
             degree=1):
+        """
+        Adds the displacement vector field sub-solution.
 
+        :param name: Name of the variable (defaults to "U" or "u").
+        :param degree: Polynomial degree of the Finite Element (usually 1 or 2).
+        """
         if (name is not None):
             self.displacement_name = name
         else:
@@ -90,7 +123,15 @@ class HyperelasticityProblem(Problem):
     def add_pressure_subsol(self,
             name=None,
             degree=0):
+        """
+        Adds the pressure scalar field sub-solution (Lagrange multiplier).
 
+        This is used only when ``w_incompressibility`` is True. To satisfy the 
+        LBB condition (inf-sup condition) and avoid volumetric locking, the 
+        pressure degree is typically lower than the displacement degree (e.g., P2-P1).
+
+        
+        """
         if (name is not None):
             self.pressure_name = name
         else:
@@ -112,7 +153,9 @@ class HyperelasticityProblem(Problem):
     def set_subsols(self,
             displacement_degree=1,
             pressure_degree=None):
-        
+        """
+        Configures the unknown fields (displacement and optionally pressure).
+        """
         self.add_displacement_subsol(
             degree=displacement_degree)
 
@@ -126,7 +169,13 @@ class HyperelasticityProblem(Problem):
 
     def set_quadrature_degree(self,
             quadrature_degree=None):
+        """
+        Sets the integration order for the variational forms.
 
+        Can be an integer, "full" (exact), or "default" (optimized).
+        The "default" mode attempts to use a reduced quadrature rule that is 
+        computationally efficient while maintaining accuracy for standard element types.
+        """
         if (quadrature_degree is None) or (type(quadrature_degree) == int):
             pass
         elif (quadrature_degree == "full"):
@@ -147,7 +196,17 @@ class HyperelasticityProblem(Problem):
 
     def set_kinematics(self,
             add_fois=True):
+        """
+        Initializes the kinematic quantities derived from displacement.
 
+        Calculates:
+            - **F**: Deformation Gradient (:math:`\mathbf{I} + \nabla \mathbf{u}`)
+            - **J**: Jacobian determinant (:math:`\det \mathbf{F}`)
+            - **C**: Right Cauchy-Green deformation tensor (:math:`\mathbf{F}^T \mathbf{F}`)
+            - **E**: Green-Lagrange strain tensor (:math:`0.5 (\mathbf{C} - \mathbf{I})`)
+
+        :param add_fois: If True, registers these tensors as Fields of Interest for output.
+        """
         self.kinematics = dmech.Kinematics(
             U=self.displacement_subsol.subfunc,
             U_old=self.displacement_subsol.func_old,
@@ -165,7 +224,9 @@ class HyperelasticityProblem(Problem):
 
     def get_subdomain_measure(self,
             subdomain_id=None):
-
+        """
+        Returns the integration measure (dV) for a specific subdomain ID or the whole domain.
+        """
         if (subdomain_id is None):
             return self.dV
         else:
@@ -177,7 +238,12 @@ class HyperelasticityProblem(Problem):
             material_model,
             material_parameters,
             subdomain_id=None):
+        """
+        Adds a standard hyperelasticity operator to the problem.
 
+        This adds the contribution :math:`\int \Psi(\mathbf{C}) dV` to the energy,
+        automatically handling the first variation to compute the residual.
+        """
         operator = dmech.HyperElasticityOperator(
             U=self.displacement_subsol.subfunc,
             U_test=self.displacement_subsol.dsubtest,
@@ -191,7 +257,9 @@ class HyperelasticityProblem(Problem):
 
     def add_hydrostatic_pressure_operator(self,
             subdomain_id=None):
-
+        """
+        Adds the operator linking the pressure variable to the kinematics.
+        """
         operator = dmech.HyperHydrostaticPressureOperator(
             kinematics=self.kinematics,
             U_test=self.displacement_subsol.dsubtest,
@@ -203,7 +271,12 @@ class HyperelasticityProblem(Problem):
 
     def add_incompressibility_operator(self,
             subdomain_id=None):
+        """
+        Adds the incompressibility constraint operator.
 
+        Enforces :math:`J-1 = 0` (or volumetric compatibility) using the test 
+        function of the pressure field.
+        """
         operator = dmech.HyperIncompressibilityOperator(
             kinematics=self.kinematics,
             P_test=self.pressure_subsol.dsubtest,
@@ -214,7 +287,12 @@ class HyperelasticityProblem(Problem):
 
     def add_elasticity_operators(self,
             elastic_behaviors):
+        """
+        Iterates through defined material behaviors and adds the necessary operators.
 
+        If ``w_incompressibility`` is active, it also adds the hydrostatic pressure
+        and incompressibility constraint operators.
+        """
         for elastic_behavior in elastic_behaviors:
             operator = self.add_elasticity_operator(
                 material_model=elastic_behavior["model"],
@@ -238,7 +316,9 @@ class HyperelasticityProblem(Problem):
             name,
             coordinates,
             component):
-
+        """
+        Adds a Quantity of Interest (QOI) tracking displacement at a specific point.
+        """
         self.add_qoi(
             name=name,
             expr=self.displacement_subsol.subfunc[component],
@@ -251,7 +331,9 @@ class HyperelasticityProblem(Problem):
             name,
             coordinates,
             component):
-
+        """
+        Adds a QOI tracking the current spatial position (X + u) of a point.
+        """
         self.add_qoi(
             name=name,
             expr=self.displacement_subsol.subfunc[component],
@@ -262,7 +344,9 @@ class HyperelasticityProblem(Problem):
 
 
     def add_deformed_volume_qoi(self):
-
+        """
+        Adds a QOI for the total volume of the deformed configuration.
+        """
         self.add_qoi(
             name="v",
             expr=self.kinematics.J * self.dV)
@@ -270,7 +354,9 @@ class HyperelasticityProblem(Problem):
 
 
     def add_global_strain_qois(self):
-
+        """
+        Adds QOIs for the volume-integrated components of the Green-Lagrange strain tensor E.
+        """
         basename = "E_"
         strain = self.kinematics.E
 
@@ -301,7 +387,16 @@ class HyperelasticityProblem(Problem):
 
     def add_global_stress_qois(self,
             stress_type="cauchy"):
+        """
+        Adds QOIs for the volume-integrated components of the stress tensor.
 
+        
+
+        :param stress_type: The type of stress to output:
+            - "Cauchy" (sigma): Spatial configuration stress.
+            - "PK2" (Sigma): Material configuration stress.
+            - "PK1" (P): Nominal stress.
+        """
         if (stress_type in ("Cauchy", "cauchy", "sigma")):
             basename = "s_"
             stress = "sigma"
@@ -339,7 +434,10 @@ class HyperelasticityProblem(Problem):
 
     def add_global_out_of_plane_stress_qois(self,
             stress_type="PK2"):
-
+        """
+        Adds QOI for the out-of-plane stress component (ZZ) specifically.
+        Useful for plane strain/stress approximations or 2D models representing 3D objects.
+        """
         if (stress_type in ("Cauchy", "cauchy", "sigma")):
             assert (0), "To do. Aborting."
         elif (stress_type in ("Piola", "piola", "PK2", "Sigma")):
@@ -355,7 +453,9 @@ class HyperelasticityProblem(Problem):
 
 
     def add_global_pressure_qoi(self):
-
+        """
+        Adds QOI for the volume-integrated hydrostatic pressure P.
+        """
         self.add_qoi(
             name="P",
             expr=sum([operator.P*operator.measure for operator in self.operators if hasattr(operator, "P")]))

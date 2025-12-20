@@ -16,7 +16,30 @@ import meshio
 
 def run_Ball_Mesh(
         params={}):
+    """
+    Generates a 3D spherical mesh using Gmsh and converts it for FEniCS.
 
+    This function automates the complete meshing pipeline:
+    1.  **Geometry Creation**: Uses the OpenCASCADE kernel in Gmsh to define a sphere.
+    2.  **Meshing**: Generates a 3D tetrahedral mesh with specified characteristic length ``l``.
+    3.  **Conversion**: Writes to VTK, converts to XDMF via `meshio`, and imports into `dolfin.Mesh`.
+    4.  **Boundary Tagging**: Identifies the outer surface of the sphere and marks it in a `MeshFunction`.
+
+    
+
+    This is particularly useful for creating reproducible, high-quality meshes for 
+    finite element benchmarks without manually using the Gmsh GUI.
+
+    :param params: Dictionary of mesh parameters:
+        - ``X0``, ``Y0``, ``Z0`` (float): Coordinates of the sphere center (default: 0.5).
+        - ``R`` (float): Radius of the sphere (default: 0.3).
+        - ``l`` (float): Characteristic mesh size/element length (default: 0.01).
+        - ``mesh_filebasename`` (str): Prefix for generated files (default: "mesh").
+    :return: A tuple containing:
+        - ``mesh`` (dolfin.Mesh): The generated FEniCS mesh.
+        - ``boundaries_mf`` (dolfin.MeshFunction): Surface markers (ID 1 for the sphere surface).
+        - ``S_id`` (int): The integer ID used for the sphere surface (always 1).
+    """
     X0 = params.get("X0", 0.5)
     Y0 = params.get("Y0", 0.5)
     Z0 = params.get("Z0", 0.5)

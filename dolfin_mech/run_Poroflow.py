@@ -20,7 +20,41 @@ def run_PoroDisc_Coupled(
         porosity_params={},
         res_basename="run_PoroDisc_Coupled",
         verbose=1):
+    """
+    Runs a coupled Poro-Flow Hyperelasticity simulation on a custom domain.
 
+    This function simulates the deformation and fluid flow within a porous hyperelastic 
+    structure (e.g., a "Hollow Box" or a custom domain defined by ``mesh_params``). 
+    It solves for the coupled evolution of **Solid Displacement** (:math:`\mathbf{u}`) 
+    and **Fluid Pressure** (:math:`p_f`).
+
+    
+
+    **Workflow:**
+    1.  **Mesh Generation**: Calls ``dmech.run_HollowBox_Mesh`` to generate the domain.
+    2.  **Porosity Initialization**: Sets the initial porosity field (:math:`\phi_0`) which can be constant, a function, or random.
+    3.  **Problem Setup**: Instantiates :class:`PoroFlowHyperelasticityProblem`.
+    4.  **Boundary Conditions**: Applies:
+        - **Fluid**: Pressure gradients (Dirichlet BCs on :math:`p_f`).
+        - **Solid**: Displacement constraints (compression/shear).
+    5.  **Solving**: Uses a nonlinear solver with adaptive time-stepping.
+
+    **Note on Boundary Conditions:**
+    The function uses geometric search (``near``) to define subdomains for BCs:
+    - ``x_min_surface``: Left boundary
+    - ``x_max_surface``: Right boundary
+    - ``y_min_surface``: Bottom boundary
+
+    :param mesh_params: Dictionary of parameters for mesh generation (passed to ``run_HollowBox_Mesh``).
+    :param mat_params: Dictionary of material parameters for ``skel`` (skeleton), ``bulk`` (fluid compressibility), and ``pore`` (permeability).
+    :param step_params: Dictionary for time stepping (``Deltat``, ``dt_ini``, ``dt_min``).
+    :param load_params: Dictionary for loading values (e.g., ``dR``, though mostly hardcoded in this specific script).
+    :param porosity_params: Dictionary for porosity initialization:
+        - ``type``: "constant", "function_constant", or "random".
+        - ``val``: Base porosity value.
+    :param res_basename: Base name for output result files.
+    :param verbose: Verbosity level.
+    """
     # ------------------------- Mesh ------------------------- #
 
     mesh = dmech.run_HollowBox_Mesh(params=mesh_params)

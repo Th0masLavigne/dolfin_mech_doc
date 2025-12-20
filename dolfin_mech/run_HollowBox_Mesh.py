@@ -24,7 +24,22 @@ import dolfin_mech as dmech
 
 def setPeriodic(dim, coord, xmin, ymin, zmin, xmax, ymax, zmax, e=1e-6):
     # From https://gitlab.onelab.info/gmsh/gmsh/-/issues/744
+    """
+    Applies periodic meshing constraints to matching entities on opposite faces of a bounding box.
 
+    This function identifies geometric entities (curves in 2D, surfaces in 3D) on opposite 
+    sides of the domain and enforces a periodic mesh mapping between them in Gmsh. 
+    This ensures that nodes on the master face :math:`\Gamma_{master}` match exactly with 
+    nodes on the slave face :math:`\Gamma_{slave}`.
+
+    
+
+    :param dim: The topological dimension of the entities to match (2 for curves/edges, 3 for surfaces).
+    :param coord: The index of the coordinate direction for periodicity (0 for X, 1 for Y, 2 for Z).
+    :param xmin, ymin, zmin: Coordinates of the minimum corner of the bounding box.
+    :param xmax, ymax, zmax: Coordinates of the maximum corner of the bounding box.
+    :param e: Geometric tolerance for entity detection (default: 1e-6).
+    """
     dx = (xmax - xmin) if (coord == 0) else 0.
     dy = (ymax - ymin) if (coord == 1) else 0.
     dz = (zmax - zmin) if (coord == 2) else 0.
@@ -62,7 +77,30 @@ def setPeriodic(dim, coord, xmin, ymin, zmin, xmax, ymax, zmax, e=1e-6):
 
 def run_HollowBox_Mesh(
         params:dict={}):
+    """
+    Generates a periodic mesh for a "Hollow Box" Representative Volume Element (RVE).
 
+    This function creates a unit cell with a central void by boolean subtraction. 
+    To create a centered void in a periodic cell :math:`[0,1]^d`, it subtracts 
+    parts of a sphere (or circle) from the 4 corners (2D) or 8 corners (3D). 
+    Due to periodicity, these corner cutouts form a single central hole in the 
+    tiled lattice.
+
+    
+
+    **Steps:**
+    1.  **Geometry**: Creates a base rectangle/box and subtracts disks/spheres at corners.
+    2.  **Periodicity**: Calls ``setPeriodic`` for each spatial direction to link opposite boundaries.
+    3.  **Meshing**: Generates the mesh and exports it to XDMF format.
+
+    :param params: Dictionary of parameters:
+        - ``dim`` (int): Dimension (2 or 3).
+        - ``xmin``, ``xmax``, etc.: Bounding box coordinates.
+        - ``r0`` (float): Radius of the void.
+        - ``l`` (float): Characteristic element size.
+        - ``mesh_filebasename`` (str): Output filename.
+    :return: The generated FEniCS mesh.
+    """
     dim    = params.get("dim"); assert (dim in (2,3))
     xmin   = params.get("xmin", 0.)
     ymin   = params.get("ymin", 0.)

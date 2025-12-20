@@ -18,7 +18,57 @@ import dolfin_mech as dmech
 ################################################################################
 
 class TimeIntegrator():
+    """
+    Main driver class for time-dependent finite element simulations.
 
+    The ``TimeIntegrator`` orchestrates the entire simulation workflow. It iterates 
+    through the sequence of defined **Steps**, and within each step, it advances 
+    time :math:`t` from :math:`t_{ini}` to :math:`t_{fin}`.
+
+    
+
+    **Core Responsibilities:**
+    1.  **Adaptive Time Stepping**: Dynamically adjusts the time increment :math:`\Delta t` 
+        based on solver performance.
+        - **Success**: Increases :math:`\Delta t` (acceleration) if convergence is fast.
+        - **Failure**: Decreases :math:`\Delta t` (deceleration/cutting) if convergence fails, retrying the step.
+    2.  **State Management**: Updates time-dependent operators and constraints before each solve.
+    3.  **Output Management**: Writes results to disk (VTU/XDMF for fields, DAT for QOIs, log files for monitoring).
+
+    **Algorithm:**
+    
+    .. code-block:: none
+
+        For each Step:
+            t = t_ini
+            While t < t_fin:
+                Try solving for t + dt
+                If Converged:
+                    Update solution and history variables
+                    Write output
+                    Increase dt (if iterations low)
+                    t = t + dt
+                Else:
+                    Restore previous solution
+                    Decrease dt (cut time step)
+                    Retry
+
+    :param problem: The problem instance containing physics and mesh.
+    :type problem: Problem
+    :param solver: The nonlinear solver instance.
+    :type solver: NonlinearSolver
+    :param parameters: Dictionary controlling time stepping behavior:
+        - ``n_iter_for_accel`` (int): Max iterations to trigger time step increase.
+        - ``n_iter_for_decel`` (int): Min iterations to trigger time step decrease.
+        - ``accel_coeff`` (float): Factor to increase ``dt`` by.
+        - ``decel_coeff`` (float): Factor to decrease ``dt`` by.
+    :type parameters: dict
+    :param print_out: Enable/disable main log file output.
+    :param print_sta: Enable/disable statistics table output (.sta file).
+    :param write_qois: Enable/disable writing Quantity of Interest data (.dat file).
+    :param write_sol: Enable/disable writing full field solution (.xdmf file).
+    :param write_vtus: Enable/disable writing VTU files for ParaView.
+    """
     def __init__(self,
             problem,
             solver,
@@ -31,7 +81,9 @@ class TimeIntegrator():
             write_vtus=False,
             write_vtus_with_preserved_connectivity=False,
             write_xmls=False):
-
+        """
+        Initializes the TimeIntegrator.
+        """
         self.problem = problem
 
         self.solver = solver
@@ -112,7 +164,9 @@ class TimeIntegrator():
 
 
     def close(self):
-
+        """
+        Closes all open file handles (logs, tables, QOI data, XDMF).
+        """
         self.printer.close()
         self.table_printer.close()
 
@@ -125,7 +179,13 @@ class TimeIntegrator():
 
 
     def integrate(self):
+        """
+        Executes the time integration loop.
 
+        This is the main entry point to run the simulation after setup.
+        
+        :return: True if the simulation completed successfully, False otherwise.
+        """
         k_t_tot = 0
         n_iter_tot = 0
         self.printer.inc()

@@ -20,7 +20,42 @@ def run_PoroDisc_Coupled(
         porosity_params={},
         res_basename="run_PoroDisc_Coupled",
         verbose=1):
+    """
+    Runs a coupled Poro-Flow Hyperelasticity simulation on a 2D domain.
 
+    This function simulates the deformation and fluid flow within a porous hyperelastic 
+    structure (e.g., a square domain with inclusions). It solves for the coupled 
+    evolution of **Solid Displacement** (:math:`\mathbf{u}`) and **Fluid Pressure** (:math:`p_f`).
+
+    
+
+    **Workflow:**
+    1.  **Mesh Loading**: Imports a pre-generated mesh (and facet markers) from XDMF files.
+    2.  **Porosity Initialization**: Sets the initial porosity field (:math:`\phi_0`) which can be constant, a function, or random.
+    3.  **Problem Setup**: Instantiates :class:`PoroFlowHyperelasticityProblem`.
+    4.  **Boundary Conditions**: Applies:
+        - **Fluid**: Pressure gradients (Dirichlet BCs on :math:`p_f`).
+        - **Solid**: Displacement constraints (compression/shear).
+    5.  **Solving**: Uses a nonlinear solver with adaptive time-stepping.
+
+    **Boundary Tags (Assumed):**
+    - 1: Plane (Back/Front)
+    - 2: Left
+    - 3: Right
+    - 4: Top
+    - 5: Bottom
+    - 6: Inclusions
+
+    :param mesh_params: (Unused here as mesh is loaded from file, but kept for interface consistency).
+    :param mat_params: Dictionary of material parameters for ``skel`` (skeleton), ``bulk`` (fluid compressibility), and ``pore`` (permeability).
+    :param step_params: Dictionary for time stepping (``Deltat``, ``dt_ini``, ``dt_min``).
+    :param load_params: Dictionary for loading values (e.g., pressure magnitude).
+    :param porosity_params: Dictionary for porosity initialization:
+        - ``type``: "constant", "function_constant", or "random".
+        - ``val``: Base porosity value.
+    :param res_basename: Base name for output result files.
+    :param verbose: Verbosity level.
+    """
     # ------------------------- Mesh ------------------------- #
     mesh = dolfin.Mesh()
     with dolfin.XDMFFile("./mesh/mesh_refine.xdmf") as infile:

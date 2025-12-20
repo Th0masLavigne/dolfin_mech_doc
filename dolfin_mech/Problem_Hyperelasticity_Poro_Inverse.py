@@ -17,18 +17,52 @@ from .Problem_Hyperelasticity_Poro import PoroHyperelasticityProblem
 ################################################################################
 
 class InversePoroHyperelasticityProblem(PoroHyperelasticityProblem):
+    """
+    Problem class for solving inverse poro-hyperelasticity problems.
 
+    Unlike the forward problem which predicts deformation from loads, the 
+    **inverse problem** seeks to determine the reference (stress-free) 
+    configuration :math:`\Omega_0` given a known deformed configuration 
+    :math:`\Omega` and a set of loads (e.g., blood pressure, gravity).
 
+    
 
+    This is particularly critical in biomechanics (e.g., estimating the 
+    zero-pressure geometry of the heart or lungs from in-vivo imaging).
+
+    **Porosity Handling:**
+    Since the reference configuration is unknown, the reference porosity 
+    :math:`\phi_{s0}` is also typically unknown. This class supports two 
+    formulations:
+    
+    1.  **Known Spatial Porosity (`phis` known)**: The current solid volume fraction 
+        is measured (e.g., from CT Hounsfield units), and the reference 
+        porosity is solved for.
+    2.  **Known Material Porosity (`Phis0` known)**: The Lagrangian solid volume 
+        fraction is assumed known, and the spatial porosity is derived.
+    """
     def __init__(self, *args, **kwargs):
+        """
+        Initializes the InversePoroHyperelasticityProblem.
 
+        Accepts the same arguments as :class:`PoroHyperelasticityProblem`, 
+        but sets up the problem in the spatial frame.
+        """
         PoroHyperelasticityProblem.__init__(self, *args, **kwargs)
 
 
 
     def set_known_and_unknown_porosity(self,
             porosity_known):
-        
+        """
+        Configures which porosity field is treated as known data.
+
+        :param porosity_known: A string indicating the known variable:
+            - ``"phis"``: The spatial solid volume fraction (current configuration) 
+              is known. The reference porosity ``phis0`` becomes an unknown.
+            - ``"Phis0"``: The Lagrangian solid volume fraction (reference mass 
+              density) is known. The spatial porosity ``phis`` becomes the unknown.
+        """
         self.porosity_known = porosity_known
         if (self.porosity_known == "phis"):
             self.porosity_unknown = "phis0"
@@ -38,7 +72,14 @@ class InversePoroHyperelasticityProblem(PoroHyperelasticityProblem):
 
 
     def get_deformed_center_of_mass(self):
-        
+        """
+        Calculates the center of mass of the body in the current (deformed) configuration.
+
+        This is often required for setting up gravity loading or for pinning 
+        rigid body motions in the inverse problem.
+
+        :return: A numpy array of the center of mass coordinates :math:`[x_c, y_c, z_c]`.
+        """
         M = dolfin.assemble(getattr(self, self.porosity_known)*self.dV)
         center_of_mass = numpy.empty(self.dim)
         for k_dim in range(self.dim):
@@ -48,7 +89,15 @@ class InversePoroHyperelasticityProblem(PoroHyperelasticityProblem):
 
 
     def set_kinematics(self):
+        """
+        Initializes the inverse kinematic framework.
 
+        Defines the deformation gradient :math:`\mathbf{F} = (\nabla_{\mathbf{x}} \mathbf{X})^{-1}` 
+        where the mesh represents the spatial domain :math:`\mathbf{x}` and the 
+        unknown is the reference coordinate mapping :math:`\mathbf{X}(\mathbf{x})`.
+
+        Registers standard inverse kinematic fields (F, J, C, E) as Fields of Interest.
+        """
         self.kinematics = dmech.InverseKinematics(
             u=self.displacement_subsol.subfunc,
             u_old=self.displacement_subsol.func_old)
@@ -61,7 +110,19 @@ class InversePoroHyperelasticityProblem(PoroHyperelasticityProblem):
 
 
     def set_porosity_fields(self):
+        """
+        Derives the dependent porosity field based on the mass conservation constraint.
 
+        The relationship between reference solid volume fraction :math:`\phi_{s0}` 
+        and current solid volume fraction :math:`\phi_s` is governed by the Jacobian:
+
+        .. math::
+            \phi_s = J^{-1} \Phi_{s0}
+
+        where :math:`\Phi_{s0}` is the Lagrangian porosity.
+
+        
+        """
         if (self.porosity_known == "phis"):
             self.phis0 = self.porosity_subsol.subfunc
             self.Phis0 = self.phis0*self.kinematics.J
@@ -72,7 +133,15 @@ class InversePoroHyperelasticityProblem(PoroHyperelasticityProblem):
 
 
     def add_local_porosity_fois(self):
+        """
+        Registers Fields of Interest (FOI) for visualization of porosity distributions.
 
+        Adds the following fields:
+            - **phis**: Current solid volume fraction.
+            - **phif**: Current fluid volume fraction (:math:`1 - \phi_s`).
+            - **phis0**: Reference solid volume fraction.
+            - **phif0**: Reference fluid volume fraction.
+        """
         self.add_foi(
             expr=self.phis,
             fs=self.porosity_subsol.fs.collapse(),
@@ -106,7 +175,12 @@ class InversePoroHyperelasticityProblem(PoroHyperelasticityProblem):
             material_parameters,
             material_scaling,
             subdomain_id=None):
+        """
+        Adds the inverse strain energy operator for the solid skeleton.
 
+        Calculates the virtual work contributions from the hyperelastic skeleton 
+        in the inverse configuration.
+        """
         operator = dmech.InverseWskelPoroOperator(
             kinematics=self.kinematics,
             u_test=self.displacement_subsol.dsubtest,
@@ -122,7 +196,12 @@ class InversePoroHyperelasticityProblem(PoroHyperelasticityProblem):
             material_parameters,
             material_scaling,
             subdomain_id=None):
+        """
+        Adds the operator for the bulk compressibility of the mixture.
 
+        This penalizes volume changes that deviate from the constitutive 
+        behavior of the constituents.
+        """
         operator = dmech.InverseWbulkPoroOperator(
             kinematics=self.kinematics,
             u_test=self.displacement_subsol.dsubtest,
@@ -140,7 +219,12 @@ class InversePoroHyperelasticityProblem(PoroHyperelasticityProblem):
             material_parameters,
             material_scaling,
             subdomain_id=None):
+        """
+        Adds the operator handling the pore pressure contribution.
 
+        This links the porosity changes to the fluid pressure in the 
+        inverse formulation.
+        """
         operator = dmech.InverseWporePoroOperator(
             kinematics=self.kinematics,
             phis=self.phis,
@@ -156,7 +240,17 @@ class InversePoroHyperelasticityProblem(PoroHyperelasticityProblem):
     def add_pressure_balancing_gravity0_loading_operator(self,
             k_step=None,
             **kwargs):
+        """
+        Adds a specialized operator to balance internal pressure with gravity in the reference state.
 
+        In many inverse problems (like finding the reference shape of a lung), 
+        the reference state is defined by an equilibrium between an internal 
+        pressure and gravity. This operator simultaneously solves for the 
+        geometry and the Lagrange multipliers required to satisfy this 
+        specific equilibrium.
+
+        
+        """
         operator = dmech.PressureBalancingGravity0LoadingOperator(
             x = self.x,
             x0 = self.deformed_center_of_mass_subsol.subfunc,
@@ -177,7 +271,12 @@ class InversePoroHyperelasticityProblem(PoroHyperelasticityProblem):
 
 
     def add_global_porosity_qois(self):
-            
+        """
+        Adds Quantities of Interest (QOI) for global porosity metrics.
+
+        Integrates the porosity fields over the domain to obtain total solid 
+        and fluid volumes in both reference and spatial configurations.
+        """
         self.add_qoi(
             name="phis",
             expr=self.phis * self.dV)

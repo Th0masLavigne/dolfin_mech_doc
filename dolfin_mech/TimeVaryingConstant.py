@@ -16,12 +16,33 @@ import dolfin_mech as dmech
 ################################################################################
 
 class TimeVaryingConstant():
+    """
+    A wrapper for dolfin.Constant that evolves linearly over a time step.
 
+    This class manages a FEniCS constant whose value needs to change during 
+    the simulation (e.g., ramping up a load from 0 to 100 over a load step). 
+    It supports both scalar and vector constants.
 
+    
 
+    **Mechanism:**
+    The value at any normalized time step :math:`\\tau \in [0, 1]` is computed as:
+
+    .. math::
+        v(\\tau) = (1 - \\tau) v_{ini} + \\tau v_{fin}
+
+    It provides methods to update the underlying ``dolfin.Constant`` automatically 
+    when driven by a time integrator.
+
+    :param val: A single value (if the constant is fixed).
+    :param val_ini: The initial value at the start of the step.
+    :param val_fin: The final value at the end of the step.
+    """
     def __init__(self,
             val=None, val_ini=None, val_fin=None):
-
+        """
+        Initializes the TimeVaryingConstant.
+        """
         if  (val     is not None)\
         and (val_ini is     None)\
         and (val_fin is     None):
@@ -60,7 +81,9 @@ class TimeVaryingConstant():
 
     def set_value_sca(self,
             val):
-
+        """
+        Updates the value for a scalar constant.
+        """
         if   (type(val) in (int, float)):
             self.val.assign(dolfin.Constant(val))
         elif (type(val) in (list, numpy.ndarray)):
@@ -70,7 +93,9 @@ class TimeVaryingConstant():
 
     def set_value_vec(self,
             val):
-
+        """
+        Updates the value for a vector constant.
+        """
         # print(val)
         self.val.assign(dolfin.Constant(val))
 
@@ -78,7 +103,11 @@ class TimeVaryingConstant():
 
     def set_value_at_t_step(self,
             t_step):
+        """
+        Interpolates and sets the value based on the normalized step time.
 
+        :param t_step: Normalized time :math:`\\tau \in [0,1]`.
+        """
         # print("set_value_at_t_step")
         # print("t_step", t_step)
         # print("ini", self.val_ini)
@@ -90,7 +119,11 @@ class TimeVaryingConstant():
 
     def set_dvalue_at_t_step(self,
             t_step):
-
+        """
+        Sets the value to the *increment* :math:`v(\\tau) - v_{old}`.
+        
+        This is useful for incremental formulations where the unknown is the increment.
+        """
         # print("set_dvalue_at_t_step")
         self.val_old[:] = self.val_cur[:]
         # print("old", self.val_old)
@@ -107,13 +140,18 @@ class TimeVaryingConstant():
 
 
     def restore_old_value(self):
-
+        """
+        Restores the internal state to the previous value.
+        Used when a time step fails and needs to be retried.
+        """
         self.val_cur[:] = self.val_old[:]
 
 
 
     def homogenize(self):
-
+        """
+        Sets the value to zero (homogeneous condition).
+        """
         # print("homogenize")
         # print(self.val.str(1))
         self.set_value(0*self.val_ini)

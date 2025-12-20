@@ -16,7 +16,36 @@ import meshio
 
 def run_Disc_Mesh(
         params : dict = {}):
+    """
+    Generates a 2D disc mesh using Gmsh and prepares boundary/point markers.
 
+    This function performs the full mesh generation pipeline:
+    1.  **Geometry**: Defines a circle using 4 arcs and 5 points (center + 4 cardinal points).
+    2.  **Meshing**: Generates a triangular mesh using Gmsh's ``geo`` kernel.
+    3.  **Conversion**: Converts the mesh to XDMF format compatible with FEniCS.
+    4.  **Marking**: 
+        - Marks the entire circular boundary (ID 1).
+        - Marks the 4 cardinal points (Right, Top, Left, Bottom) with IDs 1, 2, 3, 4 respectively.
+
+    
+
+    **Point Marking Strategy:**
+    The explicit marking of vertices at :math:`0, \pi/2, \pi, 3\pi/2` allows for 
+    precise point-wise constraints (e.g., preventing rigid body rotation in 
+    pressure-driven problems).
+
+    :param params: Dictionary of mesh parameters:
+        - ``X0``, ``Y0`` (float): Coordinates of the center (default: 0.5, 0.5).
+        - ``R`` (float): Radius of the disc (default: 0.3).
+        - ``l`` (float): Characteristic element size (default: 0.1).
+        - ``mesh_filebasename`` (str): Output filename prefix (default: "mesh").
+    :return: A tuple containing:
+        - ``mesh`` (dolfin.Mesh): The 2D mesh.
+        - ``boundaries_mf`` (dolfin.MeshFunction): Boundary markers (dim=1).
+        - ``S_id`` (int): ID for the circular boundary (1).
+        - ``points_mf`` (dolfin.MeshFunction): Vertex markers (dim=0).
+        - ``x*_sd`` (dolfin.AutoSubDomain): Subdomain objects for the 4 cardinal points.
+    """
     X0 = params.get("X0", 0.5)
     Y0 = params.get("Y0", 0.5)
     R  = params.get("R" , 0.3)

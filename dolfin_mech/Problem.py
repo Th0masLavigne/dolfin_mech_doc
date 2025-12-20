@@ -15,11 +15,23 @@ import dolfin_mech as dmech
 ################################################################################
 
 class Problem():
+    """
+    Base class for managing Finite Element Problems in FEniCS.
 
+    This class acts as a container and manager for the essential components of a 
+    simulation: the mesh, the solution function spaces (unknowns), the operators 
+    (physics contributions), boundary conditions, and time stepping.
 
+    It abstracts the boilerplate code required to set up mixed-element formulations, 
+    manage input/output fields (FOIs/QOIs), and assemble the global residual 
+    and Jacobian forms for the nonlinear solver.
 
+    
+    """
     def __init__(self):
-
+        """
+        Initializes an empty Problem instance.
+        """
         self.subsols = []
 
         self.operators = []
@@ -43,7 +55,24 @@ class Problem():
             define_facet_normals=False,
             compute_bbox=False,
             compute_local_cylindrical_basis=False):
+        """
+        Sets the computational domain and associated geometric quantities.
 
+        This method registers the mesh and initializes standard FEniCS measures 
+        (``dx`` for volume, ``ds`` for surface). It can also compute spatial 
+        coordinates (reference ``X`` or spatial ``x``) and local bases.
+
+        :param mesh: The dolfin Mesh object.
+        :param define_spatial_coordinates: If True, defines ``self.X`` (reference) 
+            or ``self.x`` (spatial) depending on the problem type (Inverse vs Forward).
+        :param define_facet_normals: If True, initializes ``self.mesh_normals``.
+        :param compute_bbox: If True, computes the bounding box of the mesh.
+        :param compute_local_cylindrical_basis: If True, computes local radial 
+            (:math:`\mathbf{e}_R`) and tangential (:math:`\mathbf{e}_T`) vectors 
+            and a rotation matrix ``Q_expr``.
+
+        
+        """
         self.dim = mesh.ufl_domain().geometric_dimension()
 
         self.mesh = mesh
@@ -114,7 +143,13 @@ class Problem():
             domains=None,
             boundaries=None,
             points=None):
+        """
+        Defines the integration measures for subdomains and boundaries.
 
+        Registers ``self.dV`` (volume measure), ``self.dS`` (surface measure), 
+        and ``self.dP`` (point measure), linking them to specific subdomain data 
+        if provided.
+        """
         self.domains = domains
         self.dV = dolfin.Measure(
             "cell",
@@ -166,7 +201,9 @@ class Problem():
             name,
             *args,
             **kwargs):
-
+        """
+        Generic method to add a sub-solution (unknown field) to the problem.
+        """
         subsol = dmech.SubSol(
             name=name,
             *args,
@@ -182,7 +219,9 @@ class Problem():
             degree=1,
             init_val=None,
             init_fun=None):
-
+        """
+        Adds a scalar unknown field (e.g., pressure, porosity).
+        """
         fe = dolfin.FiniteElement(
             family=family,
             cell=self.mesh.ufl_cell(),
@@ -202,7 +241,9 @@ class Problem():
             family="CG",
             degree=1,
             init_val=None):
-
+        """
+        Adds a vector unknown field (e.g., displacement).
+        """
         fe = dolfin.VectorElement(
             family=family,
             cell=self.mesh.ufl_cell(),
@@ -222,7 +263,9 @@ class Problem():
             degree=1,
             symmetry=None,
             init_val=None):
-
+        """
+        Adds a tensor unknown field (e.g., internal variables).
+        """
         fe = dolfin.TensorElement(
             family=family,
             cell=self.mesh.ufl_cell(),
@@ -238,7 +281,14 @@ class Problem():
 
 
     def set_solution_finite_element(self):
+        """
+        Constructs the (potentially mixed) finite element for the global solution.
 
+        If multiple sub-solutions are defined (e.g., displacement and pressure), 
+        this creates a ``MixedElement``.
+
+        
+        """
         if (len(self.subsols) == 1):
             self.sol_fe = self.subsols[0].fe
         else:
@@ -249,7 +299,9 @@ class Problem():
 
     def set_solution_function_space(self,
             constrained_domain=None):
-
+        """
+        Creates the FunctionSpace on the mesh using the defined finite element.
+        """
         self.sol_fs = dolfin.FunctionSpace(
             self.mesh,
             self.sol_fe,
@@ -264,7 +316,19 @@ class Problem():
 
 
     def set_solution_functions(self):
+        """
+        Instantiates the actual FEniCS Functions for the solution.
 
+        Creates:
+            - ``sol_func``: The current solution vector :math:`\mathbf{u}_{n+1}`.
+            - ``sol_old_func``: The solution at the previous step :math:`\mathbf{u}_n`.
+            - ``dsol_func``: The increment (Newton update) :math:`\delta \mathbf{u}`.
+            - ``dsol_test``: The test function :math:`\delta \mathbf{v}`.
+            - ``dsol_tria``: The trial function :math:`\Delta \mathbf{u}` (for the Jacobian).
+
+        It also splits these functions back into their sub-solution components 
+        for easy access by operators.
+        """
         self.sol_func     = dolfin.Function(self.sol_fs)
         self.sol_old_func = dolfin.Function(self.sol_fs)
         self.dsol_func    = dolfin.Function(self.sol_fs)
@@ -337,7 +401,10 @@ class Problem():
 
     def set_foi_finite_elements_DG(self,
             degree=0): # MG20180420: DG elements are simpler to manage than quadrature elements, since quadrature elements must be compatible with the expression's degree, which is not always trivial (e.g., for J…)
-
+        """
+        Sets up Discontinuous Galerkin (DG) elements for Fields of Interest (FOI).
+        These are typically used for post-processing variables like stress or strain.
+        """
         self.sfoi_fe = dolfin.FiniteElement(
             family="DG",
             cell=self.mesh.ufl_cell(),
@@ -357,7 +424,10 @@ class Problem():
 
     def set_foi_finite_elements_Quad(self,
             degree=0): # MG20180420: DG elements are simpler to manage than quadrature elements, since quadrature elements must be compatible with the expression's degree, which is not always trivial (e.g., for J…)
-
+        """
+        Sets up Quadrature elements for Fields of Interest (FOI).
+        These allow evaluating fields exactly at integration points.
+        """
         self.sfoi_fe = dolfin.FiniteElement(
             family="Quadrature",
             cell=self.mesh.ufl_cell(),
@@ -388,7 +458,9 @@ class Problem():
 
 
     def set_foi_function_spaces(self):
-
+        """
+        Creates function spaces for Scalar, Vector, and Tensor Fields of Interest.
+        """
         self.sfoi_fs = dolfin.FunctionSpace(
             self.mesh,
             self.sfoi_fe) # MG: element keyword don't work here…
@@ -404,7 +476,10 @@ class Problem():
 
 
     def add_foi(self, *args, **kwargs):
-
+        """
+        Adds a Field of Interest (FOI) to the problem.
+        FOIs are updated at the end of every step for visualization/output.
+        """
         foi = dmech.FOI(
             *args,
             form_compiler_parameters=self.form_compiler_parameters,
@@ -424,7 +499,9 @@ class Problem():
 
 
     def update_fois(self):
-
+        """
+        Triggers the projection/interpolation of all registered FOIs.
+        """
         for foi in self.fois:
             foi.update()
 
@@ -437,7 +514,10 @@ class Problem():
 ######################################################################## QOI ###
 
     def add_qoi(self, *args, **kwargs):
-
+        """
+        Adds a Quantity of Interest (QOI) to the problem.
+        QOIs are scalar values (e.g., total volume, average stress) calculated per step.
+        """
         qoi = dmech.QOI(
             *args,
             form_compiler_parameters=self.form_compiler_parameters,
@@ -448,7 +528,9 @@ class Problem():
 
 
     def update_qois(self, dt=None, k_step=None):
-
+        """
+        Updates the values of all registered QOIs.
+        """
         for qoi in self.qois:
             qoi.update(dt, k_step)
 
@@ -457,7 +539,13 @@ class Problem():
     def add_operator(self,
             operator,
             k_step=None):
+        """
+        Adds a physical operator to the problem.
 
+        Operators define the terms in the variational formulation (e.g., internal 
+        energy, external work). If ``k_step`` is provided, the operator is only 
+        active for that specific load step.
+        """
         if (k_step is None):
             self.operators += [operator]
         else:
@@ -473,7 +561,11 @@ class Problem():
     def add_volume_force0_loading_operator(self,
             k_step=None,
             **kwargs):
-
+        """
+        Adds a dead volume force (reference configuration).
+        
+        
+        """
         operator = dmech.VolumeForce0LoadingOperator(
             U_test=self.displacement_subsol.dsubtest,
             **kwargs)
@@ -484,7 +576,9 @@ class Problem():
     def add_volume_force_loading_operator(self,
             k_step=None,
             **kwargs):
-
+        """
+        Adds a follower volume force (current configuration).
+        """
         operator = dmech.VolumeForceLoadingOperator(
             U_test=self.displacement_subsol.dsubtest,
             kinematics=self.kinematics,
@@ -496,7 +590,9 @@ class Problem():
     def add_surface_force0_loading_operator(self,
             k_step=None,
             **kwargs):
-
+        """
+        Adds a dead surface force vector (reference configuration).
+        """
         operator = dmech.SurfaceForce0LoadingOperator(
             U_test=self.displacement_subsol.dsubtest,
             **kwargs)
@@ -507,7 +603,9 @@ class Problem():
     def add_surface_force_loading_operator(self,
             k_step=None,
             **kwargs):
-
+        """
+        Adds a follower surface force vector (current configuration).
+        """
         operator = dmech.SurfaceForceLoadingOperator(
             U_test=self.displacement_subsol.dsubtest,
             kinematics=self.kinematics,
@@ -520,7 +618,9 @@ class Problem():
     def add_surface_pressure0_loading_operator(self,
             k_step=None,
             **kwargs):
-
+        """
+        Adds a dead pressure load normal to the reference surface.
+        """
         operator = dmech.SurfacePressure0LoadingOperator(
             U_test=self.displacement_subsol.dsubtest,
             N=self.mesh_normals,
@@ -532,7 +632,9 @@ class Problem():
     def add_surface_pressure_loading_operator(self,
             k_step=None,
             **kwargs):
-
+        """
+        Adds a follower pressure load (normal to deformed surface).
+        """
         operator = dmech.SurfacePressureLoadingOperator(
             U_test=self.displacement_subsol.dsubtest,
             kinematics=self.kinematics,
@@ -545,7 +647,9 @@ class Problem():
     def add_surface_pressure_gradient0_loading_operator(self,
             k_step=None,
             **kwargs):
-
+        """
+        Adds a gradient-dependent pressure load on the reference surface.
+        """
         operator = dmech.SurfacePressureGradient0LoadingOperator(
             x=dolfin.SpatialCoordinate(self.mesh),
             U_test=self.displacement_subsol.dsubtest,
@@ -558,7 +662,9 @@ class Problem():
     def add_surface_pressure_gradient_loading_operator(self,
             k_step=None,
             **kwargs):
-
+        """
+        Adds a gradient-dependent pressure load on the deformed surface.
+        """
         operator = dmech.SurfacePressureGradientLoadingOperator(
             X=dolfin.SpatialCoordinate(self.mesh),
             U=self.displacement_subsol.subfunc,
@@ -573,7 +679,9 @@ class Problem():
     def add_surface_tension0_loading_operator(self,
             k_step=None,
             **kwargs):
-
+        """
+        Adds surface tension effects on the reference configuration.
+        """
         operator = dmech.SurfaceTension0LoadingOperator(
             u=self.displacement_subsol.subfunc,
             u_test=self.displacement_subsol.dsubtest,
@@ -587,7 +695,11 @@ class Problem():
     def add_surface_tension_loading_operator(self,
             k_step=None,
             **kwargs):
+        """
+        Adds surface tension effects on the current configuration.
 
+        
+        """
         operator = dmech.SurfaceTensionLoadingOperator(
             # U=self.displacement_subsol.subfunc,
             U_test=self.displacement_subsol.dsubtest,
@@ -601,7 +713,9 @@ class Problem():
     def add_normal_displacement_penalty_operator(self,
             k_step=None,
             **kwargs):
-
+        """
+        Adds a penalty operator to constrain displacement in the normal direction.
+        """
         operator = dmech.NormalDisplacementPenaltyOperator(
             U=self.displacement_subsol.subfunc,
             U_test=self.displacement_subsol.dsubtest,
@@ -614,7 +728,9 @@ class Problem():
     def add_directional_displacement_penalty_operator(self,
             k_step=None,
             **kwargs):
-
+        """
+        Adds a penalty operator to constrain displacement in a specific global direction.
+        """
         operator = dmech.DirectionalDisplacementPenaltyOperator(
             U=self.displacement_subsol.subfunc,
             U_test=self.displacement_subsol.dsubtest,
@@ -626,7 +742,9 @@ class Problem():
     def add_inertia_operator(self,
             k_step=None,
             **kwargs):
-
+        """
+        Adds inertial forces for dynamic simulations.
+        """
         operator = dmech.InertiaOperator(
             U=self.displacement_subsol.subfunc,
             U_old=self.displacement_subsol.func_old,
@@ -640,7 +758,9 @@ class Problem():
             *args,
             k_step=None,
             **kwargs):
-
+        """
+        Adds a Dirichlet boundary condition (constraint) to the problem.
+        """
         constraint = dmech.Constraint(*args, **kwargs)
         if (k_step is None):
             self.constraints += [constraint]
@@ -653,7 +773,9 @@ class Problem():
     def add_step(self,
             Deltat=1.,
             **kwargs):
-
+        """
+        Defines a new time step/load step for the simulation.
+        """
         if len(self.steps) == 0:
             t_ini = 0.
             t_fin = Deltat
@@ -671,7 +793,20 @@ class Problem():
 
     def set_variational_formulation(self,
             k_step=None):
+        """
+        Assembles the global variational forms for the nonlinear solver.
 
+        This aggregates the residual forms from all active operators and computes 
+        the tangent Jacobian matrix using automatic differentiation.
+
+        .. math::
+            \mathbf{R}(\mathbf{u}) = \sum \mathbf{R}_{op}(\mathbf{u}) \\
+            \mathbf{J} = \\frac{\partial \mathbf{R}}{\partial \mathbf{u}}
+
+        
+
+        :param k_step: Optional step index to include step-specific operators.
+        """
         self.res_form = sum([operator.res_form for operator in self.operators if (operator.measure.integral_type() != "vertex")]) # MG20190513: Cannot use point integral within assemble_system
         if (k_step is not None):
             self.res_form += sum([operator.res_form for operator in self.steps[k_step].operators if (operator.measure.integral_type() != "vertex")]) # MG20190513: Cannot use point integral within assemble_system

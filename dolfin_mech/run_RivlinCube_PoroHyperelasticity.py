@@ -31,7 +31,47 @@ def run_RivlinCube_PoroHyperelasticity(
         plot_curves=False,
         get_results=0,
         verbose=0):
+    """
+    Runs the Rivlin Cube benchmark for Poro-Hyperelasticity (Forward or Inverse).
 
+    This function simulates a porous unit cube (or square) undergoing large 
+    deformations. It validates the coupled mechanics of the solid skeleton and 
+    the pore fluid.
+
+    
+
+    **Problem Types:**
+    - **Forward (`inverse=0`)**: Given initial porosity :math:`\Phi_{s0}` and loads, 
+      solve for displacement :math:`\mathbf{u}` and current porosity :math:`\phi_s`.
+    - **Inverse (`inverse=1`)**: Given current porosity :math:`\phi_s` and loads, 
+      solve for the reference configuration (displacement :math:`\mathbf{u}`) and 
+      reference porosity :math:`\Phi_{s0}`.
+
+    **Loading Scenarios (`load_params["type"]`):**
+    
+    - ``"internal"``: Applies internal pore pressure :math:`p_f`.
+    - ``"external"``: Applies external traction :math:`P` to specific boundaries.
+    - ``"p_boundary_condition"``: Applies a pressure-balancing gravity load, often used for lung/organ mechanics validation.
+
+    **Porosity Initialization (`porosity_params`):**
+    Can be initialized as a constant, from a file, or via random generation using 
+    various keys like ``"constant"``, ``"from_file"``, ``"mesh_function_xml"``, etc.
+
+    :param dim: Spatial dimension (2 or 3).
+    :param inverse: If 1, solves the inverse problem; else forward.
+    :param cube_params: Mesh generation parameters (or path to existing mesh).
+    :param porosity_params: Configuration for the initial porosity field.
+    :param move_params: Parameters for ALE mesh movement before solving.
+    :param mat_params: Material parameters for skeleton, bulk, and pore behavior.
+    :param step_params: Time-stepping parameters (``Deltat``, ``dt_ini``).
+    :param load_params: Loading configuration (type and magnitude).
+    :param inertia_params: Dynamic simulation parameters (density ``rho``).
+    :param res_basename: Output filename prefix.
+    :param plot_curves: If True, generates Matplotlib plots of QOIs vs. time/pressure.
+    :param get_results: If True, returns displacement and porosity fields.
+    :param verbose: Verbosity level.
+    :return: (Optional) Tuple ``(displacement_func, porosity_array, measure)``.
+    """
     ################################################################### Mesh ###
 
     if ("path_and_file_name" in cube_params):

@@ -28,15 +28,44 @@ import numpy as np
 ################################################################################
 
 class PeriodicSubDomain(dolfin.SubDomain):
+    """
+    SubDomain subclass for enforcing Periodic Boundary Conditions (PBCs).
 
+    This class identifies the "slave" boundaries of a domain (typically the 
+    Top, Right, and Front faces of a box) and defines the mapping to their 
+    corresponding "master" boundaries (Bottom, Left, and Back).
 
+    
 
+    It supports both 2D and 3D domains, including non-orthogonal unit cells 
+    (parallelograms/parallelepipeds) if vertices are provided.
+
+    **Mapping Logic:**
+    For a point :math:`x` on a slave boundary, the ``map`` function computes its 
+    corresponding location :math:`y` on the master boundary.
+    
+    .. math::
+        y = x - \sum_i P_i \mathbf{a}_i
+
+    where :math:`\mathbf{a}_i` are the periodicity vectors.
+
+    :param dim: Spatial dimension (2 or 3).
+    :type dim: int
+    :param bbox: Bounding box coordinates ``[xmin, xmax, ymin, ymax, (zmin, zmax)]``.
+    :type bbox: list
+    :param vertices: (Optional) Array of RVE vertices for non-rectangular domains.
+    :type vertices: numpy.ndarray
+    :param tol: Geometric tolerance for boundary detection.
+    :type tol: float
+    """
     def __init__(self,
             dim,
             bbox,
             vertices=None,
             tol=None):
-
+        """
+        Initializes the PeriodicSubDomain.
+        """
         self.dim = dim
 
         self.xmin = bbox[0]
@@ -92,6 +121,12 @@ class PeriodicSubDomain(dolfin.SubDomain):
 
 
     def inside_2D(self, x, on_boundary):
+        """
+        Defines the "Master" boundary in 2D.
+        
+        Typically returns True for the Left and Bottom boundaries. 
+        It explicitly excludes corners that map to other master corners to avoid conflicts.
+        """
         # return True if on left or bottom boundary AND NOT on one of the
         # bottom-right or top-left vertices
         return bool((dolfin.near(x[0], self.vv[0,0] + x[1]*self.a2[0]/self.vv[3,1], self.tol) or
@@ -102,6 +137,12 @@ class PeriodicSubDomain(dolfin.SubDomain):
 
 
     def inside_3D(self, x, on_boundary):
+        """
+        Defines the "Master" boundary in 3D.
+        
+        Returns True if the point is on the Back (zmin), Bottom (ymin), or Left (xmin) faces,
+        excluding the corresponding Slave faces (Front, Top, Right).
+        """
         return bool(on_boundary and (dolfin.near(x[0], self.xmin, self.tol) or dolfin.near(x[1], self.ymin, self.tol) or dolfin.near(x[2], self.zmin, self.tol)) and not (dolfin.near(x[0], self.xmax, self.tol) or dolfin.near(x[1], self.ymax, self.tol) or dolfin.near(x[2], self.zmax, self.tol)))
 
 
@@ -131,6 +172,14 @@ class PeriodicSubDomain(dolfin.SubDomain):
 
 
     def map_2D(self, x, y):
+        """
+        Maps a point `x` on a Slave boundary to its image `y` on the Master boundary in 2D.
+        
+        Handles:
+        - **Corner**: Top-Right -> Bottom-Left.
+        - **Right Edge**: -> Left Edge.
+        - **Top Edge**: -> Bottom Edge.
+        """
         if dolfin.near(x[0], self.vv[2,0], self.tol) and dolfin.near(x[1], self.vv[2,1], self.tol): # if on top-right corner
             y[0] = x[0] - (self.a1[0]+self.a2[0])
             y[1] = x[1] - (self.a1[1]+self.a2[1])
@@ -144,6 +193,13 @@ class PeriodicSubDomain(dolfin.SubDomain):
 
 
     def map_3D(self, x, y):
+        """
+        Maps a point `x` on a Slave boundary to its image `y` on the Master boundary in 3D.
+        
+        Handles vertices, edges, and faces for a rectangular box domain. 
+        It systematically checks if `x` is on a max-boundary (Right, Top, Front) 
+        and subtracts the corresponding dimension's length to map it to min (Left, Bottom, Back).
+        """
         # Vertex
         if  (dolfin.near(x[0], self.xmax, self.tol) \
         and  dolfin.near(x[1], self.ymax, self.tol) \
