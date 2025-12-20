@@ -16,6 +16,7 @@
       <script src="_static/documentation_options.js?v=5929fcd5"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -1062,7 +1063,10 @@
 <li class="toctree-l2"><a class="reference internal" href="dolfin_mech.run_Poroflow.html#dolfin_mech.run_Poroflow.run_PoroDisc_Coupled"><code class="docutils literal notranslate"><span class="pre">run_PoroDisc_Coupled()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Poro-flow from gmsh tagged mesh</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Poro-flow from gmsh tagged mesh</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin_mech.run_Poroflow_from_msh.run_PoroDisc_Coupled"><code class="docutils literal notranslate"><span class="pre">run_PoroDisc_Coupled()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="dolfin_mech.run_RivlinCube_Elasticity.html">Rivlin Cube Elasticity</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="dolfin_mech.run_RivlinCube_Elasticity.html#dolfin_mech.run_RivlinCube_Elasticity.run_RivlinCube_Elasticity"><code class="docutils literal notranslate"><span class="pre">run_RivlinCube_Elasticity()</span></code></a></li>
 </ul>
@@ -1101,8 +1105,53 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="dolfin-mech-run-poroflow-from-msh">
-<h1>dolfin_mech.run_Poroflow_from_msh<a class="headerlink" href="#dolfin-mech-run-poroflow-from-msh" title="Link to this heading"></a></h1>
+  <section id="module-dolfin_mech.run_Poroflow_from_msh">
+<span id="dolfin-mech-run-poroflow-from-msh"></span><h1>dolfin_mech.run_Poroflow_from_msh<a class="headerlink" href="#module-dolfin_mech.run_Poroflow_from_msh" title="Link to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="dolfin_mech.run_Poroflow_from_msh.run_PoroDisc_Coupled">
+<span class="sig-name descname"><span class="pre">run_PoroDisc_Coupled</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mat_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">load_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">porosity_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">res_basename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'run_PoroDisc_Coupled'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/run_Poroflow_from_msh.html#run_PoroDisc_Coupled"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.run_Poroflow_from_msh.run_PoroDisc_Coupled" title="Link to this definition"></a></dt>
+<dd><p>Runs a coupled Poro-Flow Hyperelasticity simulation on a 2D domain.</p>
+<p>This function simulates the deformation and fluid flow within a porous hyperelastic
+structure (e.g., a square domain with inclusions). It solves for the coupled
+evolution of <strong>Solid Displacement</strong> (<span class="math notranslate nohighlight">\(\mathbf{u}\)</span>) and <strong>Fluid Pressure</strong> (<span class="math notranslate nohighlight">\(p_f\)</span>).</p>
+<p><strong>Workflow:</strong>
+1.  <strong>Mesh Loading</strong>: Imports a pre-generated mesh (and facet markers) from XDMF files.
+2.  <strong>Porosity Initialization</strong>: Sets the initial porosity field (<span class="math notranslate nohighlight">\(\phi_0\)</span>) which can be constant, a function, or random.
+3.  <strong>Problem Setup</strong>: Instantiates <code class="xref py py-class docutils literal notranslate"><span class="pre">PoroFlowHyperelasticityProblem</span></code>.
+4.  <strong>Boundary Conditions</strong>: Applies:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Fluid</strong>: Pressure gradients (Dirichlet BCs on <span class="math notranslate nohighlight">\(p_f\)</span>).</p></li>
+<li><p><strong>Solid</strong>: Displacement constraints (compression/shear).</p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="5">
+<li><p><strong>Solving</strong>: Uses a nonlinear solver with adaptive time-stepping.</p></li>
+</ol>
+<p><strong>Boundary Tags (Assumed):</strong>
+- 1: Plane (Back/Front)
+- 2: Left
+- 3: Right
+- 4: Top
+- 5: Bottom
+- 6: Inclusions</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mesh_params</strong> – (Unused here as mesh is loaded from file, but kept for interface consistency).</p></li>
+<li><p><strong>mat_params</strong> – Dictionary of material parameters for <code class="docutils literal notranslate"><span class="pre">skel</span></code> (skeleton), <code class="docutils literal notranslate"><span class="pre">bulk</span></code> (fluid compressibility), and <code class="docutils literal notranslate"><span class="pre">pore</span></code> (permeability).</p></li>
+<li><p><strong>step_params</strong> – Dictionary for time stepping (<code class="docutils literal notranslate"><span class="pre">Deltat</span></code>, <code class="docutils literal notranslate"><span class="pre">dt_ini</span></code>, <code class="docutils literal notranslate"><span class="pre">dt_min</span></code>).</p></li>
+<li><p><strong>load_params</strong> – Dictionary for loading values (e.g., pressure magnitude).</p></li>
+<li><p><strong>porosity_params</strong> – Dictionary for porosity initialization:
+- <code class="docutils literal notranslate"><span class="pre">type</span></code>: “constant”, “function_constant”, or “random”.
+- <code class="docutils literal notranslate"><span class="pre">val</span></code>: Base porosity value.</p></li>
+<li><p><strong>res_basename</strong> – Base name for output result files.</p></li>
+<li><p><strong>verbose</strong> – Verbosity level.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
