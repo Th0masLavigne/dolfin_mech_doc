@@ -1016,8 +1016,25 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Utilities</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.SubDomain_Periodic.html">Subdomain Periodic</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.SubDomain_Pinpoint.html">Subdomain Pinpoint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.SubDomain_Periodic.html">Subdomain Periodic</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.SubDomain_Periodic.html#dolfin_mech.SubDomain_Periodic.PeriodicSubDomain"><code class="docutils literal notranslate"><span class="pre">PeriodicSubDomain</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.SubDomain_Periodic.html#dolfin_mech.SubDomain_Periodic.PeriodicSubDomain.inside_2D"><code class="docutils literal notranslate"><span class="pre">PeriodicSubDomain.inside_2D()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.SubDomain_Periodic.html#dolfin_mech.SubDomain_Periodic.PeriodicSubDomain.inside_3D"><code class="docutils literal notranslate"><span class="pre">PeriodicSubDomain.inside_3D()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.SubDomain_Periodic.html#dolfin_mech.SubDomain_Periodic.PeriodicSubDomain.map_2D"><code class="docutils literal notranslate"><span class="pre">PeriodicSubDomain.map_2D()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.SubDomain_Periodic.html#dolfin_mech.SubDomain_Periodic.PeriodicSubDomain.map_3D"><code class="docutils literal notranslate"><span class="pre">PeriodicSubDomain.map_3D()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.SubDomain_Pinpoint.html">Subdomain Pinpoint</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.SubDomain_Pinpoint.html#dolfin_mech.SubDomain_Pinpoint.PinpointSubDomain"><code class="docutils literal notranslate"><span class="pre">PinpointSubDomain</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.SubDomain_Pinpoint.html#dolfin_mech.SubDomain_Pinpoint.PinpointSubDomain.check_inside"><code class="docutils literal notranslate"><span class="pre">PinpointSubDomain.check_inside()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.SubDomain_Pinpoint.html#dolfin_mech.SubDomain_Pinpoint.PinpointSubDomain.inside"><code class="docutils literal notranslate"><span class="pre">PinpointSubDomain.inside()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.SubDomain_Pinpoint.html#dolfin_mech.SubDomain_Pinpoint.PinpointSubDomain.move"><code class="docutils literal notranslate"><span class="pre">PinpointSubDomain.move()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="dolfin_mech.SubSol.html">SubSol</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="dolfin_mech.SubSol.html#dolfin_mech.SubSol.SubSol"><code class="docutils literal notranslate"><span class="pre">SubSol</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="dolfin_mech.SubSol.html#dolfin_mech.SubSol.SubSol.init_with_field"><code class="docutils literal notranslate"><span class="pre">SubSol.init_with_field()</span></code></a></li>
@@ -1519,6 +1536,8 @@
         <li><a href="dolfin_mech.Kinematics.html#dolfin_mech.Kinematics.Kinematics.C_bar">(Kinematics attribute)</a>
 </li>
       </ul></li>
+      <li><a href="dolfin_mech.SubDomain_Pinpoint.html#dolfin_mech.SubDomain_Pinpoint.PinpointSubDomain.check_inside">check_inside() (PinpointSubDomain method)</a>
+</li>
       <li><a href="dolfin_mech.Material_Elastic_OgdenCiarletGeymonat.html#dolfin_mech.Material_Elastic_OgdenCiarletGeymonat.OgdenCiarletGeymonatElasticMaterial.checkJ">checkJ (OgdenCiarletGeymonatElasticMaterial attribute)</a>
 </li>
       <li><a href="dolfin_mech.TimeIntegrator.html#dolfin_mech.TimeIntegrator.TimeIntegrator.close">close() (TimeIntegrator method)</a>
@@ -2415,9 +2434,15 @@
       </ul></li>
       <li><a href="dolfin_mech.SubSol.html#dolfin_mech.SubSol.SubSol.init_with_field">init_with_field() (SubSol method)</a>
 </li>
+      <li><a href="dolfin_mech.SubSol.html#dolfin_mech.SubSol.SubSol.init_with_val">init_with_val() (SubSol method)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="dolfin_mech.SubSol.html#dolfin_mech.SubSol.SubSol.init_with_val">init_with_val() (SubSol method)</a>
+      <li><a href="dolfin_mech.SubDomain_Pinpoint.html#dolfin_mech.SubDomain_Pinpoint.PinpointSubDomain.inside">inside() (PinpointSubDomain method)</a>
+</li>
+      <li><a href="dolfin_mech.SubDomain_Periodic.html#dolfin_mech.SubDomain_Periodic.PeriodicSubDomain.inside_2D">inside_2D() (PeriodicSubDomain method)</a>
+</li>
+      <li><a href="dolfin_mech.SubDomain_Periodic.html#dolfin_mech.SubDomain_Periodic.PeriodicSubDomain.inside_3D">inside_3D() (PeriodicSubDomain method)</a>
 </li>
       <li><a href="dolfin_mech.TimeIntegrator.html#dolfin_mech.TimeIntegrator.TimeIntegrator.integrate">integrate() (TimeIntegrator method)</a>
 </li>
@@ -2572,6 +2597,10 @@
       <li><a href="dolfin_mech.Operator_Penalty_MacroscopicStretchComponent.html#dolfin_mech.Operator_Penalty_MacroscopicStretchComponent.MacroscopicStretchComponentPenaltyOperator">MacroscopicStretchComponentPenaltyOperator (class in dolfin_mech.Operator_Penalty_MacroscopicStretchComponent)</a>
 </li>
       <li><a href="dolfin_mech.Operator_Penalty_MacroscopicStretchSymmetry.html#dolfin_mech.Operator_Penalty_MacroscopicStretchSymmetry.MacroscopicStretchSymmetryPenaltyOperator">MacroscopicStretchSymmetryPenaltyOperator (class in dolfin_mech.Operator_Penalty_MacroscopicStretchSymmetry)</a>
+</li>
+      <li><a href="dolfin_mech.SubDomain_Periodic.html#dolfin_mech.SubDomain_Periodic.PeriodicSubDomain.map_2D">map_2D() (PeriodicSubDomain method)</a>
+</li>
+      <li><a href="dolfin_mech.SubDomain_Periodic.html#dolfin_mech.SubDomain_Periodic.PeriodicSubDomain.map_3D">map_3D() (PeriodicSubDomain method)</a>
 </li>
       <li><a href="dolfin_mech.Material.html#dolfin_mech.Material.Material">Material (class in dolfin_mech.Material)</a>
 </li>
@@ -2858,6 +2887,8 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dolfin_mech.Material_Elastic_MooneyRivlin.html#dolfin_mech.Material_Elastic_MooneyRivlin.MooneyRivlinElasticMaterial">MooneyRivlinElasticMaterial (class in dolfin_mech.Material_Elastic_MooneyRivlin)</a>
 </li>
+      <li><a href="dolfin_mech.SubDomain_Pinpoint.html#dolfin_mech.SubDomain_Pinpoint.PinpointSubDomain.move">move() (PinpointSubDomain method)</a>
+</li>
       <li><a href="dolfin_mech.Material_Elastic_NeoHookeanMooneyRivlin.html#dolfin_mech.Material_Elastic_NeoHookeanMooneyRivlin.NeoHookeanMooneyRivlinElasticMaterial.mr">mr (NeoHookeanMooneyRivlinElasticMaterial attribute)</a>
 </li>
       <li><a href="dolfin_mech.Material_Elastic_Hooke.html#dolfin_mech.Material_Elastic_Hooke.HookeElasticMaterial.mu">mu (HookeElasticMaterial attribute)</a>
@@ -2950,9 +2981,13 @@
         <li><a href="dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookeanMooneyRivlin.html#dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookeanMooneyRivlin.OgdenCiarletGeymonatNeoHookeanMooneyRivlinElasticMaterial.p_hydro">(OgdenCiarletGeymonatNeoHookeanMooneyRivlinElasticMaterial attribute)</a>
 </li>
       </ul></li>
+      <li><a href="dolfin_mech.SubDomain_Periodic.html#dolfin_mech.SubDomain_Periodic.PeriodicSubDomain">PeriodicSubDomain (class in dolfin_mech.SubDomain_Periodic)</a>
+</li>
       <li><a href="dolfin_mech.Operator_Poro_Pf.html#dolfin_mech.Operator_Poro_Pf.PfPoroOperator.pf">pf (PfPoroOperator attribute)</a>
 </li>
       <li><a href="dolfin_mech.Operator_Poro_Pf.html#dolfin_mech.Operator_Poro_Pf.PfPoroOperator">PfPoroOperator (class in dolfin_mech.Operator_Poro_Pf)</a>
+</li>
+      <li><a href="dolfin_mech.SubDomain_Pinpoint.html#dolfin_mech.SubDomain_Pinpoint.PinpointSubDomain">PinpointSubDomain (class in dolfin_mech.SubDomain_Pinpoint)</a>
 </li>
       <li><a href="dolfin_mech.Operator_DarcyFlow.html#dolfin_mech.Operator_DarcyFlow.PlFieldOperator">PlFieldOperator (class in dolfin_mech.Operator_DarcyFlow)</a>
 </li>
@@ -2962,10 +2997,10 @@
 </li>
       <li><a href="dolfin_mech.Material_Elastic_Porous.html#dolfin_mech.Material_Elastic_Porous.PorousElasticMaterial">PorousElasticMaterial (class in dolfin_mech.Material_Elastic_Porous)</a>
 </li>
-      <li><a href="dolfin_mech.Problem_Elasticity.html#dolfin_mech.Problem_Elasticity.ElasticityProblem.pressure_subsol">pressure_subsol (ElasticityProblem attribute)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dolfin_mech.Problem_Elasticity.html#dolfin_mech.Problem_Elasticity.ElasticityProblem.pressure_subsol">pressure_subsol (ElasticityProblem attribute)</a>
+</li>
       <li><a href="dolfin_mech.Operator_Loading_PressureBalancingGravity.html#dolfin_mech.Operator_Loading_PressureBalancingGravity.PressureBalancingGravity0LoadingOperator">PressureBalancingGravity0LoadingOperator (class in dolfin_mech.Operator_Loading_PressureBalancingGravity)</a>
 </li>
       <li><a href="dolfin_mech.Operator_Loading_PressureBalancingGravity.html#dolfin_mech.Operator_Loading_PressureBalancingGravity.PressureBalancingGravityLoadingOperator">PressureBalancingGravityLoadingOperator (class in dolfin_mech.Operator_Loading_PressureBalancingGravity)</a>

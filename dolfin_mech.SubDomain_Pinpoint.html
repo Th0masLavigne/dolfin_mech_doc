@@ -16,6 +16,7 @@
       <script src="_static/documentation_options.js?v=5929fcd5"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -1019,8 +1020,25 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Utilities</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.SubDomain_Periodic.html">Subdomain Periodic</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Subdomain Pinpoint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.SubDomain_Periodic.html">Subdomain Periodic</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.SubDomain_Periodic.html#dolfin_mech.SubDomain_Periodic.PeriodicSubDomain"><code class="docutils literal notranslate"><span class="pre">PeriodicSubDomain</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.SubDomain_Periodic.html#dolfin_mech.SubDomain_Periodic.PeriodicSubDomain.inside_2D"><code class="docutils literal notranslate"><span class="pre">PeriodicSubDomain.inside_2D()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.SubDomain_Periodic.html#dolfin_mech.SubDomain_Periodic.PeriodicSubDomain.inside_3D"><code class="docutils literal notranslate"><span class="pre">PeriodicSubDomain.inside_3D()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.SubDomain_Periodic.html#dolfin_mech.SubDomain_Periodic.PeriodicSubDomain.map_2D"><code class="docutils literal notranslate"><span class="pre">PeriodicSubDomain.map_2D()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.SubDomain_Periodic.html#dolfin_mech.SubDomain_Periodic.PeriodicSubDomain.map_3D"><code class="docutils literal notranslate"><span class="pre">PeriodicSubDomain.map_3D()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Subdomain Pinpoint</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#dolfin_mech.SubDomain_Pinpoint.PinpointSubDomain"><code class="docutils literal notranslate"><span class="pre">PinpointSubDomain</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.SubDomain_Pinpoint.PinpointSubDomain.check_inside"><code class="docutils literal notranslate"><span class="pre">PinpointSubDomain.check_inside()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.SubDomain_Pinpoint.PinpointSubDomain.inside"><code class="docutils literal notranslate"><span class="pre">PinpointSubDomain.inside()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.SubDomain_Pinpoint.PinpointSubDomain.move"><code class="docutils literal notranslate"><span class="pre">PinpointSubDomain.move()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="dolfin_mech.SubSol.html">SubSol</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="dolfin_mech.SubSol.html#dolfin_mech.SubSol.SubSol"><code class="docutils literal notranslate"><span class="pre">SubSol</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="dolfin_mech.SubSol.html#dolfin_mech.SubSol.SubSol.init_with_field"><code class="docutils literal notranslate"><span class="pre">SubSol.init_with_field()</span></code></a></li>
@@ -1150,6 +1168,77 @@
              
   <section id="module-dolfin_mech.SubDomain_Pinpoint">
 <span id="dolfin-mech-subdomain-pinpoint"></span><h1>dolfin_mech.SubDomain_Pinpoint<a class="headerlink" href="#module-dolfin_mech.SubDomain_Pinpoint" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="dolfin_mech.SubDomain_Pinpoint.PinpointSubDomain">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PinpointSubDomain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/SubDomain_Pinpoint.html#PinpointSubDomain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.SubDomain_Pinpoint.PinpointSubDomain" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">SubDomain</span></code></p>
+<p>SubDomain subclass for identifying a specific point in the mesh.</p>
+<p>This class selects a node (or nodes) that fall within a specified tolerance
+of a target coordinate. It is commonly used for:</p>
+<ol class="arabic simple">
+<li><p><strong>Point Constraints</strong>: Preventing rigid body translations/rotations by pinning specific nodes.</p></li>
+<li><p><strong>Point Loads</strong>: Applying concentrated forces at specific locations.</p></li>
+<li><p><strong>Sensors</strong>: Identifying nodes for point-wise data extraction.</p></li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>coords</strong> (<em>list</em><em> or </em><em>numpy.ndarray</em>) – The target spatial coordinates <span class="math notranslate nohighlight">\((x, y, z)\)</span>.</p></li>
+<li><p><strong>tol</strong> (<em>float</em>) – The search radius tolerance (default: 1e-3). Nodes within this distance are selected.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="dolfin_mech.SubDomain_Pinpoint.PinpointSubDomain.check_inside">
+<span class="sig-name descname"><span class="pre">check_inside</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/SubDomain_Pinpoint.html#PinpointSubDomain.check_inside"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.SubDomain_Pinpoint.PinpointSubDomain.check_inside" title="Link to this definition"></a></dt>
+<dd><p>Debugging utility to find which mesh nodes actually match the criteria.</p>
+<p>Iterates through all mesh coordinates and returns a list of those that
+satisfy the <code class="docutils literal notranslate"><span class="pre">inside</span></code> condition. This is useful for verifying that the
+tolerance is sufficient to catch exactly one node (or the intended nodes).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mesh</strong> – The dolfin Mesh object to search.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of coordinate arrays for matching nodes.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dolfin_mech.SubDomain_Pinpoint.PinpointSubDomain.inside">
+<span class="sig-name descname"><span class="pre">inside</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_boundary</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/SubDomain_Pinpoint.html#PinpointSubDomain.inside"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.SubDomain_Pinpoint.PinpointSubDomain.inside" title="Link to this definition"></a></dt>
+<dd><p>Checks if a point <code class="docutils literal notranslate"><span class="pre">x</span></code> is inside the subdomain.</p>
+<p>Returns True if the Euclidean distance between <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">self.coords</span></code>
+is less than <code class="docutils literal notranslate"><span class="pre">self.tol</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – The point to check.</p></li>
+<li><p><strong>on_boundary</strong> – Flag indicating if the point is on the global boundary (unused here).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dolfin_mech.SubDomain_Pinpoint.PinpointSubDomain.move">
+<span class="sig-name descname"><span class="pre">move</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/SubDomain_Pinpoint.html#PinpointSubDomain.move"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.SubDomain_Pinpoint.PinpointSubDomain.move" title="Link to this definition"></a></dt>
+<dd><p>Updates the target coordinates.</p>
+<p>This allows the subdomain definition to move over time, which can be useful
+in dynamic simulations or when tracking a moving feature.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>coords</strong> – The new target coordinates.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 
