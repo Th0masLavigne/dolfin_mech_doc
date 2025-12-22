@@ -309,6 +309,7 @@ class PoroHyperelasticityProblem(HyperelasticityProblem):
         Calculates:
             - **phis** (spatial solid fraction)
             - **Phis** (Lagrangian solid fraction scaled)
+            
         based on the Jacobian :math:`J` and the known/unknown porosity inputs.
         """
         if (self.porosity_known == "Phis0"):

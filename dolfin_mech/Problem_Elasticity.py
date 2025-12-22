@@ -438,6 +438,7 @@ class ElasticityProblem(Problem):
 
         This method processes a list of material definitions to build the problem's total 
         internal virtual work. For each behavior, it:
+        
             1. Registers a :class:`LinearizedElasticityOperator`.
             2. Automatically adds the resulting Cauchy stress :math:`\sigma` to the 
                Fields of Interest (FOI) for visualization.
