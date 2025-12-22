@@ -96,6 +96,8 @@ But if you need to develop within the library, you need to install an editable v
    Ogden Ciarlet Geymonat Neo-Hookean Mooney-Rivlin Elastic <dolfin_mech.Material_Elastic_OgdenCiarletGeymonatNeoHookeanMooneyRivlin>
    Porous Elastic <dolfin_mech.Material_Elastic_Porous>
    Inelastic Material <dolfin_mech.Material_Inelastic>
+   MicroPoro Deformed Fluid Volume <dolfin_mech.Operator_MicroPoro_DeformedFluidVolume>
+   MicroPoro Deformed Solid Volume <dolfin_mech.Operator_MicroPoro_DeformedSolidVolume>
 
 .. toctree::
    :maxdepth: 1

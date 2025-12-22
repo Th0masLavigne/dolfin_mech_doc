@@ -20,7 +20,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="dolfin_mech.run_Ball_Mesh" href="dolfin_mech.run_Ball_Mesh.html" />
-    <link rel="prev" title="dolfin_mech.Material_Inelastic" href="dolfin_mech.Material_Inelastic.html" /> 
+    <link rel="prev" title="dolfin_mech.Operator_MicroPoro_DeformedSolidVolume" href="dolfin_mech.Operator_MicroPoro_DeformedSolidVolume.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -421,6 +421,27 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Material_Inelastic.html">Inelastic Material</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Material_Inelastic.html#dolfin_mech.Material_Inelastic.InelasticMaterial"><code class="docutils literal notranslate"><span class="pre">InelasticMaterial</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Operator_MicroPoro_DeformedFluidVolume.html">MicroPoro Deformed Fluid Volume</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Operator_MicroPoro_DeformedFluidVolume.html#dolfin_mech.Operator_MicroPoro_DeformedFluidVolume.DeformedFluidVolumeOperator"><code class="docutils literal notranslate"><span class="pre">DeformedFluidVolumeOperator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_MicroPoro_DeformedFluidVolume.html#dolfin_mech.Operator_MicroPoro_DeformedFluidVolume.DeformedFluidVolumeOperator.kinematics"><code class="docutils literal notranslate"><span class="pre">DeformedFluidVolumeOperator.kinematics</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_MicroPoro_DeformedFluidVolume.html#dolfin_mech.Operator_MicroPoro_DeformedFluidVolume.DeformedFluidVolumeOperator.U_tot"><code class="docutils literal notranslate"><span class="pre">DeformedFluidVolumeOperator.U_tot</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_MicroPoro_DeformedFluidVolume.html#dolfin_mech.Operator_MicroPoro_DeformedFluidVolume.DeformedFluidVolumeOperator.X"><code class="docutils literal notranslate"><span class="pre">DeformedFluidVolumeOperator.X</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_MicroPoro_DeformedFluidVolume.html#dolfin_mech.Operator_MicroPoro_DeformedFluidVolume.DeformedFluidVolumeOperator.N"><code class="docutils literal notranslate"><span class="pre">DeformedFluidVolumeOperator.N</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_MicroPoro_DeformedFluidVolume.html#dolfin_mech.Operator_MicroPoro_DeformedFluidVolume.DeformedFluidVolumeOperator.measure"><code class="docutils literal notranslate"><span class="pre">DeformedFluidVolumeOperator.measure</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_MicroPoro_DeformedFluidVolume.html#dolfin_mech.Operator_MicroPoro_DeformedFluidVolume.DeformedFluidVolumeOperator.res_form"><code class="docutils literal notranslate"><span class="pre">DeformedFluidVolumeOperator.res_form</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dolfin_mech.Operator_MicroPoro_DeformedSolidVolume.html">MicroPoro Deformed Solid Volume</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dolfin_mech.Operator_MicroPoro_DeformedSolidVolume.html#dolfin_mech.Operator_MicroPoro_DeformedSolidVolume.DeformedSolidVolumeOperator"><code class="docutils literal notranslate"><span class="pre">DeformedSolidVolumeOperator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_MicroPoro_DeformedSolidVolume.html#dolfin_mech.Operator_MicroPoro_DeformedSolidVolume.DeformedSolidVolumeOperator.Vs0"><code class="docutils literal notranslate"><span class="pre">DeformedSolidVolumeOperator.Vs0</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_MicroPoro_DeformedSolidVolume.html#dolfin_mech.Operator_MicroPoro_DeformedSolidVolume.DeformedSolidVolumeOperator.measure"><code class="docutils literal notranslate"><span class="pre">DeformedSolidVolumeOperator.measure</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dolfin_mech.Operator_MicroPoro_DeformedSolidVolume.html#dolfin_mech.Operator_MicroPoro_DeformedSolidVolume.DeformedSolidVolumeOperator.res_form"><code class="docutils literal notranslate"><span class="pre">DeformedSolidVolumeOperator.res_form</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1182,7 +1203,7 @@ from breaking the VTK pointers.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="dolfin_mech.Material_Inelastic.html" class="btn btn-neutral float-left" title="dolfin_mech.Material_Inelastic" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dolfin_mech.Operator_MicroPoro_DeformedSolidVolume.html" class="btn btn-neutral float-left" title="dolfin_mech.Operator_MicroPoro_DeformedSolidVolume" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="dolfin_mech.run_Ball_Mesh.html" class="btn btn-neutral float-right" title="dolfin_mech.run_Ball_Mesh" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
