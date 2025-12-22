@@ -41,6 +41,7 @@ def run_RivlinCube_PoroHyperelasticity(
     
 
     **Problem Types:**
+    
     - **Forward (`inverse=0`)**: Given initial porosity :math:`\Phi_{s0}` and loads, 
       solve for displacement :math:`\mathbf{u}` and current porosity :math:`\phi_s`.
     - **Inverse (`inverse=1`)**: Given current porosity :math:`\phi_s` and loads, 

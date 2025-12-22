@@ -30,6 +30,7 @@ def run_PoroDisc_Coupled(
     
 
     **Workflow:**
+
     1.  **Mesh Loading**: Imports a pre-generated mesh (and facet markers) from XDMF files.
     2.  **Porosity Initialization**: Sets the initial porosity field (:math:`\phi_0`) which can be constant, a function, or random.
     3.  **Problem Setup**: Instantiates :class:`PoroFlowHyperelasticityProblem`.
@@ -39,6 +40,7 @@ def run_PoroDisc_Coupled(
     5.  **Solving**: Uses a nonlinear solver with adaptive time-stepping.
 
     **Boundary Tags (Assumed):**
+    
     - 1: Plane (Back/Front)
     - 2: Left
     - 3: Right

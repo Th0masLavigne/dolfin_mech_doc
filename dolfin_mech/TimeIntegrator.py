@@ -28,10 +28,13 @@ class TimeIntegrator():
     
 
     **Core Responsibilities:**
+    
     1.  **Adaptive Time Stepping**: Dynamically adjusts the time increment :math:`\Delta t` 
         based on solver performance.
+
         - **Success**: Increases :math:`\Delta t` (acceleration) if convergence is fast.
         - **Failure**: Decreases :math:`\Delta t` (deceleration/cutting) if convergence fails, retrying the step.
+
     2.  **State Management**: Updates time-dependent operators and constraints before each solve.
     3.  **Output Management**: Writes results to disk (VTU/XDMF for fields, DAT for QOIs, log files for monitoring).
 

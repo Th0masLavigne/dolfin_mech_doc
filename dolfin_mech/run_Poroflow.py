@@ -31,6 +31,7 @@ def run_PoroDisc_Coupled(
     
 
     **Workflow:**
+    
     1.  **Mesh Generation**: Calls ``dmech.run_HollowBox_Mesh`` to generate the domain.
     2.  **Porosity Initialization**: Sets the initial porosity field (:math:`\phi_0`) which can be constant, a function, or random.
     3.  **Problem Setup**: Instantiates :class:`PoroFlowHyperelasticityProblem`.

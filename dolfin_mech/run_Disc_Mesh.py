@@ -20,10 +20,12 @@ def run_Disc_Mesh(
     Generates a 2D disc mesh using Gmsh and prepares boundary/point markers.
 
     This function performs the full mesh generation pipeline:
+
     1.  **Geometry**: Defines a circle using 4 arcs and 5 points (center + 4 cardinal points).
     2.  **Meshing**: Generates a triangular mesh using Gmsh's ``geo`` kernel.
     3.  **Conversion**: Converts the mesh to XDMF format compatible with FEniCS.
     4.  **Marking**: 
+    
         - Marks the entire circular boundary (ID 1).
         - Marks the 4 cardinal points (Right, Top, Left, Bottom) with IDs 1, 2, 3, 4 respectively.
 

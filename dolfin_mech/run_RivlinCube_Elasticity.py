@@ -36,10 +36,12 @@ def run_RivlinCube_Elasticity(
     
 
     **Features:**
+
     - **Dimensionality**: Supports 2D and 3D simulations.
     - **Incompressibility**: Can switch between compressible (pure displacement) and incompressible (mixed :math:`u-p`) formulations.
     - **Heterogeneity**: Supports multi-material setups (e.g., a bi-material bar split at :math:`x=0.5`).
     - **Loading Modes**:
+    
         - ``"disp"``: Prescribed displacement (stretch).
         - ``"volu"``: Body force (gravity-like).
         - ``"surf"``: Surface traction vector.

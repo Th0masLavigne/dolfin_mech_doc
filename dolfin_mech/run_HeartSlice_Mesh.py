@@ -30,10 +30,14 @@ def run_HeartSlice_Mesh(
     and an outer radius :math:`R_e` (epicardium).
 
     **Markers:**
+
     - **Boundaries**:
+
         - ID 1 (:math:`S_i`): Inner boundary (Endocardium).
         - ID 2 (:math:`S_e`): Outer boundary (Epicardium).
+
     - **Points** (on the inner boundary :math:`R_i`):
+    
         - ID 1: Right (:math:`0` rad).
         - ID 2: Top (:math:`\pi/2` rad).
         - ID 3: Left (:math:`\pi` rad).

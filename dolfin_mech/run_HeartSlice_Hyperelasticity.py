@@ -34,6 +34,7 @@ def run_HeartSlice_Hyperelasticity(
     
 
     **Loading Scenarios:**
+    
     1.  **Displacement Control (`type="disp"`)**: Simulates a "twisting" or contraction 
         movement. The inner radius :math:`R_i` is displaced by :math:`dR_i` and rotated 
         by :math:`dT_i`. The outer radius :math:`R_e` is similarly deformed. This is useful 

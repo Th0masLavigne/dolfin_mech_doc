@@ -92,7 +92,7 @@ class InversePoroHyperelasticityProblem(PoroHyperelasticityProblem):
         """
         Initializes the inverse kinematic framework.
 
-        Defines the deformation gradient :math:`\mathbf{F} = (\nabla_{\mathbf{x}} \mathbf{X})^{-1}` 
+        Defines the deformation gradient :math:`\mathbf{F} = (\\nabla_{\mathbf{x}} \mathbf{X})^{-1}` 
         where the mesh represents the spatial domain :math:`\mathbf{x}` and the 
         unknown is the reference coordinate mapping :math:`\mathbf{X}(\mathbf{x})`.
 
