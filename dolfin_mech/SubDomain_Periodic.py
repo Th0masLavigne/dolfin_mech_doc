@@ -45,9 +45,9 @@ class PeriodicSubDomain(dolfin.SubDomain):
     corresponding location :math:`y` on the master boundary.
     
     .. math::
-        y = x - \sum_i P_i \mathbf{a}_i
+        y = x - \sum_i P_i \\mathbf{a}_i
 
-    where :math:`\mathbf{a}_i` are the periodicity vectors.
+    where :math:`\\mathbf{a}_i` are the periodicity vectors.
 
     :param dim: Spatial dimension (2 or 3).
     :type dim: int
