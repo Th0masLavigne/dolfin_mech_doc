@@ -1183,10 +1183,6 @@
             <span class="n">kinematics</span><span class="p">,</span>
             <span class="n">N</span><span class="p">,</span>
             <span class="n">measure</span><span class="p">):</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">measure</span> <span class="o">=</span> <span class="n">measure</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span> <span class="o">=</span> <span class="n">kinematics</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">=</span> <span class="n">N</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initializes the DeformedSurfaceAreaOperator.</span>
 
@@ -1201,6 +1197,10 @@
 <span class="sd">        :param measure: Integration measure for the boundary.</span>
 <span class="sd">        :type measure: dolfin.Measure</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">measure</span> <span class="o">=</span> <span class="n">measure</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span> <span class="o">=</span> <span class="n">kinematics</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">=</span> <span class="n">N</span>
 
         <span class="n">FmTN</span> <span class="o">=</span> <span class="n">dolfin</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">dolfin</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">F</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">)</span>
         <span class="n">T</span> <span class="o">=</span> <span class="n">dolfin</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dolfin</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">FmTN</span><span class="p">,</span> <span class="n">FmTN</span><span class="p">))</span>

@@ -1276,28 +1276,19 @@ pressure degree is typically lower than the displacement degree (e.g., P2-P1).</
 <dl class="py method">
 <dt class="sig sig-object py" id="dolfin_mech.Problem_Hyperelasticity.HyperelasticityProblem.set_kinematics">
 <span class="sig-name descname"><span class="pre">set_kinematics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">add_fois</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Problem_Hyperelasticity.html#HyperelasticityProblem.set_kinematics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Problem_Hyperelasticity.HyperelasticityProblem.set_kinematics" title="Link to this definition"></a></dt>
-<dd><blockquote>
-<div><p>Initializes the kinematic quantities derived from displacement.</p>
+<dd><p>Initializes the kinematic quantities derived from displacement.</p>
 <dl class="simple">
 <dt>Calculates:</dt><dd><ul class="simple">
-<li><p><strong>F</strong>: Deformation Gradient (:math:<a href="#id1"><span class="problematic" id="id2">`</span></a>mathbf{I} +</p></li>
-</ul>
-</dd>
-</dl>
-</div></blockquote>
-<dl>
-<dt>abla mathbf{u}`)</dt><dd><blockquote>
-<div><ul class="simple">
+<li><p><strong>F</strong>: Deformation Gradient (<span class="math notranslate nohighlight">\(\mathbf{I} + \nabla \mathbf{u}\)</span>)</p></li>
 <li><p><strong>J</strong>: Jacobian determinant (<span class="math notranslate nohighlight">\(\det \mathbf{F}\)</span>)</p></li>
 <li><p><strong>C</strong>: Right Cauchy-Green deformation tensor (<span class="math notranslate nohighlight">\(\mathbf{F}^T \mathbf{F}\)</span>)</p></li>
 <li><p><strong>E</strong>: Green-Lagrange strain tensor (<span class="math notranslate nohighlight">\(0.5 (\mathbf{C} - \mathbf{I})\)</span>)</p></li>
 </ul>
-</div></blockquote>
-<dl class="field-list simple">
-<dt class="field-odd">param add_fois<span class="colon">:</span></dt>
-<dd class="field-odd"><p>If True, registers these tensors as Fields of Interest for output.</p>
 </dd>
 </dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>add_fois</strong> – If True, registers these tensors as Fields of Interest for output.</p>
 </dd>
 </dl>
 </dd></dl>
