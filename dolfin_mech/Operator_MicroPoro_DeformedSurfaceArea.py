@@ -51,10 +51,6 @@ class DeformedSurfaceAreaOperator(Operator):
             kinematics,
             N,
             measure):
-
-        self.measure = measure
-        self.kinematics = kinematics
-        self.N = N
         """
         Initializes the DeformedSurfaceAreaOperator.
 
@@ -69,6 +65,10 @@ class DeformedSurfaceAreaOperator(Operator):
         :param measure: Integration measure for the boundary.
         :type measure: dolfin.Measure
         """
+
+        self.measure = measure
+        self.kinematics = kinematics
+        self.N = N
 
         FmTN = dolfin.dot(dolfin.inv(self.kinematics.F).T, self.N)
         T = dolfin.sqrt(dolfin.inner(FmTN, FmTN))

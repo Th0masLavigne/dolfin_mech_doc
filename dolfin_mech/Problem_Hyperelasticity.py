@@ -200,7 +200,7 @@ class HyperelasticityProblem(Problem):
         Initializes the kinematic quantities derived from displacement.
 
         Calculates:
-            - **F**: Deformation Gradient (:math:`\mathbf{I} + \nabla \mathbf{u}`)
+            - **F**: Deformation Gradient (:math:`\mathbf{I} + \\nabla \mathbf{u}`)
             - **J**: Jacobian determinant (:math:`\det \mathbf{F}`)
             - **C**: Right Cauchy-Green deformation tensor (:math:`\mathbf{F}^T \mathbf{F}`)
             - **E**: Green-Lagrange strain tensor (:math:`0.5 (\mathbf{C} - \mathbf{I})`)

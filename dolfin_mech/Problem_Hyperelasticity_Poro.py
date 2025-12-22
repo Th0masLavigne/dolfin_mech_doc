@@ -40,6 +40,7 @@ class PoroHyperelasticityProblem(HyperelasticityProblem):
 
     **Porosity Formulations:**
     The class handles two porosity descriptors:
+    
         1. **Spatial Porosity** (:math:`\phi_s`): Solid volume fraction in the current configuration.
         2. **Lagrangian Porosity** (:math:`\Phi_{s0}`): Solid volume fraction referred to the reference volume.
 

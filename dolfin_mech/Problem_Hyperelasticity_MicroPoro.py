@@ -405,8 +405,10 @@ class MicroPoroHyperelasticityProblem(HyperelasticityProblem):
 
         Additionally, this method automatically registers two stress fields as 
         Fields of Interest (FOI):
+        
             1. **Sigma**: The Second Piola-Kirchhoff stress tensor (:math:`\mathbf{S}`).
             2. **sigma**: The Cauchy stress tensor (:math:`\mathbf{\sigma}`).
+
 
         :param solid_behavior_model: The name of the hyperelastic constitutive 
             model (e.g., "NeoHookean", "HolzapfelOgden").
