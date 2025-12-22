@@ -29,7 +29,7 @@ class ElasticityProblem(Problem):
 
     Attributes:
         w_incompressibility (bool): If True, a pressure field is added to enforce 
-            incompressibility.
+                                    incompressibility.
         kinematics (LinearizedKinematics): Object handling infinitesimal strain.
         displacement_subsol (SubSolution): Container for displacement fields.
         pressure_subsol (SubSolution): Container for pressure fields (if used).
