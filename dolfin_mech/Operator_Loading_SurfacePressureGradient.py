@@ -22,7 +22,7 @@ class SurfacePressureGradientLoadingOperator(Operator):
 
     This operator applies a pressure field :math:`P` that varies linearly along 
     a specified direction :math:`\mathbf{N}_0`. This is typically used to 
-    model hydrostatic pressure (e.g., :math:`P = P_0 + \rho g z`).
+    model hydrostatic pressure (e.g., :math:`P = P_0 + \\rho g z`).
 
     The spatially varying pressure is defined as:
 
