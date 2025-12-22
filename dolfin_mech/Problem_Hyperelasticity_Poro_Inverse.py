@@ -58,6 +58,7 @@ class InversePoroHyperelasticityProblem(PoroHyperelasticityProblem):
         Configures which porosity field is treated as known data.
 
         :param porosity_known: A string indicating the known variable:
+        
             - ``"phis"``: The spatial solid volume fraction (current configuration) 
               is known. The reference porosity ``phis0`` becomes an unknown.
             - ``"Phis0"``: The Lagrangian solid volume fraction (reference mass 
