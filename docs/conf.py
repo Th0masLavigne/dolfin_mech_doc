@@ -7,7 +7,28 @@ import sphinx_rtd_theme
 sys.path.insert(0, os.path.abspath('..'))
 
 # Mock des dépendances qui ne peuvent pas être installées sur GitHub (FEniCS + vos libs +petsc)
-MOCK_MODULES = [
+# MOCK_MODULES = [
+#     'dolfin', 
+#     'fenics', 
+#     'ufl', 
+#     'petsc4py',
+#     'petsc4py.PETSc',
+#     'numpy', 
+#     'matplotlib', 
+#     'matplotlib.pyplot',
+#     'pandas',
+#     'meshio',
+#     'vtk',
+#     'gmsh',
+#     'myPythonLibrary', 
+#     'myVTKPythonLibrary', 
+#     'vtkpython_cbl',
+# ]
+# for mod_name in MOCK_MODULES:
+#     sys.modules[mod_name] = MagicMock()
+
+# Certaines classes héritaient de dolfin.Subdomain <= import explicite
+autodoc_mock_imports = [
     'dolfin', 
     'fenics', 
     'ufl', 
@@ -24,8 +45,6 @@ MOCK_MODULES = [
     'myVTKPythonLibrary', 
     'vtkpython_cbl',
 ]
-for mod_name in MOCK_MODULES:
-    sys.modules[mod_name] = MagicMock()
 
 # Configuration de base
 project = 'dolfin_mech'
