@@ -640,6 +640,11 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#dolfin_mech.Operator_Loading_SurfacePressureGradient.SurfacePressureGradientLoadingOperator"><code class="docutils literal notranslate"><span class="pre">SurfacePressureGradientLoadingOperator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Operator_Loading_SurfacePressureGradient.SurfacePressureGradientLoadingOperator.tv_X0"><code class="docutils literal notranslate"><span class="pre">SurfacePressureGradientLoadingOperator.tv_X0</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Operator_Loading_SurfacePressureGradient.SurfacePressureGradientLoadingOperator.tv_N0"><code class="docutils literal notranslate"><span class="pre">SurfacePressureGradientLoadingOperator.tv_N0</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Operator_Loading_SurfacePressureGradient.SurfacePressureGradientLoadingOperator.tv_P0"><code class="docutils literal notranslate"><span class="pre">SurfacePressureGradientLoadingOperator.tv_P0</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Operator_Loading_SurfacePressureGradient.SurfacePressureGradientLoadingOperator.tv_DP"><code class="docutils literal notranslate"><span class="pre">SurfacePressureGradientLoadingOperator.tv_DP</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Operator_Loading_SurfacePressureGradient.SurfacePressureGradientLoadingOperator.res_form"><code class="docutils literal notranslate"><span class="pre">SurfacePressureGradientLoadingOperator.res_form</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dolfin_mech.Operator_Loading_SurfacePressureGradient.SurfacePressureGradientLoadingOperator.set_value_at_t_step"><code class="docutils literal notranslate"><span class="pre">SurfacePressureGradientLoadingOperator.set_value_at_t_step()</span></code></a></li>
 </ul>
 </li>
@@ -1163,16 +1168,12 @@ reference normal <span class="math notranslate nohighlight">\(\mathbf{N}\)</span
 <dt class="sig sig-object py" id="dolfin_mech.Operator_Loading_SurfacePressureGradient.SurfacePressureGradientLoadingOperator">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SurfacePressureGradientLoadingOperator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">U</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">U_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kinematics</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">measure</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X0_val</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X0_ini</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X0_fin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N0_val</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N0_ini</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N0_fin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P0_val</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P0_ini</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P0_fin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DP_val</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DP_ini</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DP_fin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Operator_Loading_SurfacePressureGradient.html#SurfacePressureGradientLoadingOperator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Operator_Loading_SurfacePressureGradient.SurfacePressureGradientLoadingOperator" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="dolfin_mech.Operator.html#dolfin_mech.Operator.Operator" title="dolfin_mech.Operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></a></p>
-<blockquote>
-<div><p>Operator representing an external surface pressure with a spatial gradient
+<p>Operator representing an external surface pressure with a spatial gradient
 in a large deformation (finite strain) framework.</p>
 <p>This operator applies a pressure field <span class="math notranslate nohighlight">\(P\)</span> that varies linearly along
 a specified direction <span class="math notranslate nohighlight">\(\mathbf{N}_0\)</span>. This is typically used to
-model hydrostatic pressure (e.g., :math:<a href="#id1"><span class="problematic" id="id2">`</span></a>P = P_0 +</p>
-</div></blockquote>
-<p>ho g z`).</p>
-<blockquote>
-<div><p>The spatially varying pressure is defined as:</p>
+model hydrostatic pressure (e.g., <span class="math notranslate nohighlight">\(P = P_0 + \rho g z\)</span>).</p>
+<p>The spatially varying pressure is defined as:</p>
 <div class="math notranslate nohighlight">
 \[P(\mathbf{x}) = P_0 + \Delta P (\mathbf{x} - \mathbf{X}_0) \cdot \mathbf{N}_0\]</div>
 <dl class="simple">
@@ -1186,15 +1187,61 @@ model hydrostatic pressure (e.g., :math:<a href="#id1"><span class="problematic"
 </dl>
 <p>As a “follower load,” the pressure direction remains normal to the deformed
 surface using Nanson’s formula.</p>
-<dl class="simple">
-<dt>Attributes:</dt><dd><p>tv_X0 (TimeVaryingConstant): Reference position <span class="math notranslate nohighlight">\(\mathbf{X}_0\)</span>.
-tv_N0 (TimeVaryingConstant): Gradient direction <span class="math notranslate nohighlight">\(\mathbf{N}_0\)</span>.
-tv_P0 (TimeVaryingConstant): Reference pressure <span class="math notranslate nohighlight">\(P_0\)</span>.
-tv_DP (TimeVaryingConstant): Pressure gradient <span class="math notranslate nohighlight">\(\Delta P\)</span>.
-res_form (UFL form): The resulting residual variational form.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Operator_Loading_SurfacePressureGradient.SurfacePressureGradientLoadingOperator.tv_X0">
+<span class="sig-name descname"><span class="pre">tv_X0</span></span><a class="headerlink" href="#dolfin_mech.Operator_Loading_SurfacePressureGradient.SurfacePressureGradientLoadingOperator.tv_X0" title="Link to this definition"></a></dt>
+<dd><p>Reference position <span class="math notranslate nohighlight">\(\mathbf{X}_0\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="dolfin_mech.TimeVaryingConstant.html#dolfin_mech.TimeVaryingConstant.TimeVaryingConstant" title="dolfin_mech.TimeVaryingConstant.TimeVaryingConstant">TimeVaryingConstant</a></p>
 </dd>
 </dl>
-</div></blockquote>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Operator_Loading_SurfacePressureGradient.SurfacePressureGradientLoadingOperator.tv_N0">
+<span class="sig-name descname"><span class="pre">tv_N0</span></span><a class="headerlink" href="#dolfin_mech.Operator_Loading_SurfacePressureGradient.SurfacePressureGradientLoadingOperator.tv_N0" title="Link to this definition"></a></dt>
+<dd><p>Gradient direction <span class="math notranslate nohighlight">\(\mathbf{N}_0\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="dolfin_mech.TimeVaryingConstant.html#dolfin_mech.TimeVaryingConstant.TimeVaryingConstant" title="dolfin_mech.TimeVaryingConstant.TimeVaryingConstant">TimeVaryingConstant</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Operator_Loading_SurfacePressureGradient.SurfacePressureGradientLoadingOperator.tv_P0">
+<span class="sig-name descname"><span class="pre">tv_P0</span></span><a class="headerlink" href="#dolfin_mech.Operator_Loading_SurfacePressureGradient.SurfacePressureGradientLoadingOperator.tv_P0" title="Link to this definition"></a></dt>
+<dd><p>Reference pressure <span class="math notranslate nohighlight">\(P_0\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="dolfin_mech.TimeVaryingConstant.html#dolfin_mech.TimeVaryingConstant.TimeVaryingConstant" title="dolfin_mech.TimeVaryingConstant.TimeVaryingConstant">TimeVaryingConstant</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Operator_Loading_SurfacePressureGradient.SurfacePressureGradientLoadingOperator.tv_DP">
+<span class="sig-name descname"><span class="pre">tv_DP</span></span><a class="headerlink" href="#dolfin_mech.Operator_Loading_SurfacePressureGradient.SurfacePressureGradientLoadingOperator.tv_DP" title="Link to this definition"></a></dt>
+<dd><p>Pressure gradient <span class="math notranslate nohighlight">\(\Delta P\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="dolfin_mech.TimeVaryingConstant.html#dolfin_mech.TimeVaryingConstant.TimeVaryingConstant" title="dolfin_mech.TimeVaryingConstant.TimeVaryingConstant">TimeVaryingConstant</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dolfin_mech.Operator_Loading_SurfacePressureGradient.SurfacePressureGradientLoadingOperator.res_form">
+<span class="sig-name descname"><span class="pre">res_form</span></span><a class="headerlink" href="#dolfin_mech.Operator_Loading_SurfacePressureGradient.SurfacePressureGradientLoadingOperator.res_form" title="Link to this definition"></a></dt>
+<dd><p>The resulting residual variational form.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>UFL form</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="dolfin_mech.Operator_Loading_SurfacePressureGradient.SurfacePressureGradientLoadingOperator.set_value_at_t_step">
 <span class="sig-name descname"><span class="pre">set_value_at_t_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_step</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/Operator_Loading_SurfacePressureGradient.html#SurfacePressureGradientLoadingOperator.set_value_at_t_step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.Operator_Loading_SurfacePressureGradient.SurfacePressureGradientLoadingOperator.set_value_at_t_step" title="Link to this definition"></a></dt>
