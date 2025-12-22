@@ -1141,14 +1141,15 @@
 <p>The <code class="docutils literal notranslate"><span class="pre">TimeIntegrator</span></code> orchestrates the entire simulation workflow. It iterates
 through the sequence of defined <strong>Steps</strong>, and within each step, it advances
 time <span class="math notranslate nohighlight">\(t\)</span> from <span class="math notranslate nohighlight">\(t_{ini}\)</span> to <span class="math notranslate nohighlight">\(t_{fin}\)</span>.</p>
-<p><strong>Core Responsibilities:</strong>
-1.  <strong>Adaptive Time Stepping</strong>: Dynamically adjusts the time increment <span class="math notranslate nohighlight">\(\Delta t\)</span></p>
-<blockquote>
-<div><p>based on solver performance.
-- <strong>Success</strong>: Increases <span class="math notranslate nohighlight">\(\Delta t\)</span> (acceleration) if convergence is fast.
-- <strong>Failure</strong>: Decreases <span class="math notranslate nohighlight">\(\Delta t\)</span> (deceleration/cutting) if convergence fails, retrying the step.</p>
-</div></blockquote>
-<ol class="arabic simple" start="2">
+<p><strong>Core Responsibilities:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Adaptive Time Stepping</strong>: Dynamically adjusts the time increment <span class="math notranslate nohighlight">\(\Delta t\)</span>
+based on solver performance.</p>
+<ul class="simple">
+<li><p><strong>Success</strong>: Increases <span class="math notranslate nohighlight">\(\Delta t\)</span> (acceleration) if convergence is fast.</p></li>
+<li><p><strong>Failure</strong>: Decreases <span class="math notranslate nohighlight">\(\Delta t\)</span> (deceleration/cutting) if convergence fails, retrying the step.</p></li>
+</ul>
+</li>
 <li><p><strong>State Management</strong>: Updates time-dependent operators and constraints before each solve.</p></li>
 <li><p><strong>Output Management</strong>: Writes results to disk (VTU/XDMF for fields, DAT for QOIs, log files for monitoring).</p></li>
 </ol>

@@ -1137,17 +1137,18 @@
 <dt class="sig sig-object py" id="dolfin_mech.run_Disc_Mesh.run_Disc_Mesh">
 <span class="sig-name descname"><span class="pre">run_Disc_Mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dolfin_mech/run_Disc_Mesh.html#run_Disc_Mesh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dolfin_mech.run_Disc_Mesh.run_Disc_Mesh" title="Link to this definition"></a></dt>
 <dd><p>Generates a 2D disc mesh using Gmsh and prepares boundary/point markers.</p>
-<p>This function performs the full mesh generation pipeline:
-1.  <strong>Geometry</strong>: Defines a circle using 4 arcs and 5 points (center + 4 cardinal points).
-2.  <strong>Meshing</strong>: Generates a triangular mesh using Gmsh’s <code class="docutils literal notranslate"><span class="pre">geo</span></code> kernel.
-3.  <strong>Conversion</strong>: Converts the mesh to XDMF format compatible with FEniCS.
-4.  <strong>Marking</strong>:</p>
-<blockquote>
-<div><ul class="simple">
+<p>This function performs the full mesh generation pipeline:</p>
+<ol class="arabic simple">
+<li><p><strong>Geometry</strong>: Defines a circle using 4 arcs and 5 points (center + 4 cardinal points).</p></li>
+<li><p><strong>Meshing</strong>: Generates a triangular mesh using Gmsh’s <code class="docutils literal notranslate"><span class="pre">geo</span></code> kernel.</p></li>
+<li><p><strong>Conversion</strong>: Converts the mesh to XDMF format compatible with FEniCS.</p></li>
+<li><p><strong>Marking</strong>:</p>
+<ul class="simple">
 <li><p>Marks the entire circular boundary (ID 1).</p></li>
 <li><p>Marks the 4 cardinal points (Right, Top, Left, Bottom) with IDs 1, 2, 3, 4 respectively.</p></li>
 </ul>
-</div></blockquote>
+</li>
+</ol>
 <p><strong>Point Marking Strategy:</strong>
 The explicit marking of vertices at <span class="math notranslate nohighlight">\(0, \pi/2, \pi, 3\pi/2\)</span> allows for
 precise point-wise constraints (e.g., preventing rigid body rotation in

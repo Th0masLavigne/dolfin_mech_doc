@@ -1152,10 +1152,12 @@
 <span class="sd">    Generates a 2D disc mesh using Gmsh and prepares boundary/point markers.</span>
 
 <span class="sd">    This function performs the full mesh generation pipeline:</span>
+
 <span class="sd">    1.  **Geometry**: Defines a circle using 4 arcs and 5 points (center + 4 cardinal points).</span>
 <span class="sd">    2.  **Meshing**: Generates a triangular mesh using Gmsh&#39;s ``geo`` kernel.</span>
 <span class="sd">    3.  **Conversion**: Converts the mesh to XDMF format compatible with FEniCS.</span>
 <span class="sd">    4.  **Marking**: </span>
+<span class="sd">    </span>
 <span class="sd">        - Marks the entire circular boundary (ID 1).</span>
 <span class="sd">        - Marks the 4 cardinal points (Right, Top, Left, Bottom) with IDs 1, 2, 3, 4 respectively.</span>
 

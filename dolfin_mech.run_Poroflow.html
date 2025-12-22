@@ -1141,18 +1141,14 @@
 structure (e.g., a “Hollow Box” or a custom domain defined by <code class="docutils literal notranslate"><span class="pre">mesh_params</span></code>).
 It solves for the coupled evolution of <strong>Solid Displacement</strong> (<span class="math notranslate nohighlight">\(\mathbf{u}\)</span>)
 and <strong>Fluid Pressure</strong> (<span class="math notranslate nohighlight">\(p_f\)</span>).</p>
-<p><strong>Workflow:</strong>
-1.  <strong>Mesh Generation</strong>: Calls <code class="docutils literal notranslate"><span class="pre">dmech.run_HollowBox_Mesh</span></code> to generate the domain.
-2.  <strong>Porosity Initialization</strong>: Sets the initial porosity field (<span class="math notranslate nohighlight">\(\phi_0\)</span>) which can be constant, a function, or random.
-3.  <strong>Problem Setup</strong>: Instantiates <code class="xref py py-class docutils literal notranslate"><span class="pre">PoroFlowHyperelasticityProblem</span></code>.
-4.  <strong>Boundary Conditions</strong>: Applies:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p><strong>Fluid</strong>: Pressure gradients (Dirichlet BCs on <span class="math notranslate nohighlight">\(p_f\)</span>).</p></li>
-<li><p><strong>Solid</strong>: Displacement constraints (compression/shear).</p></li>
-</ul>
-</div></blockquote>
-<ol class="arabic simple" start="5">
+<p><strong>Workflow:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Mesh Generation</strong>: Calls <code class="docutils literal notranslate"><span class="pre">dmech.run_HollowBox_Mesh</span></code> to generate the domain.</p></li>
+<li><p><strong>Porosity Initialization</strong>: Sets the initial porosity field (<span class="math notranslate nohighlight">\(\phi_0\)</span>) which can be constant, a function, or random.</p></li>
+<li><p><strong>Problem Setup</strong>: Instantiates <code class="xref py py-class docutils literal notranslate"><span class="pre">PoroFlowHyperelasticityProblem</span></code>.</p></li>
+<li><p><strong>Boundary Conditions</strong>: Applies:
+- <strong>Fluid</strong>: Pressure gradients (Dirichlet BCs on <span class="math notranslate nohighlight">\(p_f\)</span>).
+- <strong>Solid</strong>: Displacement constraints (compression/shear).</p></li>
 <li><p><strong>Solving</strong>: Uses a nonlinear solver with adaptive time-stepping.</p></li>
 </ol>
 <p><strong>Note on Boundary Conditions:</strong>

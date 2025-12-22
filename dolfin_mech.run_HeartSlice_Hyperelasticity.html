@@ -1139,14 +1139,12 @@
 <dd><p>Runs a 2D benchmark simulation of a heart slice (annulus) under deformation.</p>
 <p>This function sets up and solves a finite strain problem on an annular domain,
 representing a 2D slice of a cardiac ventricle.</p>
-<p><strong>Loading Scenarios:</strong>
-1.  <strong>Displacement Control (`type=”disp”`)</strong>: Simulates a “twisting” or contraction</p>
-<blockquote>
-<div><p>movement. The inner radius <span class="math notranslate nohighlight">\(R_i\)</span> is displaced by <span class="math notranslate nohighlight">\(dR_i\)</span> and rotated
+<p><strong>Loading Scenarios:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Displacement Control (`type=”disp”`)</strong>: Simulates a “twisting” or contraction
+movement. The inner radius <span class="math notranslate nohighlight">\(R_i\)</span> is displaced by <span class="math notranslate nohighlight">\(dR_i\)</span> and rotated
 by <span class="math notranslate nohighlight">\(dT_i\)</span>. The outer radius <span class="math notranslate nohighlight">\(R_e\)</span> is similarly deformed. This is useful
-for testing shear and complex kinematic boundary conditions.</p>
-</div></blockquote>
-<ol class="arabic simple" start="2">
+for testing shear and complex kinematic boundary conditions.</p></li>
 <li><p><strong>Pressure Control (`type=”pres”`)</strong>: Simulates ventricular inflation. An internal
 pressure <span class="math notranslate nohighlight">\(p\)</span> is applied to the inner boundary <span class="math notranslate nohighlight">\(S_i\)</span>. To ensure stability,
 four cardinal points on the outer boundary are pinned to prevent rigid body motion.</p></li>

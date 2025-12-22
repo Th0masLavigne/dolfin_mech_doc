@@ -1139,12 +1139,10 @@
 <p>This function simulates a porous unit cube (or square) undergoing large
 deformations. It validates the coupled mechanics of the solid skeleton and
 the pore fluid.</p>
-<p><strong>Problem Types:</strong>
-- <strong>Forward (`inverse=0`)</strong>: Given initial porosity <span class="math notranslate nohighlight">\(\Phi_{s0}\)</span> and loads,</p>
-<blockquote>
-<div><p>solve for displacement <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> and current porosity <span class="math notranslate nohighlight">\(\phi_s\)</span>.</p>
-</div></blockquote>
+<p><strong>Problem Types:</strong></p>
 <ul class="simple">
+<li><p><strong>Forward (`inverse=0`)</strong>: Given initial porosity <span class="math notranslate nohighlight">\(\Phi_{s0}\)</span> and loads,
+solve for displacement <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> and current porosity <span class="math notranslate nohighlight">\(\phi_s\)</span>.</p></li>
 <li><p><strong>Inverse (`inverse=1`)</strong>: Given current porosity <span class="math notranslate nohighlight">\(\phi_s\)</span> and loads,
 solve for the reference configuration (displacement <span class="math notranslate nohighlight">\(\mathbf{u}\)</span>) and
 reference porosity <span class="math notranslate nohighlight">\(\Phi_{s0}\)</span>.</p></li>

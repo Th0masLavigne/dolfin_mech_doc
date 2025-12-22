@@ -1160,10 +1160,13 @@
 <span class="sd">    </span>
 
 <span class="sd">    **Core Responsibilities:**</span>
+<span class="sd">    </span>
 <span class="sd">    1.  **Adaptive Time Stepping**: Dynamically adjusts the time increment :math:`\Delta t` </span>
 <span class="sd">        based on solver performance.</span>
+
 <span class="sd">        - **Success**: Increases :math:`\Delta t` (acceleration) if convergence is fast.</span>
 <span class="sd">        - **Failure**: Decreases :math:`\Delta t` (deceleration/cutting) if convergence fails, retrying the step.</span>
+
 <span class="sd">    2.  **State Management**: Updates time-dependent operators and constraints before each solve.</span>
 <span class="sd">    3.  **Output Management**: Writes results to disk (VTU/XDMF for fields, DAT for QOIs, log files for monitoring).</span>
 

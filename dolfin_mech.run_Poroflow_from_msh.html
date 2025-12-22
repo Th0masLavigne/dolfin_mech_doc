@@ -1140,27 +1140,25 @@
 <p>This function simulates the deformation and fluid flow within a porous hyperelastic
 structure (e.g., a square domain with inclusions). It solves for the coupled
 evolution of <strong>Solid Displacement</strong> (<span class="math notranslate nohighlight">\(\mathbf{u}\)</span>) and <strong>Fluid Pressure</strong> (<span class="math notranslate nohighlight">\(p_f\)</span>).</p>
-<p><strong>Workflow:</strong>
-1.  <strong>Mesh Loading</strong>: Imports a pre-generated mesh (and facet markers) from XDMF files.
-2.  <strong>Porosity Initialization</strong>: Sets the initial porosity field (<span class="math notranslate nohighlight">\(\phi_0\)</span>) which can be constant, a function, or random.
-3.  <strong>Problem Setup</strong>: Instantiates <code class="xref py py-class docutils literal notranslate"><span class="pre">PoroFlowHyperelasticityProblem</span></code>.
-4.  <strong>Boundary Conditions</strong>: Applies:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p><strong>Fluid</strong>: Pressure gradients (Dirichlet BCs on <span class="math notranslate nohighlight">\(p_f\)</span>).</p></li>
-<li><p><strong>Solid</strong>: Displacement constraints (compression/shear).</p></li>
-</ul>
-</div></blockquote>
-<ol class="arabic simple" start="5">
+<p><strong>Workflow:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Mesh Loading</strong>: Imports a pre-generated mesh (and facet markers) from XDMF files.</p></li>
+<li><p><strong>Porosity Initialization</strong>: Sets the initial porosity field (<span class="math notranslate nohighlight">\(\phi_0\)</span>) which can be constant, a function, or random.</p></li>
+<li><p><strong>Problem Setup</strong>: Instantiates <code class="xref py py-class docutils literal notranslate"><span class="pre">PoroFlowHyperelasticityProblem</span></code>.</p></li>
+<li><p><strong>Boundary Conditions</strong>: Applies:
+- <strong>Fluid</strong>: Pressure gradients (Dirichlet BCs on <span class="math notranslate nohighlight">\(p_f\)</span>).
+- <strong>Solid</strong>: Displacement constraints (compression/shear).</p></li>
 <li><p><strong>Solving</strong>: Uses a nonlinear solver with adaptive time-stepping.</p></li>
 </ol>
-<p><strong>Boundary Tags (Assumed):</strong>
-- 1: Plane (Back/Front)
-- 2: Left
-- 3: Right
-- 4: Top
-- 5: Bottom
-- 6: Inclusions</p>
+<p><strong>Boundary Tags (Assumed):</strong></p>
+<ul class="simple">
+<li><p>1: Plane (Back/Front)</p></li>
+<li><p>2: Left</p></li>
+<li><p>3: Right</p></li>
+<li><p>4: Top</p></li>
+<li><p>5: Bottom</p></li>
+<li><p>6: Inclusions</p></li>
+</ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
