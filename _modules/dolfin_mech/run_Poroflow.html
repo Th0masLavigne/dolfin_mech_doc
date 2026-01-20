@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>dolfin_mech.run_Poroflow &mdash; dolfin_mech  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
@@ -1398,7 +1398,7 @@
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="c1"># ----------------- Run with Options -----------------</span>
-
+    <span class="c1"># </span>
     <span class="n">mat_params</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;alpha&quot;</span><span class="p">:</span><span class="mf">0.16</span><span class="p">,</span>
         <span class="s2">&quot;gamma&quot;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">,</span>
@@ -1406,9 +1406,7 @@
         <span class="s2">&quot;c2&quot;</span><span class="p">:</span><span class="mf">0.4</span><span class="p">,</span>
         <span class="s2">&quot;kappa&quot;</span><span class="p">:</span><span class="mf">1e2</span><span class="p">,</span>
         <span class="s2">&quot;eta&quot;</span><span class="p">:</span><span class="mf">1e-5</span><span class="p">}</span>
-
-
-
+    <span class="c1"># </span>
     <span class="n">run_PoroDisc_Coupled</span><span class="p">(</span>
         <span class="n">mat_params</span><span class="o">=</span><span class="p">{</span>
             <span class="s2">&quot;skel&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;parameters&quot;</span><span class="p">:</span> <span class="n">mat_params</span><span class="p">,</span> <span class="s2">&quot;scaling&quot;</span><span class="p">:</span> <span class="s2">&quot;no&quot;</span><span class="p">},</span>
@@ -1437,7 +1435,6 @@
             <span class="c1"># output</span>
             <span class="s2">&quot;mesh_filebasename&quot;</span><span class="p">:</span> <span class="s2">&quot;results/mesh&quot;</span>
         <span class="p">},</span>
-
         <span class="n">step_params</span><span class="o">=</span><span class="p">{</span>
             <span class="s2">&quot;Deltat&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
             <span class="s2">&quot;dt_ini&quot;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
@@ -1451,8 +1448,7 @@
             <span class="s2">&quot;val&quot;</span><span class="p">:</span> <span class="mf">0.3</span>
         <span class="p">},</span>
         <span class="n">res_basename</span><span class="o">=</span><span class="s2">&quot;results/run_PoroBox&quot;</span><span class="p">,</span>
-        <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span>
-        
+        <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span> 
     <span class="p">)</span>
 </pre></div>
 

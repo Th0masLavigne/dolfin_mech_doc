@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>dolfin_mech.Problem_Hyperelasticity &mdash; dolfin_mech  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
@@ -1185,7 +1185,7 @@ The problem minimizes the total potential energy <span class="math notranslate n
 is used to enforce the constraint <span class="math notranslate nohighlight">\(J = 1\)</span> (or near-incompressibility)
 via a Lagrange multiplier <span class="math notranslate nohighlight">\(p\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[\Pi(\mathbf{u}, p) = \int_{\Omega_0} \Psi_{dev}(ar{\mathbf{F}}) \, dV + \int_{\Omega_0} p(J-1) \, dV - W_{ext}\]</div>
+\[\Pi(\mathbf{u}, p) = \int_{\Omega_0} \Psi_{dev}(\bar{\mathbf{F}}) \, dV + \int_{\Omega_0} p(J-1) \, dV - W_{ext}\]</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
