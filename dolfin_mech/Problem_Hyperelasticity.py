@@ -35,7 +35,7 @@ class HyperelasticityProblem(Problem):
     via a Lagrange multiplier :math:`p`:
 
     .. math::
-        \Pi(\mathbf{u}, p) = \int_{\Omega_0} \Psi_{dev}(\bar{\mathbf{F}}) \, dV + \int_{\Omega_0} p(J-1) \, dV - W_{ext}
+        \Pi(\mathbf{u}, p) = \int_{\Omega_0} \Psi_{dev}(\\bar{\mathbf{F}}) \, dV + \int_{\Omega_0} p(J-1) \, dV - W_{ext}
 
     :param w_incompressibility: If True, enables the mixed formulation adding a 
         pressure sub-solution to handle volumetric locking.

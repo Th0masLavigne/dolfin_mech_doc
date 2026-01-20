@@ -22,5 +22,5 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     # install_requires=["gmsh", "matplotlib", "meshio", "numpy", "pandas", "vtk", "myPythonLibrary", "myVTKPythonLibrary", "vtkpython_cbl"],
-    install_requires=["gmsh~=4.9", "matplotlib~=3.5", "meshio~=5.3", "numpy~=1.23", "pandas~=1.3", "vtk~=9.2", "myPythonLibrary", "myVTKPythonLibrary", "vtkpython_cbl"],
+    install_requires=["gmsh~=4.9", "matplotlib~=3.5", "meshio~=5.3", "numpy==1.23", "pandas~=1.3", "vtk~=9.2", "myPythonLibrary", "myVTKPythonLibrary", "vtkpython_cbl"],
 )

@@ -230,7 +230,7 @@ def run_PoroDisc_Coupled(
 
 if __name__ == "__main__":
     # ----------------- Run with Options -----------------
-
+    # 
     mat_params = {
         "alpha":0.16,
         "gamma":0.5,
@@ -238,9 +238,7 @@ if __name__ == "__main__":
         "c2":0.4,
         "kappa":1e2,
         "eta":1e-5}
-
-
-
+    # 
     run_PoroDisc_Coupled(
         mat_params={
             "skel": {"parameters": mat_params, "scaling": "no"},
@@ -269,7 +267,6 @@ if __name__ == "__main__":
             # output
             "mesh_filebasename": "results/mesh"
         },
-
         step_params={
             "Deltat": 1.0,
             "dt_ini": 0.2,
@@ -283,6 +280,5 @@ if __name__ == "__main__":
             "val": 0.3
         },
         res_basename="results/run_PoroBox",
-        verbose=0
-        
+        verbose=0 
     )
